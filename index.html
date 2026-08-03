@@ -3,25 +3,449 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>天書三式術數查詢系統 v1.0</title>
+<title>天書三式・丁一峰老師術數查詢系統 v1.0</title>
 <meta name="description" content="天書三式術數查詢系統：流年/月紫白飛星、生肖擇日宜忌、六壬擇日四大吉時月表。" />
 <style>
-:root{--bg:#080e18;--bg2:#0f1c2d;--panel:#121e2f;--panel2:#17263b;--line:#2d405d;--ink:#f4f7fb;--muted:#b9c4d3;--gold:#d6a84f;--gold2:#f1d28a;--red:#c84b55;--green:#54b17f;--blue:#6ea8fe;--card:#0e1725;--shadow:0 16px 45px rgba(0,0,0,.35);--radius:18px}
-*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 0% 0%,rgba(214,168,79,.13),transparent 30rem),radial-gradient(circle at 100% 0%,rgba(110,168,254,.12),transparent 30rem),var(--bg);color:var(--ink);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;line-height:1.65}button,input,select{font:inherit}a{color:var(--gold2)}
-.site-hero{background:linear-gradient(135deg,#08101d,#142842 65%,#31151b);border-bottom:5px solid var(--gold);padding:32px 18px 26px}.hero-inner{max-width:1280px;margin:auto}.brand-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.brand-mark{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--gold),#9d6a24);display:grid;place-items:center;color:#111;font-size:28px;font-weight:900;box-shadow:var(--shadow)}.hero-kicker{color:var(--gold2);font-weight:800;letter-spacing:.12em}h1{margin:10px 0 6px;font-size:clamp(1.8rem,4vw,3.2rem);letter-spacing:.06em}.hero-subtitle{margin:0;color:#dbe5f2;max-width:900px}.main-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.tab-button,.btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:white;border-radius:12px;padding:10px 15px;cursor:pointer;font-weight:800}.tab-button.active,.btn-primary{background:var(--gold);color:#101722;border-color:var(--gold)}.btn-dark{background:#07111d;color:#fff}main{max-width:1280px;margin:24px auto 60px;padding:0 18px}.tab-page{display:none}.tab-page.active{display:block}.panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow)}.section-kicker{display:flex;align-items:center;gap:10px;color:var(--gold2);font-weight:900;letter-spacing:.08em}.section-kicker span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(214,168,79,.2);border:1px solid rgba(214,168,79,.45)}h2{margin:8px 0 16px;font-size:1.45rem}h3{margin:0 0 10px}.controls,.form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.control-card,.field,.mini-card{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:14px}label span,.control-card label{display:block;font-weight:800;color:#eaf0f8;margin-bottom:6px}input,select{width:100%;border:1px solid #4b6282;background:#08111e;color:var(--ink);border-radius:10px;padding:10px 12px;min-height:44px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.summary-card{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:14px}.label{color:var(--muted);font-size:.9rem}.value{font-size:1.5rem;font-weight:900;color:var(--gold2)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#09111d}table{border-collapse:collapse;width:100%;min-width:1100px}th,td{border-bottom:1px solid #273951;border-right:1px solid #273951;padding:9px 10px;text-align:center;vertical-align:middle;white-space:nowrap}th{background:#0a1524;color:var(--gold2);position:sticky;top:0;z-index:2}tbody tr:hover{background:rgba(214,168,79,.08)}.note,.muted{color:var(--muted);font-size:.92rem}.pill{display:inline-block;border-radius:999px;padding:2px 8px;background:rgba(214,168,79,.15);color:var(--gold2);font-weight:800}.status-good{color:#9bf1bd}.status-bad{color:#ff9ba5}.status-warn{color:#ffd58a}.grid-9{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:540px}.palace{min-height:92px;border:1px solid var(--line);border-radius:12px;background:#0b1421;padding:10px;text-align:center}.palace b{display:block;color:var(--gold2)}.footer-box{max-width:1280px;margin:0 auto 40px;padding:0 18px;color:var(--muted);font-size:.9rem}.is-hidden{display:none!important}.month-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.quick-item{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}.quick-item strong{display:block;color:var(--gold2);font-size:1.1rem}.quick-lines{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:64px}.quick-lines span{display:block;color:var(--gold2);font-size:1.02rem;font-weight:900;line-height:1.35;white-space:nowrap}.zibai-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.zibai-block{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:14px}.zibai-block .grid-9{max-width:none}.zibai-block .palace{min-height:82px}.zibai-block h3{color:var(--gold2)}
-.zodiac-input-panel{position:relative;overflow:hidden}.zodiac-input-panel:before{content:"";position:absolute;inset:auto -20% -45% 45%;height:220px;background:radial-gradient(circle,rgba(214,168,79,.12),transparent 70%);pointer-events:none}.zodiac-input-top{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;align-items:end}.zodiac-input-top .field{min-height:92px}.zodiac-input-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}.zodiac-toolbar-note{margin-top:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:12px 14px;color:var(--muted)}.zodiac-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}.zodiac-overview .summary-card{margin:0}.zodiac-overview .value{font-size:1.65rem}.zodiac-core-box{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;padding:18px}.zodiac-rule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.zodiac-rule-card{background:#08111e;border:1px solid #233954;border-radius:16px;padding:15px;border-left:4px solid var(--gold)}.zodiac-rule-card.bad{border-left-color:#e86a78}.zodiac-rule-card.warn{border-left-color:#f0a63a}.zodiac-rule-card.neutral{border-left-color:#94a3b8}.zodiac-rule-card h3{font-size:1.05rem;color:#fff;margin-bottom:8px}.zodiac-rule-card .big{font-size:1.65rem;line-height:1.25;color:var(--gold2);font-weight:900;letter-spacing:.08em}.zodiac-rule-card p{margin:.45rem 0 0;color:var(--muted)}.zodiac-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;background:rgba(214,168,79,.12);border:1px solid rgba(214,168,79,.35);color:var(--gold2);font-weight:900}.time-chip{display:inline-flex;align-items:center;margin:2px 4px 2px 0;border-radius:999px;padding:3px 8px;font-size:.86rem;font-weight:800;white-space:nowrap;border:1px solid rgba(255,255,255,.12)}.time-chip.good{background:rgba(214,168,79,.18);color:#ffe59a;border-color:rgba(214,168,79,.38)}.time-chip.warn{background:rgba(166,108,37,.22);color:#ffd39a;border-color:rgba(230,160,68,.35)}.time-chip.bad{background:rgba(200,75,85,.18);color:#ffb0b8;border-color:rgba(200,75,85,.35)}.time-chip.neutral{background:rgba(148,163,184,.12);color:#d7e0ee}.day-pill{display:inline-block;min-width:48px;border-radius:999px;padding:4px 10px;font-weight:900}.day-pill.good{background:rgba(214,168,79,.18);color:#ffe59a}.day-pill.warn{background:rgba(230,160,68,.18);color:#ffd39a}.day-pill.bad{background:rgba(200,75,85,.18);color:#ffb0b8}.day-pill.neutral{background:rgba(148,163,184,.12);color:#d7e0ee}@media(max-width:1100px){.zodiac-input-top{grid-template-columns:repeat(3,minmax(0,1fr))}.zodiac-overview{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.zodiac-input-top,.zodiac-overview,.zodiac-rule-grid{grid-template-columns:1fr}.zodiac-input-actions .btn{width:100%}}
-@media(max-width:900px){.controls,.form-grid,.summary-grid{grid-template-columns:1fr 1fr}.quick-grid{grid-template-columns:repeat(3,1fr)}.zibai-blocks{grid-template-columns:1fr}}@media(max-width:560px){.controls,.form-grid,.summary-grid,.quick-grid{grid-template-columns:1fr}.site-hero{padding:24px 14px}.panel{padding:15px}}@media print{.site-hero,.actions,.main-tabs,.no-print{display:none!important}body{background:#fff;color:#000}.tab-page{display:block!important}.panel{box-shadow:none;border:1px solid #888;background:#fff;color:#000}th{background:#eee;color:#000;position:static}td{color:#000}}
-.version-badge{display:inline-block;margin-left:8px;padding:3px 9px;border:1px solid rgba(231,190,81,.45);border-radius:999px;color:var(--gold2);font-size:.48em;vertical-align:middle}select:disabled{opacity:.85;cursor:not-allowed}
+:root{
+  --bg:#050a13;
+  --bg-soft:#08111f;
+  --panel:#17243a;
+  --panel-deep:#101a2c;
+  --panel-black:#08111f;
+  --line:#2a3b59;
+  --line-soft:#22314b;
+  --ink:#f7f4ea;
+  --muted:#aab5c8;
+  --muted-2:#7f8ca4;
+  --gold:#e5b93f;
+  --gold-2:#f4d578;
+  --gold-deep:#9c6f17;
+  --red:#dc6571;
+  --green:#64c08b;
+  --orange:#e3a33f;
+  --shadow:0 22px 65px rgba(0,0,0,.30);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.65;
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(rgba(113,137,177,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(113,137,177,.055) 1px,transparent 1px),
+    radial-gradient(circle at 50% -8%,rgba(229,185,63,.09),transparent 28rem);
+  background-size:56px 56px,56px 56px,auto;
+}
+button,input,select{font:inherit}
+button{appearance:none}
+a{color:var(--gold-2)}
+.system-header{
+  max-width:1920px;
+  margin:0 auto;
+  padding:34px 30px 0;
+  text-align:center;
+}
+.brand-mark{
+  width:66px;
+  height:66px;
+  margin:0 auto 14px;
+  display:grid;
+  place-items:center;
+  border-radius:19px;
+  color:#121006;
+  font-size:1.72rem;
+  font-weight:950;
+  background:linear-gradient(145deg,#ffe58b 0%,#dfac30 58%,#93620d 100%);
+  border:1px solid rgba(255,236,154,.55);
+  box-shadow:0 10px 30px rgba(218,166,39,.28),inset 0 1px rgba(255,255,255,.7);
+}
+.eyebrow{
+  margin:0;
+  color:var(--gold-2);
+  font-size:.98rem;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+h1{
+  margin:12px auto 9px;
+  max-width:1500px;
+  font-size:clamp(2.35rem,5.4vw,5.15rem);
+  line-height:1.08;
+  letter-spacing:.055em;
+  font-weight:950;
+  color:#f6eed7;
+  text-shadow:0 3px 22px rgba(244,213,120,.07);
+}
+.hero__text{
+  margin:0 auto;
+  max-width:1300px;
+  color:#9ca9c0;
+  font-size:clamp(.95rem,1.45vw,1.2rem);
+  font-weight:700;
+  letter-spacing:.05em;
+}
+.top-nav{
+  max-width:1780px;
+  margin:30px auto 0;
+  padding:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  flex-wrap:wrap;
+  border:1px solid var(--line-soft);
+  border-radius:999px;
+  background:rgba(6,12,23,.84);
+  box-shadow:0 14px 42px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.02);
+  backdrop-filter:blur(8px);
+}
+.tab-button,.btn{
+  border:1px solid transparent;
+  border-radius:999px;
+  min-height:48px;
+  padding:10px 24px;
+  color:#b7c0d2;
+  background:transparent;
+  cursor:pointer;
+  font-weight:900;
+  letter-spacing:.025em;
+  transition:transform .16s ease,background .16s ease,color .16s ease,border-color .16s ease;
+}
+.tab-button:hover,.btn:hover{transform:translateY(-1px);color:#fff}
+.tab-button.active,.btn-primary{
+  color:#171306;
+  border-color:rgba(255,231,137,.65);
+  background:linear-gradient(135deg,#f6d96d,#dca62b);
+  box-shadow:0 7px 22px rgba(218,167,48,.22);
+}
+.btn-dark,.btn.secondary{
+  color:#f2f4f8;
+  border-color:#2a3b59;
+  background:#08111f;
+}
+main{
+  max-width:1880px;
+  margin:32px auto 62px;
+  padding:0 24px;
+}
+.tab-page{display:none}
+.tab-page.active{display:block}
+.panel{
+  margin-bottom:24px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:linear-gradient(145deg,rgba(26,42,68,.97),rgba(19,31,51,.97));
+  box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.025);
+}
+.section-kicker{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:var(--gold);
+  font-size:.94rem;
+  font-weight:950;
+  letter-spacing:.075em;
+}
+.section-kicker span{
+  width:40px;
+  height:40px;
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 auto;
+  border-radius:12px;
+  color:#161207;
+  background:linear-gradient(145deg,#f5d56a,#c98d19);
+  box-shadow:0 7px 18px rgba(211,155,31,.2);
+}
+h2{
+  margin:12px 0 20px;
+  color:#f6f3e9;
+  font-size:clamp(1.48rem,2.2vw,2rem);
+  line-height:1.25;
+  font-weight:950;
+  letter-spacing:.025em;
+}
+h3{margin:0 0 10px;color:#f6f3e9}
+.controls,.form-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+.control-card,.field,.mini-card{
+  min-width:0;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:rgba(10,19,33,.48);
+}
+label span,.control-card label{
+  display:block;
+  margin-bottom:8px;
+  color:#e3e8f2;
+  font-weight:900;
+}
+input,select{
+  width:100%;
+  min-height:54px;
+  padding:12px 16px;
+  color:#f9f8f3;
+  border:1px solid #304768;
+  border-radius:15px;
+  outline:none;
+  background:#07101e;
+}
+input:focus,select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(229,185,63,.13);
+}
+.actions,.zodiac-input-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  margin-top:17px;
+}
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+  margin-top:17px;
+}
+.summary-card{
+  min-height:122px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:linear-gradient(145deg,rgba(31,48,76,.86),rgba(18,31,51,.86));
+}
+.label{color:#abb5c8;font-size:.95rem}
+.value{margin-top:5px;color:var(--gold-2);font-size:1.78rem;font-weight:950}
+.note,.muted{color:var(--muted);font-size:.92rem}
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#07101d;
+}
+table{width:100%;min-width:1100px;border-collapse:collapse}
+th,td{
+  padding:12px 11px;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+  border-right:1px solid #22334f;
+  border-bottom:1px solid #22334f;
+}
+th{
+  position:sticky;
+  top:0;
+  z-index:2;
+  color:#f4d477;
+  background:#0b1627;
+  font-weight:950;
+}
+tbody tr:nth-child(even){background:rgba(255,255,255,.012)}
+tbody tr:hover{background:rgba(229,185,63,.065)}
+.pill,.version-badge,.zodiac-badge{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid rgba(229,185,63,.3);
+  border-radius:999px;
+  padding:5px 12px;
+  color:var(--gold-2);
+  background:rgba(229,185,63,.10);
+  font-weight:900;
+}
+.grid-9{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.palace{
+  min-height:118px;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px solid #2b3e5e;
+  border-radius:18px;
+  background:#081320;
+}
+.palace b{display:block;color:var(--gold-2);font-size:1.08rem}
+.month-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.zibai-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.zibai-block{
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(7,16,29,.38);
+}
+.zibai-block h3{color:var(--gold-2);font-size:1.35rem}
+.quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.quick-item{
+  min-height:122px;
+  padding:16px 12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(31,48,76,.8),rgba(17,29,48,.82));
+}
+.quick-item strong,.quick-lines span{color:var(--gold-2);font-size:1.13rem;font-weight:950}
+.quick-lines{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:3px}
+.quick-lines span{line-height:1.35;white-space:nowrap}
+.zodiac-input-panel{overflow:hidden;position:relative}
+.zodiac-input-panel:before{
+  content:"";
+  position:absolute;
+  right:-120px;
+  bottom:-150px;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(229,185,63,.09),transparent 68%);
+  pointer-events:none;
+}
+.zodiac-input-top{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:14px;
+  align-items:end;
+}
+.zodiac-toolbar-note{
+  position:relative;
+  margin-top:16px;
+  padding:15px 17px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:rgba(7,16,29,.48);
+}
+.zodiac-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:18px}
+.zodiac-core-box{padding:20px;border:1px solid var(--line);border-radius:22px;background:rgba(7,16,29,.35)}
+.zodiac-rule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.zodiac-rule-card{
+  padding:18px;
+  border:1px solid #263b5c;
+  border-left:5px solid var(--gold);
+  border-radius:18px;
+  background:#07101e;
+}
+.zodiac-rule-card.bad{border-left-color:var(--red)}
+.zodiac-rule-card.warn{border-left-color:var(--orange)}
+.zodiac-rule-card.neutral{border-left-color:#8795aa}
+.zodiac-rule-card h3{font-size:1.07rem}
+.zodiac-rule-card .big{color:var(--gold-2);font-size:1.7rem;line-height:1.25;font-weight:950;letter-spacing:.06em}
+.zodiac-rule-card p{margin:.5rem 0 0;color:var(--muted)}
+.time-chip,.day-pill{
+  display:inline-flex;
+  align-items:center;
+  margin:2px 4px 2px 0;
+  padding:4px 9px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  font-size:.84rem;
+  font-weight:900;
+  white-space:nowrap;
+}
+.time-chip.good,.day-pill.good{color:#ffe493;background:rgba(229,185,63,.18)}
+.time-chip.warn,.day-pill.warn{color:#ffd09a;background:rgba(227,163,63,.18)}
+.time-chip.bad,.day-pill.bad{color:#ffb2bb;background:rgba(220,101,113,.18)}
+.time-chip.neutral,.day-pill.neutral{color:#d7dfec;background:rgba(141,155,179,.12)}
+.footer-box{max-width:1880px;margin:0 auto 48px;padding:0 24px}
+.copyright-card{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:linear-gradient(145deg,rgba(26,42,68,.97),rgba(19,31,51,.97));
+  box-shadow:var(--shadow);
+}
+.copyright-card h2{margin:12px 0}
+.copyright-card p{margin:7px 0;color:var(--muted)}
+.copyright-card .copyright-owner{color:#f5f2e8;font-weight:900}
+.copyright-card .copyright-owner strong{color:var(--gold-2)}
+.is-hidden{display:none!important}
+@media(max-width:1180px){
+  .zodiac-input-top{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .system-header{padding-left:15px;padding-right:15px}
+  .top-nav{border-radius:28px}
+  .tab-button{flex:1 1 210px}
+  .controls,.form-grid,.summary-grid,.zodiac-overview{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .zibai-blocks{grid-template-columns:1fr}
+  main{padding:0 14px}
+}
+@media(max-width:620px){
+  .system-header{padding-top:22px}
+  .brand-mark{width:58px;height:58px}
+  h1{font-size:2.35rem}
+  .top-nav{padding:8px;border-radius:24px}
+  .tab-button{width:100%;flex-basis:100%;min-height:45px}
+  .panel{padding:18px;border-radius:20px}
+  .controls,.form-grid,.summary-grid,.zodiac-input-top,.zodiac-overview,.zodiac-rule-grid,.quick-grid{grid-template-columns:1fr}
+  .actions .btn,.zodiac-input-actions .btn{width:100%}
+  .palace{min-height:100px}
+}
+@media print{
+  .system-header,.top-nav,.actions,.zodiac-input-actions,.no-print{display:none!important}
+  body{color:#000;background:#fff}
+  main{max-width:none;margin:0;padding:0}
+  .tab-page{display:block!important}
+  .panel,.copyright-card,.summary-card,.zibai-block,.palace,.quick-item,.zodiac-rule-card{color:#000;background:#fff;box-shadow:none;border-color:#999}
+  th{position:static;color:#000;background:#eee}
+}
+
 </style>
 </head>
 <body>
-<header class="site-hero"><div class="hero-inner"><div class="brand-row"><div class="brand-mark">天</div><div><div class="hero-kicker">天書三式・丁一峰老師製作</div><h1>術數查詢系統</h1><p class="hero-subtitle">流年／月紫白飛星・生肖擇日宜忌・六壬擇日四大吉時月表（2026年6月至12月）</p></div></div><nav class="main-tabs" aria-label="查詢工具"><button class="tab-button active" data-tab="zibaiPage">流年／月紫白飛星</button><button class="tab-button" data-tab="zodiacPage">生肖擇日宜忌</button><button class="tab-button" data-tab="fourTimePage">四大吉時月表</button></nav></div></header>
+<header class="system-header">
+  <div class="brand-mark">天</div>
+  <p class="eyebrow">天干地支・流年運程・術數查詢</p>
+  <h1>天書三式・丁一峰老師術數查詢系統</h1>
+  <p class="hero__text">流年紫白・月紫白飛星・生肖擇日宜忌・六壬擇日四大吉時月表</p>
+  <nav class="top-nav main-tabs" aria-label="查詢工具">
+    <button class="tab-button active" data-tab="zibaiPage">流年紫白查詢</button>
+    <button class="tab-button" data-tab="zodiacPage">生肖擇日宜忌</button>
+    <button class="tab-button" data-tab="fourTimePage">四大吉時月表</button>
+  </nav>
+</header>
 <main>
 <section id="zibaiPage" class="tab-page active"><section class="panel"><div class="section-kicker"><span>壹</span>紫白飛星</div><h2>流年與月紫白飛星查詢</h2><div class="controls"><div class="control-card"><label for="zwYear">選擇年份</label><select id="zwYear"></select></div><div class="control-card"><label for="zwMonth">節氣月</label><select id="zwMonth"></select></div><div class="control-card"><label>列印</label><button class="btn btn-primary" onclick="window.print()">列印 / 另存 PDF</button></div></div><div class="summary-grid"><div class="summary-card"><div class="label">干支年</div><div class="value" id="zwGanzhi">—</div></div><div class="summary-card"><div class="label">流年入中</div><div class="value" id="zwAnnual">—</div></div><div class="summary-card"><div class="label">本月入中</div><div class="value" id="zwMonthly">—</div></div></div></section><section class="panel"><h2>紫白九宮飛布</h2><div class="zibai-blocks"><div class="zibai-block"><div class="month-title"><h3>流年紫白</h3><span class="pill" id="annualCenterBadge">—</span></div><div class="grid-9" id="annualPalaceGrid"></div></div><div class="zibai-block"><div class="month-title"><h3>流月紫白</h3><span class="pill" id="monthlyCenterBadge">—</span></div><div class="grid-9" id="monthlyPalaceGrid"></div></div></div><p class="note">紫白採程式公式即時計算；流年與流月分區呈現，九宮格依後天洛書方位排列。</p></section></section>
 <section id="zodiacPage" class="tab-page"><section class="panel zodiac-input-panel"><div class="section-kicker"><span>貳</span>生肖擇日</div><h2>生肖擇日與命年</h2><div class="zodiac-input-top"><label class="field"><span>出生西元年</span><input id="birthYear" type="number" min="1800" max="2300" value="1984"></label><label class="field"><span>年柱校正方式</span><select id="yearMode"><option value="auto">依輸入西元年換算</option><option value="previous">立春前：以前一年換算</option><option value="manual">手動指定年柱</option></select></label><label class="field is-hidden" id="manualWrap"><span>手動年柱</span><select id="manualGz"></select></label><label class="field"><span>用事月支</span><select id="monthBranch"><option value="">未指定（不判月破）</option></select></label><label class="field"><span>查詢起日</span><input id="startDate" type="date"></label><label class="field"><span>查詢日數</span><select id="rangeDays"><option value="30">30 日</option><option value="60" selected>60 日</option><option value="90">90 日</option><option value="120">120 日</option></select></label></div><div class="zodiac-input-actions"><button class="btn btn-primary" id="zodiacCalc">開始查詢</button><button class="btn btn-dark" id="zodiacCsv">下載結果 CSV</button><button class="btn btn-dark" onclick="window.print()">列印／另存 PDF</button></div><div class="zodiac-toolbar-note">出生年柱若採立春換年，出生於每年二月上旬交界者，請選擇「立春前：以前一年換算」或手動指定年柱。月破須先指定用事月支；未指定時，僅依年、月、日、時四支檢查本命沖煞與合局。</div></section><section class="panel"><div id="zodiacProfile"></div></section><section class="panel"><div class="month-title"><div><div class="section-kicker"><span>查</span>逐日查詢</div><h2>日期與時辰宜忌篩選</h2></div><p class="note">判定優先序：相沖／本命三煞／月破 ＞ 三刑、箭刃、回頭貢煞 ＞ 六合、三合。</p></div><div class="table-wrap"><table><thead><tr><th>公曆日期</th><th>日柱</th><th>日別</th><th>判定理由</th><th>宜用時辰</th><th>慎用時辰</th><th>禁用時辰</th></tr></thead><tbody id="zodiacRows"></tbody></table></div><div id="zodiacCount" class="muted" style="margin-top:10px"></div></section></section>
 <section id="fourTimePage" class="tab-page"><section class="panel"><div class="section-kicker"><span>參</span>六壬擇日</div><h2>每月四大吉時表 <span class="version-badge">v1.0</span></h2><div class="controls"><div class="control-card"><label for="ftYear">西元年（固定）</label><select id="ftYear" aria-label="固定年份2026"></select></div><div class="control-card"><label for="ftMonth">月份（6～12月）</label><select id="ftMonth"></select></div><div class="control-card"><label>操作</label><button class="btn btn-primary" id="ftPrint">列印 / 另存 PDF</button></div><div class="control-card"><label>匯出</label><button class="btn btn-dark" id="ftCsv">下載 CSV</button></div></div><p class="note">v1.0 正式版收錄 2026 年 6 月至 12 月；交節當天才顯示「本日交節」備註。</p></section><section class="panel"><div class="month-title"><h2 id="ftTitle">—</h2><div class="pill" id="ftRange">2026年6月至12月</div></div><div class="quick-grid" id="ftQuick"></div><div class="table-wrap" style="margin-top:14px"><table id="ftTable"><thead><tr><th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th></tr></thead><tbody id="ftRows"></tbody></table></div></section><section class="panel"><h2>計算參數說明</h2><ul><li>月表以日期為唯一鍵，查找每日遁局、節氣、月將、干支、星宿、建除與各吉時欄位，避免列號錯位。</li><li>四大吉時依月將對應：亥壬、戌乾、酉辛、申庚、未坤、午丁、巳丙、辰巽、卯乙、寅甲、丑艮、子癸。</li><li>斗柄所指依二十四節氣更換；交節日會於備註欄顯示交節後採用的節氣與月將。</li><li>v1.0 正式版的四大吉時資料範圍為 2026 年 6 月至 12 月。</li></ul></section></section>
 </main>
-<footer class="footer-box"><div>© 2026 天書三式・丁一峰老師製作　版權所有。無需伺服器與資料庫，可直接部署於 GitHub Pages。</div></footer>
+<footer class="footer-box" aria-label="版權宣告">
+  <div class="copyright-card">
+    <div class="section-kicker"><span>參</span>版權宣告</div>
+    <h2>使用與引用</h2>
+    <p class="copyright-owner">© 2026 <strong>丁一峰老師</strong> 版權所有。</p>
+    <p>本工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+  </div>
+</footer>
 <script>
 const FOUR_TIME_DATA = [{"date":"2026-06-01","y":2026,"m":6,"d":1,"dunju":8,"jieqi":"小滿","yuejiang":"申","jiejieTime":"","monthBuild":"巳","ganzhi":"丙午水","week":"一","yibao":"和","xingxiu":"心","jianchu":"除","guideng":"申戌","gangse":"午","tiangang":"酉","ride":"寅","zhide":"申","guise":"○亥","fourTime":"庚","doubing":"巳"},{"date":"2026-06-02","y":2026,"m":6,"d":2,"dunju":8,"jieqi":"小滿","yuejiang":"申","jiejieTime":"","monthBuild":"巳","ganzhi":"丁未水","week":"二","yibao":"寶","xingxiu":"尾","jianchu":"滿","guideng":"申戌","gangse":"午","tiangang":"酉","ride":"申","zhide":"未","guise":"○丑","fourTime":"庚","doubing":"巳"},{"date":"2026-06-03","y":2026,"m":6,"d":3,"dunju":8,"jieqi":"小滿","yuejiang":"申","jiejieTime":"","monthBuild":"巳","ganzhi":"戊申土","week":"三","yibao":"寶","xingxiu":"箕","jianchu":"平","guideng":"子午","gangse":"午","tiangang":"酉","ride":"寅","zhide":"午","guise":"○○","fourTime":"庚","doubing":"巳"},{"date":"2026-06-04","y":2026,"m":6,"d":4,"dunju":6,"jieqi":"小滿","yuejiang":"申","jiejieTime":"","monthBuild":"巳","ganzhi":"己酉土","week":"四","yibao":"寶","xingxiu":"斗","jianchu":"定","guideng":"未亥","gangse":"午","tiangang":"酉","ride":"巳","zhide":"巳","guise":"○寅","fourTime":"庚","doubing":"巳"},{"date":"2026-06-05","y":2026,"m":6,"d":5,"dunju":6,"jieqi":"芒種","yuejiang":"申","jiejieTime":"23:48 芒種","monthBuild":"午","ganzhi":"庚戌金","week":"五","yibao":"義","xingxiu":"牛","jianchu":"定","guideng":"子午","gangse":"午","tiangang":"酉","ride":"亥","zhide":"辰","guise":"○○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-06","y":2026,"m":6,"d":6,"dunju":6,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"辛亥金","week":"六","yibao":"寶","xingxiu":"女","jianchu":"執","guideng":"丑巳","gangse":"午","tiangang":"酉","ride":"寅","zhide":"卯","guise":"申○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-07","y":2026,"m":6,"d":7,"dunju":6,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"壬子木","week":"日","yibao":"和","xingxiu":"虛","jianchu":"破","guideng":"寅辰","gangse":"午","tiangang":"酉","ride":"申","zhide":"寅","guise":"未○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-08","y":2026,"m":6,"d":8,"dunju":6,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"癸丑木","week":"一","yibao":"伐","xingxiu":"危","jianchu":"危","guideng":"寅辰","gangse":"午","tiangang":"酉","ride":"寅","zhide":"丑","guise":"巳○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-09","y":2026,"m":6,"d":9,"dunju":3,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"甲寅水","week":"二","yibao":"和","xingxiu":"室","jianchu":"成","guideng":"子午","gangse":"午","tiangang":"酉","ride":"巳","zhide":"子","guise":"卯酉","fourTime":"庚","doubing":"丙"},{"date":"2026-06-10","y":2026,"m":6,"d":10,"dunju":3,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"乙卯水","week":"三","yibao":"和","xingxiu":"壁","jianchu":"收","guideng":"未亥","gangse":"午","tiangang":"酉","ride":"亥","zhide":"亥","guise":"○戌","fourTime":"庚","doubing":"丙"},{"date":"2026-06-11","y":2026,"m":6,"d":11,"dunju":3,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"丙辰土","week":"四","yibao":"寶","xingxiu":"奎","jianchu":"開","guideng":"申戌","gangse":"午","tiangang":"酉","ride":"寅","zhide":"戌","guise":"○亥","fourTime":"庚","doubing":"丙"},{"date":"2026-06-12","y":2026,"m":6,"d":12,"dunju":3,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"丁巳土","week":"五","yibao":"和","xingxiu":"婁","jianchu":"閉","guideng":"申戌","gangse":"午","tiangang":"酉","ride":"申","zhide":"酉","guise":"○丑","fourTime":"庚","doubing":"丙"},{"date":"2026-06-13","y":2026,"m":6,"d":13,"dunju":3,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"戊午火","week":"六","yibao":"義","xingxiu":"胃","jianchu":"建","guideng":"子午","gangse":"午","tiangang":"酉","ride":"寅","zhide":"申","guise":"○○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-14","y":2026,"m":6,"d":14,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"己未火","week":"日","yibao":"和","xingxiu":"昴","jianchu":"除","guideng":"未亥","gangse":"午","tiangang":"酉","ride":"巳","zhide":"未","guise":"○寅","fourTime":"庚","doubing":"丙"},{"date":"2026-06-15","y":2026,"m":6,"d":15,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"庚申木","week":"一","yibao":"和","xingxiu":"畢","jianchu":"滿","guideng":"子午","gangse":"午","tiangang":"酉","ride":"亥","zhide":"午","guise":"○○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-16","y":2026,"m":6,"d":16,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"辛酉木","week":"二","yibao":"和","xingxiu":"觜","jianchu":"平","guideng":"丑巳","gangse":"午","tiangang":"酉","ride":"寅","zhide":"巳","guise":"申○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-17","y":2026,"m":6,"d":17,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"壬戌水","week":"三","yibao":"伐","xingxiu":"參","jianchu":"定","guideng":"寅辰","gangse":"午","tiangang":"酉","ride":"申","zhide":"辰","guise":"未○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-18","y":2026,"m":6,"d":18,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"癸亥水","week":"四","yibao":"和","xingxiu":"井","jianchu":"執","guideng":"寅辰","gangse":"午","tiangang":"酉","ride":"寅","zhide":"卯","guise":"巳○","fourTime":"庚","doubing":"丙"},{"date":"2026-06-19","y":2026,"m":6,"d":19,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"甲子金","week":"五","yibao":"義","xingxiu":"鬼","jianchu":"破","guideng":"子午","gangse":"午","tiangang":"酉","ride":"巳","zhide":"寅","guise":"卯酉","fourTime":"庚","doubing":"丙"},{"date":"2026-06-20","y":2026,"m":6,"d":20,"dunju":9,"jieqi":"芒種","yuejiang":"申","jiejieTime":"","monthBuild":"午","ganzhi":"乙丑金","week":"六","yibao":"制","xingxiu":"柳","jianchu":"危","guideng":"未亥","gangse":"午","tiangang":"酉","ride":"亥","zhide":"丑","guise":"○戌","fourTime":"庚","doubing":"丙"},{"date":"2026-06-21","y":2026,"m":6,"d":21,"dunju":9,"jieqi":"夏至","yuejiang":"未","jiejieTime":"16:24 夏至","monthBuild":"午","ganzhi":"丙寅火","week":"日","yibao":"義","xingxiu":"星","jianchu":"成","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"丑","zhide":"亥","guise":"○戌","fourTime":"坤","doubing":"午"},{"date":"2026-06-22","y":2026,"m":6,"d":22,"dunju":9,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"丁卯火","week":"一","yibao":"義","xingxiu":"張","jianchu":"收","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"未","zhide":"戌","guise":"○子","fourTime":"坤","doubing":"午"},{"date":"2026-06-23","y":2026,"m":6,"d":23,"dunju":9,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"戊辰木","week":"二","yibao":"和","xingxiu":"翼","jianchu":"開","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"丑","zhide":"酉","guise":"申寅","fourTime":"坤","doubing":"午"},{"date":"2026-06-24","y":2026,"m":6,"d":24,"dunju":3,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"己巳木","week":"三","yibao":"義","xingxiu":"軫","jianchu":"閉","guideng":"午戌","gangse":"巳","tiangang":"申","ride":"辰","zhide":"申","guise":"○丑","fourTime":"坤","doubing":"午"},{"date":"2026-06-25","y":2026,"m":6,"d":25,"dunju":3,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"庚午土","week":"四","yibao":"伐","xingxiu":"角","jianchu":"建","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"戌","zhide":"未","guise":"申寅","fourTime":"坤","doubing":"午"},{"date":"2026-06-26","y":2026,"m":6,"d":26,"dunju":3,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"辛未土","week":"五","yibao":"義","xingxiu":"亢","jianchu":"除","guideng":"辰子","gangse":"巳","tiangang":"申","ride":"丑","zhide":"午","guise":"未○","fourTime":"坤","doubing":"午"},{"date":"2026-06-27","y":2026,"m":6,"d":27,"dunju":3,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"壬申金","week":"六","yibao":"義","xingxiu":"氐","jianchu":"滿","guideng":"丑卯","gangse":"巳","tiangang":"申","ride":"未","zhide":"巳","guise":"午○","fourTime":"坤","doubing":"午"},{"date":"2026-06-28","y":2026,"m":6,"d":28,"dunju":3,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"癸酉金","week":"日","yibao":"義","xingxiu":"房","jianchu":"平","guideng":"丑卯","gangse":"巳","tiangang":"申","ride":"丑","zhide":"辰","guise":"辰○","fourTime":"坤","doubing":"午"},{"date":"2026-06-29","y":2026,"m":6,"d":29,"dunju":6,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"甲戌火","week":"一","yibao":"制","xingxiu":"心","jianchu":"定","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"辰","zhide":"卯","guise":"○○","fourTime":"坤","doubing":"午"},{"date":"2026-06-30","y":2026,"m":6,"d":30,"dunju":6,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"乙亥火","week":"二","yibao":"義","xingxiu":"尾","jianchu":"執","guideng":"午戌","gangse":"巳","tiangang":"申","ride":"戌","zhide":"寅","guise":"○酉","fourTime":"坤","doubing":"午"},{"date":"2026-07-01","y":2026,"m":7,"d":1,"dunju":6,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"丙子水","week":"三","yibao":"伐","xingxiu":"箕","jianchu":"破","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"丑","zhide":"丑","guise":"○戌","fourTime":"坤","doubing":"午"},{"date":"2026-07-02","y":2026,"m":7,"d":2,"dunju":6,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"丁丑水","week":"四","yibao":"寶","xingxiu":"斗","jianchu":"危","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"未","zhide":"子","guise":"○子","fourTime":"坤","doubing":"午"},{"date":"2026-07-03","y":2026,"m":7,"d":3,"dunju":6,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"戊寅土","week":"五","yibao":"伐","xingxiu":"牛","jianchu":"成","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"丑","zhide":"亥","guise":"申寅","fourTime":"坤","doubing":"午"},{"date":"2026-07-04","y":2026,"m":7,"d":4,"dunju":8,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"己卯土","week":"六","yibao":"伐","xingxiu":"女","jianchu":"收","guideng":"午戌","gangse":"巳","tiangang":"申","ride":"辰","zhide":"戌","guise":"○丑","fourTime":"坤","doubing":"午"},{"date":"2026-07-05","y":2026,"m":7,"d":5,"dunju":8,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"庚辰金","week":"日","yibao":"義","xingxiu":"虛","jianchu":"開","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"戌","zhide":"酉","guise":"申寅","fourTime":"坤","doubing":"午"},{"date":"2026-07-06","y":2026,"m":7,"d":6,"dunju":8,"jieqi":"夏至","yuejiang":"未","jiejieTime":"","monthBuild":"午","ganzhi":"辛巳金","week":"一","yibao":"伐","xingxiu":"危","jianchu":"閉","guideng":"辰子","gangse":"巳","tiangang":"申","ride":"丑","zhide":"申","guise":"未○","fourTime":"坤","doubing":"午"},{"date":"2026-07-07","y":2026,"m":7,"d":7,"dunju":8,"jieqi":"小暑","yuejiang":"未","jiejieTime":"09:57 小暑","monthBuild":"未","ganzhi":"壬午木","week":"二","yibao":"制","xingxiu":"室","jianchu":"閉","guideng":"丑卯","gangse":"巳","tiangang":"申","ride":"未","zhide":"未","guise":"午○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-08","y":2026,"m":7,"d":8,"dunju":8,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"癸未木","week":"三","yibao":"伐","xingxiu":"壁","jianchu":"建","guideng":"丑卯","gangse":"巳","tiangang":"申","ride":"丑","zhide":"午","guise":"辰○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-09","y":2026,"m":7,"d":9,"dunju":2,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"甲申水","week":"四","yibao":"伐","xingxiu":"奎","jianchu":"除","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"辰","zhide":"巳","guise":"○○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-10","y":2026,"m":7,"d":10,"dunju":2,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"乙酉水","week":"五","yibao":"伐","xingxiu":"婁","jianchu":"滿","guideng":"午戌","gangse":"巳","tiangang":"申","ride":"戌","zhide":"辰","guise":"○酉","fourTime":"坤","doubing":"丁"},{"date":"2026-07-11","y":2026,"m":7,"d":11,"dunju":2,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"丙戌土","week":"六","yibao":"寶","xingxiu":"胃","jianchu":"平","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"丑","zhide":"卯","guise":"○戌","fourTime":"坤","doubing":"丁"},{"date":"2026-07-12","y":2026,"m":7,"d":12,"dunju":2,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"丁亥土","week":"日","yibao":"伐","xingxiu":"昴","jianchu":"定","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"未","zhide":"寅","guise":"○子","fourTime":"坤","doubing":"丁"},{"date":"2026-07-13","y":2026,"m":7,"d":13,"dunju":2,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"戊子火","week":"一","yibao":"制","xingxiu":"畢","jianchu":"執","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"丑","zhide":"丑","guise":"申寅","fourTime":"坤","doubing":"丁"},{"date":"2026-07-14","y":2026,"m":7,"d":14,"dunju":5,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"己丑火","week":"二","yibao":"和","xingxiu":"觜","jianchu":"破","guideng":"午戌","gangse":"巳","tiangang":"申","ride":"辰","zhide":"子","guise":"○丑","fourTime":"坤","doubing":"丁"},{"date":"2026-07-15","y":2026,"m":7,"d":15,"dunju":5,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"庚寅木","week":"三","yibao":"制","xingxiu":"參","jianchu":"危","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"戌","zhide":"亥","guise":"申寅","fourTime":"坤","doubing":"丁"},{"date":"2026-07-16","y":2026,"m":7,"d":16,"dunju":5,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"辛卯木","week":"四","yibao":"制","xingxiu":"井","jianchu":"成","guideng":"辰子","gangse":"巳","tiangang":"申","ride":"丑","zhide":"戌","guise":"未○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-17","y":2026,"m":7,"d":17,"dunju":5,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"壬辰水","week":"五","yibao":"伐","xingxiu":"鬼","jianchu":"收","guideng":"丑卯","gangse":"巳","tiangang":"申","ride":"未","zhide":"酉","guise":"午○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-18","y":2026,"m":7,"d":18,"dunju":5,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"癸巳水","week":"六","yibao":"制","xingxiu":"柳","jianchu":"開","guideng":"丑卯","gangse":"巳","tiangang":"申","ride":"丑","zhide":"申","guise":"辰○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-19","y":2026,"m":7,"d":19,"dunju":7,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"甲午金","week":"日","yibao":"寶","xingxiu":"星","jianchu":"閉","guideng":"巳亥","gangse":"巳","tiangang":"申","ride":"辰","zhide":"未","guise":"○○","fourTime":"坤","doubing":"丁"},{"date":"2026-07-20","y":2026,"m":7,"d":20,"dunju":7,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"乙未金","week":"一","yibao":"制","xingxiu":"張","jianchu":"建","guideng":"午戌","gangse":"巳","tiangang":"申","ride":"戌","zhide":"午","guise":"○酉","fourTime":"坤","doubing":"丁"},{"date":"2026-07-21","y":2026,"m":7,"d":21,"dunju":7,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"丙申火","week":"二","yibao":"制","xingxiu":"翼","jianchu":"除","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"丑","zhide":"巳","guise":"○戌","fourTime":"坤","doubing":"丁"},{"date":"2026-07-22","y":2026,"m":7,"d":22,"dunju":7,"jieqi":"小暑","yuejiang":"未","jiejieTime":"","monthBuild":"未","ganzhi":"丁酉火","week":"三","yibao":"制","xingxiu":"軫","jianchu":"滿","guideng":"未酉","gangse":"巳","tiangang":"申","ride":"未","zhide":"辰","guise":"○子","fourTime":"坤","doubing":"丁"},{"date":"2026-07-23","y":2026,"m":7,"d":23,"dunju":7,"jieqi":"大暑","yuejiang":"午","jiejieTime":"03:13 大暑","monthBuild":"未","ganzhi":"戊戌木","week":"四","yibao":"和","xingxiu":"角","jianchu":"平","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"寅","guise":"未丑","fourTime":"丁","doubing":"未"},{"date":"2026-07-24","y":2026,"m":7,"d":24,"dunju":1,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"己亥木","week":"五","yibao":"制","xingxiu":"亢","jianchu":"定","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"卯","zhide":"丑","guise":"申子","fourTime":"丁","doubing":"未"},{"date":"2026-07-25","y":2026,"m":7,"d":25,"dunju":1,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"庚子土","week":"六","yibao":"寶","xingxiu":"氐","jianchu":"執","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"酉","zhide":"子","guise":"丑未","fourTime":"丁","doubing":"未"},{"date":"2026-07-26","y":2026,"m":7,"d":26,"dunju":1,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"辛丑土","week":"日","yibao":"義","xingxiu":"房","jianchu":"破","guideng":"卯亥","gangse":"辰","tiangang":"未","ride":"子","zhide":"亥","guise":"寅午","fourTime":"丁","doubing":"未"},{"date":"2026-07-27","y":2026,"m":7,"d":27,"dunju":1,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"壬寅金","week":"一","yibao":"寶","xingxiu":"心","jianchu":"危","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"午","zhide":"戌","guise":"巳○","fourTime":"丁","doubing":"未"},{"date":"2026-07-28","y":2026,"m":7,"d":28,"dunju":1,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"癸卯金","week":"二","yibao":"寶","xingxiu":"尾","jianchu":"成","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"子","zhide":"酉","guise":"卯○","fourTime":"丁","doubing":"未"},{"date":"2026-07-29","y":2026,"m":7,"d":29,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"甲辰火","week":"三","yibao":"制","xingxiu":"箕","jianchu":"收","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"卯","zhide":"申","guise":"○○","fourTime":"丁","doubing":"未"},{"date":"2026-07-30","y":2026,"m":7,"d":30,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"乙巳火","week":"四","yibao":"寶","xingxiu":"斗","jianchu":"開","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"酉","zhide":"未","guise":"○○","fourTime":"丁","doubing":"未"},{"date":"2026-07-31","y":2026,"m":7,"d":31,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"丙午水","week":"五","yibao":"和","xingxiu":"牛","jianchu":"閉","guideng":"午申","gangse":"辰","tiangang":"未","ride":"子","zhide":"午","guise":"○酉","fourTime":"丁","doubing":"未"},{"date":"2026-08-01","y":2026,"m":8,"d":1,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"丁未水","week":"六","yibao":"寶","xingxiu":"女","jianchu":"建","guideng":"午申","gangse":"辰","tiangang":"未","ride":"午","zhide":"巳","guise":"○亥","fourTime":"丁","doubing":"未"},{"date":"2026-08-02","y":2026,"m":8,"d":2,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"戊申土","week":"日","yibao":"寶","xingxiu":"虛","jianchu":"除","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"辰","guise":"未丑","fourTime":"丁","doubing":"未"},{"date":"2026-08-03","y":2026,"m":8,"d":3,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"己酉土","week":"一","yibao":"寶","xingxiu":"危","jianchu":"滿","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"卯","zhide":"卯","guise":"申子","fourTime":"丁","doubing":"未"},{"date":"2026-08-04","y":2026,"m":8,"d":4,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"庚戌金","week":"二","yibao":"義","xingxiu":"室","jianchu":"平","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"酉","zhide":"寅","guise":"丑未","fourTime":"丁","doubing":"未"},{"date":"2026-08-05","y":2026,"m":8,"d":5,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"辛亥金","week":"三","yibao":"寶","xingxiu":"壁","jianchu":"定","guideng":"卯亥","gangse":"辰","tiangang":"未","ride":"子","zhide":"丑","guise":"寅午","fourTime":"丁","doubing":"未"},{"date":"2026-08-06","y":2026,"m":8,"d":6,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"壬子木","week":"四","yibao":"和","xingxiu":"奎","jianchu":"執","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"午","zhide":"子","guise":"巳○","fourTime":"丁","doubing":"未"},{"date":"2026-08-07","y":2026,"m":8,"d":7,"dunju":2,"jieqi":"立秋","yuejiang":"午","jiejieTime":"19:43 立秋","monthBuild":"申","ganzhi":"癸丑木","week":"五","yibao":"伐","xingxiu":"婁","jianchu":"執","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"子","zhide":"亥","guise":"卯○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-08","y":2026,"m":8,"d":8,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"甲寅水","week":"六","yibao":"和","xingxiu":"胃","jianchu":"破","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"卯","zhide":"戌","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-09","y":2026,"m":8,"d":9,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"乙卯水","week":"日","yibao":"和","xingxiu":"昴","jianchu":"危","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"酉","zhide":"酉","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-10","y":2026,"m":8,"d":10,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丙辰土","week":"一","yibao":"寶","xingxiu":"畢","jianchu":"成","guideng":"午申","gangse":"辰","tiangang":"未","ride":"子","zhide":"申","guise":"○酉","fourTime":"丁","doubing":"坤"},{"date":"2026-08-11","y":2026,"m":8,"d":11,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丁巳土","week":"二","yibao":"和","xingxiu":"觜","jianchu":"收","guideng":"午申","gangse":"辰","tiangang":"未","ride":"午","zhide":"未","guise":"○亥","fourTime":"丁","doubing":"坤"},{"date":"2026-08-12","y":2026,"m":8,"d":12,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"戊午火","week":"三","yibao":"義","xingxiu":"參","jianchu":"開","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"午","guise":"未丑","fourTime":"丁","doubing":"坤"},{"date":"2026-08-13","y":2026,"m":8,"d":13,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"己未火","week":"四","yibao":"和","xingxiu":"井","jianchu":"閉","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"卯","zhide":"巳","guise":"申子","fourTime":"丁","doubing":"坤"},{"date":"2026-08-14","y":2026,"m":8,"d":14,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"庚申木","week":"五","yibao":"和","xingxiu":"鬼","jianchu":"建","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"酉","zhide":"辰","guise":"丑未","fourTime":"丁","doubing":"坤"},{"date":"2026-08-15","y":2026,"m":8,"d":15,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"辛酉木","week":"六","yibao":"和","xingxiu":"柳","jianchu":"除","guideng":"卯亥","gangse":"辰","tiangang":"未","ride":"子","zhide":"卯","guise":"寅午","fourTime":"丁","doubing":"坤"},{"date":"2026-08-16","y":2026,"m":8,"d":16,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"壬戌水","week":"日","yibao":"伐","xingxiu":"星","jianchu":"滿","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"午","zhide":"寅","guise":"巳○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-17","y":2026,"m":8,"d":17,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"癸亥水","week":"一","yibao":"和","xingxiu":"張","jianchu":"平","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"子","zhide":"丑","guise":"卯○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-18","y":2026,"m":8,"d":18,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"甲子金","week":"二","yibao":"義","xingxiu":"翼","jianchu":"定","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"卯","zhide":"子","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-19","y":2026,"m":8,"d":19,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"乙丑金","week":"三","yibao":"制","xingxiu":"軫","jianchu":"執","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"酉","zhide":"亥","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-20","y":2026,"m":8,"d":20,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丙寅火","week":"四","yibao":"義","xingxiu":"角","jianchu":"破","guideng":"午申","gangse":"辰","tiangang":"未","ride":"子","zhide":"戌","guise":"○酉","fourTime":"丁","doubing":"坤"},{"date":"2026-08-21","y":2026,"m":8,"d":21,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丁卯火","week":"五","yibao":"義","xingxiu":"亢","jianchu":"危","guideng":"午申","gangse":"辰","tiangang":"未","ride":"午","zhide":"酉","guise":"○亥","fourTime":"丁","doubing":"坤"},{"date":"2026-08-22","y":2026,"m":8,"d":22,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"戊辰木","week":"六","yibao":"和","xingxiu":"氐","jianchu":"成","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"申","guise":"未丑","fourTime":"丁","doubing":"坤"},{"date":"2026-08-23","y":2026,"m":8,"d":23,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"10:19 處暑","monthBuild":"申","ganzhi":"己巳木","week":"日","yibao":"義","xingxiu":"房","jianchu":"收","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"午","guise":"未亥","fourTime":"丙","doubing":"申"},{"date":"2026-08-24","y":2026,"m":8,"d":24,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"庚午土","week":"一","yibao":"伐","xingxiu":"心","jianchu":"開","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"申","zhide":"巳","guise":"午子","fourTime":"丙","doubing":"申"},{"date":"2026-08-25","y":2026,"m":8,"d":25,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"辛未土","week":"二","yibao":"義","xingxiu":"尾","jianchu":"閉","guideng":"寅戌","gangse":"卯","tiangang":"午","ride":"亥","zhide":"辰","guise":"巳丑","fourTime":"丙","doubing":"申"},{"date":"2026-08-26","y":2026,"m":8,"d":26,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"壬申金","week":"三","yibao":"義","xingxiu":"箕","jianchu":"建","guideng":"丑亥","gangse":"卯","tiangang":"午","ride":"巳","zhide":"卯","guise":"辰寅","fourTime":"丙","doubing":"申"},{"date":"2026-08-27","y":2026,"m":8,"d":27,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"癸酉金","week":"四","yibao":"義","xingxiu":"斗","jianchu":"除","guideng":"亥丑","gangse":"卯","tiangang":"午","ride":"亥","zhide":"寅","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-28","y":2026,"m":8,"d":28,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"甲戌火","week":"五","yibao":"制","xingxiu":"牛","jianchu":"滿","guideng":"酉卯","gangse":"卯","tiangang":"午","ride":"寅","zhide":"丑","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-29","y":2026,"m":8,"d":29,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"乙亥火","week":"六","yibao":"義","xingxiu":"女","jianchu":"平","guideng":"申辰","gangse":"卯","tiangang":"午","ride":"申","zhide":"子","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-30","y":2026,"m":8,"d":30,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"丙子水","week":"日","yibao":"伐","xingxiu":"虛","jianchu":"定","guideng":"未巳","gangse":"卯","tiangang":"午","ride":"亥","zhide":"亥","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-31","y":2026,"m":8,"d":31,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"丁丑水","week":"一","yibao":"寶","xingxiu":"危","jianchu":"執","guideng":"巳未","gangse":"卯","tiangang":"午","ride":"巳","zhide":"戌","guise":"申戌","fourTime":"丙","doubing":"申"},{"date":"2026-09-01","y":2026,"m":9,"d":1,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"戊寅土","week":"二","yibao":"伐","xingxiu":"室","jianchu":"破","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"亥","zhide":"酉","guise":"午子","fourTime":"丙","doubing":"申"},{"date":"2026-09-02","y":2026,"m":9,"d":2,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"己卯土","week":"三","yibao":"伐","xingxiu":"壁","jianchu":"危","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"申","guise":"未亥","fourTime":"丙","doubing":"申"},{"date":"2026-09-03","y":2026,"m":9,"d":3,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"庚辰金","week":"四","yibao":"義","xingxiu":"奎","jianchu":"成","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"申","zhide":"未","guise":"午子","fourTime":"丙","doubing":"申"},{"date":"2026-09-04","y":2026,"m":9,"d":4,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"辛巳金","week":"五","yibao":"伐","xingxiu":"婁","jianchu":"收","guideng":"寅戌","gangse":"卯","tiangang":"午","ride":"亥","zhide":"午","guise":"巳丑","fourTime":"丙","doubing":"申"},{"date":"2026-09-05","y":2026,"m":9,"d":5,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"壬午木","week":"六","yibao":"制","xingxiu":"胃","jianchu":"開","guideng":"丑亥","gangse":"卯","tiangang":"午","ride":"巳","zhide":"巳","guise":"辰寅","fourTime":"丙","doubing":"申"},{"date":"2026-09-06","y":2026,"m":9,"d":6,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"癸未木","week":"日","yibao":"伐","xingxiu":"昴","jianchu":"閉","guideng":"亥丑","gangse":"卯","tiangang":"午","ride":"亥","zhide":"辰","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-09-07","y":2026,"m":9,"d":7,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"22:41 白露","monthBuild":"酉","ganzhi":"甲申水","week":"一","yibao":"伐","xingxiu":"畢","jianchu":"閉","guideng":"酉卯","gangse":"卯","tiangang":"午","ride":"寅","zhide":"卯","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-08","y":2026,"m":9,"d":8,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"乙酉水","week":"二","yibao":"伐","xingxiu":"觜","jianchu":"建","guideng":"申辰","gangse":"卯","tiangang":"午","ride":"申","zhide":"寅","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-09","y":2026,"m":9,"d":9,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丙戌土","week":"三","yibao":"寶","xingxiu":"參","jianchu":"除","guideng":"未巳","gangse":"卯","tiangang":"午","ride":"亥","zhide":"丑","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-10","y":2026,"m":9,"d":10,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丁亥土","week":"四","yibao":"伐","xingxiu":"井","jianchu":"滿","guideng":"巳未","gangse":"卯","tiangang":"午","ride":"巳","zhide":"子","guise":"申戌","fourTime":"丙","doubing":"庚"},{"date":"2026-09-11","y":2026,"m":9,"d":11,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"戊子火","week":"五","yibao":"制","xingxiu":"鬼","jianchu":"平","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"亥","zhide":"亥","guise":"午子","fourTime":"丙","doubing":"庚"},{"date":"2026-09-12","y":2026,"m":9,"d":12,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"己丑火","week":"六","yibao":"和","xingxiu":"柳","jianchu":"定","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"戌","guise":"未亥","fourTime":"丙","doubing":"庚"},{"date":"2026-09-13","y":2026,"m":9,"d":13,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"庚寅木","week":"日","yibao":"制","xingxiu":"星","jianchu":"執","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"申","zhide":"酉","guise":"午子","fourTime":"丙","doubing":"庚"},{"date":"2026-09-14","y":2026,"m":9,"d":14,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"辛卯木","week":"一","yibao":"制","xingxiu":"張","jianchu":"破","guideng":"寅戌","gangse":"卯","tiangang":"午","ride":"亥","zhide":"申","guise":"巳丑","fourTime":"丙","doubing":"庚"},{"date":"2026-09-15","y":2026,"m":9,"d":15,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"壬辰水","week":"二","yibao":"伐","xingxiu":"翼","jianchu":"危","guideng":"丑亥","gangse":"卯","tiangang":"午","ride":"巳","zhide":"未","guise":"辰寅","fourTime":"丙","doubing":"庚"},{"date":"2026-09-16","y":2026,"m":9,"d":16,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"癸巳水","week":"三","yibao":"制","xingxiu":"軫","jianchu":"成","guideng":"亥丑","gangse":"卯","tiangang":"午","ride":"亥","zhide":"午","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-17","y":2026,"m":9,"d":17,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"甲午金","week":"四","yibao":"寶","xingxiu":"角","jianchu":"收","guideng":"酉卯","gangse":"卯","tiangang":"午","ride":"寅","zhide":"巳","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-18","y":2026,"m":9,"d":18,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"乙未金","week":"五","yibao":"制","xingxiu":"亢","jianchu":"開","guideng":"申辰","gangse":"卯","tiangang":"午","ride":"申","zhide":"辰","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-19","y":2026,"m":9,"d":19,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丙申火","week":"六","yibao":"制","xingxiu":"氐","jianchu":"閉","guideng":"未巳","gangse":"卯","tiangang":"午","ride":"亥","zhide":"卯","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-20","y":2026,"m":9,"d":20,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丁酉火","week":"日","yibao":"制","xingxiu":"房","jianchu":"建","guideng":"巳未","gangse":"卯","tiangang":"午","ride":"巳","zhide":"寅","guise":"申戌","fourTime":"丙","doubing":"庚"},{"date":"2026-09-21","y":2026,"m":9,"d":21,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"戊戌木","week":"一","yibao":"和","xingxiu":"心","jianchu":"除","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"亥","zhide":"丑","guise":"午子","fourTime":"丙","doubing":"庚"},{"date":"2026-09-22","y":2026,"m":9,"d":22,"dunju":1,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"己亥木","week":"二","yibao":"制","xingxiu":"尾","jianchu":"滿","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"子","guise":"未亥","fourTime":"丙","doubing":"庚"},{"date":"2026-09-23","y":2026,"m":9,"d":23,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"08:05 秋分","monthBuild":"酉","ganzhi":"庚子土","week":"三","yibao":"寶","xingxiu":"箕","jianchu":"平","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"未","zhide":"戌","guise":"巳亥","fourTime":"巽","doubing":"酉"},{"date":"2026-09-24","y":2026,"m":9,"d":24,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"辛丑土","week":"四","yibao":"義","xingxiu":"斗","jianchu":"定","guideng":"丑酉","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"酉","guise":"辰子","fourTime":"巽","doubing":"酉"},{"date":"2026-09-25","y":2026,"m":9,"d":25,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"壬寅金","week":"五","yibao":"寶","xingxiu":"牛","jianchu":"執","guideng":"子戌","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"申","guise":"卯丑","fourTime":"巽","doubing":"酉"},{"date":"2026-09-26","y":2026,"m":9,"d":26,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"癸卯金","week":"六","yibao":"寶","xingxiu":"女","jianchu":"破","guideng":"戌子","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"未","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-27","y":2026,"m":9,"d":27,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"甲辰火","week":"日","yibao":"制","xingxiu":"虛","jianchu":"危","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"午","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-28","y":2026,"m":9,"d":28,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"乙巳火","week":"一","yibao":"寶","xingxiu":"危","jianchu":"成","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"未","zhide":"巳","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-29","y":2026,"m":9,"d":29,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"丙午水","week":"二","yibao":"和","xingxiu":"室","jianchu":"收","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"辰","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-30","y":2026,"m":9,"d":30,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"丁未水","week":"三","yibao":"寶","xingxiu":"壁","jianchu":"開","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"卯","guise":"未酉","fourTime":"巽","doubing":"酉"},{"date":"2026-10-01","y":2026,"m":10,"d":1,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"戊申土","week":"四","yibao":"寶","xingxiu":"奎","jianchu":"閉","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"寅","guise":"巳亥","fourTime":"巽","doubing":"酉"},{"date":"2026-10-02","y":2026,"m":10,"d":2,"dunju":6,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"己酉土","week":"五","yibao":"寶","xingxiu":"婁","jianchu":"建","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"丑","guise":"午戌","fourTime":"巽","doubing":"酉"},{"date":"2026-10-03","y":2026,"m":10,"d":3,"dunju":6,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"庚戌金","week":"六","yibao":"義","xingxiu":"胃","jianchu":"除","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"未","zhide":"子","guise":"巳亥","fourTime":"巽","doubing":"酉"},{"date":"2026-10-04","y":2026,"m":10,"d":4,"dunju":6,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"辛亥金","week":"日","yibao":"寶","xingxiu":"昴","jianchu":"滿","guideng":"丑酉","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"亥","guise":"辰子","fourTime":"巽","doubing":"酉"},{"date":"2026-10-05","y":2026,"m":10,"d":5,"dunju":6,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"壬子木","week":"一","yibao":"和","xingxiu":"畢","jianchu":"平","guideng":"子戌","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"戌","guise":"卯丑","fourTime":"巽","doubing":"酉"},{"date":"2026-10-06","y":2026,"m":10,"d":6,"dunju":6,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"癸丑木","week":"二","yibao":"伐","xingxiu":"觜","jianchu":"定","guideng":"戌子","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"酉","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-10-07","y":2026,"m":10,"d":7,"dunju":9,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"甲寅水","week":"三","yibao":"和","xingxiu":"參","jianchu":"執","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"申","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-10-08","y":2026,"m":10,"d":8,"dunju":9,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"14:29 寒露","monthBuild":"戌","ganzhi":"乙卯水","week":"四","yibao":"和","xingxiu":"井","jianchu":"執","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"未","zhide":"未","guise":"○○","fourTime":"巽","doubing":"辛"},{"date":"2026-10-09","y":2026,"m":10,"d":9,"dunju":9,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"丙辰土","week":"五","yibao":"寶","xingxiu":"鬼","jianchu":"破","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"午","guise":"○○","fourTime":"巽","doubing":"辛"},{"date":"2026-10-10","y":2026,"m":10,"d":10,"dunju":9,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"丁巳土","week":"六","yibao":"和","xingxiu":"柳","jianchu":"危","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"巳","guise":"未酉","fourTime":"巽","doubing":"辛"},{"date":"2026-10-11","y":2026,"m":10,"d":11,"dunju":9,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"戊午火","week":"日","yibao":"義","xingxiu":"星","jianchu":"成","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"辰","guise":"巳亥","fourTime":"巽","doubing":"辛"},{"date":"2026-10-12","y":2026,"m":10,"d":12,"dunju":3,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"己未火","week":"一","yibao":"和","xingxiu":"張","jianchu":"收","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"卯","guise":"午戌","fourTime":"巽","doubing":"辛"},{"date":"2026-10-13","y":2026,"m":10,"d":13,"dunju":3,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"庚申木","week":"二","yibao":"和","xingxiu":"翼","jianchu":"開","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"未","zhide":"寅","guise":"巳亥","fourTime":"巽","doubing":"辛"},{"date":"2026-10-14","y":2026,"m":10,"d":14,"dunju":3,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"辛酉木","week":"三","yibao":"和","xingxiu":"軫","jianchu":"閉","guideng":"丑酉","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"丑","guise":"辰子","fourTime":"巽","doubing":"辛"},{"date":"2026-10-15","y":2026,"m":10,"d":15,"dunju":3,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"壬戌水","week":"四","yibao":"伐","xingxiu":"角","jianchu":"建","guideng":"子戌","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"子","guise":"卯丑","fourTime":"巽","doubing":"辛"},{"date":"2026-10-16","y":2026,"m":10,"d":16,"dunju":3,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"癸亥水","week":"五","yibao":"和","xingxiu":"亢","jianchu":"除","guideng":"戌子","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"亥","guise":"○○","fourTime":"巽","doubing":"辛"},{"date":"2026-10-17","y":2026,"m":10,"d":17,"dunju":5,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"甲子金","week":"六","yibao":"義","xingxiu":"氐","jianchu":"滿","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"戌","guise":"○○","fourTime":"巽","doubing":"辛"},{"date":"2026-10-18","y":2026,"m":10,"d":18,"dunju":5,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"乙丑金","week":"日","yibao":"制","xingxiu":"房","jianchu":"平","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"未","zhide":"酉","guise":"○○","fourTime":"巽","doubing":"辛"},{"date":"2026-10-19","y":2026,"m":10,"d":19,"dunju":5,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"丙寅火","week":"一","yibao":"義","xingxiu":"心","jianchu":"定","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"申","guise":"○○","fourTime":"巽","doubing":"辛"},{"date":"2026-10-20","y":2026,"m":10,"d":20,"dunju":5,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"丁卯火","week":"二","yibao":"義","xingxiu":"尾","jianchu":"執","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"未","guise":"未酉","fourTime":"巽","doubing":"辛"},{"date":"2026-10-21","y":2026,"m":10,"d":21,"dunju":5,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"戊辰木","week":"三","yibao":"和","xingxiu":"箕","jianchu":"破","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"午","guise":"巳亥","fourTime":"巽","doubing":"辛"},{"date":"2026-10-22","y":2026,"m":10,"d":22,"dunju":8,"jieqi":"寒露","yuejiang":"辰","jiejieTime":"","monthBuild":"戌","ganzhi":"己巳木","week":"四","yibao":"義","xingxiu":"斗","jianchu":"危","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"巳","guise":"午戌","fourTime":"巽","doubing":"辛"},{"date":"2026-10-23","y":2026,"m":10,"d":23,"dunju":8,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"17:38 霜降","monthBuild":"戌","ganzhi":"庚午土","week":"五","yibao":"伐","xingxiu":"牛","jianchu":"成","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"午","zhide":"卯","guise":"辰戌","fourTime":"乙","doubing":"戌"},{"date":"2026-10-24","y":2026,"m":10,"d":24,"dunju":8,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"辛未土","week":"六","yibao":"義","xingxiu":"女","jianchu":"收","guideng":"子申","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"寅","guise":"卯亥","fourTime":"乙","doubing":"戌"},{"date":"2026-10-25","y":2026,"m":10,"d":25,"dunju":8,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"壬申金","week":"日","yibao":"義","xingxiu":"虛","jianchu":"開","guideng":"亥酉","gangse":"丑","tiangang":"辰","ride":"卯","zhide":"丑","guise":"○子","fourTime":"乙","doubing":"戌"},{"date":"2026-10-26","y":2026,"m":10,"d":26,"dunju":8,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"癸酉金","week":"一","yibao":"義","xingxiu":"危","jianchu":"閉","guideng":"酉亥","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"子","guise":"○寅","fourTime":"乙","doubing":"戌"},{"date":"2026-10-27","y":2026,"m":10,"d":27,"dunju":2,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"甲戌火","week":"二","yibao":"制","xingxiu":"室","jianchu":"建","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"子","zhide":"亥","guise":"○○","fourTime":"乙","doubing":"戌"},{"date":"2026-10-28","y":2026,"m":10,"d":28,"dunju":2,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"乙亥火","week":"三","yibao":"義","xingxiu":"壁","jianchu":"除","guideng":"寅午","gangse":"丑","tiangang":"辰","ride":"午","zhide":"戌","guise":"○○","fourTime":"乙","doubing":"戌"},{"date":"2026-10-29","y":2026,"m":10,"d":29,"dunju":2,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"丙子水","week":"四","yibao":"伐","xingxiu":"奎","jianchu":"滿","guideng":"卯巳","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"酉","guise":"○申","fourTime":"乙","doubing":"戌"},{"date":"2026-10-30","y":2026,"m":10,"d":30,"dunju":2,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"丁丑水","week":"五","yibao":"寶","xingxiu":"婁","jianchu":"平","guideng":"卯巳","gangse":"丑","tiangang":"辰","ride":"卯","zhide":"申","guise":"午○","fourTime":"乙","doubing":"戌"},{"date":"2026-10-31","y":2026,"m":10,"d":31,"dunju":2,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"戊寅土","week":"六","yibao":"伐","xingxiu":"胃","jianchu":"定","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"未","guise":"辰戌","fourTime":"乙","doubing":"戌"},{"date":"2026-11-01","y":2026,"m":11,"d":1,"dunju":6,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"己卯土","week":"日","yibao":"伐","xingxiu":"昴","jianchu":"執","guideng":"寅午","gangse":"丑","tiangang":"辰","ride":"子","zhide":"午","guise":"巳酉","fourTime":"乙","doubing":"戌"},{"date":"2026-11-02","y":2026,"m":11,"d":2,"dunju":6,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"庚辰金","week":"一","yibao":"義","xingxiu":"畢","jianchu":"破","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"午","zhide":"巳","guise":"辰戌","fourTime":"乙","doubing":"戌"},{"date":"2026-11-03","y":2026,"m":11,"d":3,"dunju":6,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"辛巳金","week":"二","yibao":"伐","xingxiu":"觜","jianchu":"危","guideng":"子申","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"辰","guise":"卯亥","fourTime":"乙","doubing":"戌"},{"date":"2026-11-04","y":2026,"m":11,"d":4,"dunju":6,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"壬午木","week":"三","yibao":"制","xingxiu":"參","jianchu":"成","guideng":"亥酉","gangse":"丑","tiangang":"辰","ride":"卯","zhide":"卯","guise":"○子","fourTime":"乙","doubing":"戌"},{"date":"2026-11-05","y":2026,"m":11,"d":5,"dunju":6,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"癸未木","week":"四","yibao":"伐","xingxiu":"井","jianchu":"收","guideng":"酉亥","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"寅","guise":"○寅","fourTime":"乙","doubing":"戌"},{"date":"2026-11-06","y":2026,"m":11,"d":6,"dunju":9,"jieqi":"霜降","yuejiang":"卯","jiejieTime":"","monthBuild":"戌","ganzhi":"甲申水","week":"五","yibao":"伐","xingxiu":"鬼","jianchu":"開","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"子","zhide":"丑","guise":"○○","fourTime":"乙","doubing":"戌"},{"date":"2026-11-07","y":2026,"m":11,"d":7,"dunju":9,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"17:52 立冬","monthBuild":"亥","ganzhi":"乙酉水","week":"六","yibao":"伐","xingxiu":"柳","jianchu":"開","guideng":"寅午","gangse":"丑","tiangang":"辰","ride":"午","zhide":"子","guise":"○○","fourTime":"乙","doubing":"乾"},{"date":"2026-11-08","y":2026,"m":11,"d":8,"dunju":9,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"丙戌土","week":"日","yibao":"寶","xingxiu":"星","jianchu":"閉","guideng":"卯巳","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"亥","guise":"○申","fourTime":"乙","doubing":"乾"},{"date":"2026-11-09","y":2026,"m":11,"d":9,"dunju":9,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"丁亥土","week":"一","yibao":"伐","xingxiu":"張","jianchu":"建","guideng":"卯巳","gangse":"丑","tiangang":"辰","ride":"卯","zhide":"戌","guise":"午○","fourTime":"乙","doubing":"乾"},{"date":"2026-11-10","y":2026,"m":11,"d":10,"dunju":9,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"戊子火","week":"二","yibao":"制","xingxiu":"翼","jianchu":"除","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"酉","guise":"辰戌","fourTime":"乙","doubing":"乾"},{"date":"2026-11-11","y":2026,"m":11,"d":11,"dunju":3,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"己丑火","week":"三","yibao":"和","xingxiu":"軫","jianchu":"滿","guideng":"寅午","gangse":"丑","tiangang":"辰","ride":"子","zhide":"申","guise":"巳酉","fourTime":"乙","doubing":"乾"},{"date":"2026-11-12","y":2026,"m":11,"d":12,"dunju":3,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"庚寅木","week":"四","yibao":"制","xingxiu":"角","jianchu":"平","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"午","zhide":"未","guise":"辰戌","fourTime":"乙","doubing":"乾"},{"date":"2026-11-13","y":2026,"m":11,"d":13,"dunju":3,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"辛卯木","week":"五","yibao":"制","xingxiu":"亢","jianchu":"定","guideng":"子申","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"午","guise":"卯亥","fourTime":"乙","doubing":"乾"},{"date":"2026-11-14","y":2026,"m":11,"d":14,"dunju":3,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"壬辰水","week":"六","yibao":"伐","xingxiu":"氐","jianchu":"執","guideng":"亥酉","gangse":"丑","tiangang":"辰","ride":"卯","zhide":"巳","guise":"○子","fourTime":"乙","doubing":"乾"},{"date":"2026-11-15","y":2026,"m":11,"d":15,"dunju":3,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"癸巳水","week":"日","yibao":"制","xingxiu":"房","jianchu":"破","guideng":"酉亥","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"辰","guise":"○寅","fourTime":"乙","doubing":"乾"},{"date":"2026-11-16","y":2026,"m":11,"d":16,"dunju":5,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"甲午金","week":"一","yibao":"寶","xingxiu":"心","jianchu":"危","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"子","zhide":"卯","guise":"○○","fourTime":"乙","doubing":"乾"},{"date":"2026-11-17","y":2026,"m":11,"d":17,"dunju":5,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"乙未金","week":"二","yibao":"制","xingxiu":"尾","jianchu":"成","guideng":"寅午","gangse":"丑","tiangang":"辰","ride":"午","zhide":"寅","guise":"○○","fourTime":"乙","doubing":"乾"},{"date":"2026-11-18","y":2026,"m":11,"d":18,"dunju":5,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"丙申火","week":"三","yibao":"制","xingxiu":"箕","jianchu":"收","guideng":"卯巳","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"丑","guise":"○申","fourTime":"乙","doubing":"乾"},{"date":"2026-11-19","y":2026,"m":11,"d":19,"dunju":5,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"丁酉火","week":"四","yibao":"制","xingxiu":"斗","jianchu":"開","guideng":"卯巳","gangse":"丑","tiangang":"辰","ride":"卯","zhide":"子","guise":"午○","fourTime":"乙","doubing":"乾"},{"date":"2026-11-20","y":2026,"m":11,"d":20,"dunju":5,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"戊戌木","week":"五","yibao":"和","xingxiu":"牛","jianchu":"閉","guideng":"丑未","gangse":"丑","tiangang":"辰","ride":"酉","zhide":"亥","guise":"辰戌","fourTime":"乙","doubing":"乾"},{"date":"2026-11-21","y":2026,"m":11,"d":21,"dunju":8,"jieqi":"立冬","yuejiang":"卯","jiejieTime":"","monthBuild":"亥","ganzhi":"己亥木","week":"六","yibao":"制","xingxiu":"女","jianchu":"建","guideng":"寅午","gangse":"丑","tiangang":"辰","ride":"子","zhide":"戌","guise":"巳酉","fourTime":"乙","doubing":"乾"},{"date":"2026-11-22","y":2026,"m":11,"d":22,"dunju":8,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"15:23 小雪","monthBuild":"亥","ganzhi":"庚子土","week":"日","yibao":"寶","xingxiu":"虛","jianchu":"除","guideng":"子午","gangse":"子","tiangang":"卯","ride":"巳","zhide":"申","guise":"卯酉","fourTime":"甲","doubing":"亥"},{"date":"2026-11-23","y":2026,"m":11,"d":23,"dunju":8,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"辛丑土","week":"一","yibao":"義","xingxiu":"危","jianchu":"滿","guideng":"未亥","gangse":"子","tiangang":"卯","ride":"申","zhide":"未","guise":"○戌","fourTime":"甲","doubing":"亥"},{"date":"2026-11-24","y":2026,"m":11,"d":24,"dunju":8,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"壬寅金","week":"二","yibao":"寶","xingxiu":"室","jianchu":"平","guideng":"戌申","gangse":"子","tiangang":"卯","ride":"寅","zhide":"午","guise":"○亥","fourTime":"甲","doubing":"亥"},{"date":"2026-11-25","y":2026,"m":11,"d":25,"dunju":8,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"癸卯金","week":"三","yibao":"寶","xingxiu":"壁","jianchu":"定","guideng":"申戌","gangse":"子","tiangang":"卯","ride":"申","zhide":"巳","guise":"○丑","fourTime":"甲","doubing":"亥"},{"date":"2026-11-26","y":2026,"m":11,"d":26,"dunju":2,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"甲辰火","week":"四","yibao":"制","xingxiu":"奎","jianchu":"執","guideng":"午子","gangse":"子","tiangang":"卯","ride":"亥","zhide":"辰","guise":"○○","fourTime":"甲","doubing":"亥"},{"date":"2026-11-27","y":2026,"m":11,"d":27,"dunju":2,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"乙巳火","week":"五","yibao":"寶","xingxiu":"婁","jianchu":"破","guideng":"丑巳","gangse":"子","tiangang":"卯","ride":"巳","zhide":"卯","guise":"申○","fourTime":"甲","doubing":"亥"},{"date":"2026-11-28","y":2026,"m":11,"d":28,"dunju":2,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"丙午水","week":"六","yibao":"和","xingxiu":"胃","jianchu":"危","guideng":"寅辰","gangse":"子","tiangang":"卯","ride":"申","zhide":"寅","guise":"未○","fourTime":"甲","doubing":"亥"},{"date":"2026-11-29","y":2026,"m":11,"d":29,"dunju":2,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"丁未水","week":"日","yibao":"寶","xingxiu":"昴","jianchu":"成","guideng":"寅辰","gangse":"子","tiangang":"卯","ride":"寅","zhide":"丑","guise":"巳○","fourTime":"甲","doubing":"亥"},{"date":"2026-11-30","y":2026,"m":11,"d":30,"dunju":2,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"戊申土","week":"一","yibao":"寶","xingxiu":"畢","jianchu":"收","guideng":"子午","gangse":"子","tiangang":"卯","ride":"申","zhide":"子","guise":"卯酉","fourTime":"甲","doubing":"亥"},{"date":"2026-12-01","y":2026,"m":12,"d":1,"dunju":4,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"己酉土","week":"二","yibao":"寶","xingxiu":"觜","jianchu":"開","guideng":"丑巳","gangse":"子","tiangang":"卯","ride":"亥","zhide":"亥","guise":"辰○","fourTime":"甲","doubing":"亥"},{"date":"2026-12-02","y":2026,"m":12,"d":2,"dunju":4,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"庚戌金","week":"三","yibao":"義","xingxiu":"參","jianchu":"閉","guideng":"子午","gangse":"子","tiangang":"卯","ride":"巳","zhide":"戌","guise":"卯酉","fourTime":"甲","doubing":"亥"},{"date":"2026-12-03","y":2026,"m":12,"d":3,"dunju":4,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"辛亥金","week":"四","yibao":"寶","xingxiu":"井","jianchu":"建","guideng":"未亥","gangse":"子","tiangang":"卯","ride":"申","zhide":"酉","guise":"○戌","fourTime":"甲","doubing":"亥"},{"date":"2026-12-04","y":2026,"m":12,"d":4,"dunju":4,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"壬子木","week":"五","yibao":"和","xingxiu":"鬼","jianchu":"除","guideng":"戌申","gangse":"子","tiangang":"卯","ride":"寅","zhide":"申","guise":"○亥","fourTime":"甲","doubing":"亥"},{"date":"2026-12-05","y":2026,"m":12,"d":5,"dunju":4,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"癸丑木","week":"六","yibao":"伐","xingxiu":"柳","jianchu":"滿","guideng":"申戌","gangse":"子","tiangang":"卯","ride":"申","zhide":"未","guise":"○丑","fourTime":"甲","doubing":"亥"},{"date":"2026-12-06","y":2026,"m":12,"d":6,"dunju":7,"jieqi":"小雪","yuejiang":"寅","jiejieTime":"","monthBuild":"亥","ganzhi":"甲寅水","week":"日","yibao":"和","xingxiu":"星","jianchu":"平","guideng":"午子","gangse":"子","tiangang":"卯","ride":"亥","zhide":"午","guise":"○○","fourTime":"甲","doubing":"亥"},{"date":"2026-12-07","y":2026,"m":12,"d":7,"dunju":7,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"10:52 大雪","monthBuild":"子","ganzhi":"乙卯水","week":"一","yibao":"和","xingxiu":"張","jianchu":"平","guideng":"丑巳","gangse":"子","tiangang":"卯","ride":"巳","zhide":"巳","guise":"申○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-08","y":2026,"m":12,"d":8,"dunju":7,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"丙辰土","week":"二","yibao":"寶","xingxiu":"翼","jianchu":"定","guideng":"寅辰","gangse":"子","tiangang":"卯","ride":"申","zhide":"辰","guise":"未○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-09","y":2026,"m":12,"d":9,"dunju":7,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"丁巳土","week":"三","yibao":"和","xingxiu":"軫","jianchu":"執","guideng":"寅辰","gangse":"子","tiangang":"卯","ride":"寅","zhide":"卯","guise":"巳○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-10","y":2026,"m":12,"d":10,"dunju":7,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"戊午火","week":"四","yibao":"義","xingxiu":"角","jianchu":"破","guideng":"子午","gangse":"子","tiangang":"卯","ride":"申","zhide":"寅","guise":"卯酉","fourTime":"甲","doubing":"壬"},{"date":"2026-12-11","y":2026,"m":12,"d":11,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"己未火","week":"五","yibao":"和","xingxiu":"亢","jianchu":"危","guideng":"丑巳","gangse":"子","tiangang":"卯","ride":"亥","zhide":"丑","guise":"辰○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-12","y":2026,"m":12,"d":12,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"庚申木","week":"六","yibao":"和","xingxiu":"氐","jianchu":"成","guideng":"子午","gangse":"子","tiangang":"卯","ride":"巳","zhide":"子","guise":"卯酉","fourTime":"甲","doubing":"壬"},{"date":"2026-12-13","y":2026,"m":12,"d":13,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"辛酉木","week":"日","yibao":"和","xingxiu":"房","jianchu":"收","guideng":"未亥","gangse":"子","tiangang":"卯","ride":"申","zhide":"亥","guise":"○戌","fourTime":"甲","doubing":"壬"},{"date":"2026-12-14","y":2026,"m":12,"d":14,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"壬戌水","week":"一","yibao":"伐","xingxiu":"心","jianchu":"開","guideng":"戌申","gangse":"子","tiangang":"卯","ride":"寅","zhide":"戌","guise":"○亥","fourTime":"甲","doubing":"壬"},{"date":"2026-12-15","y":2026,"m":12,"d":15,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"癸亥水","week":"二","yibao":"和","xingxiu":"尾","jianchu":"閉","guideng":"申戌","gangse":"子","tiangang":"卯","ride":"申","zhide":"酉","guise":"○丑","fourTime":"甲","doubing":"壬"},{"date":"2026-12-16","y":2026,"m":12,"d":16,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"甲子金","week":"三","yibao":"義","xingxiu":"箕","jianchu":"建","guideng":"午子","gangse":"子","tiangang":"卯","ride":"亥","zhide":"申","guise":"○○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-17","y":2026,"m":12,"d":17,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"乙丑金","week":"四","yibao":"制","xingxiu":"斗","jianchu":"除","guideng":"丑巳","gangse":"子","tiangang":"卯","ride":"巳","zhide":"未","guise":"申○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-18","y":2026,"m":12,"d":18,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"丙寅火","week":"五","yibao":"義","xingxiu":"牛","jianchu":"滿","guideng":"寅辰","gangse":"子","tiangang":"卯","ride":"申","zhide":"午","guise":"未○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-19","y":2026,"m":12,"d":19,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"丁卯火","week":"六","yibao":"義","xingxiu":"女","jianchu":"平","guideng":"寅辰","gangse":"子","tiangang":"卯","ride":"寅","zhide":"巳","guise":"巳○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-20","y":2026,"m":12,"d":20,"dunju":1,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"戊辰木","week":"日","yibao":"和","xingxiu":"虛","jianchu":"定","guideng":"子午","gangse":"子","tiangang":"卯","ride":"申","zhide":"辰","guise":"卯酉","fourTime":"甲","doubing":"壬"},{"date":"2026-12-21","y":2026,"m":12,"d":21,"dunju":7,"jieqi":"大雪","yuejiang":"寅","jiejieTime":"","monthBuild":"子","ganzhi":"己巳木","week":"一","yibao":"義","xingxiu":"危","jianchu":"執","guideng":"丑巳","gangse":"子","tiangang":"卯","ride":"亥","zhide":"卯","guise":"辰○","fourTime":"甲","doubing":"壬"},{"date":"2026-12-22","y":2026,"m":12,"d":22,"dunju":7,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"04:50 冬至","monthBuild":"子","ganzhi":"庚午土","week":"二","yibao":"伐","xingxiu":"室","jianchu":"破","guideng":"巳亥","gangse":"亥","tiangang":"寅","ride":"辰","zhide":"丑","guise":"○○","fourTime":"艮","doubing":"子"},{"date":"2026-12-23","y":2026,"m":12,"d":23,"dunju":7,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"辛未土","week":"三","yibao":"義","xingxiu":"壁","jianchu":"危","guideng":"午戌","gangse":"亥","tiangang":"寅","ride":"未","zhide":"子","guise":"○酉","fourTime":"艮","doubing":"子"},{"date":"2026-12-24","y":2026,"m":12,"d":24,"dunju":7,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"壬申金","week":"四","yibao":"義","xingxiu":"奎","jianchu":"成","guideng":"未酉","gangse":"亥","tiangang":"寅","ride":"丑","zhide":"亥","guise":"○戌","fourTime":"艮","doubing":"子"},{"date":"2026-12-25","y":2026,"m":12,"d":25,"dunju":7,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"癸酉金","week":"五","yibao":"義","xingxiu":"婁","jianchu":"收","guideng":"酉未","gangse":"亥","tiangang":"寅","ride":"未","zhide":"戌","guise":"○子","fourTime":"艮","doubing":"子"},{"date":"2026-12-26","y":2026,"m":12,"d":26,"dunju":4,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"甲戌火","week":"六","yibao":"制","xingxiu":"胃","jianchu":"開","guideng":"巳亥","gangse":"亥","tiangang":"寅","ride":"戌","zhide":"酉","guise":"申寅","fourTime":"艮","doubing":"子"},{"date":"2026-12-27","y":2026,"m":12,"d":27,"dunju":4,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"乙亥火","week":"日","yibao":"義","xingxiu":"昴","jianchu":"閉","guideng":"辰子","gangse":"亥","tiangang":"寅","ride":"辰","zhide":"申","guise":"未○","fourTime":"艮","doubing":"子"},{"date":"2026-12-28","y":2026,"m":12,"d":28,"dunju":4,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"丙子水","week":"一","yibao":"伐","xingxiu":"畢","jianchu":"建","guideng":"卯丑","gangse":"亥","tiangang":"寅","ride":"未","zhide":"未","guise":"午○","fourTime":"艮","doubing":"子"},{"date":"2026-12-29","y":2026,"m":12,"d":29,"dunju":4,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"丁丑水","week":"二","yibao":"寶","xingxiu":"觜","jianchu":"除","guideng":"丑卯","gangse":"亥","tiangang":"寅","ride":"丑","zhide":"午","guise":"辰○","fourTime":"艮","doubing":"子"},{"date":"2026-12-30","y":2026,"m":12,"d":30,"dunju":4,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"戊寅土","week":"三","yibao":"伐","xingxiu":"參","jianchu":"滿","guideng":"巳亥","gangse":"亥","tiangang":"寅","ride":"未","zhide":"巳","guise":"○○","fourTime":"艮","doubing":"子"},{"date":"2026-12-31","y":2026,"m":12,"d":31,"dunju":2,"jieqi":"冬至","yuejiang":"丑","jiejieTime":"","monthBuild":"子","ganzhi":"己卯土","week":"四","yibao":"伐","xingxiu":"井","jianchu":"平","guideng":"子辰","gangse":"亥","tiangang":"寅","ride":"戌","zhide":"辰","guise":"卯○","fourTime":"艮","doubing":"子"}];
 const stems=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"], branches=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"], animals=["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];
