@@ -120,3 +120,14 @@
    - Redirect URLs 加入 `https://<project>.pages.dev/**`（或至少 `verify.html`）。
 3. 再以一般 Email 註冊測試：Email 驗證 → pending → 管理員後台改 active → 登入系統。
 4. 正式營運前建議設定 Custom SMTP、隱私權政策、會員使用條款。
+
+
+## v2.1 四大吉時月表併入
+
+- 新增受會員權限保護的 `jishi.html` 四大吉時月表。
+- 承接先前核定之 2026 年 8–9 月共 61 日資料；月份選單仍只開放 8、9 月。
+- 保留列印／另存 PDF；四大吉時 CSV 匯出維持關閉。
+- 四大吉時資料自 HTML 抽離為 `assets/jishi-data.js`，後續新增月份只需更新資料檔與 `availableMonths`。
+- 新增 `assets/jishi.js`：月表渲染、節氣區間摘要、月將名稱、農曆顯示與今日列標示。
+- 所有會員制查詢／規則頁的導覽列加入「四大吉時月表」。
+- 舊有會員登入、Supabase RLS、管理員後台、停權與到期判斷均未更動。

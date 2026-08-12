@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜四大吉時月表</title>
+  <meta name="description" content="六壬擇日四大吉時月表：2026年8月至9月，含節氣、月將、交節時間、值日星宿、建除十二神、貴登天門、罡塞鬼戶、德入天門、貴塞鬼戶、四大吉時與斗柄所指。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system jishi-page">
+  <header class="system-header">
+    <div class="brand-mark">時</div>
+    <p class="eyebrow">六壬擇日・四大吉時・節氣月表</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">每月四大吉時表｜節氣、月將、交節、星宿、建除、貴登天門與吉時欄位整合查詢</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="jishi.html" aria-current="page">四大吉時月表</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="shell jishi-shell">
+    <section class="panel" aria-labelledby="jishi-control-title">
+      <div class="section-title inline-title">
+        <div><p>QUERY</p><h2 id="jishi-control-title">四大吉時月表查詢</h2></div>
+        <span class="pill">會員功能</span>
+      </div>
+      <div class="form-grid jishi-controls">
+        <label class="field"><span>西元年</span><select id="ftYear"></select></label>
+        <label class="field"><span>月份（目前開放 8～9 月）</span><select id="ftMonth"></select></label>
+        <div class="field action-field"><span>輸出</span><button id="ftPrint" type="button">列印 / 另存 PDF</button></div>
+        <div class="field jishi-availability"><span>開放範圍</span><strong>2026 年 8–9 月</strong><small>後續月份逐月更新開放</small></div>
+      </div>
+      <p class="fine-print jishi-top-note">目前維持先前核定範圍：2026 年 8 月、9 月；CSV 匯出維持關閉。交節當天才顯示「本日交節」備註。</p>
+    </section>
+
+    <section class="panel" aria-labelledby="ftTitle">
+      <div class="section-title inline-title">
+        <div><p>MONTH TABLE</p><h2 id="ftTitle">—</h2></div>
+        <span class="pill" id="ftRange">—</span>
+      </div>
+      <div class="jishi-stats" id="ftQuick"></div>
+      <div class="table-wrap jishi-table-wrap">
+        <table id="ftTable">
+          <thead><tr>
+            <th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th>
+          </tr></thead>
+          <tbody id="ftRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="jishi-note-title">
+      <div class="panel-heading"><span class="seal">法</span><div class="section-title"><p>PARAMETERS</p><h2 id="jishi-note-title">計算參數與更新方式</h2></div></div>
+      <div class="jishi-rule-grid">
+        <article><strong>日期唯一鍵</strong><p>月表以日期對應遁局、節氣、月將、干支、星宿、建除與各吉時欄位，避免列號錯位。</p></article>
+        <article><strong>月將與四大吉時</strong><p>沿用既有月將對應：亥壬、戌乾、酉辛、申庚、未坤、午丁、巳丙、辰巽、卯乙、寅甲、丑艮、子癸。</p></article>
+        <article><strong>節氣與斗柄</strong><p>斗柄所指隨二十四節氣切換；交節日顯示交節時間與交節後採用之節氣、月將。</p></article>
+        <article><strong>模組化更新</strong><p>本版已把月表資料獨立至 <code>assets/jishi-data.js</code>；後續增加月份時，只更新資料檔與開放月份設定即可。</p></article>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel compact">
+      <div class="panel-heading"><span class="seal">權</span><div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div></div>
+      <div class="copyright-content"><p><strong>© 2026 丁一峰老師 版權所有。</strong></p><p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p></div>
+    </section>
+  </main>
+
+  <footer class="footer"><p><strong>© 2026 丁一峰老師 版權所有。</strong></p><p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p><p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p></footer>
+  <script type="module" src="assets/jishi.js"></script>
+</body>
+</html>
