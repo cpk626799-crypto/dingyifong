@@ -1,83 +1,601 @@
 <!doctype html>
 <html lang="zh-Hant" class="auth-pending">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>天書三式•丁一峰老師術數查詢系統｜四大吉時月表</title>
-  <meta name="description" content="六壬擇日四大吉時月表：2026年8月至9月，含節氣、月將、交節時間、值日星宿、建除十二神、貴登天門、罡塞鬼戶、德入天門、貴塞鬼戶、四大吉時與斗柄所指。" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script type="module" src="assets/member-auth.js"></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>天書三式・丁一峰老師術數查詢系統｜原網站整合・四大吉時</title>
+<meta name="description" content="天書三式術數查詢系統：流年/月紫白飛星、生肖擇日宜忌、六壬擇日四大吉時月表。" />
+<script type="module" src="assets/member-auth.js"></script>
+<style>
+:root{
+  --bg:#050a13;
+  --bg-soft:#08111f;
+  --panel:#17243a;
+  --panel-deep:#101a2c;
+  --panel-black:#08111f;
+  --line:#2a3b59;
+  --line-soft:#22314b;
+  --ink:#f7f4ea;
+  --muted:#aab5c8;
+  --muted-2:#7f8ca4;
+  --gold:#e5b93f;
+  --gold-2:#f4d578;
+  --gold-deep:#9c6f17;
+  --red:#dc6571;
+  --green:#64c08b;
+  --orange:#e3a33f;
+  --shadow:0 22px 65px rgba(0,0,0,.30);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;
+  line-height:1.65;
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(rgba(113,137,177,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(113,137,177,.055) 1px,transparent 1px),
+    radial-gradient(circle at 50% -8%,rgba(229,185,63,.09),transparent 28rem);
+  background-size:56px 56px,56px 56px,auto;
+}
+button,input,select{font:inherit}
+button{appearance:none}
+a{color:var(--gold-2)}
+.system-header{
+  max-width:1920px;
+  margin:0 auto;
+  padding:34px 30px 0;
+  text-align:center;
+}
+.brand-mark{
+  width:66px;
+  height:66px;
+  margin:0 auto 14px;
+  display:grid;
+  place-items:center;
+  border-radius:19px;
+  color:#121006;
+  font-size:1.72rem;
+  font-weight:950;
+  background:linear-gradient(145deg,#ffe58b 0%,#dfac30 58%,#93620d 100%);
+  border:1px solid rgba(255,236,154,.55);
+  box-shadow:0 10px 30px rgba(218,166,39,.28),inset 0 1px rgba(255,255,255,.7);
+}
+.eyebrow{
+  margin:0;
+  color:var(--gold-2);
+  font-size:.98rem;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+h1{
+  margin:12px auto 9px;
+  max-width:1500px;
+  font-size:clamp(2.35rem,5.4vw,5.15rem);
+  line-height:1.08;
+  letter-spacing:.055em;
+  font-weight:950;
+  color:#f6eed7;
+  text-shadow:0 3px 22px rgba(244,213,120,.07);
+}
+.hero__text{
+  margin:0 auto;
+  max-width:1300px;
+  color:#9ca9c0;
+  font-size:clamp(.95rem,1.45vw,1.2rem);
+  font-weight:700;
+  letter-spacing:.05em;
+}
+.top-nav{
+  max-width:1780px;
+  margin:30px auto 0;
+  padding:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  flex-wrap:wrap;
+  border:1px solid var(--line-soft);
+  border-radius:999px;
+  background:rgba(6,12,23,.84);
+  box-shadow:0 14px 42px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.02);
+  backdrop-filter:blur(8px);
+}
+.tab-button,.btn{
+  border:1px solid transparent;
+  border-radius:999px;
+  min-height:48px;
+  padding:10px 24px;
+  color:#b7c0d2;
+  background:transparent;
+  cursor:pointer;
+  font-weight:900;
+  letter-spacing:.025em;
+  transition:transform .16s ease,background .16s ease,color .16s ease,border-color .16s ease;
+}
+.tab-button:hover,.btn:hover{transform:translateY(-1px);color:#fff}
+.tab-button.active,.btn-primary{
+  color:#171306;
+  border-color:rgba(255,231,137,.65);
+  background:linear-gradient(135deg,#f6d96d,#dca62b);
+  box-shadow:0 7px 22px rgba(218,167,48,.22);
+}
+.btn-dark,.btn.secondary{
+  color:#f2f4f8;
+  border-color:#2a3b59;
+  background:#08111f;
+}
+main{
+  max-width:1880px;
+  margin:32px auto 62px;
+  padding:0 24px;
+}
+.tab-page{display:none}
+.tab-page.active{display:block}
+.panel{
+  margin-bottom:24px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  color:var(--ink);
+  background:linear-gradient(145deg,rgba(26,42,68,.97),rgba(19,31,51,.97));
+  box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.025);
+}
+.section-kicker{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:var(--gold);
+  font-size:.94rem;
+  font-weight:950;
+  letter-spacing:.075em;
+}
+.section-kicker span{
+  width:40px;
+  height:40px;
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 auto;
+  border-radius:12px;
+  color:#161207;
+  background:linear-gradient(145deg,#f5d56a,#c98d19);
+  box-shadow:0 7px 18px rgba(211,155,31,.2);
+}
+h2{
+  margin:12px 0 20px;
+  color:#f6f3e9;
+  font-size:clamp(1.48rem,2.2vw,2rem);
+  line-height:1.25;
+  font-weight:950;
+  letter-spacing:.025em;
+}
+h3{margin:0 0 10px;color:#f6f3e9}
+.controls,.form-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+.control-card,.field,.mini-card{
+  min-width:0;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:rgba(10,19,33,.48);
+}
+label span,.control-card label{
+  display:block;
+  margin-bottom:8px;
+  color:#e3e8f2;
+  font-weight:900;
+}
+input,select{
+  width:100%;
+  min-height:54px;
+  padding:12px 16px;
+  color:#f9f8f3;
+  border:1px solid #304768;
+  border-radius:15px;
+  outline:none;
+  background:#07101e;
+}
+input:focus,select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(229,185,63,.13);
+}
+.actions,.zodiac-input-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  margin-top:17px;
+}
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+  margin-top:17px;
+}
+.summary-card{
+  min-height:122px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:linear-gradient(145deg,rgba(31,48,76,.86),rgba(18,31,51,.86));
+}
+.label{color:#abb5c8;font-size:.95rem}
+.value{margin-top:5px;color:var(--gold-2);font-size:1.78rem;font-weight:950}
+.note,.muted{color:var(--muted);font-size:.92rem}
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#07101d;
+}
+table{width:100%;min-width:1100px;border-collapse:collapse}
+th,td{
+  padding:12px 11px;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+  border-right:1px solid #22334f;
+  border-bottom:1px solid #22334f;
+}
+th{
+  position:sticky;
+  top:0;
+  z-index:2;
+  color:#f4d477;
+  background:#0b1627;
+  font-weight:950;
+}
+tbody tr:nth-child(even){background:rgba(255,255,255,.012)}
+tbody tr:hover{background:rgba(229,185,63,.065)}
+.pill,.version-badge,.zodiac-badge{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid rgba(229,185,63,.3);
+  border-radius:999px;
+  padding:5px 12px;
+  color:var(--gold-2);
+  background:rgba(229,185,63,.10);
+  font-weight:900;
+}
+.grid-9{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.palace{
+  min-height:118px;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px solid #2b3e5e;
+  border-radius:18px;
+  background:#081320;
+}
+.palace b{display:block;color:var(--gold-2);font-size:1.08rem}
+.month-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.zibai-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.zibai-block{
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(7,16,29,.38);
+}
+.zibai-block h3{color:var(--gold-2);font-size:1.35rem}
+.quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.quick-item{
+  min-height:122px;
+  padding:16px 12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(31,48,76,.8),rgba(17,29,48,.82));
+}
+.quick-item strong,.quick-lines span{color:var(--gold-2);font-size:1.13rem;font-weight:950}
+.quick-lines{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:3px}
+.quick-lines span{line-height:1.35;white-space:nowrap}
+.zodiac-input-panel{overflow:hidden;position:relative}
+.zodiac-input-panel:before{
+  content:"";
+  position:absolute;
+  right:-120px;
+  bottom:-150px;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(229,185,63,.09),transparent 68%);
+  pointer-events:none;
+}
+.zodiac-input-top{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:14px;
+  align-items:end;
+}
+.zodiac-toolbar-note{
+  position:relative;
+  margin-top:16px;
+  padding:15px 17px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:rgba(7,16,29,.48);
+}
+.zodiac-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:18px}
+.zodiac-core-box{padding:20px;border:1px solid var(--line);border-radius:22px;background:rgba(7,16,29,.35)}
+.zodiac-rule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.zodiac-rule-card{
+  padding:18px;
+  border:1px solid #263b5c;
+  border-left:5px solid var(--gold);
+  border-radius:18px;
+  background:#07101e;
+}
+.zodiac-rule-card.bad{border-left-color:var(--red)}
+.zodiac-rule-card.warn{border-left-color:var(--orange)}
+.zodiac-rule-card.neutral{border-left-color:#8795aa}
+.zodiac-rule-card h3{font-size:1.07rem}
+.zodiac-rule-card .big{color:var(--gold-2);font-size:1.7rem;line-height:1.25;font-weight:950;letter-spacing:.06em}
+.zodiac-rule-card p{margin:.5rem 0 0;color:var(--muted)}
+.time-chip,.day-pill{
+  display:inline-flex;
+  align-items:center;
+  margin:2px 4px 2px 0;
+  padding:4px 9px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  font-size:.84rem;
+  font-weight:900;
+  white-space:nowrap;
+}
+.time-chip.good,.day-pill.good{color:#ffe493;background:rgba(229,185,63,.18)}
+.time-chip.warn,.day-pill.warn{color:#ffd09a;background:rgba(227,163,63,.18)}
+.time-chip.bad,.day-pill.bad{color:#ffb2bb;background:rgba(220,101,113,.18)}
+.time-chip.neutral,.day-pill.neutral{color:#d7dfec;background:rgba(141,155,179,.12)}
+.footer-box{max-width:1880px;margin:0 auto 48px;padding:0 24px}
+.copyright-card{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:linear-gradient(145deg,rgba(26,42,68,.97),rgba(19,31,51,.97));
+  box-shadow:var(--shadow);
+}
+.copyright-card h2{margin:12px 0}
+.copyright-card p{margin:7px 0;color:var(--muted)}
+.copyright-card .copyright-owner{color:#f5f2e8;font-weight:900}
+.copyright-card .copyright-owner strong{color:var(--gold-2)}
+.is-hidden{display:none!important}
+@media(max-width:1180px){
+  .zodiac-input-top{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .system-header{padding-left:15px;padding-right:15px}
+  .top-nav{border-radius:28px}
+  .tab-button{flex:1 1 210px}
+  .controls,.form-grid,.summary-grid,.zodiac-overview{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .zibai-blocks{grid-template-columns:1fr}
+  main{padding:0 14px}
+}
+@media(max-width:620px){
+  .system-header{padding-top:22px}
+  .brand-mark{width:58px;height:58px}
+  h1{font-size:2.35rem}
+  .top-nav{padding:8px;border-radius:24px}
+  .tab-button{width:100%;flex-basis:100%;min-height:45px}
+  .panel{padding:18px;border-radius:20px}
+  .controls,.form-grid,.summary-grid,.zodiac-input-top,.zodiac-overview,.zodiac-rule-grid,.quick-grid{grid-template-columns:1fr}
+  .actions .btn,.zodiac-input-actions .btn{width:100%}
+  .palace{min-height:100px}
+}
+@media print{
+  .system-header,.top-nav,.actions,.zodiac-input-actions,.no-print{display:none!important}
+  body{color:#000;background:#fff}
+  main{max-width:none;margin:0;padding:0}
+  .tab-page{display:block!important}
+  .panel,.copyright-card,.summary-card,.zibai-block,.palace,.quick-item,.zodiac-rule-card{color:#000;background:#fff;box-shadow:none;border-color:#999}
+  th{position:static;color:#000;background:#eee}
+}
+
+
+/* ===== v2.3 會員整合層 ===== */
+html.auth-pending body{visibility:hidden}
+html.auth-ready body{visibility:visible}
+.member-session-bar{max-width:1780px;margin:12px auto 0;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;color:#f6eed7}
+.member-chip{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border:1px solid #2a3b59;border-radius:999px;background:#08111f}
+.member-chip small{color:#aab5c8}.member-admin-link,.member-logout-btn{min-height:40px;padding:8px 15px;border:1px solid #465674;border-radius:999px;background:#08111f;color:#f6eed7;text-decoration:none;font-weight:900;cursor:pointer}
+.plan-access-note{max-width:1780px;margin:10px auto 0;color:#f4d578;font-weight:900;text-align:center}
+.plan-locked-link{opacity:.42;pointer-events:none;cursor:not-allowed}.plan-lock-mark{margin-left:6px;font-size:.78em}
+.member-site-nav{margin-top:12px}.member-site-nav .btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+html.plan-free [data-plan-explanation="true"],html.plan-formal [data-plan-explanation="true"]{display:none!important}
+html.plan-free .free-hidden{display:none!important}
+.tab-button:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.member-level-hint{max-width:1780px;margin:14px auto 0;padding:10px 18px;border:1px solid #2a3b59;border-radius:16px;background:rgba(8,17,31,.82);color:#aab5c8;text-align:center;font-weight:800}
+.free-month-lock{color:#f4d578!important;border-color:#9c6f17!important}
+
+</style>
 </head>
-<body class="dark-system jishi-page">
-  <header class="system-header">
-    <div class="brand-mark">時</div>
-    <p class="eyebrow">六壬擇日・四大吉時・節氣月表</p>
-    <h1>天書三式•丁一峰老師術數查詢系統</h1>
-    <p class="hero__text">每月四大吉時表｜節氣、月將、交節、星宿、建除、貴登天門與吉時欄位整合查詢</p>
-    <nav class="top-nav" aria-label="網站導覽">
-      <a href="index.html">流年祿馬貴人</a>
-      <a href="benming.html">個人流年祿馬貴人</a>
-      <a href="renming.html">六十甲子人命擇日</a>
-      <a href="renming-query.html">六十甲子年命擇日查詢</a>
-      <a href="zibai.html">流年紫白查詢</a>
-      <a href="dehu.html">逐日的呼查詢</a>
-      <a href="jishi.html" aria-current="page">四大吉時月表</a>
-      <a href="liunian-rules.html">流年法說明</a>
-      <a href="benming-rules.html">個人流年法說明</a>
-      <a href="renming-rules.html">人命擇日說明</a>
-      <a href="rules.html">本版採用規則</a>
-      <a href="dehu-rules.html">的呼規則</a>
-    </nav>
-  </header>
+<body>
+<header class="system-header">
+  <div class="brand-mark">天</div>
+  <p class="eyebrow">天干地支・流年運程・術數查詢</p>
+  <h1>天書三式・丁一峰老師術數查詢系統</h1>
+  <p class="hero__text">流年紫白・月紫白飛星・生肖擇日宜忌・六壬擇日四大吉時月表</p>
+  <nav class="top-nav main-tabs" aria-label="查詢工具">
+    <button class="tab-button" data-tab="zibaiPage">流年紫白查詢</button>
+    <button class="tab-button" data-tab="zodiacPage">生肖擇日宜忌</button>
+    <button class="tab-button active" data-tab="fourTimePage">四大吉時月表</button>
+  </nav>
+  <nav class="top-nav member-site-nav" aria-label="會員系統導覽">
+    <a class="btn btn-dark" href="index.html">流年祿馬貴人</a>
+    <a class="btn btn-dark" href="benming.html">個人流年祿馬貴人</a>
+    <a class="btn btn-dark" href="renming-query.html">六十甲子年命擇日</a>
+    <a class="btn btn-dark" href="dehu.html">逐日的呼</a>
+    <a class="btn btn-dark" href="jishi.html" aria-current="page">原網站整合・四大吉時</a>
+    <a class="btn btn-dark" href="rules.html">查詢說明／規則</a>
+  </nav>
+  <div class="member-level-hint" id="memberLevelHint">會員權限載入中…</div>
+</header>
+<main>
+<section id="zibaiPage" class="tab-page"><section class="panel"><div class="section-kicker"><span>壹</span>紫白飛星</div><h2>流年與月紫白飛星查詢</h2><div class="controls"><div class="control-card"><label for="zwYear">選擇年份</label><select id="zwYear"></select></div><div class="control-card"><label for="zwMonth">節氣月</label><select id="zwMonth"></select></div><div class="control-card"><label>列印</label><button class="btn btn-primary" onclick="window.print()">列印 / 另存 PDF</button></div></div><div class="summary-grid"><div class="summary-card"><div class="label">干支年</div><div class="value" id="zwGanzhi">—</div></div><div class="summary-card"><div class="label">流年入中</div><div class="value" id="zwAnnual">—</div></div><div class="summary-card"><div class="label">本月入中</div><div class="value" id="zwMonthly">—</div></div></div></section><section class="panel"><h2>紫白九宮飛布</h2><div class="zibai-blocks"><div class="zibai-block"><div class="month-title"><h3>流年紫白</h3><span class="pill" id="annualCenterBadge">—</span></div><div class="grid-9" id="annualPalaceGrid"></div></div><div class="zibai-block"><div class="month-title"><h3>流月紫白</h3><span class="pill" id="monthlyCenterBadge">—</span></div><div class="grid-9" id="monthlyPalaceGrid"></div></div></div><p class="note">紫白採程式公式即時計算；流年與流月分區呈現，九宮格依後天洛書方位排列。</p></section></section>
+<section id="zodiacPage" class="tab-page"><section class="panel zodiac-input-panel"><div class="section-kicker"><span>貳</span>生肖擇日</div><h2>生肖擇日與命年</h2><div class="zodiac-input-top"><label class="field"><span>出生西元年</span><input id="birthYear" type="number" min="1800" max="2300" value="1984"></label><label class="field"><span>年柱校正方式</span><select id="yearMode"><option value="auto">依輸入西元年換算</option><option value="previous">立春前：以前一年換算</option><option value="manual">手動指定年柱</option></select></label><label class="field is-hidden" id="manualWrap"><span>手動年柱</span><select id="manualGz"></select></label><label class="field"><span>用事月支</span><select id="monthBranch"><option value="">未指定（不判月破）</option></select></label><label class="field"><span>查詢起日</span><input id="startDate" type="date"></label><label class="field"><span>查詢日數</span><select id="rangeDays"><option value="30">30 日</option><option value="60" selected>60 日</option><option value="90">90 日</option><option value="120">120 日</option></select></label></div><div class="zodiac-input-actions"><button class="btn btn-primary" id="zodiacCalc">開始查詢</button><button class="btn btn-dark" id="zodiacCsv">下載結果 CSV</button><button class="btn btn-dark" onclick="window.print()">列印／另存 PDF</button></div><div class="zodiac-toolbar-note">出生年柱若採立春換年，出生於每年二月上旬交界者，請選擇「立春前：以前一年換算」或手動指定年柱。月破須先指定用事月支；未指定時，僅依年、月、日、時四支檢查本命沖煞與合局。</div></section><section class="panel"><div id="zodiacProfile"></div></section><section class="panel"><div class="month-title"><div><div class="section-kicker"><span>查</span>逐日查詢</div><h2>日期與時辰宜忌篩選</h2></div><p class="note">判定優先序：相沖／本命三煞／月破 ＞ 三刑、箭刃、回頭貢煞 ＞ 六合、三合。</p></div><div class="table-wrap"><table><thead><tr><th>公曆日期</th><th>日柱</th><th>日別</th><th>判定理由</th><th>宜用時辰</th><th>慎用時辰</th><th>禁用時辰</th></tr></thead><tbody id="zodiacRows"></tbody></table></div><div id="zodiacCount" class="muted" style="margin-top:10px"></div></section></section>
+<section id="fourTimePage" class="tab-page active"><section class="panel"><div class="section-kicker"><span>參</span>六壬擇日</div><h2>每月四大吉時表 <span class="version-badge">原網站工作版</span></h2><div class="controls"><div class="control-card"><label for="ftYear">西元年（固定）</label><select id="ftYear" aria-label="固定年份2026"></select></div><div class="control-card"><label for="ftMonth">月份（目前開放8～9月）</label><select id="ftMonth"></select></div><div class="control-card"><label>操作</label><button class="btn btn-primary" id="ftPrint">列印 / 另存 PDF</button></div></div><p class="note">目前僅開放 2026 年 8 月與 9 月；後續月份將逐月更新開放。交節當天才顯示「本日交節」備註。</p></section><section class="panel"><div class="month-title"><h2 id="ftTitle">—</h2><div class="pill" id="ftRange">2026年8月至9月</div></div><div class="quick-grid" id="ftQuick"></div><div class="table-wrap" style="margin-top:14px"><table id="ftTable"><thead><tr><th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th></tr></thead><tbody id="ftRows"></tbody></table></div></section><section class="panel" data-plan-explanation="true"><h2>計算參數說明</h2><ul><li>月表以日期為唯一鍵，查找每日遁局、節氣、月將、干支、星宿、建除與各吉時欄位，避免列號錯位。</li><li>四大吉時依月將對應：亥壬、戌乾、酉辛、申庚、未坤、午丁、巳丙、辰巽、卯乙、寅甲、丑艮、子癸。</li><li>斗柄所指依二十四節氣更換；交節日會於備註欄顯示交節後採用的節氣與月將。</li><li>目前網站的四大吉時資料僅開放 2026 年 8 月與 9 月，後續月份再逐月更新開放。</li><li>四大吉時 CSV 匯出功能目前關閉，保留列印／另存 PDF。</li></ul></section></section>
+</main>
+<footer class="footer-box" aria-label="版權宣告">
+  <div class="copyright-card">
+    <div class="section-kicker"><span>參</span>版權宣告</div>
+    <h2>使用與引用</h2>
+    <p class="copyright-owner">© 2026 <strong>丁一峰老師</strong> 版權所有。</p>
+    <p>本工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+  </div>
+</footer>
+<script>
+const FOUR_TIME_DATA = [{"date":"2026-08-01","y":2026,"m":8,"d":1,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"丁未水","week":"六","yibao":"寶","xingxiu":"女","jianchu":"建","guideng":"午申","gangse":"辰","tiangang":"未","ride":"午","zhide":"巳","guise":"○亥","fourTime":"丁","doubing":"未"},{"date":"2026-08-02","y":2026,"m":8,"d":2,"dunju":4,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"戊申土","week":"日","yibao":"寶","xingxiu":"虛","jianchu":"除","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"辰","guise":"未丑","fourTime":"丁","doubing":"未"},{"date":"2026-08-03","y":2026,"m":8,"d":3,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"己酉土","week":"一","yibao":"寶","xingxiu":"危","jianchu":"滿","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"卯","zhide":"卯","guise":"申子","fourTime":"丁","doubing":"未"},{"date":"2026-08-04","y":2026,"m":8,"d":4,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"庚戌金","week":"二","yibao":"義","xingxiu":"室","jianchu":"平","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"酉","zhide":"寅","guise":"丑未","fourTime":"丁","doubing":"未"},{"date":"2026-08-05","y":2026,"m":8,"d":5,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"辛亥金","week":"三","yibao":"寶","xingxiu":"壁","jianchu":"定","guideng":"卯亥","gangse":"辰","tiangang":"未","ride":"子","zhide":"丑","guise":"寅午","fourTime":"丁","doubing":"未"},{"date":"2026-08-06","y":2026,"m":8,"d":6,"dunju":2,"jieqi":"大暑","yuejiang":"午","jiejieTime":"","monthBuild":"未","ganzhi":"壬子木","week":"四","yibao":"和","xingxiu":"奎","jianchu":"執","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"午","zhide":"子","guise":"巳○","fourTime":"丁","doubing":"未"},{"date":"2026-08-07","y":2026,"m":8,"d":7,"dunju":2,"jieqi":"立秋","yuejiang":"午","jiejieTime":"19:43 立秋","monthBuild":"申","ganzhi":"癸丑木","week":"五","yibao":"伐","xingxiu":"婁","jianchu":"執","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"子","zhide":"亥","guise":"卯○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-08","y":2026,"m":8,"d":8,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"甲寅水","week":"六","yibao":"和","xingxiu":"胃","jianchu":"破","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"卯","zhide":"戌","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-09","y":2026,"m":8,"d":9,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"乙卯水","week":"日","yibao":"和","xingxiu":"昴","jianchu":"危","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"酉","zhide":"酉","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-10","y":2026,"m":8,"d":10,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丙辰土","week":"一","yibao":"寶","xingxiu":"畢","jianchu":"成","guideng":"午申","gangse":"辰","tiangang":"未","ride":"子","zhide":"申","guise":"○酉","fourTime":"丁","doubing":"坤"},{"date":"2026-08-11","y":2026,"m":8,"d":11,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丁巳土","week":"二","yibao":"和","xingxiu":"觜","jianchu":"收","guideng":"午申","gangse":"辰","tiangang":"未","ride":"午","zhide":"未","guise":"○亥","fourTime":"丁","doubing":"坤"},{"date":"2026-08-12","y":2026,"m":8,"d":12,"dunju":5,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"戊午火","week":"三","yibao":"義","xingxiu":"參","jianchu":"開","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"午","guise":"未丑","fourTime":"丁","doubing":"坤"},{"date":"2026-08-13","y":2026,"m":8,"d":13,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"己未火","week":"四","yibao":"和","xingxiu":"井","jianchu":"閉","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"卯","zhide":"巳","guise":"申子","fourTime":"丁","doubing":"坤"},{"date":"2026-08-14","y":2026,"m":8,"d":14,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"庚申木","week":"五","yibao":"和","xingxiu":"鬼","jianchu":"建","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"酉","zhide":"辰","guise":"丑未","fourTime":"丁","doubing":"坤"},{"date":"2026-08-15","y":2026,"m":8,"d":15,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"辛酉木","week":"六","yibao":"和","xingxiu":"柳","jianchu":"除","guideng":"卯亥","gangse":"辰","tiangang":"未","ride":"子","zhide":"卯","guise":"寅午","fourTime":"丁","doubing":"坤"},{"date":"2026-08-16","y":2026,"m":8,"d":16,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"壬戌水","week":"日","yibao":"伐","xingxiu":"星","jianchu":"滿","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"午","zhide":"寅","guise":"巳○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-17","y":2026,"m":8,"d":17,"dunju":8,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"癸亥水","week":"一","yibao":"和","xingxiu":"張","jianchu":"平","guideng":"子寅","gangse":"辰","tiangang":"未","ride":"子","zhide":"丑","guise":"卯○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-18","y":2026,"m":8,"d":18,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"甲子金","week":"二","yibao":"義","xingxiu":"翼","jianchu":"定","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"卯","zhide":"子","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-19","y":2026,"m":8,"d":19,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"乙丑金","week":"三","yibao":"制","xingxiu":"軫","jianchu":"執","guideng":"巳酉","gangse":"辰","tiangang":"未","ride":"酉","zhide":"亥","guise":"○○","fourTime":"丁","doubing":"坤"},{"date":"2026-08-20","y":2026,"m":8,"d":20,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丙寅火","week":"四","yibao":"義","xingxiu":"角","jianchu":"破","guideng":"午申","gangse":"辰","tiangang":"未","ride":"子","zhide":"戌","guise":"○酉","fourTime":"丁","doubing":"坤"},{"date":"2026-08-21","y":2026,"m":8,"d":21,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"丁卯火","week":"五","yibao":"義","xingxiu":"亢","jianchu":"危","guideng":"午申","gangse":"辰","tiangang":"未","ride":"午","zhide":"酉","guise":"○亥","fourTime":"丁","doubing":"坤"},{"date":"2026-08-22","y":2026,"m":8,"d":22,"dunju":1,"jieqi":"立秋","yuejiang":"午","jiejieTime":"","monthBuild":"申","ganzhi":"戊辰木","week":"六","yibao":"和","xingxiu":"氐","jianchu":"成","guideng":"辰戌","gangse":"辰","tiangang":"未","ride":"子","zhide":"申","guise":"未丑","fourTime":"丁","doubing":"坤"},{"date":"2026-08-23","y":2026,"m":8,"d":23,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"10:19 處暑","monthBuild":"申","ganzhi":"己巳木","week":"日","yibao":"義","xingxiu":"房","jianchu":"收","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"午","guise":"未亥","fourTime":"丙","doubing":"申"},{"date":"2026-08-24","y":2026,"m":8,"d":24,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"庚午土","week":"一","yibao":"伐","xingxiu":"心","jianchu":"開","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"申","zhide":"巳","guise":"午子","fourTime":"丙","doubing":"申"},{"date":"2026-08-25","y":2026,"m":8,"d":25,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"辛未土","week":"二","yibao":"義","xingxiu":"尾","jianchu":"閉","guideng":"寅戌","gangse":"卯","tiangang":"午","ride":"亥","zhide":"辰","guise":"巳丑","fourTime":"丙","doubing":"申"},{"date":"2026-08-26","y":2026,"m":8,"d":26,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"壬申金","week":"三","yibao":"義","xingxiu":"箕","jianchu":"建","guideng":"丑亥","gangse":"卯","tiangang":"午","ride":"巳","zhide":"卯","guise":"辰寅","fourTime":"丙","doubing":"申"},{"date":"2026-08-27","y":2026,"m":8,"d":27,"dunju":4,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"癸酉金","week":"四","yibao":"義","xingxiu":"斗","jianchu":"除","guideng":"亥丑","gangse":"卯","tiangang":"午","ride":"亥","zhide":"寅","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-28","y":2026,"m":8,"d":28,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"甲戌火","week":"五","yibao":"制","xingxiu":"牛","jianchu":"滿","guideng":"酉卯","gangse":"卯","tiangang":"午","ride":"寅","zhide":"丑","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-29","y":2026,"m":8,"d":29,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"乙亥火","week":"六","yibao":"義","xingxiu":"女","jianchu":"平","guideng":"申辰","gangse":"卯","tiangang":"午","ride":"申","zhide":"子","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-30","y":2026,"m":8,"d":30,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"丙子水","week":"日","yibao":"伐","xingxiu":"虛","jianchu":"定","guideng":"未巳","gangse":"卯","tiangang":"午","ride":"亥","zhide":"亥","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-08-31","y":2026,"m":8,"d":31,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"丁丑水","week":"一","yibao":"寶","xingxiu":"危","jianchu":"執","guideng":"巳未","gangse":"卯","tiangang":"午","ride":"巳","zhide":"戌","guise":"申戌","fourTime":"丙","doubing":"申"},{"date":"2026-09-01","y":2026,"m":9,"d":1,"dunju":7,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"戊寅土","week":"二","yibao":"伐","xingxiu":"室","jianchu":"破","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"亥","zhide":"酉","guise":"午子","fourTime":"丙","doubing":"申"},{"date":"2026-09-02","y":2026,"m":9,"d":2,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"己卯土","week":"三","yibao":"伐","xingxiu":"壁","jianchu":"危","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"申","guise":"未亥","fourTime":"丙","doubing":"申"},{"date":"2026-09-03","y":2026,"m":9,"d":3,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"庚辰金","week":"四","yibao":"義","xingxiu":"奎","jianchu":"成","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"申","zhide":"未","guise":"午子","fourTime":"丙","doubing":"申"},{"date":"2026-09-04","y":2026,"m":9,"d":4,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"辛巳金","week":"五","yibao":"伐","xingxiu":"婁","jianchu":"收","guideng":"寅戌","gangse":"卯","tiangang":"午","ride":"亥","zhide":"午","guise":"巳丑","fourTime":"丙","doubing":"申"},{"date":"2026-09-05","y":2026,"m":9,"d":5,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"壬午木","week":"六","yibao":"制","xingxiu":"胃","jianchu":"開","guideng":"丑亥","gangse":"卯","tiangang":"午","ride":"巳","zhide":"巳","guise":"辰寅","fourTime":"丙","doubing":"申"},{"date":"2026-09-06","y":2026,"m":9,"d":6,"dunju":9,"jieqi":"處暑","yuejiang":"巳","jiejieTime":"","monthBuild":"申","ganzhi":"癸未木","week":"日","yibao":"伐","xingxiu":"昴","jianchu":"閉","guideng":"亥丑","gangse":"卯","tiangang":"午","ride":"亥","zhide":"辰","guise":"○○","fourTime":"丙","doubing":"申"},{"date":"2026-09-07","y":2026,"m":9,"d":7,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"22:41 白露","monthBuild":"酉","ganzhi":"甲申水","week":"一","yibao":"伐","xingxiu":"畢","jianchu":"閉","guideng":"酉卯","gangse":"卯","tiangang":"午","ride":"寅","zhide":"卯","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-08","y":2026,"m":9,"d":8,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"乙酉水","week":"二","yibao":"伐","xingxiu":"觜","jianchu":"建","guideng":"申辰","gangse":"卯","tiangang":"午","ride":"申","zhide":"寅","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-09","y":2026,"m":9,"d":9,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丙戌土","week":"三","yibao":"寶","xingxiu":"參","jianchu":"除","guideng":"未巳","gangse":"卯","tiangang":"午","ride":"亥","zhide":"丑","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-10","y":2026,"m":9,"d":10,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丁亥土","week":"四","yibao":"伐","xingxiu":"井","jianchu":"滿","guideng":"巳未","gangse":"卯","tiangang":"午","ride":"巳","zhide":"子","guise":"申戌","fourTime":"丙","doubing":"庚"},{"date":"2026-09-11","y":2026,"m":9,"d":11,"dunju":3,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"戊子火","week":"五","yibao":"制","xingxiu":"鬼","jianchu":"平","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"亥","zhide":"亥","guise":"午子","fourTime":"丙","doubing":"庚"},{"date":"2026-09-12","y":2026,"m":9,"d":12,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"己丑火","week":"六","yibao":"和","xingxiu":"柳","jianchu":"定","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"戌","guise":"未亥","fourTime":"丙","doubing":"庚"},{"date":"2026-09-13","y":2026,"m":9,"d":13,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"庚寅木","week":"日","yibao":"制","xingxiu":"星","jianchu":"執","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"申","zhide":"酉","guise":"午子","fourTime":"丙","doubing":"庚"},{"date":"2026-09-14","y":2026,"m":9,"d":14,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"辛卯木","week":"一","yibao":"制","xingxiu":"張","jianchu":"破","guideng":"寅戌","gangse":"卯","tiangang":"午","ride":"亥","zhide":"申","guise":"巳丑","fourTime":"丙","doubing":"庚"},{"date":"2026-09-15","y":2026,"m":9,"d":15,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"壬辰水","week":"二","yibao":"伐","xingxiu":"翼","jianchu":"危","guideng":"丑亥","gangse":"卯","tiangang":"午","ride":"巳","zhide":"未","guise":"辰寅","fourTime":"丙","doubing":"庚"},{"date":"2026-09-16","y":2026,"m":9,"d":16,"dunju":6,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"癸巳水","week":"三","yibao":"制","xingxiu":"軫","jianchu":"成","guideng":"亥丑","gangse":"卯","tiangang":"午","ride":"亥","zhide":"午","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-17","y":2026,"m":9,"d":17,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"甲午金","week":"四","yibao":"寶","xingxiu":"角","jianchu":"收","guideng":"酉卯","gangse":"卯","tiangang":"午","ride":"寅","zhide":"巳","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-18","y":2026,"m":9,"d":18,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"乙未金","week":"五","yibao":"制","xingxiu":"亢","jianchu":"開","guideng":"申辰","gangse":"卯","tiangang":"午","ride":"申","zhide":"辰","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-19","y":2026,"m":9,"d":19,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丙申火","week":"六","yibao":"制","xingxiu":"氐","jianchu":"閉","guideng":"未巳","gangse":"卯","tiangang":"午","ride":"亥","zhide":"卯","guise":"○○","fourTime":"丙","doubing":"庚"},{"date":"2026-09-20","y":2026,"m":9,"d":20,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"丁酉火","week":"日","yibao":"制","xingxiu":"房","jianchu":"建","guideng":"巳未","gangse":"卯","tiangang":"午","ride":"巳","zhide":"寅","guise":"申戌","fourTime":"丙","doubing":"庚"},{"date":"2026-09-21","y":2026,"m":9,"d":21,"dunju":7,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"戊戌木","week":"一","yibao":"和","xingxiu":"心","jianchu":"除","guideng":"卯酉","gangse":"卯","tiangang":"午","ride":"亥","zhide":"丑","guise":"午子","fourTime":"丙","doubing":"庚"},{"date":"2026-09-22","y":2026,"m":9,"d":22,"dunju":1,"jieqi":"白露","yuejiang":"巳","jiejieTime":"","monthBuild":"酉","ganzhi":"己亥木","week":"二","yibao":"制","xingxiu":"尾","jianchu":"滿","guideng":"辰申","gangse":"卯","tiangang":"午","ride":"寅","zhide":"子","guise":"未亥","fourTime":"丙","doubing":"庚"},{"date":"2026-09-23","y":2026,"m":9,"d":23,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"08:05 秋分","monthBuild":"酉","ganzhi":"庚子土","week":"三","yibao":"寶","xingxiu":"箕","jianchu":"平","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"未","zhide":"戌","guise":"巳亥","fourTime":"巽","doubing":"酉"},{"date":"2026-09-24","y":2026,"m":9,"d":24,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"辛丑土","week":"四","yibao":"義","xingxiu":"斗","jianchu":"定","guideng":"丑酉","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"酉","guise":"辰子","fourTime":"巽","doubing":"酉"},{"date":"2026-09-25","y":2026,"m":9,"d":25,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"壬寅金","week":"五","yibao":"寶","xingxiu":"牛","jianchu":"執","guideng":"子戌","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"申","guise":"卯丑","fourTime":"巽","doubing":"酉"},{"date":"2026-09-26","y":2026,"m":9,"d":26,"dunju":1,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"癸卯金","week":"六","yibao":"寶","xingxiu":"女","jianchu":"破","guideng":"戌子","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"未","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-27","y":2026,"m":9,"d":27,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"甲辰火","week":"日","yibao":"制","xingxiu":"虛","jianchu":"危","guideng":"寅申","gangse":"寅","tiangang":"巳","ride":"丑","zhide":"午","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-28","y":2026,"m":9,"d":28,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"乙巳火","week":"一","yibao":"寶","xingxiu":"危","jianchu":"成","guideng":"卯未","gangse":"寅","tiangang":"巳","ride":"未","zhide":"巳","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-29","y":2026,"m":9,"d":29,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"丙午水","week":"二","yibao":"和","xingxiu":"室","jianchu":"收","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"戌","zhide":"辰","guise":"○○","fourTime":"巽","doubing":"酉"},{"date":"2026-09-30","y":2026,"m":9,"d":30,"dunju":4,"jieqi":"秋分","yuejiang":"辰","jiejieTime":"","monthBuild":"酉","ganzhi":"丁未水","week":"三","yibao":"寶","xingxiu":"壁","jianchu":"開","guideng":"辰午","gangse":"寅","tiangang":"巳","ride":"辰","zhide":"卯","guise":"未酉","fourTime":"巽","doubing":"酉"}];
+const stems=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"], branches=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"], animals=["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];
+const starNames={1:"一白貪狼",2:"二黑巨門",3:"三碧祿存",4:"四綠文曲",5:"五黃廉貞",6:"六白武曲",7:"七赤破軍",8:"八白左輔",9:"九紫右弼"};
+// 九宮畫面固定採後天洛書方位：巽離坤／震中兌／艮坎乾。
+// flightIndex 對應九星順飛次序：中 → 乾 → 兌 → 艮 → 離 → 坎 → 坤 → 震 → 巽。
+const palaceDisplay=[
+  {name:"巽宮",dir:"東南",flightIndex:8},
+  {name:"離宮",dir:"正南",flightIndex:4},
+  {name:"坤宮",dir:"西南",flightIndex:6},
+  {name:"震宮",dir:"正東",flightIndex:7},
+  {name:"中宮",dir:"中央",flightIndex:0},
+  {name:"兌宮",dir:"正西",flightIndex:2},
+  {name:"艮宮",dir:"東北",flightIndex:3},
+  {name:"坎宮",dir:"正北",flightIndex:5},
+  {name:"乾宮",dir:"西北",flightIndex:1}
+];
+const mod=(n,m)=>((n%m)+m)%m;
+const wrapStar=n=>mod(n-1,9)+1;
+function sexagenaryYear(y){const i=mod(y-4,60);return {index:i,stem:stems[i%10],branch:branches[i%12],gz:stems[i%10]+branches[i%12]}}
+// 流年紫白逐年逆行，以 2027 年九紫入中為校準基準。
+function annualCenter(y){return wrapStar(9-(y-2027))}
+// 流月紫白：子午卯酉年寅月八白；辰戌丑未年寅月五黃；寅申巳亥年寅月二黑；其後逐月逆行。
+const firstMonthCenter={"子":8,"午":8,"卯":8,"酉":8,"辰":5,"戌":5,"丑":5,"未":5,"寅":2,"申":2,"巳":2,"亥":2};
+function monthlyCenter(year,monthIdx){const b=sexagenaryYear(year).branch;return wrapStar(firstMonthCenter[b]-(monthIdx-1))}
+function fly(center){return Array.from({length:9},(_,i)=>wrapStar(center+i))}
+function initZibai(){const ysel=document.getElementById('zwYear'), msel=document.getElementById('zwMonth'); for(let y=2000;y<=2200;y++) ysel.add(new Option(y,y)); ysel.value=2026; ["寅月・立春","卯月・驚蟄","辰月・清明","巳月・立夏","午月・芒種","未月・小暑","申月・立秋","酉月・白露","戌月・寒露","亥月・立冬","子月・大雪","丑月・小寒"].forEach((n,i)=>msel.add(new Option(n,i+1))); msel.value=1; ysel.onchange=renderZibai; msel.onchange=renderZibai; validateZibaiRules(); renderZibai()}
+function renderPalaceGrid(id,vals){const el=document.getElementById(id);if(!el)return;el.innerHTML=palaceDisplay.map(p=>`<div class="palace"><b>${p.name}（${p.dir}）</b><div>${starNames[vals[p.flightIndex]]}</div></div>`).join('')}
+function validateZibaiRules(){
+  console.assert(annualCenter(2026)===1,'2026 流年應為一白入中');
+  console.assert(annualCenter(2027)===9,'2027 流年應為九紫入中');
+  console.assert(monthlyCenter(2027,1)===5,'2027 未年寅月應為五黃入中');
+}
+function renderZibai(){const y=+document.getElementById('zwYear').value,m=+document.getElementById('zwMonth').value; document.getElementById('zwGanzhi').textContent=sexagenaryYear(y).gz; const ac=annualCenter(y), mc=monthlyCenter(y,m); document.getElementById('zwAnnual').textContent=starNames[ac]+'入中'; document.getElementById('zwMonthly').textContent=starNames[mc]+'入中'; document.getElementById('annualCenterBadge').textContent=starNames[ac]+'入中'; document.getElementById('monthlyCenterBadge').textContent=starNames[mc]+'入中'; renderPalaceGrid('annualPalaceGrid',fly(ac)); renderPalaceGrid('monthlyPalaceGrid',fly(mc))}
+const zodiacRules={"子":{animal:"鼠",clash:"午",sansha:"未",punishment:"卯",liu:["丑"],san:["申","辰"]},"丑":{animal:"牛",clash:"未",sansha:"辰",punishment:"戌",liu:["子"],san:["巳","酉"]},"寅":{animal:"虎",clash:"申",sansha:"丑",punishment:"巳",liu:["亥"],san:["午","戌"]},"卯":{animal:"兔",clash:"酉",sansha:"戌",punishment:"子",liu:["戌"],san:["亥","未"]},"辰":{animal:"龍",clash:"戌",sansha:"未",punishment:"辰",liu:["酉"],san:["申","子"]},"巳":{animal:"蛇",clash:"亥",sansha:"辰",punishment:"寅",liu:["申"],san:["酉","丑"]},"午":{animal:"馬",clash:"子",sansha:"丑",punishment:"午",liu:["未"],san:["寅","戌"]},"未":{animal:"羊",clash:"丑",sansha:"戌",punishment:"戌",liu:["午"],san:["亥","卯"]},"申":{animal:"猴",clash:"寅",sansha:"未",punishment:"巳",liu:["巳"],san:["子","辰"]},"酉":{animal:"雞",clash:"卯",sansha:"辰",punishment:"酉",liu:["辰"],san:["巳","丑"]},"戌":{animal:"狗",clash:"辰",sansha:"丑",punishment:"丑",liu:["卯"],san:["寅","午"]},"亥":{animal:"豬",clash:"巳",sansha:"戌",punishment:"亥",liu:["寅"],san:["卯","未"]}};
+function jdn(y,m,d){if(m<=2){y--;m+=12} const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524}
+function dayGz(date){const idx=mod(jdn(date.getUTCFullYear(),date.getUTCMonth()+1,date.getUTCDate())+49,60); return {gz:stems[idx%10]+branches[idx%12],stem:stems[idx%10],branch:branches[idx%12]}}
+function initZodiac(){const mg=document.getElementById('manualGz'), mb=document.getElementById('monthBranch'); for(let i=0;i<60;i++) mg.add(new Option(stems[i%10]+branches[i%12],i)); branches.forEach(b=>mb.add(new Option(b+'月',b))); document.getElementById('startDate').value='2026-08-03'; document.getElementById('yearMode').onchange=()=>document.getElementById('manualWrap').classList.toggle('is-hidden',document.getElementById('yearMode').value!=='manual'); document.getElementById('zodiacCalc').onclick=renderZodiac; document.getElementById('zodiacCsv').onclick=downloadZodiacCsv; renderZodiac()}
+function getBirth(){let y=+document.getElementById('birthYear').value, mode=document.getElementById('yearMode').value; if(mode==='manual'){let i=+document.getElementById('manualGz').value; return {gz:stems[i%10]+branches[i%12],stem:stems[i%10],branch:branches[i%12]}} if(mode==='previous') y--; return sexagenaryYear(y)}
+function opp(b){return branches[mod(branches.indexOf(b)+6,12)]}
+const hourList=[['子','23:00–00:59'],['丑','01:00–02:59'],['寅','03:00–04:59'],['卯','05:00–06:59'],['辰','07:00–08:59'],['巳','09:00–10:59'],['午','11:00–12:59'],['未','13:00–14:59'],['申','15:00–16:59'],['酉','17:00–18:59'],['戌','19:00–20:59'],['亥','21:00–22:59']];
+let zodiacCurrent=[];
+function joinBranches(arr){return (arr&&arr.length)?arr.join('・'):'不適用'}
+function classifyBranch(branch,r,monthBranch){if(branch===r.clash)return {key:'bad',label:'禁用',reason:'相沖禁用'}; if(branch===r.sansha)return {key:'bad',label:'禁用',reason:'本命三煞禁用'}; if(monthBranch&&branch===opp(monthBranch))return {key:'bad',label:'禁用',reason:'月破禁用'}; if(branch===r.punishment)return {key:'warn',label:'慎用',reason:'三刑慎用'}; if(r.liu.includes(branch))return {key:'good',label:'宜用',reason:'六合宜用'}; if(r.san.includes(branch))return {key:'good',label:'宜用',reason:'三合宜用'}; return {key:'neutral',label:'平常',reason:'無固定沖煞或合局'}}
+function renderChips(items,cls){return items.length?items.map(x=>`<span class="time-chip ${cls}">${x}</span>`).join(''):'—'}
+function renderZodiac(){const birth=getBirth(), r=zodiacRules[birth.branch], start=document.getElementById('startDate').value, days=+document.getElementById('rangeDays').value, monthBranch=document.getElementById('monthBranch').value; document.getElementById('zodiacProfile').innerHTML=`<div class="month-title"><div><div class="section-kicker"><span>命</span>核心結論</div><h2>宜用、慎用與禁用條件</h2></div><span class="zodiac-badge">本命：${birth.gz}・${r.animal}</span></div><div class="zodiac-overview"><div class="summary-card"><div class="label">出生年柱</div><div class="value">${birth.gz}</div><div class="note">依西元年換算</div></div><div class="summary-card"><div class="label">生肖／命支</div><div class="value">${birth.branch}・${r.animal}</div><div class="note">以出生年支為本命判定基礎</div></div><div class="summary-card"><div class="label">六合宜用</div><div class="value">${joinBranches(r.liu)}</div><div class="note">${joinBranches(r.liu)}日、${joinBranches(r.liu)}時優先參考</div></div><div class="summary-card"><div class="label">三合宜用</div><div class="value">${joinBranches(r.san)}</div><div class="note">${joinBranches(r.san)}日與對應時辰可參考</div></div></div><div class="zodiac-core-box"><div class="zodiac-rule-grid"><div class="zodiac-rule-card"><h3>六合宜用</h3><div class="big">${joinBranches(r.liu)}日・${joinBranches(r.liu)}時</div><p>與本命地支六合，可作為擇日與擇時的優先條件。</p></div><div class="zodiac-rule-card"><h3>三合宜用</h3><div class="big">${joinBranches(r.san)}</div><p>三合局日及相應時辰，可作為三合助力。</p></div><div class="zodiac-rule-card bad"><h3>相沖禁用</h3><div class="big">${r.clash}日・${r.clash}時</div><p>與本命地支正沖，原則上列為直接避用。</p></div><div class="zodiac-rule-card bad"><h3>本命三煞禁用</h3><div class="big">${r.sansha}日・${r.sansha}時</div><p>本命三合局所對應之三煞日、時，列為大煞避用。</p></div><div class="zodiac-rule-card warn"><h3>三刑慎用</h3><div class="big">${r.punishment}日・${r.punishment}時</div><p>列為慎用條件，仍須合參整體日課。</p></div><div class="zodiac-rule-card neutral"><h3>回頭貢煞</h3><div class="big">不適用</div><p>非辰、戌、丑、未四墓生肖者，無固定組合。</p></div><div class="zodiac-rule-card warn"><h3>本命年干箭刃</h3><div class="big">動態判定</div><p>四柱中兩支同時全見時成立，工具列為慎用提示。</p></div><div class="zodiac-rule-card neutral"><h3>月破與破時</h3><div class="big">${monthBranch?opp(monthBranch)+'日・'+opp(monthBranch)+'時':'未指定'}</div><p>指定用事月支後判月破；每日另排與日支相沖之破時。</p></div></div></div>`; const [yy,mm,dd]=start.split('-').map(Number); const base=new Date(Date.UTC(yy,mm-1,dd)); zodiacCurrent=[]; for(let i=0;i<days;i++){let date=new Date(base);date.setUTCDate(base.getUTCDate()+i);let dg=dayGz(date);let dayClass=classifyBranch(dg.branch,r,monthBranch);let good=[],warn=[],bad=[];hourList.forEach(([b,t])=>{const c=classifyBranch(b,r,monthBranch); const label=`${b} ${t}`; if(c.key==='good')good.push(label); else if(c.key==='warn')warn.push(label); else if(c.key==='bad')bad.push(label)}); zodiacCurrent.push({date,dg,reason:dayClass.reason,key:dayClass.key,label:dayClass.label,good,warn,bad})} document.getElementById('zodiacRows').innerHTML=zodiacCurrent.map(x=>`<tr><td>${x.date.toISOString().slice(0,10)}（${'日一二三四五六'[x.date.getUTCDay()]}）</td><td><strong style="color:var(--gold2)">${x.dg.stem}<br>${x.dg.branch}</strong><div class="muted">${x.dg.branch}日</div></td><td><span class="day-pill ${x.key}">${x.label}</span></td><td>${x.reason}</td><td>${renderChips(x.good,'good')}</td><td>${renderChips(x.warn,'warn')}</td><td>${renderChips(x.bad,'bad')}</td></tr>`).join(''); document.getElementById('zodiacCount').textContent=`共 ${zodiacCurrent.length} 日；本命 ${birth.gz}・生肖${r.animal}`}
+function downloadZodiacCsv(){downloadCsv('生肖擇日查詢.csv',['日期','日柱','日別','理由','宜用時辰','慎用時辰','禁用時辰'],zodiacCurrent.map(x=>[x.date.toISOString().slice(0,10),x.dg.gz,x.label,x.reason,x.good.join(' / '),x.warn.join(' / '),x.bad.join(' / ')]))}
+function initFourTime(){const fy=document.getElementById('ftYear'),fm=document.getElementById('ftMonth');fy.add(new Option('2026',2026));fy.value=2026;fy.disabled=true;[8,9].forEach(m=>fm.add(new Option(m+'月',m)));fm.value=8;fm.onchange=renderFourTime;document.getElementById('ftPrint').onclick=()=>window.print();renderFourTime()}
+function formatLunar(iso){try{const d=new Date(iso+'T00:00:00Z'); let s=new Intl.DateTimeFormat('zh-TW-u-ca-chinese',{month:'long',day:'numeric',timeZone:'UTC'}).format(d); return s.replace('月','月')}catch(e){return ''}}
+const yuejiangNames={"亥":"登明","戌":"河魁","酉":"從魁","申":"傳送","未":"小吉","午":"勝光","巳":"太乙","辰":"天罡","卯":"太沖","寅":"功曹","丑":"大吉","子":"神后"};
+function formatYuejiang(v){return v?`${v}將：${yuejiangNames[v]||''}`:''}
+let ftCurrent=[];
+function getJieqiSummaryRanges(y,m,rows){
+  const overrides={
+    '2026-6':['6/1-6/5小滿','6/6-6/20芒種','6/21-6/30夏至']
+  };
+  const override=overrides[`${y}-${m}`];
+  if(override)return override;
+  if(!rows.length)return [];
+  const ranges=[];
+  let start=rows[0].d,current=rows[0].jieqi;
+  for(let i=1;i<rows.length;i++){
+    if(rows[i].jieqi!==current){
+      ranges.push(`${m}/${start}-${m}/${rows[i-1].d}${current}`);
+      start=rows[i].d;
+      current=rows[i].jieqi;
+    }
+  }
+  ranges.push(`${m}/${start}-${m}/${rows.at(-1).d}${current}`);
+  return ranges;
+}
+function renderFourTime(){const y=+document.getElementById('ftYear').value,m=+document.getElementById('ftMonth').value; ftCurrent=FOUR_TIME_DATA.filter(r=>r.y===y&&r.m===m); document.getElementById('ftTitle').textContent=`${y}年${m}月份 六壬擇日四大吉時表`; const jieqiRanges=getJieqiSummaryRanges(y,m,ftCurrent), yj=[...new Set(ftCurrent.map(r=>r.yuejiang).filter(Boolean))].map(formatYuejiang); document.getElementById('ftQuick').innerHTML=`<div class="quick-item"><strong>${ftCurrent.length}</strong>本月日數</div><div class="quick-item"><div class="quick-lines">${jieqiRanges.map(v=>`<span>${v}</span>`).join('')}</div>節氣</div><div class="quick-item"><div class="quick-lines">${yj.map(v=>`<span>${v}</span>`).join('')}</div>月將</div><div class="quick-item"><strong>${ftCurrent.filter(r=>r.jiejieTime).length}</strong>交節日</div><div class="quick-item"><strong>${ftCurrent[0]?.doubing||''}</strong>月初斗柄</div><div class="quick-item"><strong>${ftCurrent.at(-1)?.doubing||''}</strong>月底斗柄</div>`; document.getElementById('ftRows').innerHTML=ftCurrent.map(r=>`<tr><td>${r.m}月${r.d}日</td><td>${r.dunju??''}</td><td>${r.jieqi}</td><td>${formatYuejiang(r.yuejiang)}</td><td>${r.jiejieTime}</td><td>${formatLunar(r.date)}</td><td>${r.ganzhi}</td><td>${r.week}</td><td>${r.yibao}</td><td>${r.xingxiu}</td><td>${r.jianchu}</td><td>${r.guideng}</td><td>${r.gangse}</td><td>${r.tiangang}</td><td>${r.ride}</td><td>${r.zhide}</td><td>${r.guise}</td><td>${r.fourTime}</td><td>${r.doubing}</td><td>${r.jiejieTime?'本日交節：交節後採用「'+r.jieqi+'」與「'+r.yuejiang+'將」':''}</td></tr>`).join('')}
+function downloadCsv(filename,headers,rows){const esc=v=>'"'+String(v??'').replaceAll('"','""')+'"'; const csv='\ufeff'+[headers,...rows].map(r=>r.map(esc).join(',')).join('\\n'); const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click(); URL.revokeObjectURL(a.href)}
+document.querySelectorAll('.tab-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab-button').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.tab).classList.add('active')}));
+initZibai(); initZodiac(); initFourTime();
+</script>
 
-  <main class="shell jishi-shell">
-    <section class="panel" aria-labelledby="jishi-control-title">
-      <div class="section-title inline-title">
-        <div><p>QUERY</p><h2 id="jishi-control-title">四大吉時月表查詢</h2></div>
-        <span class="pill">會員功能</span>
-      </div>
-      <div class="form-grid jishi-controls">
-        <label class="field"><span>西元年</span><select id="ftYear"></select></label>
-        <label class="field"><span>月份（目前開放 8～9 月）</span><select id="ftMonth"></select></label>
-        <div class="field action-field"><span>輸出</span><button id="ftPrint" type="button">列印 / 另存 PDF</button></div>
-        <div class="field jishi-availability"><span>開放範圍</span><strong>2026 年 8–9 月</strong><small>後續月份逐月更新開放</small></div>
-      </div>
-      <p class="fine-print jishi-top-note">目前維持先前核定範圍：2026 年 8 月、9 月；CSV 匯出維持關閉。交節當天才顯示「本日交節」備註。</p>
-    </section>
+<script>
+(function(){
+  function taipeiNow(){
+    const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Taipei',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date());
+    const get=t=>Number(parts.find(p=>p.type===t)?.value||0);
+    return {year:get('year'),month:get('month'),day:get('day')};
+  }
+  function activateTab(tabId){
+    document.querySelectorAll('.tab-button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tabId));
+    document.querySelectorAll('.tab-page').forEach(p=>p.classList.toggle('active',p.id===tabId));
+  }
+  function planOf(profile){
+    return profile?.role==='admin'?'permanent':(profile?.plan||'free');
+  }
+  function setHint(profile){
+    const hint=document.getElementById('memberLevelHint'); if(!hint)return;
+    const p=planOf(profile);
+    if(profile?.role==='admin') hint.textContent='管理員｜原網站三項查詢、四大吉時、說明與會員管理全部可用';
+    else if(p==='free') hint.textContent='一般會員｜僅能查看臺灣時間當月份的四大吉時；其他查詢與月份切換已鎖定';
+    else if(p==='formal') hint.textContent='正式會員｜全部查詢功能可用；查詢說明／規則內容不開放';
+    else hint.textContent='永久會員｜全部查詢與說明功能可用';
+  }
+  function applyPlan(){
+    const profile=window.TIANSHU_MEMBER?.profile; if(!profile)return;
+    const plan=planOf(profile);
+    setHint(profile);
+    const tabs=[...document.querySelectorAll('.tab-button')];
+    const explanation=document.querySelector('[data-plan-explanation="true"]');
+    if(explanation) explanation.style.display=(plan==='formal'||plan==='free')?'none':'';
+    if(plan==='free' && profile.role!=='admin'){
+      tabs.forEach(btn=>{ btn.disabled=btn.dataset.tab!=='fourTimePage'; if(btn.disabled) btn.title='一般會員僅開放當月份四大吉時'; });
+      activateTab('fourTimePage');
+      const now=taipeiNow(), y=document.getElementById('ftYear'), m=document.getElementById('ftMonth'), print=document.getElementById('ftPrint');
+      if(y){ y.innerHTML=`<option value="${now.year}">${now.year}</option>`; y.value=String(now.year); y.disabled=true; y.classList.add('free-month-lock'); }
+      if(m){ m.innerHTML=`<option value="${now.month}">${now.month}月（當月份）</option>`; m.value=String(now.month); m.disabled=true; m.classList.add('free-month-lock'); }
+      if(print){ print.disabled=true; print.textContent='一般會員僅供查看'; print.title='一般會員不開放列印／另存 PDF'; }
+      if(typeof renderFourTime==='function') renderFourTime();
+      const body=document.getElementById('ftRows');
+      if(body && !body.children.length){ body.innerHTML='<tr><td colspan="20">本月份四大吉時資料尚未開放，請待管理員更新。</td></tr>'; }
+      const range=document.getElementById('ftRange'); if(range) range.textContent=`${now.year}年${now.month}月（一般會員）`;
+    }else{
+      tabs.forEach(btn=>{btn.disabled=false;btn.title='';});
+    }
+  }
+  window.addEventListener('tianshu:member-ready',applyPlan);
+  if(window.TIANSHU_MEMBER) applyPlan();
+})();
+</script>
 
-    <section class="panel" aria-labelledby="ftTitle">
-      <div class="section-title inline-title">
-        <div><p>MONTH TABLE</p><h2 id="ftTitle">—</h2></div>
-        <span class="pill" id="ftRange">—</span>
-      </div>
-      <div class="jishi-stats" id="ftQuick"></div>
-      <div class="table-wrap jishi-table-wrap">
-        <table id="ftTable">
-          <thead><tr>
-            <th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th>
-          </tr></thead>
-          <tbody id="ftRows"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel" aria-labelledby="jishi-note-title">
-      <div class="panel-heading"><span class="seal">法</span><div class="section-title"><p>PARAMETERS</p><h2 id="jishi-note-title">計算參數與更新方式</h2></div></div>
-      <div class="jishi-rule-grid">
-        <article><strong>日期唯一鍵</strong><p>月表以日期對應遁局、節氣、月將、干支、星宿、建除與各吉時欄位，避免列號錯位。</p></article>
-        <article><strong>月將與四大吉時</strong><p>沿用既有月將對應：亥壬、戌乾、酉辛、申庚、未坤、午丁、巳丙、辰巽、卯乙、寅甲、丑艮、子癸。</p></article>
-        <article><strong>節氣與斗柄</strong><p>斗柄所指隨二十四節氣切換；交節日顯示交節時間與交節後採用之節氣、月將。</p></article>
-        <article><strong>模組化更新</strong><p>本版已把月表資料獨立至 <code>assets/jishi-data.js</code>；後續增加月份時，只更新資料檔與開放月份設定即可。</p></article>
-      </div>
-    </section>
-
-    <section class="panel copyright-panel compact">
-      <div class="panel-heading"><span class="seal">權</span><div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div></div>
-      <div class="copyright-content"><p><strong>© 2026 丁一峰老師 版權所有。</strong></p><p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p></div>
-    </section>
-  </main>
-
-  <footer class="footer"><p><strong>© 2026 丁一峰老師 版權所有。</strong></p><p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p><p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p></footer>
-  <script type="module" src="assets/jishi.js"></script>
-</body>
-</html>
+</body></html>
