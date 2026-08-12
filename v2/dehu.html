@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜逐日的呼查詢</title>
+  <meta name="description" content="逐日入殮移柩安葬的呼查詢，依照片表與上傳資料整理，含納音、五音、的呼生人與金木水火土標註。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system dehu-page dehu-horizontal-page">
+  <header class="system-header">
+    <div class="brand-mark">天</div>
+    <p class="eyebrow">天干地支・流年運程・術數查詢</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">吊替飛宮・祿馬貴人・神煞落宮・流年紫白・月紫白飛星・逐日的呼查詢</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html" aria-current="page">逐日的呼查詢</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="dehu-horizontal-shell">
+    <section class="panel dehu-control-strip" aria-labelledby="dehu-control-title">
+      <div class="panel-heading dehu-strip-title">
+        <span class="seal">呼</span>
+        <div class="section-title">
+          <p>QUERY</p>
+          <h2 id="dehu-control-title">逐日的呼查詢</h2>
+        </div>
+      </div>
+
+      <div class="dehu-top-controls">
+        <label class="field">
+          <span>選擇日柱（六十甲子）</span>
+          <select id="dehuDaySelect"></select>
+        </label>
+        <label class="field search-field dehu-top-search">
+          <span>表格搜尋</span>
+          <input id="dehuSearch" type="search" placeholder="日柱／亡命／納音／五行" />
+        </label>
+        <div class="field action-field">
+          <span>查詢結果</span>
+          <button id="dehuCopyBtn" type="button">複製的呼結果</button>
+        </div>
+        <div class="field action-field">
+          <span>完整資料</span>
+          <button id="dehuCsvBtn" type="button" class="secondary">下載逐日表 CSV</button>
+        </div>
+        <div class="field action-field">
+          <span>快速重設</span>
+          <button id="dehuResetBtn" type="button" class="secondary">重設甲子日</button>
+        </div>
+      </div>
+      <p class="fine-print dehu-note">依照片版「逐日入殮移柩安葬的呼」與上傳 PDF 整理。選擇日柱後，會同步顯示納音、五音、日支位置及相應的呼生人；下方完整表可用關鍵字即時篩選。</p>
+    </section>
+
+    <section class="summary-grid dehu-summary" aria-label="的呼查詢摘要">
+      <article class="panel mini-card element-card" id="dehuDayElementCard">
+        <p>日柱五行</p>
+        <strong id="dehuDayElement">—</strong>
+        <small id="dehuNaYin">—</small>
+      </article>
+      <article class="panel mini-card">
+        <p>日柱</p>
+        <strong id="dehuDayTitle">—</strong>
+        <small id="dehuBranchPosition">—</small>
+      </article>
+      <article class="panel mini-card">
+        <p>所屬五音</p>
+        <strong id="dehuTone">—</strong>
+        <small id="dehuToneHint">由日柱納音反推</small>
+      </article>
+      <article class="panel mini-card">
+        <p>的呼人數</p>
+        <strong id="dehuCount">—</strong>
+        <small>依照片版逐日表</small>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="dehu-result-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>核心結論</p>
+          <h2 id="dehu-result-title">逐日入殮移柩安葬的呼</h2>
+        </div>
+        <div class="pill" id="dehuBadge">日柱：—</div>
+      </div>
+      <div class="dehu-flow" id="dehuFlow">日柱 → 納音 → 五音 → 排圖 → 日支位置 → 的呼</div>
+      <div id="dehuResultCards" class="dehu-result-cards"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="dehu-tone-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>五音對應</p>
+          <h2 id="dehu-tone-title">五音與納音五行</h2>
+        </div>
+        <span class="fine-print">金歸宮、水歸商、火歸角、土歸徵、木歸羽</span>
+      </div>
+      <div id="dehuToneRules" class="dehu-tone-grid"></div>
+    </section>
+
+    <section class="panel dehu-formula-panel" aria-labelledby="dehu-formula-title">
+      <div class="panel-heading">
+        <span class="seal">訣</span>
+        <div class="section-title">
+          <p>FORMULA</p>
+          <h2 id="dehu-formula-title">速記公式</h2>
+        </div>
+      </div>
+      <div class="dehu-formula big">日柱 → 納音 → 五音 → 排圖 → 日支位置 → 的呼</div>
+      <p class="fine-print">重點不是直接看亡命納音，而是先由「日柱納音」判定所屬五音，再依順逆排法查相呼亡命。</p>
+      <a class="rule-link" href="dehu-rules.html">開啟的呼規則說明頁</a>
+    </section>
+
+    <section class="panel" aria-labelledby="dehu-table-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>完整表</p>
+          <h2 id="dehu-table-title">逐日資料表｜標註金木水火土</h2>
+        </div>
+        <span class="fine-print">搜尋欄已移至頁面最上方，輸入後即時篩選此表。</span>
+      </div>
+      <div class="table-wrap dehu-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>日柱</th>
+              <th>日柱納音</th>
+              <th>日柱五行</th>
+              <th>所屬五音</th>
+              <th>日支位置</th>
+              <th>的呼生人</th>
+              <th>生人納音</th>
+              <th>生人五行</th>
+              <th>表內五音分類</th>
+            </tr>
+          </thead>
+          <tbody id="dehuDataBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel compact dehu-copyright">
+      <div class="panel-heading">
+        <span class="seal">權</span>
+        <div class="section-title">
+          <p>版權宣告</p>
+          <h2>使用與引用</h2>
+        </div>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/dehu-data.js"></script>
+  <script src="assets/dehu.js"></script>
+</body>
+</html>

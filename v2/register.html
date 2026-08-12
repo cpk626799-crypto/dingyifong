@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>會員註冊｜天書三式•丁一峰老師術數查詢系統</title>
+  <meta name="description" content="天書三式•丁一峰老師術數查詢系統會員註冊。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="dark-system auth-page">
+  <main class="auth-shell">
+    <section class="auth-brand">
+      <div class="brand-mark">冊</div>
+      <p class="eyebrow">MEMBER REGISTRATION</p>
+      <h1>建立會員帳號</h1>
+      <p>註冊流程：送出資料 → 收取 Email 驗證信 → 完成驗證 → 等待管理員審核 → 啟用後登入使用。</p>
+      <div class="auth-feature-list">
+        <span>註冊不代表立即取得使用權</span>
+        <span>會員資格可設定啟用、停權與到期日</span>
+        <span>帳號僅供本人依授權範圍使用</span>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <p class="eyebrow">SIGN UP</p>
+      <h2>會員註冊</h2>
+      <form id="registerForm" class="auth-form">
+        <label>姓名／顯示名稱
+          <input id="registerName" type="text" autocomplete="name" required maxlength="60" placeholder="請輸入姓名或顯示名稱" />
+        </label>
+        <label>電子郵件
+          <input id="registerEmail" type="email" autocomplete="email" required placeholder="name@example.com" />
+        </label>
+        <label>設定密碼
+          <input id="registerPassword" type="password" autocomplete="new-password" required minlength="8" placeholder="至少 8 個字元" />
+        </label>
+        <label>再次輸入密碼
+          <input id="registerPassword2" type="password" autocomplete="new-password" required minlength="8" placeholder="再次輸入密碼" />
+        </label>
+        <button id="registerSubmit" class="auth-primary-btn" type="submit">註冊會員</button>
+      </form>
+      <div id="authMessage" class="auth-message" hidden></div>
+      <div class="auth-actions"><a href="login.html">返回會員登入</a></div>
+      <p class="auth-fine">本頁僅蒐集會員登入與授權管理所需資料。正式上線前可再補充隱私權與會員使用條款。</p>
+    </section>
+  </main>
+  <script type="module" src="assets/auth-pages.js"></script>
+</body>
+</html>

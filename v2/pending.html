@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>會員狀態｜天書三式•丁一峰老師術數查詢系統</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="dark-system auth-page">
+  <main class="auth-shell">
+    <section class="auth-brand">
+      <div class="brand-mark">候</div>
+      <p class="eyebrow">MEMBER STATUS</p>
+      <h1>會員權限狀態</h1>
+      <p>本系統採會員審核制。管理員可依會員資格設定啟用、停權、方案與使用期限。</p>
+    </section>
+    <section class="auth-card">
+      <p class="eyebrow">ACCOUNT</p>
+      <h2>目前狀態</h2>
+      <div id="pendingStatus" class="auth-message">正在讀取會員狀態…</div>
+      <div class="auth-status-grid">
+        <article><span>Email</span><strong id="pendingEmail">—</strong></article>
+        <article><span>會員方案</span><strong id="pendingPlan">—</strong></article>
+        <article><span>帳號狀態</span><strong id="pendingState">—</strong></article>
+      </div>
+      <div class="auth-actions">
+        <a id="pendingEnter" class="auth-primary-btn" hidden href="index.html">進入術數系統</a>
+        <a id="pendingLogin" class="auth-primary-btn" hidden href="login.html">會員登入</a>
+        <button id="pendingLogout" class="auth-secondary-btn" type="button">登出</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="assets/auth-pages.js"></script>
+</body>
+</html>
