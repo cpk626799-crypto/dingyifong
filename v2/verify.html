@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email 驗證｜天書三式•丁一峰老師術數查詢系統</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="dark-system auth-page">
+  <main class="auth-shell">
+    <section class="auth-brand">
+      <div class="brand-mark">驗</div>
+      <p class="eyebrow">EMAIL VERIFICATION</p>
+      <h1>Email 驗證</h1>
+      <p>Email 驗證只確認帳號信箱所有權；會員使用權仍依管理員審核結果決定。</p>
+    </section>
+    <section class="auth-card">
+      <p class="eyebrow">STATUS</p>
+      <h2>驗證結果</h2>
+      <div id="verifyStatus" class="auth-message">正在確認驗證結果…</div>
+      <div class="auth-actions">
+        <a id="verifyLogin" class="auth-secondary-btn" hidden href="login.html">返回登入</a>
+        <a id="verifyPending" class="auth-primary-btn" hidden href="pending.html">查看會員狀態</a>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="assets/auth-pages.js"></script>
+</body>
+</html>

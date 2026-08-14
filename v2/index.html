@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜流年祿馬貴人</title>
+  <meta name="description" content="流年祿馬貴人：選擇年份與月建，自動推算真歲祿、真歲馬、歲陽貴、歲陰貴之落宮、方位與二十四山，並以九宮格色標顯示。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system liunian-page liunian-horizontal-page">
+  <header class="system-header">
+    <div class="brand-mark">年</div>
+    <p class="eyebrow">流年・歲祿・歲馬・歲貴人</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">流年祿馬貴人查詢｜本年歲祿、歲馬、歲陽貴、歲陰貴到宮到方</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html" aria-current="page">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="liunian-horizontal-shell">
+    <section class="panel liunian-control-strip" aria-labelledby="liunian-control-title">
+      <div class="section-title inline-title liunian-strip-title">
+        <div>
+          <p>QUERY</p>
+          <h2 id="liunian-control-title">流年祿馬貴人查詢</h2>
+        </div>
+        <span class="fine-print">上方橫式選擇用事年份與月建，結果、九宮格與十二月建表即時聯動。</span>
+      </div>
+
+      <div class="liunian-top-controls">
+        <label class="field">
+          <span>用事西元年</span>
+          <select id="flowYearSelect"></select>
+        </label>
+        <label class="field">
+          <span>月建支</span>
+          <select id="monthBranchSelect"></select>
+        </label>
+        <label class="field">
+          <span>表格搜尋</span>
+          <input id="flowSearch" type="search" placeholder="例：癸巳、坎宮、午月、陽貴" />
+        </label>
+        <div class="field action-field">
+          <span>選定月建</span>
+          <button id="flowCopyBtn" type="button">複製結果</button>
+        </div>
+        <div class="field action-field">
+          <span>完整資料</span>
+          <button id="flowCsvBtn" type="button" class="secondary">下載十二月建 CSV</button>
+        </div>
+        <div class="field action-field">
+          <span>輸出</span>
+          <button id="flowPrintBtn" type="button" class="secondary">列印 / PDF</button>
+        </div>
+      </div>
+      <p class="fine-print liunian-note">本頁採「流年祿馬貴人」名稱，古法對應「本年／歲祿馬貴人」。先取流年真歲祿、真歲馬、歲貴人，再以所選月建干支入中宮順飛九宮。</p>
+    </section>
+
+    <section class="summary-grid liunian-summary" aria-label="流年祿馬貴人查詢摘要">
+      <article class="panel mini-card">
+        <p>用事西元年</p>
+        <strong id="flowYearCard">—</strong>
+        <small>可選 2026–2200</small>
+      </article>
+      <article class="panel mini-card">
+        <p>太歲干支</p>
+        <strong id="flowTaiSuiCard">—</strong>
+        <small>以立春後流年為準</small>
+      </article>
+      <article class="panel mini-card">
+        <p>選定月建</p>
+        <strong id="flowMonthCard">—</strong>
+        <small>月建干支入中</small>
+      </article>
+      <article class="panel mini-card">
+        <p>入中干支</p>
+        <strong id="flowEntryCard">—</strong>
+        <small>本月飛宮起點</small>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="flow-card-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>選定月建</p>
+          <h2 id="flow-card-title">流年真歲祿馬貴人落宮</h2>
+        </div>
+        <div class="pill" id="flowBadge">—</div>
+      </div>
+      <div id="flowResultCards" class="liunian-result-cards"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="flow-grid-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>九宮格</p>
+          <h2 id="flow-grid-title">選定月建九宮落處示意</h2>
+        </div>
+        <span class="fine-print">黃色＝祿；綠色＝馬；藍色＝陽貴；紫色＝陰貴</span>
+      </div>
+      <div class="liunian-legend">
+        <span class="flow-marker luck">祿</span>
+        <span class="flow-marker horse">馬</span>
+        <span class="flow-marker yang">陽貴</span>
+        <span class="flow-marker yin">陰貴</span>
+      </div>
+      <div class="nine-grid liunian-nine-grid" id="flowNineGrid"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="flow-table-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>十二月建完整表</p>
+          <h2 id="flow-table-title">流年祿馬貴人｜月建入中落宮表</h2>
+        </div>
+        <span class="fine-print">可搜尋月建、真神干支、宮位與方位。</span>
+      </div>
+      <div class="table-wrap liunian-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>月建支</th>
+              <th>月建干支</th>
+              <th>真神</th>
+              <th>真神干支</th>
+              <th>落宮</th>
+              <th>宮數</th>
+              <th>方位</th>
+              <th>二十四山</th>
+              <th>用法備註</th>
+            </tr>
+          </thead>
+          <tbody id="flowTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel liunian-formula-panel" aria-labelledby="liunian-formula-title">
+      <div class="panel-heading">
+        <span class="seal">訣</span>
+        <div class="section-title">
+          <p>FORMULA</p>
+          <h2 id="liunian-formula-title">流年法核心</h2>
+        </div>
+      </div>
+      <div class="benming-formula">流年真神干支 → 月建干支入中 → 順飛九宮 → 查落宮方位</div>
+      <p class="fine-print">歲祿由歲干取祿；歲馬由歲支三合局取驛馬；歲貴人由歲干取天乙貴人。三者皆須先以五虎遁成完整真神干支。</p>
+      <a class="rule-link" href="liunian-rules.html">開啟流年法說明頁</a>
+    </section>
+
+    <section class="panel copyright-panel compact liunian-copyright">
+      <div class="panel-heading">
+        <span class="seal">權</span>
+        <div class="section-title">
+          <p>版權宣告</p>
+          <h2>使用與引用</h2>
+        </div>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/liunian.js"></script>
+</body>
+</html>
