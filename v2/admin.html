@@ -1,78 +1,79 @@
-<!DOCTYPE html>
-
-<html class="auth-pending" lang="zh-Hant">
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>會員管理｜天書三式•丁一峰老師術數查詢系統</title>
-<meta content="天書三式會員管理後台。" name="description"/>
-<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
-
-<script defer src="auth-core-v32.js?v=3.2.0"></script>
-<script defer src="member-auth-v33.js?v=3.3.0"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>會員管理｜天書三式•丁一峰老師術數查詢系統</title>
+  <meta name="description" content="天書三式會員管理後台。" />
+  <link rel="stylesheet" href="assets/styles.css?v=2.6.0" />
+  <script type="module" src="assets/member-auth-v26.js?v=2.6.0"></script>
 </head>
 <body class="dark-system">
-<header class="system-header">
-<div class="brand-mark">管</div>
-<p class="eyebrow">MEMBER ADMINISTRATION</p>
-<h1>天書三式•會員管理後台</h1>
-<p class="hero__text">管理會員審核、啟用／停權、方案與使用期限。</p>
-<nav aria-label="網站導覽" class="top-nav">
-<a href="index.html">返回術數系統</a>
-<a href="jishi.html">四大吉時月表</a>
-<a aria-current="page" href="admin.html">會員管理</a>
-</nav>
-</header>
-<main class="admin-shell">
-<section class="panel">
-<div class="section-title inline-title">
-<div><p>ADMIN</p><h2>會員查詢與篩選</h2></div>
-<span class="admin-summary" id="adminSummary">讀取會員資料中…</span>
-</div>
-<div class="admin-toolbar">
-<label>會員搜尋
-          <input id="memberSearch" placeholder="Email、姓名、角色、方案" type="search"/>
-</label>
-<label>狀態
-          <select id="memberStatusFilter">
-<option value="">全部狀態</option>
-<option value="pending">待審核</option>
-<option value="active">已啟用</option>
-<option value="suspended">已停權</option>
-</select>
-</label>
-<label>方案
-          <select id="memberPlanFilter">
-<option value="">全部方案</option>
-<option value="free">一般</option>
-<option value="formal">正式</option>
-<option value="permanent">永久</option>
-</select>
-</label>
-<button class="admin-refresh-btn" id="adminRefresh" type="button">重新整理</button>
-</div>
-</section>
-<section class="panel">
-<div class="section-title inline-title">
-<div><p>MEMBERS</p><h2>會員資料</h2></div>
-<span class="fine-print">「儲存」後立即寫入 Supabase；永久會員不需設定到期日。</span>
-</div>
-<div class="table-wrap">
-<table class="admin-table">
-<thead><tr>
-<th>會員</th><th>角色</th><th>狀態</th><th>方案</th><th>啟用日</th><th>到期日</th><th>紀錄</th><th>操作</th>
-</tr></thead>
-<tbody id="memberTableBody"></tbody>
-</table>
-</div>
-</section>
-<section class="panel copyright-panel compact">
-<div class="copyright-content">
-<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-<p>會員後台僅限管理員使用。一般會員無法透過 RLS 修改自身啟用狀態、角色或方案。</p>
-</div>
-</section>
-</main>
+  <header class="system-header">
+    <div class="brand-mark">管</div>
+    <p class="eyebrow">MEMBER ADMINISTRATION</p>
+    <h1>天書三式•會員管理後台</h1>
+    <p class="hero__text">管理會員審核、啟用／停權、方案與使用期限。</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">返回術數系統</a>
+      <a href="jishi.html">四大吉時月表</a>
+      <a href="admin.html" aria-current="page">會員管理</a>
+    </nav>
+  </header>
 
-<script defer src="admin-v32.js?v=3.2.0"></script></body>
+  <main class="admin-shell">
+    <section class="panel">
+      <div class="section-title inline-title">
+        <div><p>ADMIN</p><h2>會員查詢與篩選</h2></div>
+        <span id="adminSummary" class="admin-summary">讀取會員資料中…</span>
+      </div>
+      <div class="admin-toolbar">
+        <label>會員搜尋
+          <input id="memberSearch" type="search" placeholder="Email、姓名、角色、方案" />
+        </label>
+        <label>狀態
+          <select id="memberStatusFilter">
+            <option value="">全部狀態</option>
+            <option value="pending">待審核</option>
+            <option value="active">已啟用</option>
+            <option value="suspended">已停權</option>
+          </select>
+        </label>
+        <label>方案
+          <select id="memberPlanFilter">
+            <option value="">全部方案</option>
+            <option value="free">一般</option>
+            <option value="formal">正式</option>
+            <option value="permanent">永久</option>
+          </select>
+        </label>
+        <button id="adminRefresh" class="admin-refresh-btn" type="button">重新整理</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title inline-title">
+        <div><p>MEMBERS</p><h2>會員資料</h2></div>
+        <span class="fine-print">「儲存」後立即寫入 Supabase；永久會員不需設定到期日。</span>
+      </div>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead><tr>
+            <th>會員</th><th>角色</th><th>狀態</th><th>方案</th><th>啟用日</th><th>到期日</th><th>紀錄</th><th>操作</th>
+          </tr></thead>
+          <tbody id="memberTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel compact">
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>會員後台僅限管理員使用。一般會員無法透過 RLS 修改自身啟用狀態、角色或方案。</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="assets/admin.js"></script>
+</body>
 </html>

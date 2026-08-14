@@ -1,158 +1,161 @@
-<!DOCTYPE html>
-
-<html class="auth-pending" lang="zh-Hant">
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>天書三式•丁一峰老師術數查詢系統｜本版採用規則 v0.6</title>
-<meta content="祿馬貴吊替飛宮繁體中文版採用規則：節氣、年柱月建、六十甲子順飛、祿馬貴、病符、劫煞、災煞、墓煞。" name="description"/>
-<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
-
-
-
-<script defer src="auth-core-v32.js?v=3.2.0"></script>
-<script defer src="member-auth-v33.js?v=3.3.0"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜本版採用規則 v0.6</title>
+  <meta name="description" content="祿馬貴吊替飛宮繁體中文版採用規則：節氣、年柱月建、六十甲子順飛、祿馬貴、病符、劫煞、災煞、墓煞。" />
+  <link rel="stylesheet" href="assets/styles.css?v=2.6.0" />
+  <script type="module" src="assets/member-auth-v26.js?v=2.6.0"></script>
 </head>
 <body class="dark-system content-page">
-<header class="system-header">
-<div class="brand-mark">規</div>
-<p class="eyebrow">公式集中說明・資料來源・版本規則</p>
-<h1>天書三式•丁一峰老師術數查詢系統</h1>
-<p class="hero__text">本版採用規則｜祿馬貴吊替飛宮・流年紫白・月紫白飛星</p>
-<nav aria-label="網站導覽" class="top-nav">
-<a href="index.html">流年祿馬貴人</a>
-<a href="benming.html">個人流年祿馬貴人</a>
-<a href="renming.html">六十甲子人命擇日</a>
-<a href="renming-query.html">六十甲子年命擇日查詢</a>
-<a href="zibai.html">流年紫白查詢</a>
-<a href="dehu.html">逐日的呼查詢</a>
-<a href="jishi.html">四大吉時月表</a>
-<a href="liunian-rules.html">流年法說明</a>
-<a href="benming-rules.html">個人流年法說明</a>
-<a href="renming-rules.html">人命擇日說明</a>
-<a aria-current="page" href="rules.html">本版採用規則</a>
-<a href="dehu-rules.html">的呼規則</a>
-</nav>
-</header>
-<main class="shell rules-page">
-<section class="panel">
-<div class="section-title">
-<p>一、時間資料</p>
-<h2>年柱、月建與中央氣象署節氣</h2>
-</div>
-<p class="rule-lead">本版內建中央氣象署「中華民國115年日曆資料表」所列 2026 年二十四節氣時刻，時間採臺灣時 UTC+8。年柱以立春切換；月建只取十二個「節」切換，不以農曆初一切換。</p>
-<div class="table-wrap">
-<table>
-<thead><tr><th>項目</th><th>本版規則</th></tr></thead>
-<tbody>
-<tr><td>年柱</td><td>以立春為界。2026 年立春為 2026-02-04 04:02，立春後入丙午年。</td></tr>
-<tr><td>月建</td><td>以小寒、立春、驚蟄、清明、立夏、芒種、小暑、立秋、白露、寒露、立冬、大雪十二節切換。</td></tr>
-<tr><td>日柱</td><td>以 2026-01-01 乙亥為基準，按日序順推六十甲子；勾選「晚子時歸明日」時，23:00 後日柱順延一日。</td></tr>
-<tr><td>時柱</td><td>依日干起時：甲己日起甲子、乙庚日起丙子、丙辛日起戊子、丁壬日起庚子、戊癸日起壬子。</td></tr>
-</tbody>
-</table>
-</div>
-</section>
-<section class="panel">
-<div class="section-title">
-<p>二、飛宮</p>
-<h2>六十甲子入中順飛九宮</h2>
-</div>
-<p class="rule-lead">選定「入中干支」後，六十甲子依序順飛九宮。本版九宮順序固定為：</p>
-<p class="pill">中 → 乾 → 兌 → 艮 → 離 → 坎 → 坤 → 震 → 巽</p>
-<p class="rule-lead">例：甲子入中，乙丑到乾，丙寅到兌，丁卯到艮。所有吉神、凶煞都先換算成完整干支，再依此表查落宮。</p>
-</section>
-<section class="panel">
-<div class="section-title">
-<p>三、吉神</p>
-<h2>命祿、真馬、陽貴、陰貴、文昌、天官</h2>
-</div>
-<div class="table-wrap">
-<table>
-<thead><tr><th>神煞</th><th>取法</th><th>完整干支處理</th></tr></thead>
-<tbody>
-<tr><td>命祿</td><td>甲祿寅、乙祿卯、丙戊祿巳、丁己祿午、庚祿申、辛祿酉、壬祿亥、癸祿子。</td><td>以年命天干五虎遁成干支。</td></tr>
-<tr><td>真馬</td><td>申子辰馬寅；寅午戌馬申；巳酉丑馬亥；亥卯未馬巳。</td><td>以年命天干五虎遁成干支。</td></tr>
-<tr><td>陽貴</td><td>甲未、乙申、丙酉、丁亥、戊丑、己子、庚丑、辛寅、壬卯、癸巳。</td><td>以年命天干五虎遁成干支。</td></tr>
-<tr><td>陰貴</td><td>甲丑、乙子、丙亥、丁酉、戊未、己申、庚未、辛午、壬巳、癸卯。</td><td>以年命天干五虎遁成干支。</td></tr>
-<tr><td>文昌</td><td>甲巳、乙午、丙戊申、丁己酉、庚亥、辛子、壬寅、癸卯。</td><td>以年命天干五虎遁成干支。</td></tr>
-<tr><td>天官</td><td>甲未、乙辰、丙巳、丁酉、戊戌、己卯、庚丑、辛申、壬寅、癸午。</td><td>以年命天干五虎遁成干支。</td></tr>
-</tbody>
-</table>
-</div>
-</section>
-<section class="panel">
-<div class="section-title">
-<p>四、凶煞</p>
-<h2>病符、劫煞、災煞、墓煞</h2>
-</div>
-<p class="rule-lead">本版將四項凶煞放入九宮盤，並以不同顏色標註。病符取當前年柱太歲；劫煞、災煞、墓煞取年命地支。</p>
-<div class="table-wrap">
-<table>
-<thead><tr><th>神煞</th><th>取法</th><th>完整干支處理</th><th>顏色</th></tr></thead>
-<tbody>
-<tr><td>病符</td><td>取太歲後一辰。例如午年取巳。</td><td>以太歲年干五虎遁成干支。</td><td>琥珀色</td></tr>
-<tr><td>劫煞</td><td>申子辰見巳；亥卯未見申；寅午戌見亥；巳酉丑見寅。</td><td>以年命天干五虎遁成干支。</td><td>赤褐色</td></tr>
-<tr><td>災煞</td><td>申子辰見午；亥卯未見酉；寅午戌見子；巳酉丑見卯。</td><td>以年命天干五虎遁成干支。</td><td>深紅色</td></tr>
-<tr><td>墓煞</td><td>宅墓煞系統：命後五辰為墓。例如子命後五辰為未。</td><td>以年命天干五虎遁成干支。</td><td>紫褐色</td></tr>
-</tbody>
-</table>
-</div>
-</section>
-<section class="panel">
-<div class="section-title">
-<p>五、坐山比對</p>
-<h2>到山、到向</h2>
-</div>
-<p class="rule-lead">坐山以二十四山歸八宮：壬子癸歸坎，丑艮寅歸艮，甲卯乙歸震，辰巽巳歸巽，丙午丁歸離，未坤申歸坤，庚酉辛歸兌，戌乾亥歸乾。神煞落入坐山所屬宮為「到山」；落入對宮為「到向」。</p>
-</section>
-<section aria-labelledby="zibai-rule-title" class="panel">
-<div class="section-title">
-<p>紫白飛星查詢</p>
-<h2 id="zibai-rule-title">流年紫白・月紫白採用規則</h2>
-</div>
-<p class="rule-lead">流年紫白分頁承接先前「流年紫白・月紫白飛星查詢」工具，年份下拉範圍為 2000–2200 年。判斷流年時以立春後的干支年為準；若用於精密擇日或立春交界日，仍應合精密節氣時刻校正。</p>
-<h3>一、年星入中</h3>
-<p class="rule-lead">流年年星依年數逆行，一年一星。本版公式採：<strong>年星數 = MOD(10 - MOD(西元年, 9), 9) + 1</strong>。例如 2026 年為一白貪狼入中。</p>
-<h3>二、飛布順序</h3>
-<p class="rule-lead">年星或月星入中後，依「中宮5 → 乾宮6 → 兌宮7 → 艮宮8 → 離宮9 → 坎宮1 → 坤宮2 → 震宮3 → 巽宮4」順飛九宮。</p>
-<h3>三、月紫白起例</h3>
-<p class="rule-lead">月紫白以年支分三組起正月星：子午卯酉年正月八白入中；辰戌丑未年正月五黃入中；寅申巳亥年正月二黑入中。之後逐月逆退一星。</p>
-<h3>四、節氣月界線</h3>
-<p class="rule-lead">月序採節氣月：正月寅月自立春起，二月卯月自驚蟄起，三月辰月自清明起，依此類推；不是農曆初一換月。</p>
-<h3>五、九星性質</h3>
-<div class="table-wrap">
-<table>
-<thead><tr><th>星曜</th><th>五行</th><th>定位</th></tr></thead>
-<tbody>
-<tr><td>一白貪狼</td><td>水</td><td>桃花位／人緣／名聲</td></tr>
-<tr><td>二黑巨門</td><td>土</td><td>病符位／疾病／阻滯</td></tr>
-<tr><td>三碧祿存</td><td>木</td><td>是非位／口舌／爭執</td></tr>
-<tr><td>四綠文曲</td><td>木</td><td>文昌位／考試／學習</td></tr>
-<tr><td>五黃廉貞</td><td>土</td><td>五黃大凶／災煞／忌動土</td></tr>
-<tr><td>六白武曲</td><td>金</td><td>偏財位／官貴／權力</td></tr>
-<tr><td>七赤破軍</td><td>金</td><td>破財位／盜損／口舌</td></tr>
-<tr><td>八白左輔</td><td>土</td><td>正財位／田宅／財星</td></tr>
-<tr><td>九紫右弼</td><td>火</td><td>喜慶位／姻緣／人氣</td></tr>
-</tbody>
-</table>
-</div>
-</section>
-<section class="panel copyright-panel">
-<div class="section-title">
-<p>版權宣告</p>
-<h2>使用與引用說明</h2>
-</div>
-<div class="copyright-content">
-<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-<p>本工具由丁一峰老師整理製作，內容僅供術數教學、研究與個人查詢參考使用。未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
-<p>本工具之推算結果應配合節氣、宅盤、山向、日課及實際環境綜合判斷，不宜作為單一決策依據。</p>
-</div>
-</section>
-</main>
-<footer class="footer">
-<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-<p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
-</footer>
+  <header class="system-header">
+    <div class="brand-mark">規</div>
+    <p class="eyebrow">公式集中說明・資料來源・版本規則</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">本版採用規則｜祿馬貴吊替飛宮・流年紫白・月紫白飛星</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="jishi.html">四大吉時月表</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html" aria-current="page">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="shell rules-page">
+    <section class="panel">
+      <div class="section-title">
+        <p>一、時間資料</p>
+        <h2>年柱、月建與中央氣象署節氣</h2>
+      </div>
+      <p class="rule-lead">本版內建中央氣象署「中華民國115年日曆資料表」所列 2026 年二十四節氣時刻，時間採臺灣時 UTC+8。年柱以立春切換；月建只取十二個「節」切換，不以農曆初一切換。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>項目</th><th>本版規則</th></tr></thead>
+          <tbody>
+            <tr><td>年柱</td><td>以立春為界。2026 年立春為 2026-02-04 04:02，立春後入丙午年。</td></tr>
+            <tr><td>月建</td><td>以小寒、立春、驚蟄、清明、立夏、芒種、小暑、立秋、白露、寒露、立冬、大雪十二節切換。</td></tr>
+            <tr><td>日柱</td><td>以 2026-01-01 乙亥為基準，按日序順推六十甲子；勾選「晚子時歸明日」時，23:00 後日柱順延一日。</td></tr>
+            <tr><td>時柱</td><td>依日干起時：甲己日起甲子、乙庚日起丙子、丙辛日起戊子、丁壬日起庚子、戊癸日起壬子。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <p>二、飛宮</p>
+        <h2>六十甲子入中順飛九宮</h2>
+      </div>
+      <p class="rule-lead">選定「入中干支」後，六十甲子依序順飛九宮。本版九宮順序固定為：</p>
+      <p class="pill">中 → 乾 → 兌 → 艮 → 離 → 坎 → 坤 → 震 → 巽</p>
+      <p class="rule-lead">例：甲子入中，乙丑到乾，丙寅到兌，丁卯到艮。所有吉神、凶煞都先換算成完整干支，再依此表查落宮。</p>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <p>三、吉神</p>
+        <h2>命祿、真馬、陽貴、陰貴、文昌、天官</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>神煞</th><th>取法</th><th>完整干支處理</th></tr></thead>
+          <tbody>
+            <tr><td>命祿</td><td>甲祿寅、乙祿卯、丙戊祿巳、丁己祿午、庚祿申、辛祿酉、壬祿亥、癸祿子。</td><td>以年命天干五虎遁成干支。</td></tr>
+            <tr><td>真馬</td><td>申子辰馬寅；寅午戌馬申；巳酉丑馬亥；亥卯未馬巳。</td><td>以年命天干五虎遁成干支。</td></tr>
+            <tr><td>陽貴</td><td>甲未、乙申、丙酉、丁亥、戊丑、己子、庚丑、辛寅、壬卯、癸巳。</td><td>以年命天干五虎遁成干支。</td></tr>
+            <tr><td>陰貴</td><td>甲丑、乙子、丙亥、丁酉、戊未、己申、庚未、辛午、壬巳、癸卯。</td><td>以年命天干五虎遁成干支。</td></tr>
+            <tr><td>文昌</td><td>甲巳、乙午、丙戊申、丁己酉、庚亥、辛子、壬寅、癸卯。</td><td>以年命天干五虎遁成干支。</td></tr>
+            <tr><td>天官</td><td>甲未、乙辰、丙巳、丁酉、戊戌、己卯、庚丑、辛申、壬寅、癸午。</td><td>以年命天干五虎遁成干支。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <p>四、凶煞</p>
+        <h2>病符、劫煞、災煞、墓煞</h2>
+      </div>
+      <p class="rule-lead">本版將四項凶煞放入九宮盤，並以不同顏色標註。病符取當前年柱太歲；劫煞、災煞、墓煞取年命地支。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>神煞</th><th>取法</th><th>完整干支處理</th><th>顏色</th></tr></thead>
+          <tbody>
+            <tr><td>病符</td><td>取太歲後一辰。例如午年取巳。</td><td>以太歲年干五虎遁成干支。</td><td>琥珀色</td></tr>
+            <tr><td>劫煞</td><td>申子辰見巳；亥卯未見申；寅午戌見亥；巳酉丑見寅。</td><td>以年命天干五虎遁成干支。</td><td>赤褐色</td></tr>
+            <tr><td>災煞</td><td>申子辰見午；亥卯未見酉；寅午戌見子；巳酉丑見卯。</td><td>以年命天干五虎遁成干支。</td><td>深紅色</td></tr>
+            <tr><td>墓煞</td><td>宅墓煞系統：命後五辰為墓。例如子命後五辰為未。</td><td>以年命天干五虎遁成干支。</td><td>紫褐色</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title">
+        <p>五、坐山比對</p>
+        <h2>到山、到向</h2>
+      </div>
+      <p class="rule-lead">坐山以二十四山歸八宮：壬子癸歸坎，丑艮寅歸艮，甲卯乙歸震，辰巽巳歸巽，丙午丁歸離，未坤申歸坤，庚酉辛歸兌，戌乾亥歸乾。神煞落入坐山所屬宮為「到山」；落入對宮為「到向」。</p>
+    </section>
+
+    <section class="panel" aria-labelledby="zibai-rule-title">
+      <div class="section-title">
+        <p>紫白飛星查詢</p>
+        <h2 id="zibai-rule-title">流年紫白・月紫白採用規則</h2>
+      </div>
+      <p class="rule-lead">流年紫白分頁承接先前「流年紫白・月紫白飛星查詢」工具，年份下拉範圍為 2000–2200 年。判斷流年時以立春後的干支年為準；若用於精密擇日或立春交界日，仍應合精密節氣時刻校正。</p>
+      <h3>一、年星入中</h3>
+      <p class="rule-lead">流年年星依年數逆行，一年一星。本版公式採：<strong>年星數 = MOD(10 - MOD(西元年, 9), 9) + 1</strong>。例如 2026 年為一白貪狼入中。</p>
+      <h3>二、飛布順序</h3>
+      <p class="rule-lead">年星或月星入中後，依「中宮5 → 乾宮6 → 兌宮7 → 艮宮8 → 離宮9 → 坎宮1 → 坤宮2 → 震宮3 → 巽宮4」順飛九宮。</p>
+      <h3>三、月紫白起例</h3>
+      <p class="rule-lead">月紫白以年支分三組起正月星：子午卯酉年正月八白入中；辰戌丑未年正月五黃入中；寅申巳亥年正月二黑入中。之後逐月逆退一星。</p>
+      <h3>四、節氣月界線</h3>
+      <p class="rule-lead">月序採節氣月：正月寅月自立春起，二月卯月自驚蟄起，三月辰月自清明起，依此類推；不是農曆初一換月。</p>
+      <h3>五、九星性質</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>星曜</th><th>五行</th><th>定位</th></tr></thead>
+          <tbody>
+            <tr><td>一白貪狼</td><td>水</td><td>桃花位／人緣／名聲</td></tr>
+            <tr><td>二黑巨門</td><td>土</td><td>病符位／疾病／阻滯</td></tr>
+            <tr><td>三碧祿存</td><td>木</td><td>是非位／口舌／爭執</td></tr>
+            <tr><td>四綠文曲</td><td>木</td><td>文昌位／考試／學習</td></tr>
+            <tr><td>五黃廉貞</td><td>土</td><td>五黃大凶／災煞／忌動土</td></tr>
+            <tr><td>六白武曲</td><td>金</td><td>偏財位／官貴／權力</td></tr>
+            <tr><td>七赤破軍</td><td>金</td><td>破財位／盜損／口舌</td></tr>
+            <tr><td>八白左輔</td><td>土</td><td>正財位／田宅／財星</td></tr>
+            <tr><td>九紫右弼</td><td>火</td><td>喜慶位／姻緣／人氣</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel">
+      <div class="section-title">
+        <p>版權宣告</p>
+        <h2>使用與引用說明</h2>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本工具由丁一峰老師整理製作，內容僅供術數教學、研究與個人查詢參考使用。未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+        <p>本工具之推算結果應配合節氣、宅盤、山向、日課及實際環境綜合判斷，不宜作為單一決策依據。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+  </footer>
 </body>
 </html>

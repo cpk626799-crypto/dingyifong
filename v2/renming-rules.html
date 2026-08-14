@@ -1,98 +1,105 @@
-<!DOCTYPE html>
-
-<html class="auth-pending" lang="zh-Hant">
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>天書三式•丁一峰老師術數查詢系統｜人命擇日說明</title>
-<meta content="六十甲子人命擇日宜忌表欄位與用法說明。" name="description"/>
-<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
-
-
-
-<script defer src="auth-core-v32.js?v=3.2.0"></script>
-<script defer src="member-auth-v33.js?v=3.3.0"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜人命擇日說明</title>
+  <meta name="description" content="六十甲子人命擇日宜忌表欄位與用法說明。" />
+  <link rel="stylesheet" href="assets/styles.css?v=2.6.0" />
+  <script type="module" src="assets/member-auth-v26.js?v=2.6.0"></script>
 </head>
 <body class="dark-system rules-page">
-<header class="system-header">
-<div class="brand-mark">說</div>
-<p class="eyebrow">六十甲子・人命擇日・欄位說明</p>
-<h1>天書三式•丁一峰老師術數查詢系統</h1>
-<p class="hero__text">人命擇日說明｜資料來源、月表色標算法與使用界線</p>
-<nav aria-label="網站導覽" class="top-nav">
-<a href="index.html">流年祿馬貴人</a>
-<a href="benming.html">個人流年祿馬貴人</a>
-<a href="renming.html">六十甲子人命擇日</a>
-<a href="renming-query.html">六十甲子年命擇日查詢</a>
-<a href="zibai.html">流年紫白查詢</a>
-<a href="dehu.html">逐日的呼查詢</a>
-<a href="jishi.html">四大吉時月表</a>
-<a href="liunian-rules.html">流年法說明</a>
-<a href="benming-rules.html">個人流年法說明</a>
-<a aria-current="page" href="renming-rules.html">人命擇日說明</a>
-<a href="rules.html">本版採用規則</a>
-<a href="dehu-rules.html">的呼規則</a>
-</nav>
-</header>
-<main class="rules-shell">
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">源</span><div class="section-title"><p>SOURCE</p><h2>資料來源與本次校正</h2></div></div>
-<p>本頁改以使用者提供之《蔡炳圳七政經緯通書》110–113頁「六十甲子命表」為主本校正。原表欄序為：本命、三合、六合、堆貴、進貴、進長生、堆長生、進旺、堆旺、進祿、堆祿、進馬、堆馬、相沖、三殺、回頭貢殺、三刑、箭刃。</p>
-<p>先前版本把「堆旺」誤標為「帝旺」，並漏列「進旺」；另把其他來源的「官符五鬼、六害」混入本通書主表。本版已修正：補回進旺、堆旺，並將官符五鬼、六害移出本頁主表與自動判斷。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">吉</span><div class="section-title"><p>GOOD USE</p><h2>通書宜取用欄位</h2></div></div>
-<p>依原表排列：三合、六合、堆貴、進貴、進長生、堆長生、進旺、堆旺、進祿、堆祿、進馬、堆馬。月表以每日干支及十二時辰干支對照這些欄位；只命中宜取用而未觸犯通書所列忌項者，以紅色「吉」標示。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">忌</span><div class="section-title"><p>AVOID</p><h2>通書慎用／忌用欄位</h2></div></div>
-<p>原表列：相沖、三殺、回頭貢殺、三刑、箭刃。這五項不能用同一種「單一干支命中即凶」方式處理，須依113頁附註分別判斷。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">沖</span><div class="section-title"><p>CLASH</p><h2>本命相沖</h2></div></div>
-<p>113頁指出，六辰相對而擊沖本命；其中「日時沖命大凶」，月沖可用，年沖命從俗不忌可用。因此本頁整月表只把<strong>日柱、時柱</strong>命中本命相沖列為凶，不把查詢西元年或國曆月份直接當作年、月四柱判凶。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">殺</span><div class="section-title"><p>SAN SHA</p><h2>本命三殺</h2></div></div>
-<p>113頁註明「日時均忌」，又分真三殺與非真三殺：真三殺大凶不能制化；非真三殺可取貴人制化而從權吉用。四頁表格本身未提供一個可直接由本頁資料辨識「真／非真」的完整公式，因此網站不自行臆判真偽；凡日、時命中三殺，先以黑色「凶」提示，再由使用者按完整課格判斷是否屬可制之非真三殺。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">貢</span><div class="section-title"><p>RETURNING KILL</p><h2>回頭貢殺：須三合全局</h2></div></div>
-<p>113頁原註的核心條件是「四柱中三合全局」。例如原書以戊戌命，未年、亥月、卯時湊成「亥卯未全局」回頭貢殺戌命。故本版資料庫把原表的「亥卯未、申子辰、巳酉丑」等恢復顯示為「……全」，並<strong>不再因單一日支或時支出現其中一字就判凶</strong>。</p>
-<p class="fine-print">本月表目前只準確生成日柱與時柱，沒有以國曆年、月直接冒充節令年柱、月柱，所以回頭貢殺保留為全局提示，不作自動色格判定。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">刑</span><div class="section-title"><p>PUNISHMENT</p><h2>本命三刑：僅論忌日</h2></div></div>
-<p>113頁明言「本命三刑，僅論忌日」，並說須六合、三合、祿貴解化為合格。本版因此取消「時辰單獨命中三刑即凶」的舊算法；只有日柱命中三刑才列入忌項。若同一日／時組合又見三合、六合、貴、祿等可解項，色格以黃色「吉凶各半」提示，供進一步審課。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">刃</span><div class="section-title"><p>ARROW BLADE</p><h2>箭刃：須「箭刃全」</h2></div></div>
-<p>113頁說「四柱中忌箭刃全」，又說須本命貴人或柱中三六合解化。因此本版不再把箭、刃中的單獨一字當作凶；在日、時兩柱已同時湊足原表箭刃二字時，才以忌項提示，並仍標明須合參其餘四柱與解化。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">色</span><div class="section-title"><p>COLOR RULE</p><h2>新版月表色標</h2></div></div>
-<ol class="method-list">
-<li><strong>吉（紅底白字）：</strong>命中宜取用項目，且無本版自動判定之忌項。</li>
-<li><strong>凶（黑底白字）：</strong>日／時相沖、日／時三殺，或未見解化的日三刑、已成箭刃全。</li>
-<li><strong>吉凶各半（黃色）：</strong>三刑或箭刃全同時見通書明示可用的三合、六合、祿、貴解化項。</li>
-<li><strong>平（灰色）：</strong>未命中本版可自動判讀的宜忌條件。</li>
-</ol>
-<p class="fine-print">這是依110–113頁資料所能支持的快速對照層，不等同完整造課定論。真三殺、完整回頭貢殺、年／月節令四柱及其他課格，仍須另行審定。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">課</span><div class="section-title"><p>FOUR PILLARS</p><h2>六十甲子年命擇日查詢</h2></div></div>
-<p>新增的「六十甲子年命擇日查詢」頁可直接組成用事年、月、日、時四柱：用事年顯示西元與干支；月柱採節氣月，並依所選年干用五虎遁連動；日柱由六十甲子選擇；十二時辰則依日干用五鼠遁自動排出。</p>
-<p>因新頁已具年、月、日、時四柱，所以回頭貢殺可依「四柱三合全局」檢查，箭刃亦可依「四柱中箭刃全」檢查。相沖仍依通書分層：年沖從俗不忌、月沖可用、日與時沖命列凶；三刑只論日柱。</p>
-<p class="fine-print">年柱以立春為界，月柱以十二節為界。查詢頁的「用事年」代表該立春後之干支年；丑月為該干支年的末月段。交節臨界若需精確到時刻，仍應按實際節氣交接時間校正。</p>
-</section>
-<section class="panel rule-block">
-<div class="panel-heading"><span class="seal">曆</span><div class="section-title"><p>CALENDAR</p><h2>日期與時辰干支</h2></div></div>
-<p>使用者選擇西元年及國曆月份後，系統逐日換算日干支，再依五鼠遁由日干推出十二時辰干支。此處西元年、國曆月主要用來生成查詢日期；涉及通書所說四柱全局的條件，不直接以國曆年、月代替節令年柱、月柱。</p>
-</section>
-</main>
-<footer class="footer">
-<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-<p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
-</footer>
+  <header class="system-header">
+    <div class="brand-mark">說</div>
+    <p class="eyebrow">六十甲子・人命擇日・欄位說明</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">人命擇日說明｜資料來源、月表色標算法與使用界線</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="jishi.html">四大吉時月表</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html" aria-current="page">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="rules-shell">
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">源</span><div class="section-title"><p>SOURCE</p><h2>資料來源與本次校正</h2></div></div>
+      <p>本頁改以使用者提供之《蔡炳圳七政經緯通書》110–113頁「六十甲子命表」為主本校正。原表欄序為：本命、三合、六合、堆貴、進貴、進長生、堆長生、進旺、堆旺、進祿、堆祿、進馬、堆馬、相沖、三殺、回頭貢殺、三刑、箭刃。</p>
+      <p>先前版本把「堆旺」誤標為「帝旺」，並漏列「進旺」；另把其他來源的「官符五鬼、六害」混入本通書主表。本版已修正：補回進旺、堆旺，並將官符五鬼、六害移出本頁主表與自動判斷。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">吉</span><div class="section-title"><p>GOOD USE</p><h2>通書宜取用欄位</h2></div></div>
+      <p>依原表排列：三合、六合、堆貴、進貴、進長生、堆長生、進旺、堆旺、進祿、堆祿、進馬、堆馬。月表以每日干支及十二時辰干支對照這些欄位；只命中宜取用而未觸犯通書所列忌項者，以紅色「吉」標示。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">忌</span><div class="section-title"><p>AVOID</p><h2>通書慎用／忌用欄位</h2></div></div>
+      <p>原表列：相沖、三殺、回頭貢殺、三刑、箭刃。這五項不能用同一種「單一干支命中即凶」方式處理，須依113頁附註分別判斷。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">沖</span><div class="section-title"><p>CLASH</p><h2>本命相沖</h2></div></div>
+      <p>113頁指出，六辰相對而擊沖本命；其中「日時沖命大凶」，月沖可用，年沖命從俗不忌可用。因此本頁整月表只把<strong>日柱、時柱</strong>命中本命相沖列為凶，不把查詢西元年或國曆月份直接當作年、月四柱判凶。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">殺</span><div class="section-title"><p>SAN SHA</p><h2>本命三殺</h2></div></div>
+      <p>113頁註明「日時均忌」，又分真三殺與非真三殺：真三殺大凶不能制化；非真三殺可取貴人制化而從權吉用。四頁表格本身未提供一個可直接由本頁資料辨識「真／非真」的完整公式，因此網站不自行臆判真偽；凡日、時命中三殺，先以黑色「凶」提示，再由使用者按完整課格判斷是否屬可制之非真三殺。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">貢</span><div class="section-title"><p>RETURNING KILL</p><h2>回頭貢殺：須三合全局</h2></div></div>
+      <p>113頁原註的核心條件是「四柱中三合全局」。例如原書以戊戌命，未年、亥月、卯時湊成「亥卯未全局」回頭貢殺戌命。故本版資料庫把原表的「亥卯未、申子辰、巳酉丑」等恢復顯示為「……全」，並<strong>不再因單一日支或時支出現其中一字就判凶</strong>。</p>
+      <p class="fine-print">本月表目前只準確生成日柱與時柱，沒有以國曆年、月直接冒充節令年柱、月柱，所以回頭貢殺保留為全局提示，不作自動色格判定。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">刑</span><div class="section-title"><p>PUNISHMENT</p><h2>本命三刑：僅論忌日</h2></div></div>
+      <p>113頁明言「本命三刑，僅論忌日」，並說須六合、三合、祿貴解化為合格。本版因此取消「時辰單獨命中三刑即凶」的舊算法；只有日柱命中三刑才列入忌項。若同一日／時組合又見三合、六合、貴、祿等可解項，色格以黃色「吉凶各半」提示，供進一步審課。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">刃</span><div class="section-title"><p>ARROW BLADE</p><h2>箭刃：須「箭刃全」</h2></div></div>
+      <p>113頁說「四柱中忌箭刃全」，又說須本命貴人或柱中三六合解化。因此本版不再把箭、刃中的單獨一字當作凶；在日、時兩柱已同時湊足原表箭刃二字時，才以忌項提示，並仍標明須合參其餘四柱與解化。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">色</span><div class="section-title"><p>COLOR RULE</p><h2>新版月表色標</h2></div></div>
+      <ol class="method-list">
+        <li><strong>吉（紅底白字）：</strong>命中宜取用項目，且無本版自動判定之忌項。</li>
+        <li><strong>凶（黑底白字）：</strong>日／時相沖、日／時三殺，或未見解化的日三刑、已成箭刃全。</li>
+        <li><strong>吉凶各半（黃色）：</strong>三刑或箭刃全同時見通書明示可用的三合、六合、祿、貴解化項。</li>
+        <li><strong>平（灰色）：</strong>未命中本版可自動判讀的宜忌條件。</li>
+      </ol>
+      <p class="fine-print">這是依110–113頁資料所能支持的快速對照層，不等同完整造課定論。真三殺、完整回頭貢殺、年／月節令四柱及其他課格，仍須另行審定。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">課</span><div class="section-title"><p>FOUR PILLARS</p><h2>六十甲子年命擇日查詢</h2></div></div>
+      <p>新增的「六十甲子年命擇日查詢」頁可直接組成用事年、月、日、時四柱：用事年顯示西元與干支；月柱採節氣月，並依所選年干用五虎遁連動；日柱由六十甲子選擇；十二時辰則依日干用五鼠遁自動排出。</p>
+      <p>因新頁已具年、月、日、時四柱，所以回頭貢殺可依「四柱三合全局」檢查，箭刃亦可依「四柱中箭刃全」檢查。相沖仍依通書分層：年沖從俗不忌、月沖可用、日與時沖命列凶；三刑只論日柱。</p>
+      <p class="fine-print">年柱以立春為界，月柱以十二節為界。查詢頁的「用事年」代表該立春後之干支年；丑月為該干支年的末月段。交節臨界若需精確到時刻，仍應按實際節氣交接時間校正。</p>
+    </section>
+
+    <section class="panel rule-block">
+      <div class="panel-heading"><span class="seal">曆</span><div class="section-title"><p>CALENDAR</p><h2>日期與時辰干支</h2></div></div>
+      <p>使用者選擇西元年及國曆月份後，系統逐日換算日干支，再依五鼠遁由日干推出十二時辰干支。此處西元年、國曆月主要用來生成查詢日期；涉及通書所說四柱全局的條件，不直接以國曆年、月代替節令年柱、月柱。</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+  </footer>
 </body>
 </html>

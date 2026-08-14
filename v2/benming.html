@@ -1,154 +1,158 @@
-<!DOCTYPE html>
-
-<html class="auth-pending" lang="zh-Hant">
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>天書三式•丁一峰老師術數查詢系統｜個人真祿・真馬・陽貴・陰貴</title>
-<meta content="個人真祿、真馬、陽貴、陰貴：60甲子出生年命下拉選擇，依用事流年太歲入中宮順飛九宮，自動顯示落宮、方位與二十四山。" name="description"/>
-<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
-
-
-
-<script defer src="auth-core-v32.js?v=3.2.0"></script>
-<script defer src="member-auth-v33.js?v=3.3.0"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜個人真祿・真馬・陽貴・陰貴</title>
+  <meta name="description" content="個人真祿、真馬、陽貴、陰貴：60甲子出生年命下拉選擇，依用事流年太歲入中宮順飛九宮，自動顯示落宮、方位與二十四山。" />
+  <link rel="stylesheet" href="assets/styles.css?v=2.6.0" />
+  <script type="module" src="assets/member-auth-v26.js?v=2.6.0"></script>
 </head>
 <body class="dark-system benming-page benming-horizontal-page">
-<header class="system-header">
-<div class="brand-mark">命</div>
-<p class="eyebrow">個人流年・本命真神・太歲入中</p>
-<h1>天書三式•丁一峰老師術數查詢系統</h1>
-<p class="hero__text">個人真祿・真馬・陽貴・陰貴｜六十甲子年命查詢</p>
-<nav aria-label="網站導覽" class="top-nav">
-<a href="index.html">流年祿馬貴人</a>
-<a aria-current="page" href="benming.html">個人流年祿馬貴人</a>
-<a href="renming.html">六十甲子人命擇日</a>
-<a href="renming-query.html">六十甲子年命擇日查詢</a>
-<a href="zibai.html">流年紫白查詢</a>
-<a href="dehu.html">逐日的呼查詢</a>
-<a href="jishi.html">四大吉時月表</a>
-<a href="liunian-rules.html">流年法說明</a>
-<a href="benming-rules.html">個人流年法說明</a>
-<a href="renming-rules.html">人命擇日說明</a>
-<a href="rules.html">本版採用規則</a>
-<a href="dehu-rules.html">的呼規則</a>
-</nav>
-</header>
-<main class="benming-horizontal-shell">
-<section aria-labelledby="benming-control-title" class="panel benming-control-strip">
-<div class="section-title inline-title benming-strip-title">
-<div>
-<p>QUERY</p>
-<h2 id="benming-control-title">個人真祿・真馬・陽貴・陰貴查詢</h2>
-</div>
-<span class="fine-print">上方橫式選擇用事流年與出生年命（六十甲子），結果即時聯動。</span>
-</div>
-<div class="benming-top-controls">
-<label class="field">
-<span>用事西元年</span>
-<select id="workYearSelect"></select>
-</label>
-<label class="field">
-<span>出生年干支（六十甲子）</span>
-<select id="birthSelect"></select>
-</label>
-<label class="field checkbox-field benming-only-field">
-<input id="onlyBirthToggle" type="checkbox"/>
-<span>完整表只顯示所選年命</span>
-</label>
-<label class="field">
-<span>表格搜尋</span>
-<input id="benmingSearch" placeholder="例：甲午、真祿、丙寅、兌宮" type="search"/>
-</label>
-</div>
-<div class="benming-control-footer">
-<p class="fine-print benming-note">個人真神干支 → 用事年太歲入中 → 順飛九宮 → 查落宮、方位與二十四山。</p>
-<div class="actions benming-inline-actions">
-<button id="benmingCopyBtn" type="button">複製所選年命結果</button>
-<button class="secondary" id="benmingCsvBtn" type="button">下載目前表格 CSV</button>
-<button class="secondary" id="benmingPrintBtn" type="button">列印 / 另存 PDF</button>
-</div>
-</div>
-</section>
-<section aria-label="個人流年祿馬貴人查詢摘要" class="summary-grid benming-summary">
-<article class="panel mini-card">
-<p>用事西元年</p>
-<strong id="workYearCard">—</strong>
-<small>可選 2026–2200</small>
-</article>
-<article class="panel mini-card">
-<p>太歲入中</p>
-<strong id="taiSuiCard">—</strong>
-<small>以當年太歲干支入中</small>
-</article>
-<article class="panel mini-card">
-<p>出生年命</p>
-<strong id="birthCard">—</strong>
-<small id="birthHintCard">顯示四項真神</small>
-</article>
-<article class="panel mini-card">
-<p>目前表格筆數</p>
-<strong id="rowCountCard">—</strong>
-<small>完整資料 60甲子 × 4真神</small>
-</article>
-</section>
-<section aria-labelledby="benming-card-title" class="panel">
-<div class="section-title inline-title">
-<div>
-<p>核心結果</p>
-<h2 id="benming-card-title">所選年命｜個人真祿・真馬・陽貴・陰貴</h2>
-</div>
-<div class="pill" id="benmingBadge">—</div>
-</div>
-<div class="benming-result-cards" id="benmingResultCards"></div>
-</section>
-<section aria-labelledby="benming-table-title" class="panel">
-<div class="section-title inline-title">
-<div>
-<p>完整表</p>
-<h2 id="benming-table-title">六十甲子年命｜個人真神太歲入中落宮表</h2>
-</div>
-<span class="fine-print">每一組年命四列同色，方便區隔甲子、乙丑、丙寅……六十甲子。</span>
-</div>
-<div class="table-wrap benming-table-wrap">
-<table>
-<thead>
-<tr>
-<th>序號</th><th>年命</th><th>命干</th><th>命支</th><th>真神類別</th><th>原取支</th><th>真神干支</th><th>取法簡註</th><th>太歲入中後落宮</th><th>宮數</th><th>方位</th><th>二十四山</th><th>用法備註</th>
-</tr>
-</thead>
-<tbody id="benmingTableBody"></tbody>
-</table>
-</div>
-</section>
-<section class="panel note-panel benming-bottom-note" data-plan-explanation="true">
-<div class="panel-heading">
-<span class="seal">訣</span>
-<div class="section-title">
-<p>FORMULA</p>
-<h2>個人流年法核心</h2>
-</div>
-</div>
-<div class="benming-formula big">本命真神干支 → 流年太歲入中 → 順飛九宮 → 落宮方位</div>
-<p class="fine-print">古法稱「本命者，以太歲入中宮遁之」。本頁先取出生年命之真祿、真馬、陽貴、陰貴，再依所選流年太歲入中推其落宮。</p>
-<a class="rule-link" href="benming-rules.html">開啟個人流年法說明頁</a>
-</section>
-<section class="panel copyright-panel compact benming-copyright">
-<div class="panel-heading">
-<span class="seal">權</span>
-<div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div>
-</div>
-<div class="copyright-content">
-<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-<p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
-</div>
-</section>
-</main>
-<footer class="footer">
-<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-<p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
-<p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
-</footer>
-<script src="assets/benming.js"></script>
+  <header class="system-header">
+    <div class="brand-mark">命</div>
+    <p class="eyebrow">個人流年・本命真神・太歲入中</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">個人真祿・真馬・陽貴・陰貴｜六十甲子年命查詢</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html" aria-current="page">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="jishi.html">四大吉時月表</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="benming-horizontal-shell">
+    <section class="panel benming-control-strip" aria-labelledby="benming-control-title">
+      <div class="section-title inline-title benming-strip-title">
+        <div>
+          <p>QUERY</p>
+          <h2 id="benming-control-title">個人真祿・真馬・陽貴・陰貴查詢</h2>
+        </div>
+        <span class="fine-print">上方橫式選擇用事流年與出生年命（六十甲子），結果即時聯動。</span>
+      </div>
+
+      <div class="benming-top-controls">
+        <label class="field">
+          <span>用事西元年</span>
+          <select id="workYearSelect"></select>
+        </label>
+        <label class="field">
+          <span>出生年干支（六十甲子）</span>
+          <select id="birthSelect"></select>
+        </label>
+        <label class="field checkbox-field benming-only-field">
+          <input id="onlyBirthToggle" type="checkbox" />
+          <span>完整表只顯示所選年命</span>
+        </label>
+        <label class="field">
+          <span>表格搜尋</span>
+          <input id="benmingSearch" type="search" placeholder="例：甲午、真祿、丙寅、兌宮" />
+        </label>
+      </div>
+
+      <div class="benming-control-footer">
+        <p class="fine-print benming-note">個人真神干支 → 用事年太歲入中 → 順飛九宮 → 查落宮、方位與二十四山。</p>
+        <div class="actions benming-inline-actions">
+          <button id="benmingCopyBtn" type="button">複製所選年命結果</button>
+          <button id="benmingCsvBtn" type="button" class="secondary">下載目前表格 CSV</button>
+          <button id="benmingPrintBtn" type="button" class="secondary">列印 / 另存 PDF</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary-grid benming-summary" aria-label="個人流年祿馬貴人查詢摘要">
+      <article class="panel mini-card">
+        <p>用事西元年</p>
+        <strong id="workYearCard">—</strong>
+        <small>可選 2026–2200</small>
+      </article>
+      <article class="panel mini-card">
+        <p>太歲入中</p>
+        <strong id="taiSuiCard">—</strong>
+        <small>以當年太歲干支入中</small>
+      </article>
+      <article class="panel mini-card">
+        <p>出生年命</p>
+        <strong id="birthCard">—</strong>
+        <small id="birthHintCard">顯示四項真神</small>
+      </article>
+      <article class="panel mini-card">
+        <p>目前表格筆數</p>
+        <strong id="rowCountCard">—</strong>
+        <small>完整資料 60甲子 × 4真神</small>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="benming-card-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>核心結果</p>
+          <h2 id="benming-card-title">所選年命｜個人真祿・真馬・陽貴・陰貴</h2>
+        </div>
+        <div class="pill" id="benmingBadge">—</div>
+      </div>
+      <div id="benmingResultCards" class="benming-result-cards"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="benming-table-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>完整表</p>
+          <h2 id="benming-table-title">六十甲子年命｜個人真神太歲入中落宮表</h2>
+        </div>
+        <span class="fine-print">每一組年命四列同色，方便區隔甲子、乙丑、丙寅……六十甲子。</span>
+      </div>
+      <div class="table-wrap benming-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>序號</th><th>年命</th><th>命干</th><th>命支</th><th>真神類別</th><th>原取支</th><th>真神干支</th><th>取法簡註</th><th>太歲入中後落宮</th><th>宮數</th><th>方位</th><th>二十四山</th><th>用法備註</th>
+            </tr>
+          </thead>
+          <tbody id="benmingTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel note-panel benming-bottom-note" data-plan-explanation="true">
+      <div class="panel-heading">
+        <span class="seal">訣</span>
+        <div class="section-title">
+          <p>FORMULA</p>
+          <h2>個人流年法核心</h2>
+        </div>
+      </div>
+      <div class="benming-formula big">本命真神干支 → 流年太歲入中 → 順飛九宮 → 落宮方位</div>
+      <p class="fine-print">古法稱「本命者，以太歲入中宮遁之」。本頁先取出生年命之真祿、真馬、陽貴、陰貴，再依所選流年太歲入中推其落宮。</p>
+      <a class="rule-link" href="benming-rules.html">開啟個人流年法說明頁</a>
+    </section>
+
+    <section class="panel copyright-panel compact benming-copyright">
+      <div class="panel-heading">
+        <span class="seal">權</span>
+        <div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/benming.js"></script>
 </body>
 </html>
