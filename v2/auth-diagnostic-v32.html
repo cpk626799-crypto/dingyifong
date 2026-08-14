@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>會員連線診斷 v3.2</title>
+<link rel="stylesheet" href="assets/styles.css?v=3.2.0">
+</head>
+<body class="dark-system auth-page">
+<main class="auth-shell" style="grid-template-columns:1fr;max-width:900px">
+<section class="auth-card">
+<p class="eyebrow">DIAGNOSTIC</p>
+<h2>會員系統連線診斷 v3.2</h2>
+<p>此頁不需要輸入帳號或密碼，只檢查瀏覽器是否能載入本地登入核心及連線 Supabase Auth。</p>
+<div id="diag" class="auth-message">執行中…</div>
+<div class="auth-actions"><a href="login.html?v=320">返回登入</a></div>
+</section>
+</main>
+<script defer src="auth-core-v32.js?v=3.2.0"></script>
+<script defer>
+window.addEventListener('DOMContentLoaded', async () => {
+  const out = document.querySelector('#diag');
+  const rows = [];
+  rows.push(`1. 本地 auth-core：${window.TianShuAuth ? '正常' : '失敗'}`);
+  try {
+    const r = await fetch('https://qxcyilkzaayqrbcngrel.supabase.co/auth/v1/settings', {
+      headers: { apikey: 'sb_publishable_B1OWmPm6gpKA1Kf8Oywkpg_bBc0M53E' },
+      cache: 'no-store'
+    });
+    rows.push(`2. Supabase Auth 連線：${r.ok ? '正常' : 'HTTP '+r.status}`);
+  } catch (e) {
+    rows.push(`2. Supabase Auth 連線：失敗（${e.message || e}）`);
+  }
+  rows.push('3. 此頁未讀取、未傳送任何會員密碼。');
+  out.textContent = rows.join('\n');
+  out.style.whiteSpace = 'pre-line';
+});
+</script>
+</body>
+</html>
