@@ -1,143 +1,137 @@
-<!doctype html>
-<html lang="zh-Hant" class="auth-pending">
+<!DOCTYPE html>
+
+<html class="auth-pending" lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>天書三式•丁一峰老師術數查詢系統｜流年紫白查詢</title>
-  <meta name="description" content="流年紫白與流月紫白飛星查詢：上方橫式選擇年份與節氣月，左側顯示流年九宮，右側顯示流月九宮，下方列當年每月月紫白總覽與規則摘要。" />
-  <link rel="stylesheet" href="assets/styles.css?v=2.9.0" />
-<script defer src="assets/auth-core-v29.js?v=2.9.0"></script>
-<script defer src="assets/member-auth-v29.js?v=2.9.0"></script>
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>天書三式•丁一峰老師術數查詢系統｜流年紫白查詢</title>
+<meta content="流年紫白與流月紫白飛星查詢：上方橫式選擇年份與節氣月，左側顯示流年九宮，右側顯示流月九宮，下方列當年每月月紫白總覽與規則摘要。" name="description"/>
+<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
+
+
+<script src="assets/member-auth-v30.js?v=3.0.0" type="module"></script></head>
 <body class="dark-system zibai-page zibai-horizontal-page">
-  <header class="system-header">
-    <div class="brand-mark">紫</div>
-    <p class="eyebrow">紫白飛星・流年九宮・流月九宮</p>
-    <h1>天書三式•丁一峰老師術數查詢系統</h1>
-    <p class="hero__text">流年紫白・流月紫白飛星查詢</p>
-    <nav class="top-nav" aria-label="網站導覽">
-      <a href="index.html">流年祿馬貴人</a>
-      <a href="benming.html">個人流年祿馬貴人</a>
-      <a href="renming.html">六十甲子人命擇日</a>
-      <a href="renming-query.html">六十甲子年命擇日查詢</a>
-      <a href="zibai.html" aria-current="page">流年紫白查詢</a>
-      <a href="dehu.html">逐日的呼查詢</a>
-      <a href="jishi.html">四大吉時月表</a>
-      <a href="liunian-rules.html">流年法說明</a>
-      <a href="benming-rules.html">個人流年法說明</a>
-      <a href="renming-rules.html">人命擇日說明</a>
-      <a href="rules.html">本版採用規則</a>
-      <a href="dehu-rules.html">的呼規則</a>
-    </nav>
-  </header>
-
-  <main class="zibai-horizontal-shell">
-    <section class="panel zibai-control-strip" aria-labelledby="zibai-control-title">
-      <div class="section-title inline-title zibai-strip-title">
-        <div>
-          <p>QUERY</p>
-          <h2 id="zibai-control-title">流年紫白查詢｜年份與節氣月</h2>
-        </div>
-        <span class="fine-print">上方橫式選擇年份與節氣月；左為流年九宮，右為流月九宮。</span>
-      </div>
-      <div class="zibai-top-controls">
-        <label class="field">
-          <span>選擇年份</span>
-          <select id="yearSelect"></select>
-        </label>
-        <label class="field">
-          <span>選擇節氣月</span>
-          <select id="monthSelect"></select>
-        </label>
-        <label class="field action-field">
-          <span>重新整理</span>
-          <button type="button" class="secondary" id="rerenderZibaiBtn">重新計算</button>
-        </label>
-        <label class="field action-field">
-          <span>輸出</span>
-          <button type="button" id="printZibaiBtn">列印 / 另存 PDF</button>
-        </label>
-      </div>
-    </section>
-
-    <section class="zibai-dual-grid" aria-label="流年與流月紫白九宮">
-      <section class="panel zibai-grid-panel" aria-labelledby="annual-title">
-        <div class="section-title inline-title">
-          <div>
-            <p>左側｜流年盤</p>
-            <h2 id="annual-title">流年紫白九宮</h2>
-          </div>
-          <span class="fine-print">方位盤：上南下北，左東右西</span>
-        </div>
-        <div class="zibai-grid-meta">
-          <div><span>干支年</span><strong id="ganzhiBox">—</strong></div>
-          <div><span>流年入中星</span><strong id="annualCenterBox">—</strong></div>
-        </div>
-        <h3 id="annualTitle" class="zibai-subtitle">流年九宮</h3>
-        <div class="zibai-palace-grid" id="annualGrid"></div>
-      </section>
-
-      <section class="panel zibai-grid-panel" aria-labelledby="month-title">
-        <div class="section-title inline-title">
-          <div>
-            <p>右側｜流月盤</p>
-            <h2 id="month-title">流月紫白九宮</h2>
-          </div>
-          <span class="fine-print">依節氣月切換</span>
-        </div>
-        <div class="zibai-grid-meta">
-          <div><span>流月入中星</span><strong id="monthCenterBox">—</strong></div>
-          <div><span>節氣界線</span><strong id="monthJieqiBox">—</strong></div>
-        </div>
-        <h3 id="monthTitle" class="zibai-subtitle">流月紫白九宮</h3>
-        <div class="zibai-palace-grid" id="monthGrid"></div>
-      </section>
-    </section>
-
-    <section class="panel" aria-labelledby="monthly-overview-title">
-      <div class="section-title inline-title">
-        <div>
-          <p>全年總覽</p>
-          <h2 id="monthly-overview-title">當年每月月紫白總覽</h2>
-        </div>
-        <span class="fine-print">正月寅月自立春起，二月卯月自驚蟄起，依此類推。</span>
-      </div>
-      <div class="table-wrap zibai-table-wrap wide">
-        <table id="monthlyOverviewTable"></table>
-      </div>
-    </section>
-
-    <section class="panel zibai-rules-summary" aria-labelledby="zibai-rule-note-title" data-plan-explanation="true">
-      <div class="panel-heading">
-        <span class="seal">則</span>
-        <div class="section-title">
-          <p>紫白規則摘要</p>
-          <h2 id="zibai-rule-note-title">飛星規則與九星性質</h2>
-        </div>
-      </div>
-      <div class="zibai-rule-text">
-        <p class="fine-print">流年年星依年數逆行，一年一星；年星或月星入中後，依「中宮5 → 乾宮6 → 兌宮7 → 艮宮8 → 離宮9 → 坎宮1 → 坤宮2 → 震宮3 → 巽宮4」順飛九宮。</p>
-        <p class="fine-print">月紫白以年支分三組起正月星：子午卯酉年八白、辰戌丑未年五黃、寅申巳亥年二黑，逐月逆退一星。</p>
-        <a class="rule-link" href="rules.html#zibai-rule-title">開啟完整採用規則</a>
-      </div>
-      <div class="zibai-legend" id="legend"></div>
-    </section>
-
-    <section class="panel copyright-panel compact zibai-copyright">
-      <div class="panel-heading">
-        <span class="seal">權</span>
-        <div class="section-title">
-          <p>版權宣告</p>
-          <h2>使用與引用</h2>
-        </div>
-      </div>
-      <div class="copyright-content">
-        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-        <p>本工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
-      </div>
-    </section>
-  </main>
-
-  <script src="assets/zibai.js"></script>
-</body>
+<header class="system-header">
+<div class="brand-mark">紫</div>
+<p class="eyebrow">紫白飛星・流年九宮・流月九宮</p>
+<h1>天書三式•丁一峰老師術數查詢系統</h1>
+<p class="hero__text">流年紫白・流月紫白飛星查詢</p>
+<nav aria-label="網站導覽" class="top-nav">
+<a href="index.html">流年祿馬貴人</a>
+<a href="benming.html">個人流年祿馬貴人</a>
+<a href="renming.html">六十甲子人命擇日</a>
+<a href="renming-query.html">六十甲子年命擇日查詢</a>
+<a aria-current="page" href="zibai.html">流年紫白查詢</a>
+<a href="dehu.html">逐日的呼查詢</a>
+<a href="jishi.html">四大吉時月表</a>
+<a href="liunian-rules.html">流年法說明</a>
+<a href="benming-rules.html">個人流年法說明</a>
+<a href="renming-rules.html">人命擇日說明</a>
+<a href="rules.html">本版採用規則</a>
+<a href="dehu-rules.html">的呼規則</a>
+</nav>
+</header>
+<main class="zibai-horizontal-shell">
+<section aria-labelledby="zibai-control-title" class="panel zibai-control-strip">
+<div class="section-title inline-title zibai-strip-title">
+<div>
+<p>QUERY</p>
+<h2 id="zibai-control-title">流年紫白查詢｜年份與節氣月</h2>
+</div>
+<span class="fine-print">上方橫式選擇年份與節氣月；左為流年九宮，右為流月九宮。</span>
+</div>
+<div class="zibai-top-controls">
+<label class="field">
+<span>選擇年份</span>
+<select id="yearSelect"></select>
+</label>
+<label class="field">
+<span>選擇節氣月</span>
+<select id="monthSelect"></select>
+</label>
+<label class="field action-field">
+<span>重新整理</span>
+<button class="secondary" id="rerenderZibaiBtn" type="button">重新計算</button>
+</label>
+<label class="field action-field">
+<span>輸出</span>
+<button id="printZibaiBtn" type="button">列印 / 另存 PDF</button>
+</label>
+</div>
+</section>
+<section aria-label="流年與流月紫白九宮" class="zibai-dual-grid">
+<section aria-labelledby="annual-title" class="panel zibai-grid-panel">
+<div class="section-title inline-title">
+<div>
+<p>左側｜流年盤</p>
+<h2 id="annual-title">流年紫白九宮</h2>
+</div>
+<span class="fine-print">方位盤：上南下北，左東右西</span>
+</div>
+<div class="zibai-grid-meta">
+<div><span>干支年</span><strong id="ganzhiBox">—</strong></div>
+<div><span>流年入中星</span><strong id="annualCenterBox">—</strong></div>
+</div>
+<h3 class="zibai-subtitle" id="annualTitle">流年九宮</h3>
+<div class="zibai-palace-grid" id="annualGrid"></div>
+</section>
+<section aria-labelledby="month-title" class="panel zibai-grid-panel">
+<div class="section-title inline-title">
+<div>
+<p>右側｜流月盤</p>
+<h2 id="month-title">流月紫白九宮</h2>
+</div>
+<span class="fine-print">依節氣月切換</span>
+</div>
+<div class="zibai-grid-meta">
+<div><span>流月入中星</span><strong id="monthCenterBox">—</strong></div>
+<div><span>節氣界線</span><strong id="monthJieqiBox">—</strong></div>
+</div>
+<h3 class="zibai-subtitle" id="monthTitle">流月紫白九宮</h3>
+<div class="zibai-palace-grid" id="monthGrid"></div>
+</section>
+</section>
+<section aria-labelledby="monthly-overview-title" class="panel">
+<div class="section-title inline-title">
+<div>
+<p>全年總覽</p>
+<h2 id="monthly-overview-title">當年每月月紫白總覽</h2>
+</div>
+<span class="fine-print">正月寅月自立春起，二月卯月自驚蟄起，依此類推。</span>
+</div>
+<div class="table-wrap zibai-table-wrap wide">
+<table id="monthlyOverviewTable"></table>
+</div>
+</section>
+<section aria-labelledby="zibai-rule-note-title" class="panel zibai-rules-summary" data-plan-explanation="true">
+<div class="panel-heading">
+<span class="seal">則</span>
+<div class="section-title">
+<p>紫白規則摘要</p>
+<h2 id="zibai-rule-note-title">飛星規則與九星性質</h2>
+</div>
+</div>
+<div class="zibai-rule-text">
+<p class="fine-print">流年年星依年數逆行，一年一星；年星或月星入中後，依「中宮5 → 乾宮6 → 兌宮7 → 艮宮8 → 離宮9 → 坎宮1 → 坤宮2 → 震宮3 → 巽宮4」順飛九宮。</p>
+<p class="fine-print">月紫白以年支分三組起正月星：子午卯酉年八白、辰戌丑未年五黃、寅申巳亥年二黑，逐月逆退一星。</p>
+<a class="rule-link" href="rules.html#zibai-rule-title">開啟完整採用規則</a>
+</div>
+<div class="zibai-legend" id="legend"></div>
+</section>
+<section class="panel copyright-panel compact zibai-copyright">
+<div class="panel-heading">
+<span class="seal">權</span>
+<div class="section-title">
+<p>版權宣告</p>
+<h2>使用與引用</h2>
+</div>
+</div>
+<div class="copyright-content">
+<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+<p>本工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+</div>
+</section>
+</main>
+<script src="assets/zibai.js"></script>
+<script defer="True" src="assets/plan-permissions-v30.js?v=3.0.0"></script></body>
 </html>

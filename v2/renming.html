@@ -1,173 +1,162 @@
-<!doctype html>
-<html lang="zh-Hant" class="auth-pending">
+<!DOCTYPE html>
+
+<html class="auth-pending" lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>天書三式•丁一峰老師術數查詢系統｜六十甲子人命擇日月表</title>
-  <meta name="description" content="六十甲子人命擇日月表：由六十甲子下拉選擇出生年干支，並選擇西元年、月份，顯示整月每日干支及十二時辰對應年命的宜忌色標。" />
-  <link rel="stylesheet" href="assets/styles.css?v=2.9.0" />
-<script defer src="assets/auth-core-v29.js?v=2.9.0"></script>
-<script defer src="assets/member-auth-v29.js?v=2.9.0"></script>
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>天書三式•丁一峰老師術數查詢系統｜六十甲子人命擇日月表</title>
+<meta content="六十甲子人命擇日月表：由六十甲子下拉選擇出生年干支，並選擇西元年、月份，顯示整月每日干支及十二時辰對應年命的宜忌色標。" name="description"/>
+<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
+
+
+<script src="assets/member-auth-v30.js?v=3.0.0" type="module"></script></head>
 <body class="dark-system renming-page renming-month-page">
-  <header class="system-header">
-    <div class="brand-mark">命</div>
-    <p class="eyebrow">六十甲子・人命擇日・整月時辰宜忌</p>
-    <h1>天書三式•丁一峰老師術數查詢系統</h1>
-    <p class="hero__text">選擇出生年干支（六十甲子），依《蔡炳圳七政經緯通書》110–113頁六十甲子命表，逐日、逐時對照宜取用與慎用／忌用項目</p>
-    <nav class="top-nav" aria-label="網站導覽">
-      <a href="index.html">流年祿馬貴人</a>
-      <a href="benming.html">個人流年祿馬貴人</a>
-      <a href="renming.html" aria-current="page">六十甲子人命擇日</a>
-      <a href="renming-query.html">六十甲子年命擇日查詢</a>
-      <a href="zibai.html">流年紫白查詢</a>
-      <a href="dehu.html">逐日的呼查詢</a>
-      <a href="jishi.html">四大吉時月表</a>
-      <a href="liunian-rules.html">流年法說明</a>
-      <a href="benming-rules.html">個人流年法說明</a>
-      <a href="renming-rules.html">人命擇日說明</a>
-      <a href="rules.html">本版採用規則</a>
-      <a href="dehu-rules.html">的呼規則</a>
-    </nav>
-  </header>
-
-  <main class="renming-month-shell">
-    <section class="panel renming-control-strip" aria-labelledby="renming-control-title">
-      <div class="section-title inline-title renming-strip-title">
-        <div>
-          <p>QUERY</p>
-          <h2 id="renming-control-title">年命與月份表格搜尋</h2>
-        </div>
-        <span class="fine-print">預設顯示一個完整月份；出生年干支可由六十甲子下拉選單選擇。</span>
-      </div>
-
-      <div class="renming-top-controls">
-        <label class="field">
-          <span>出生年干支（六十甲子）</span>
-          <select id="renmingInput" aria-label="出生年干支（六十甲子）"></select>
-        </label>
-        <label class="field">
-          <span>查詢年（西元）</span>
-          <input id="calendarYear" type="number" min="1900" max="2200" step="1" />
-        </label>
-        <label class="field">
-          <span>查詢月（國曆）</span>
-          <select id="calendarMonth"></select>
-        </label>
-        <label class="field">
-          <span>表格搜尋</span>
-          <input id="renmingSearch" type="search" placeholder="日期、日干支、時干支、吉凶或項目" />
-        </label>
-      </div>
-
-      <div class="renming-control-footer">
-        <div id="renmingValidation" class="renming-validation" role="status" aria-live="polite"></div>
-        <div class="actions renming-inline-actions">
-          <button id="renmingResetBtn" type="button" class="secondary">回到本月</button>
-          <button id="renmingCopyBtn" type="button">複製本月摘要</button>
-          <button id="renmingCsvBtn" type="button" class="secondary">下載本月 CSV</button>
-          <button id="renmingPrintBtn" type="button" class="secondary">列印 / 另存 PDF</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="summary-grid renming-month-summary" aria-label="查詢摘要">
-      <article class="panel mini-card">
-        <p>出生年命</p>
-        <strong id="renmingCard">—</strong>
-        <small id="nayinCard">納音五行</small>
-      </article>
-      <article class="panel mini-card">
-        <p>查詢月份</p>
-        <strong id="monthCard">—</strong>
-        <small id="daysCard">—日</small>
-      </article>
-      <article class="panel mini-card status-good-card">
-        <p>吉用欄位</p>
-        <strong>12</strong>
-        <small>三合至堆馬</small>
-      </article>
-      <article class="panel mini-card status-bad-card">
-        <p>慎用／忌用欄位</p>
-        <strong>5</strong>
-        <small>相沖至箭刃</small>
-      </article>
-    </section>
-
-    <section class="panel" aria-labelledby="renming-good-title">
-      <div class="section-title inline-title">
-        <div>
-          <p>第二排｜宜取用</p>
-          <h2 id="renming-good-title">所選年命宜取用項目</h2>
-        </div>
-        <div class="pill" id="renmingBadge">—</div>
-      </div>
-      <div id="goodCards" class="renming-card-grid renming-horizontal-cards"></div>
-    </section>
-
-    <section class="panel" aria-labelledby="renming-bad-title">
-      <div class="section-title inline-title">
-        <div>
-          <p>第三排｜慎用與避忌</p>
-          <h2 id="renming-bad-title">所選年命慎用／忌用欄位</h2>
-        </div>
-        <span class="fine-print">欄位依通書原表呈現；回頭貢殺、箭刃須依四柱成局條件判斷。</span>
-      </div>
-      <div id="badCards" class="renming-card-grid renming-horizontal-cards warning-grid"></div>
-    </section>
-
-    <section class="panel renming-month-panel" aria-labelledby="renming-table-title">
-      <div class="section-title inline-title">
-        <div>
-          <p>第四排｜整月逐日逐時</p>
-          <h2 id="renming-table-title">月份每日干支與十二時辰宜忌</h2>
-        </div>
-        <span id="visibleCount" class="fine-print">—</span>
-      </div>
-
-      <div class="renming-status-legend" aria-label="吉凶色標">
-        <span class="status-chip is-good">吉</span><span>只命中宜取用項目</span>
-        <span class="status-chip is-bad">凶</span><span>只命中慎用／忌用項目</span>
-        <span class="status-chip is-mixed">吉凶各半</span><span>同時命中吉用與避忌</span>
-        <span class="status-chip is-neutral">平</span><span>未命中本表項目</span>
-      </div>
-
-      <div id="judgementDetail" class="renming-judgement-detail" aria-live="polite">
+<header class="system-header">
+<div class="brand-mark">命</div>
+<p class="eyebrow">六十甲子・人命擇日・整月時辰宜忌</p>
+<h1>天書三式•丁一峰老師術數查詢系統</h1>
+<p class="hero__text">選擇出生年干支（六十甲子），依《蔡炳圳七政經緯通書》110–113頁六十甲子命表，逐日、逐時對照宜取用與慎用／忌用項目</p>
+<nav aria-label="網站導覽" class="top-nav">
+<a href="index.html">流年祿馬貴人</a>
+<a href="benming.html">個人流年祿馬貴人</a>
+<a aria-current="page" href="renming.html">六十甲子人命擇日</a>
+<a href="renming-query.html">六十甲子年命擇日查詢</a>
+<a href="zibai.html">流年紫白查詢</a>
+<a href="dehu.html">逐日的呼查詢</a>
+<a href="jishi.html">四大吉時月表</a>
+<a href="liunian-rules.html">流年法說明</a>
+<a href="benming-rules.html">個人流年法說明</a>
+<a href="renming-rules.html">人命擇日說明</a>
+<a href="rules.html">本版採用規則</a>
+<a href="dehu-rules.html">的呼規則</a>
+</nav>
+</header>
+<main class="renming-month-shell">
+<section aria-labelledby="renming-control-title" class="panel renming-control-strip">
+<div class="section-title inline-title renming-strip-title">
+<div>
+<p>QUERY</p>
+<h2 id="renming-control-title">年命與月份表格搜尋</h2>
+</div>
+<span class="fine-print">預設顯示一個完整月份；出生年干支可由六十甲子下拉選單選擇。</span>
+</div>
+<div class="renming-top-controls">
+<label class="field">
+<span>出生年干支（六十甲子）</span>
+<select aria-label="出生年干支（六十甲子）" id="renmingInput"></select>
+</label>
+<label class="field">
+<span>查詢年（西元）</span>
+<input id="calendarYear" max="2200" min="1900" step="1" type="number"/>
+</label>
+<label class="field">
+<span>查詢月（國曆）</span>
+<select id="calendarMonth"></select>
+</label>
+<label class="field">
+<span>表格搜尋</span>
+<input id="renmingSearch" placeholder="日期、日干支、時干支、吉凶或項目" type="search"/>
+</label>
+</div>
+<div class="renming-control-footer">
+<div aria-live="polite" class="renming-validation" id="renmingValidation" role="status"></div>
+<div class="actions renming-inline-actions">
+<button class="secondary" id="renmingResetBtn" type="button">回到本月</button>
+<button id="renmingCopyBtn" type="button">複製本月摘要</button>
+<button class="secondary" id="renmingCsvBtn" type="button">下載本月 CSV</button>
+<button class="secondary" id="renmingPrintBtn" type="button">列印 / 另存 PDF</button>
+</div>
+</div>
+</section>
+<section aria-label="查詢摘要" class="summary-grid renming-month-summary">
+<article class="panel mini-card">
+<p>出生年命</p>
+<strong id="renmingCard">—</strong>
+<small id="nayinCard">納音五行</small>
+</article>
+<article class="panel mini-card">
+<p>查詢月份</p>
+<strong id="monthCard">—</strong>
+<small id="daysCard">—日</small>
+</article>
+<article class="panel mini-card status-good-card">
+<p>吉用欄位</p>
+<strong>12</strong>
+<small>三合至堆馬</small>
+</article>
+<article class="panel mini-card status-bad-card">
+<p>慎用／忌用欄位</p>
+<strong>5</strong>
+<small>相沖至箭刃</small>
+</article>
+</section>
+<section aria-labelledby="renming-good-title" class="panel">
+<div class="section-title inline-title">
+<div>
+<p>第二排｜宜取用</p>
+<h2 id="renming-good-title">所選年命宜取用項目</h2>
+</div>
+<div class="pill" id="renmingBadge">—</div>
+</div>
+<div class="renming-card-grid renming-horizontal-cards" id="goodCards"></div>
+</section>
+<section aria-labelledby="renming-bad-title" class="panel">
+<div class="section-title inline-title">
+<div>
+<p>第三排｜慎用與避忌</p>
+<h2 id="renming-bad-title">所選年命慎用／忌用欄位</h2>
+</div>
+<span class="fine-print">欄位依通書原表呈現；回頭貢殺、箭刃須依四柱成局條件判斷。</span>
+</div>
+<div class="renming-card-grid renming-horizontal-cards warning-grid" id="badCards"></div>
+</section>
+<section aria-labelledby="renming-table-title" class="panel renming-month-panel">
+<div class="section-title inline-title">
+<div>
+<p>第四排｜整月逐日逐時</p>
+<h2 id="renming-table-title">月份每日干支與十二時辰宜忌</h2>
+</div>
+<span class="fine-print" id="visibleCount">—</span>
+</div>
+<div aria-label="吉凶色標" class="renming-status-legend">
+<span class="status-chip is-good">吉</span><span>只命中宜取用項目</span>
+<span class="status-chip is-bad">凶</span><span>只命中慎用／忌用項目</span>
+<span class="status-chip is-mixed">吉凶各半</span><span>同時命中吉用與避忌</span>
+<span class="status-chip is-neutral">平</span><span>未命中本表項目</span>
+</div>
+<div aria-live="polite" class="renming-judgement-detail" id="judgementDetail">
         點選任一日評或時辰色格，可查看命中的通書欄位與判定提示。相沖、三殺依日／時判；三刑僅論忌日；回頭貢殺須四柱三合全局；箭刃須見全。
       </div>
-
-      <div class="table-wrap renming-calendar-wrap">
-        <table class="renming-calendar-table">
-          <thead>
-            <tr id="renmingCalendarHead"></tr>
-          </thead>
-          <tbody id="renmingCalendarBody"></tbody>
-        </table>
-      </div>
-      <p class="fine-print renming-month-note">本頁色標依通書110–113頁原表及頁113用法註解修正：日時相沖、三殺從嚴；三刑僅論忌日；回頭貢殺不以單柱判；箭刃須見全。由於本頁未以節令換算完整年、月四柱，回頭貢殺等全局條件仍須另合四柱審定。</p>
-    </section>
-
-    <section class="panel copyright-panel compact renming-copyright">
-      <div class="panel-heading">
-        <span class="seal">權</span>
-        <div class="section-title">
-          <p>版權宣告</p>
-          <h2>使用與引用</h2>
-        </div>
-      </div>
-      <div class="copyright-content">
-        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
-    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
-    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
-  </footer>
-  <script src="assets/renming-data.js"></script>
-  <script src="assets/renming.js"></script>
-</body>
+<div class="table-wrap renming-calendar-wrap">
+<table class="renming-calendar-table">
+<thead>
+<tr id="renmingCalendarHead"></tr>
+</thead>
+<tbody id="renmingCalendarBody"></tbody>
+</table>
+</div>
+<p class="fine-print renming-month-note">本頁色標依通書110–113頁原表及頁113用法註解修正：日時相沖、三殺從嚴；三刑僅論忌日；回頭貢殺不以單柱判；箭刃須見全。由於本頁未以節令換算完整年、月四柱，回頭貢殺等全局條件仍須另合四柱審定。</p>
+</section>
+<section class="panel copyright-panel compact renming-copyright">
+<div class="panel-heading">
+<span class="seal">權</span>
+<div class="section-title">
+<p>版權宣告</p>
+<h2>使用與引用</h2>
+</div>
+</div>
+<div class="copyright-content">
+<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+<p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+</div>
+</section>
+</main>
+<footer class="footer">
+<p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+<p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+<p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+</footer>
+<script src="assets/renming-data.js"></script>
+<script src="assets/renming.js"></script>
+<script defer="True" src="assets/plan-permissions-v30.js?v=3.0.0"></script></body>
 </html>

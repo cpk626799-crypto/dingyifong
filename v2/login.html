@@ -1,47 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>會員登入｜天書三式•丁一峰老師術數查詢系統</title>
-  <meta name="description" content="天書三式•丁一峰老師術數查詢系統會員登入。" />
-  <link rel="stylesheet" href="assets/styles.css?v=2.9.0" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>會員登入｜天書三式•丁一峰老師術數查詢系統</title>
+<meta content="天書三式•丁一峰老師術數查詢系統會員登入。" name="description"/>
+<link href="assets/styles.css?v=2.9.0" rel="stylesheet"/>
 </head>
 <body class="dark-system auth-page">
-  <main class="auth-shell">
-    <section class="auth-brand">
-      <div class="brand-mark">天</div>
-      <p class="eyebrow">MEMBER ACCESS</p>
-      <h1>天書三式•丁一峰老師術數查詢系統</h1>
-      <p>會員制 v2.0｜術數教學、研究與個人查詢專用。完成 Email 驗證後，仍須經管理員審核啟用才可進入完整系統。</p>
-      <div class="auth-feature-list">
-        <span>流年祿馬貴人・個人流年祿馬貴人</span>
-        <span>六十甲子年命擇日・流年紫白</span>
-        <span>逐日的呼・規則與講義查詢</span>
-      </div>
-    </section>
+<main class="auth-shell">
+<section class="auth-brand">
+<div class="brand-mark">天</div>
+<p class="eyebrow">MEMBER ACCESS</p>
+<h1>天書三式•丁一峰老師術數查詢系統</h1>
+<p>會員制 v2.0｜術數教學、研究與個人查詢專用。完成 Email 驗證後，仍須經管理員審核啟用才可進入完整系統。</p>
+<div class="auth-feature-list">
+<span>流年祿馬貴人・個人流年祿馬貴人</span>
+<span>六十甲子年命擇日・流年紫白</span>
+<span>逐日的呼・規則與講義查詢</span>
+</div>
+</section>
+<section class="auth-card">
+<p class="eyebrow">LOGIN</p>
+<h2>會員登入</h2>
+<p>請使用已完成 Email 驗證且已由管理員啟用的會員帳號。</p>
+<form class="auth-form" id="loginForm">
+<label>電子郵件
+          <input autocomplete="email" id="loginEmail" placeholder="name@example.com" required="" type="email"/>
+</label>
+<label>密碼
+          <input autocomplete="current-password" id="loginPassword" placeholder="請輸入密碼" required="" type="password"/>
+</label>
+<button class="auth-primary-btn" id="loginSubmit" type="submit">會員登入</button>
+</form>
+<div class="auth-message" hidden="" id="authMessage"></div>
+<div class="auth-actions">
+<span>尚未加入？</span><a href="register.html">註冊會員</a>
+</div>
+<p class="auth-fine">一般會員自行註冊後，預設為「待審核」。未經管理員啟用，即使已驗證 Email 仍無法進入術數查詢頁。</p>
+</section>
+</main>
 
-    <section class="auth-card">
-      <p class="eyebrow">LOGIN</p>
-      <h2>會員登入</h2>
-      <p>請使用已完成 Email 驗證且已由管理員啟用的會員帳號。</p>
-      <form id="loginForm" class="auth-form">
-        <label>電子郵件
-          <input id="loginEmail" type="email" autocomplete="email" required placeholder="name@example.com" />
-        </label>
-        <label>密碼
-          <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="請輸入密碼" />
-        </label>
-        <button id="loginSubmit" class="auth-primary-btn" type="submit">會員登入</button>
-      </form>
-      <div id="authMessage" class="auth-message" hidden></div>
-      <div class="auth-actions">
-        <span>尚未加入？</span><a href="register.html">註冊會員</a>
-      </div>
-      <p class="auth-fine">一般會員自行註冊後，預設為「待審核」。未經管理員啟用，即使已驗證 Email 仍無法進入術數查詢頁。</p>
-    </section>
-  </main>
-  <script defer src="assets/auth-core-v29.js?v=2.9.0"></script>
-  <script defer src="assets/auth-pages-v29.js?v=2.9.0"></script>
-</body>
+
+<script src="assets/auth-pages-v30.js?v=3.0.0" type="module"></script></body>
 </html>
