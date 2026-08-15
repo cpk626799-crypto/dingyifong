@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜永吉造命課</title>
+  <meta name="description" content="永吉造命課四柱造命初檢：依用事目的與年月日時四柱，辨識天元一氣、地元一氣、三奇、三合等造命形式，並提示扶龍補山、輔相主命及中和取用原則。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system zaoming-page yongji-page">
+  <header class="system-header">
+    <div class="brand-mark">造</div>
+    <p class="eyebrow">永吉通書・造命取課・四柱合參</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">永吉造命課・以用事目的與年月日時四柱作形式初檢，合參龍山、坐向、主命、亡命與地理龍氣。</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="fourtime.html">四大吉時月表</a>
+      <a href="yongji.html" aria-current="page">永吉造命課</a>
+      <a href="tongshu.html">通書六十甲子造命</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="zaoming-shell">
+    <section class="panel zaoming-control-panel" aria-labelledby="yj-control-title">
+      <div class="panel-heading">
+        <span class="seal">壹</span>
+        <div class="section-title"><p>四柱輸入</p><h2 id="yj-control-title">永吉造命課查詢</h2></div>
+      </div>
+      <div class="zaoming-controls">
+        <label class="field"><span>用事目的</span><select id="yjPurpose"></select></label>
+        <label class="field"><span>年柱</span><select id="yjYear"></select></label>
+        <label class="field"><span>月柱</span><select id="yjMonth"></select></label>
+        <label class="field"><span>日柱</span><select id="yjDay"></select></label>
+        <label class="field"><span>時柱</span><select id="yjHour"></select></label>
+      </div>
+      <div class="actions">
+        <button id="yjCalc">造命課初檢</button>
+        <button class="secondary" type="button" onclick="window.print()">列印／另存 PDF</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="yj-result-title">
+      <div class="section-title inline-title">
+        <div><p>第二區塊｜四柱形式</p><h2 id="yj-result-title">造命格局初檢</h2></div>
+        <span class="pill">形式辨識・非單項定吉</span>
+      </div>
+      <div id="yjResult" class="zaoming-result" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="yj-purpose-title">
+      <div class="section-title inline-title">
+        <div><p>第三區塊｜造命取用</p><h2 id="yjPurposeTitle">用途判斷</h2></div>
+        <span class="pill">龍山・坐向・主命・亡命・日課四柱合參</span>
+      </div>
+      <div id="yjPurposeCards" class="zaoming-card-grid"></div>
+      <div class="zaoming-note"><strong>使用原則：</strong>本頁只自動辨識可由四柱字面直接確認的形式；完整造命仍須覆核龍山、坐向、主命、亡命、地理龍氣、刑沖合害及相關神煞。</div>
+    </section>
+
+    <section class="panel" aria-labelledby="yj-core-title">
+      <div class="panel-heading"><span class="seal">肆</span><div class="section-title"><p>造命原則</p><h2 id="yj-core-title">造命課核心原則</h2></div></div>
+      <div class="zaoming-card-grid core-grid">
+        <article class="zaoming-card"><h3>扶龍補山</h3><p>龍山為地理之體，日課為發動之機；日課須能扶助龍山、補益坐山。</p></article>
+        <article class="zaoming-card"><h3>輔相主命</h3><p>日課須對主命有情、有助、有生扶；可合參官、財、印、祿、馬、貴人與長生。</p></article>
+        <article class="zaoming-card"><h3>中和為貴</h3><p>不宜過旺、過偏、過剛、過寒、過燥、過動；四柱宜流通，五行得宜。</p></article>
+        <article class="zaoming-card"><h3>不可沖剋</h3><p>不可沖主命、亡命；不可沖山、傷龍、剋坐山，刑沖破害亦不宜過重。</p></article>
+        <article class="zaoming-card"><h3>地小課大</h3><p>龍氣與地理承載力不足時，不宜強取大格；重點在地課相稱。</p></article>
+        <article class="zaoming-card"><h3>上吉標準</h3><p>不沖不剋、能扶龍補山、能合官財印、祿馬貴人得用，並使四柱中和流通。</p></article>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel compact zaoming-copyright">
+      <div class="panel-heading">
+        <span class="seal">權</span>
+        <div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/zaoming.js"></script>
+</body>
+</html>

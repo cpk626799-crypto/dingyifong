@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜通書六十甲子造命</title>
+  <meta name="description" content="通書六十甲子造命查詢：按六十甲子本命查三合、六合、堆貴、進貴、堆長生、進長生、帝旺、堆祿、進祿、堆馬、進馬，以及相沖、三殺、回頭貢殺、三刑、箭刃、官符五鬼、六害。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system zaoming-page tongshu-page">
+  <header class="system-header">
+    <div class="brand-mark">通</div>
+    <p class="eyebrow">六十甲子・通書造命・吉用避忌</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">通書六十甲子造命・依本命查三合六合、生旺祿馬貴人，以及沖煞刑害等造命取用條件。</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="fourtime.html">四大吉時月表</a>
+      <a href="yongji.html">永吉造命課</a>
+      <a href="tongshu.html" aria-current="page">通書六十甲子造命</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="zaoming-shell">
+    <section class="panel zaoming-control-panel" aria-labelledby="ts-control-title">
+      <div class="panel-heading">
+        <span class="seal">壹</span>
+        <div class="section-title"><p>本命輸入</p><h2 id="ts-control-title">通書六十甲子造命查詢</h2></div>
+      </div>
+      <div class="tongshu-controls">
+        <label class="field"><span>出生西元年</span><input id="tsBirthYear" type="number" min="1800" max="2300" value="1984" /></label>
+        <label class="field"><span>六十甲子本命</span><select id="tsMing"></select></label>
+      </div>
+      <div class="actions">
+        <button id="tsCalc">查詢本命造命</button>
+        <button class="secondary" type="button" onclick="window.print()">列印／另存 PDF</button>
+      </div>
+      <p class="fine-print zaoming-helper">出生西元年可自動換算年柱；也可直接使用「六十甲子本命」下拉選擇。原表空白欄位維持空白語意，以「—」呈現，不自行補值。</p>
+    </section>
+
+    <section class="summary-grid tongshu-summary" id="tsSummary" aria-label="本命摘要"></section>
+
+    <section class="panel" aria-labelledby="ts-good-title">
+      <div class="section-title inline-title">
+        <div><p>第二區塊｜吉用條件</p><h2 id="ts-good-title">造命可取</h2></div>
+        <span class="pill">三合・六合・生旺・祿馬貴</span>
+      </div>
+      <div id="tsGood" class="tongshu-grid"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="ts-bad-title">
+      <div class="section-title inline-title">
+        <div><p>第三區塊｜避忌條件</p><h2 id="ts-bad-title">造命避忌</h2></div>
+        <span class="pill">沖煞・刑害・箭刃・五鬼</span>
+      </div>
+      <div id="tsBad" class="tongshu-grid bad-grid"></div>
+      <div class="zaoming-note"><strong>原表欄目：</strong>本命、三合、六合、堆貴、進貴、堆長生、進長生、帝旺、堆祿、進祿、堆馬、進馬、相沖、三殺、回頭貢殺、三刑、箭刃、官符五鬼、六害。查詢頁保留原表用語與資料空白。</div>
+    </section>
+
+    <section class="panel copyright-panel compact zaoming-copyright">
+      <div class="panel-heading">
+        <span class="seal">權</span>
+        <div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/zaoming.js"></script>
+</body>
+</html>
