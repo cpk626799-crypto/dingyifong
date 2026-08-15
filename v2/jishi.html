@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜四大吉時月表</title>
+  <meta name="description" content="民國115年（2026）六壬擇日四大吉時月表，全年1至12月開放查詢。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system jishi-page">
+  <header class="system-header">
+    <div class="brand-mark">時</div>
+    <p class="eyebrow">六壬擇日・四大吉時</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">民國115年（2026）四大吉時月表｜全年1–12月開放查詢</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="jishi.html" aria-current="page">四大吉時月表</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="jishi-shell">
+    <section class="panel" aria-labelledby="jishi-query-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>QUERY</p>
+          <h2 id="jishi-query-title">四大吉時月表查詢</h2>
+        </div>
+        <span id="jishiCount" class="fine-print">民國115年全年開放</span>
+      </div>
+
+      <div class="jishi-controls">
+        <label class="field">
+          <span>西元年／民國年</span>
+          <select id="jishiYear" aria-label="西元年與民國年"></select>
+        </label>
+        <label class="field">
+          <span>月份</span>
+          <select id="jishiMonth" aria-label="月份"></select>
+        </label>
+        <div class="field action-field">
+          <span>輸出</span>
+          <button id="jishiPrint" type="button" class="secondary">列印 / PDF</button>
+        </div>
+      </div>
+      <p class="fine-print jishi-open-note">本頁固定開放民國115年（2026）1月至12月全部月份查詢；無會員方案月份限制。</p>
+    </section>
+
+    <section class="panel" aria-labelledby="jishi-title-heading">
+      <div class="section-title inline-title">
+        <div>
+          <p>MONTH</p>
+          <h2 id="jishiTitle">—</h2>
+        </div>
+        <span class="pill">115年全年</span>
+      </div>
+      <div id="jishiQuick" class="jishi-quick-grid"></div>
+    </section>
+
+    <section class="panel jishi-table-panel" aria-labelledby="jishi-table-title">
+      <div class="section-title inline-title">
+        <div>
+          <p>TABLE</p>
+          <h2 id="jishi-table-title">六壬擇日四大吉時月表</h2>
+        </div>
+        <span class="fine-print">左右滑動可查看完整欄位</span>
+      </div>
+      <div class="table-wrap jishi-table-wrap">
+        <table class="jishi-table">
+          <thead>
+            <tr>
+              <th>國曆</th>
+              <th>局數</th>
+              <th>節氣</th>
+              <th>月將</th>
+              <th>交節時間</th>
+              <th>農曆</th>
+              <th>五行干支</th>
+              <th>星期</th>
+              <th>寶義制伐</th>
+              <th>值日星宿</th>
+              <th>建除12神</th>
+              <th>貴登天門</th>
+              <th>罡塞鬼戶</th>
+              <th>天罡指巳<br>魁度天門</th>
+              <th>日德</th>
+              <th>支德</th>
+              <th>貴塞鬼戶</th>
+              <th>四大吉時</th>
+              <th>斗柄所指</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody id="jishiRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="jishi-source-title">
+      <div class="panel-heading">
+        <span class="seal">參</span>
+        <div class="section-title">
+          <p>REFERENCE</p>
+          <h2 id="jishi-source-title">資料與使用說明</h2>
+        </div>
+      </div>
+      <div class="jishi-info-grid">
+        <div>
+          <strong>查詢範圍</strong>
+          <p>民國115年（2026）1月1日至12月31日，共365日。</p>
+        </div>
+        <div>
+          <strong>節氣與月將</strong>
+          <p>依既有115年四大吉時資料庫之節氣、月將及交節時間顯示。</p>
+        </div>
+        <div>
+          <strong>四大吉時</strong>
+          <p>沿用既有月將對應：亥壬、戌乾、酉辛、申庚、未坤、午丁、巳丙、辰巽、卯乙、寅甲、丑艮、子癸。</p>
+        </div>
+        <div>
+          <strong>備註</strong>
+          <p>交節當日標示交節時間，並提示交節後採用之節氣與月將。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel compact">
+      <div class="panel-heading">
+        <span class="seal">權</span>
+        <div class="section-title">
+          <p>版權宣告</p>
+          <h2>使用與引用</h2>
+        </div>
+      </div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/jishi.js"></script>
+</body>
+</html>
