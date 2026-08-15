@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜四大吉時</title>
+  <meta name="description" content="民國115年（2026年）六壬擇日四大吉時月表，全年1月至12月開放查詢。" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system fourtime-page">
+  <header class="system-header">
+    <div class="brand-mark">時</div>
+    <p class="eyebrow">六壬擇日・四大吉時・115年全年</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">四大吉時月表｜民國115年（2026）1月至12月全部開放查詢</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="fourtime.html" aria-current="page">四大吉時月表</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+  </header>
+
+  <main class="fourtime-shell">
+    <section class="panel fourtime-control-strip" aria-labelledby="ft-control-title">
+      <div class="section-title inline-title">
+        <div><p>QUERY</p><h2 id="ft-control-title">每月四大吉時表</h2></div>
+        <span class="pill">民國115年全年開放</span>
+      </div>
+      <div class="fourtime-controls">
+        <label class="field"><span>西元年／民國年</span><select id="ftYear" aria-label="固定年份2026民國115年"></select></label>
+        <label class="field"><span>月份</span><select id="ftMonth"></select></label>
+        <div class="field action-field"><span>輸出</span><button id="ftPrint" type="button" class="secondary">列印／另存 PDF</button></div>
+      </div>
+      <p class="fine-print fourtime-control-note">本頁已恢復完整民國115年資料，月份可查 1～12 月。四大吉時 CSV 匯出功能維持關閉。</p>
+    </section>
+
+    <section class="summary-grid fourtime-summary" aria-label="四大吉時查詢摘要">
+      <article class="panel mini-card"><p>資料年度</p><strong>2026</strong><small>民國115年</small></article>
+      <article class="panel mini-card"><p>選定月份</p><strong id="ftMonthCard">—</strong><small>1月至12月</small></article>
+      <article class="panel mini-card"><p>本月日數</p><strong id="ftDaysCard">—</strong><small>依公曆月份</small></article>
+      <article class="panel mini-card"><p>資料狀態</p><strong>全年</strong><small>365日已載入</small></article>
+    </section>
+
+    <section class="panel" aria-labelledby="ft-title">
+      <div class="section-title inline-title fourtime-title-row">
+        <div><p>MONTHLY TABLE</p><h2 id="ftTitle">—</h2></div>
+        <span class="fine-print">節氣與月將摘要依月份聯動</span>
+      </div>
+      <div id="ftQuick" class="fourtime-quick-grid"></div>
+      <div class="table-wrap fourtime-table-wrap">
+        <table class="fourtime-table">
+          <thead>
+            <tr>
+              <th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th>
+            </tr>
+          </thead>
+          <tbody id="ftRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel fourtime-parameter-panel" aria-labelledby="ft-param-title">
+      <div class="panel-heading"><span class="seal">參</span><div class="section-title"><p>計算參數</p><h2 id="ft-param-title">四大吉時表說明</h2></div></div>
+      <div class="fourtime-rule-grid">
+        <article class="fourtime-rule-card"><h3>資料範圍</h3><p>民國115年（2026年）1月1日至12月31日，共365日，全部月份開放查詢。</p></article>
+        <article class="fourtime-rule-card"><h3>月將顯示</h3><p>以「申將：傳送」「未將：小吉」等完整名稱顯示；上方摘要逐行排列。</p></article>
+        <article class="fourtime-rule-card"><h3>四大吉時</h3><p>依月將對應：亥壬、戌乾、酉辛、申庚、未坤、午丁、巳丙、辰巽、卯乙、寅甲、丑艮、子癸。</p></article>
+        <article class="fourtime-rule-card"><h3>交節備註</h3><p>只有交節日顯示「本日交節：交節後採用『節氣』與『月將』」；其餘日期保持空白。</p></article>
+        <article class="fourtime-rule-card"><h3>斗柄所指</h3><p>依二十四節氣變更，表內按每日所屬節氣顯示對應山位。</p></article>
+        <article class="fourtime-rule-card"><h3>匯出設定</h3><p>依前版設定，CSV 匯出功能關閉；保留列印／另存 PDF。</p></article>
+      </div>
+    </section>
+
+    <section class="panel copyright-panel compact fourtime-copyright">
+      <div class="panel-heading"><span class="seal">權</span><div class="section-title"><p>版權宣告</p><h2>使用與引用</h2></div></div>
+      <div class="copyright-content">
+        <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+        <p>本查詢工具僅供術數教學、研究與個人查詢參考使用。未經授權，不得重製、轉載、改作、販售或移作其他商業用途。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>© 2026 丁一峰老師 版權所有。</strong></p>
+    <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
+    <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
+  </footer>
+  <script src="assets/fourtime.js"></script>
+</body>
+</html>
