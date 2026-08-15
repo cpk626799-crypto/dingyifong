@@ -6,7 +6,66 @@
   <title>天書三式•丁一峰老師術數查詢系統｜流年祿馬貴人</title>
   <meta name="description" content="流年祿馬貴人：選擇年份與月建，自動推算真歲祿、真歲馬、歲陽貴、歲陰貴之落宮、方位與二十四山，並以九宮格色標顯示。" />
   <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="stylesheet" href="assets/nav-two-row-v20260815.css?v=20260815-2row-2" />
+  <style id="ts-nav-two-row-v20260815-final">
+    /* 主導覽：桌機固定 7 欄 × 2 列，整體置中；直接內嵌避免外部 CSS 快取 */
+    .system-header {
+      width: min(1280px, calc(100vw - 40px)) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+    }
+    .system-header .top-nav {
+      display: grid !important;
+      grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+      grid-auto-flow: row !important;
+      width: 100% !important;
+      max-width: 1280px !important;
+      margin: 20px auto 0 !important;
+      padding: 8px !important;
+      gap: 8px !important;
+      align-items: stretch !important;
+      justify-items: stretch !important;
+      border-radius: 24px !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
+    }
+    .system-header .top-nav > a {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      min-height: 54px !important;
+      margin: 0 !important;
+      padding: 8px 7px !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      white-space: normal !important;
+      word-break: keep-all !important;
+      overflow-wrap: normal !important;
+      line-height: 1.35 !important;
+      border-radius: 18px !important;
+      flex: none !important;
+    }
+    @media (max-width: 1100px) {
+      .system-header { width: min(100% - 32px, 980px) !important; }
+      .system-header .top-nav {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        max-width: 100% !important;
+      }
+    }
+    @media (max-width: 700px) {
+      .system-header { width: min(100% - 20px, 680px) !important; }
+      .system-header .top-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 7px !important;
+      }
+      .system-header .top-nav > a {
+        min-height: 48px !important;
+        padding: 8px 5px !important;
+      }
+    }
+  </style>
   <script type="module" src="assets/member-auth.js"></script>
 </head>
 <body class="dark-system liunian-page liunian-horizontal-page">
