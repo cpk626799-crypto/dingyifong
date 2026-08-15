@@ -70,7 +70,7 @@
   </style>
 
 
-  <style id="ft-sticky-table-tools-v20260815b">
+  <style id="ft-sticky-table-tools-v20260815c">
     /* 四大吉時：整個紅框區域凍結。年月操作列＋欄位標題一起固定在視窗上方。 */
     .fourtime-table-panel { overflow: visible !important; min-width: 0; }
     .ft-freeze-zone {
@@ -120,15 +120,21 @@
       background: #161b30;
       box-shadow: 0 7px 14px rgba(0,0,0,.22);
     }
-    .ft-frozen-head-table {
-      width: max-content !important;
-      min-width: 1960px !important;
-      table-layout: fixed;
+    /* 表頭與資料表共用同一組固定欄寬，避免凍結表頭與 tbody 自動排版各算各的而錯位。 */
+    .ft-frozen-head-table,
+    .fourtime-table {
+      width: 2007px !important;
+      min-width: 2007px !important;
+      max-width: 2007px !important;
+      table-layout: fixed !important;
       border-collapse: collapse;
+    }
+    .ft-frozen-head-table {
       margin: 0;
       font-size: 13px;
     }
     .ft-frozen-head-table th {
+      box-sizing: border-box;
       padding: 10px 11px;
       text-align: center;
       vertical-align: middle;
@@ -157,6 +163,28 @@
       scrollbar-gutter: stable;
       border-radius: 0 0 18px 18px;
     }
+
+    /* 雙保險：即使瀏覽器忽略 colgroup，表頭與資料仍以同一欄寬鎖定。 */
+    .ft-frozen-head-table th:nth-child(1), .fourtime-table td:nth-child(1) { width:92px; min-width:92px; max-width:92px; }
+    .ft-frozen-head-table th:nth-child(2), .fourtime-table td:nth-child(2) { width:58px; min-width:58px; max-width:58px; }
+    .ft-frozen-head-table th:nth-child(3), .fourtime-table td:nth-child(3) { width:82px; min-width:82px; max-width:82px; }
+    .ft-frozen-head-table th:nth-child(4), .fourtime-table td:nth-child(4) { width:115px; min-width:115px; max-width:115px; }
+    .ft-frozen-head-table th:nth-child(5), .fourtime-table td:nth-child(5) { width:105px; min-width:105px; max-width:105px; }
+    .ft-frozen-head-table th:nth-child(6), .fourtime-table td:nth-child(6) { width:95px; min-width:95px; max-width:95px; }
+    .ft-frozen-head-table th:nth-child(7), .fourtime-table td:nth-child(7) { width:100px; min-width:100px; max-width:100px; }
+    .ft-frozen-head-table th:nth-child(8), .fourtime-table td:nth-child(8) { width:60px; min-width:60px; max-width:60px; }
+    .ft-frozen-head-table th:nth-child(9), .fourtime-table td:nth-child(9) { width:84px; min-width:84px; max-width:84px; }
+    .ft-frozen-head-table th:nth-child(10), .fourtime-table td:nth-child(10) { width:86px; min-width:86px; max-width:86px; }
+    .ft-frozen-head-table th:nth-child(11), .fourtime-table td:nth-child(11) { width:100px; min-width:100px; max-width:100px; }
+    .ft-frozen-head-table th:nth-child(12), .fourtime-table td:nth-child(12) { width:90px; min-width:90px; max-width:90px; }
+    .ft-frozen-head-table th:nth-child(13), .fourtime-table td:nth-child(13) { width:90px; min-width:90px; max-width:90px; }
+    .ft-frozen-head-table th:nth-child(14), .fourtime-table td:nth-child(14) { width:110px; min-width:110px; max-width:110px; }
+    .ft-frozen-head-table th:nth-child(15), .fourtime-table td:nth-child(15) { width:70px; min-width:70px; max-width:70px; }
+    .ft-frozen-head-table th:nth-child(16), .fourtime-table td:nth-child(16) { width:70px; min-width:70px; max-width:70px; }
+    .ft-frozen-head-table th:nth-child(17), .fourtime-table td:nth-child(17) { width:90px; min-width:90px; max-width:90px; }
+    .ft-frozen-head-table th:nth-child(18), .fourtime-table td:nth-child(18) { width:110px; min-width:110px; max-width:110px; }
+    .ft-frozen-head-table th:nth-child(19), .fourtime-table td:nth-child(19) { width:100px; min-width:100px; max-width:100px; }
+    .ft-frozen-head-table th:nth-child(20), .fourtime-table td:nth-child(20) { width:300px; min-width:300px; max-width:300px; }
     .fourtime-table tbody td:first-child {
       position: sticky !important;
       left: 0 !important;
@@ -276,6 +304,7 @@
       </div>
       <div class="table-wrap fourtime-table-wrap" id="ftTableWrap">
         <table class="fourtime-table" id="ftMainTable">
+          <colgroup id="ftMainCols"></colgroup>
           <thead>
             <tr>
               <th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th>
@@ -368,18 +397,33 @@ function syncFourTimeToolbar(m) {
 }
 
 function syncFrozenHeaderGeometry() {
-  const mainTable = document.getElementById("ftMainTable");
+  /*
+   * 凍結表頭與資料列必須使用完全相同的欄寬。
+   * 不再從第一筆 tbody 量測：交節時間、備註等欄位內容長短不同，
+   * 會讓瀏覽器的 auto table layout 與獨立凍結表頭產生位移。
+   */
+  const widths = [
+    92, 58, 82, 115, 105, 95, 100, 60, 84, 86,
+    100, 90, 90, 110, 70, 70, 90, 110, 100, 300
+  ];
+  const total = widths.reduce((a, b) => a + b, 0);
+  const frozenCols = document.getElementById("ftFrozenCols");
+  const mainCols = document.getElementById("ftMainCols");
   const frozenTable = document.getElementById("ftFrozenHeadTable");
-  const colgroup = document.getElementById("ftFrozenCols");
-  const firstRow = mainTable?.querySelector("tbody tr");
-  if (!mainTable || !frozenTable || !colgroup || !firstRow) return;
-  const cells = Array.from(firstRow.cells);
-  if (!cells.length) return;
-  const widths = cells.map(cell => Math.max(1, cell.getBoundingClientRect().width));
-  colgroup.innerHTML = widths.map(w => `<col style="width:${w}px;min-width:${w}px;max-width:${w}px">`).join("");
-  const total = Math.max(mainTable.scrollWidth, widths.reduce((a,b) => a + b, 0));
-  frozenTable.style.width = `${total}px`;
-  frozenTable.style.minWidth = `${total}px`;
+  const mainTable = document.getElementById("ftMainTable");
+  if (!frozenCols || !mainCols || !frozenTable || !mainTable) return;
+
+  const html = widths.map(w => `<col style="width:${w}px;min-width:${w}px;max-width:${w}px">`).join("");
+  frozenCols.innerHTML = html;
+  mainCols.innerHTML = html;
+
+  [frozenTable, mainTable].forEach(table => {
+    table.style.width = `${total}px`;
+    table.style.minWidth = `${total}px`;
+    table.style.maxWidth = `${total}px`;
+    table.style.tableLayout = "fixed";
+  });
+
   const wrap = document.getElementById("ftTableWrap");
   const frozenViewport = document.getElementById("ftFrozenHeadViewport");
   if (wrap && frozenViewport) frozenViewport.scrollLeft = wrap.scrollLeft;
