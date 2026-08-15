@@ -70,25 +70,36 @@
   </style>
 
 
-  <style id="ft-sticky-table-tools-v20260815">
-    /* 四大吉時操作優化：固定年月、固定表頭、固定日期欄、日期快跳、回表首 */
-    .fourtime-table-panel { overflow: clip !important; min-width: 0; }
-    .ft-sticky-toolbar {
+  <style id="ft-sticky-table-tools-v20260815b">
+    /* 四大吉時：整個紅框區域凍結。年月操作列＋欄位標題一起固定在視窗上方。 */
+    .fourtime-table-panel { overflow: visible !important; min-width: 0; }
+    .ft-freeze-zone {
       position: sticky;
-      top: 8px;
-      z-index: 80;
+      top: 0;
+      z-index: 120;
+      margin: 0 0 8px;
+      border: 1px solid rgba(217,184,91,.30);
+      border-radius: 16px;
+      background: rgba(10,15,31,.985);
+      box-shadow: 0 14px 36px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .ft-sticky-toolbar {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: auto 260px 170px 220px auto;
       justify-content: center;
       gap: 10px;
       align-items: end;
-      margin: 0 0 14px;
+      margin: 0;
       padding: 10px 12px;
-      border: 1px solid rgba(217,184,91,.34);
-      border-radius: 16px;
-      background: rgba(10,15,31,.96);
-      box-shadow: 0 14px 34px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);
-      backdrop-filter: blur(16px);
+      border: 0;
+      border-bottom: 1px solid rgba(217,184,91,.18);
+      border-radius: 0;
+      background: rgba(10,15,31,.98);
+      box-shadow: none;
     }
     .ft-sticky-toolbar .ft-toolbar-badge {
       align-self: center;
@@ -99,34 +110,52 @@
     }
     .ft-sticky-toolbar .field { gap: 5px; }
     .ft-sticky-toolbar .field > span { font-size: 12px; }
-    .ft-sticky-toolbar .field select {
-      padding: 9px 11px;
-      min-height: 40px;
+    .ft-sticky-toolbar .field select { padding: 9px 11px; min-height: 40px; }
+    .ft-toolbar-action { min-height: 40px; padding: 9px 14px; border-radius: 12px; white-space: nowrap; }
+
+    /* 凍結欄位標題：使用獨立同步表頭，不受下方橫向捲動容器影響。 */
+    .ft-frozen-head-viewport {
+      width: 100%;
+      overflow: hidden;
+      background: #161b30;
+      box-shadow: 0 7px 14px rgba(0,0,0,.22);
     }
-    .ft-toolbar-action {
-      min-height: 40px;
-      padding: 9px 14px;
-      border-radius: 12px;
+    .ft-frozen-head-table {
+      width: max-content !important;
+      min-width: 1960px !important;
+      table-layout: fixed;
+      border-collapse: collapse;
+      margin: 0;
+      font-size: 13px;
+    }
+    .ft-frozen-head-table th {
+      padding: 10px 11px;
+      text-align: center;
+      vertical-align: middle;
       white-space: nowrap;
+      color: var(--accent-2);
+      background: #161b30 !important;
+      border-bottom: 1px solid rgba(217,184,91,.22);
+      box-sizing: border-box;
     }
+    .ft-frozen-head-table th:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 4;
+      background: #1d243d !important;
+      box-shadow: 1px 0 0 rgba(217,184,91,.24), 8px 0 14px rgba(0,0,0,.12);
+    }
+
+    /* 原始表頭保留於 DOM 作語意與列寬基準，但螢幕上不重複顯示。 */
+    .fourtime-table > thead { display: none; }
     .fourtime-table-wrap {
       position: relative;
+      max-height: none !important;
+      overflow: auto !important;
+      margin-top: 0 !important;
       scroll-behavior: smooth;
       scrollbar-gutter: stable;
-    }
-    .fourtime-table thead th {
-      position: sticky !important;
-      top: 0 !important;
-      z-index: 20 !important;
-      background: #161b30 !important;
-      box-shadow: 0 1px 0 rgba(217,184,91,.22), 0 6px 12px rgba(0,0,0,.20);
-    }
-    .fourtime-table thead th:first-child {
-      left: 0 !important;
-      z-index: 32 !important;
-      min-width: 92px;
-      width: 92px;
-      background: #1d243d !important;
+      border-radius: 0 0 18px 18px;
     }
     .fourtime-table tbody td:first-child {
       position: sticky !important;
@@ -149,7 +178,7 @@
       position: fixed;
       right: 22px;
       bottom: 24px;
-      z-index: 95;
+      z-index: 135;
       border: 1px solid rgba(217,184,91,.5);
       border-radius: 999px;
       padding: 11px 15px;
@@ -161,7 +190,7 @@
     }
     .ft-back-top:hover { transform: translateY(-1px); border-color: rgba(255,224,122,.8); }
     @media (max-width: 980px) {
-      .ft-sticky-toolbar { grid-template-columns: repeat(2,minmax(0,1fr)); top: 6px; }
+      .ft-sticky-toolbar { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .ft-sticky-toolbar .ft-toolbar-badge { grid-column: 1 / -1; }
       .ft-toolbar-action { width: 100%; }
     }
@@ -171,7 +200,9 @@
       .ft-back-top { right: 12px; bottom: 14px; padding: 9px 12px; font-size: 13px; }
     }
     @media print {
-      .ft-sticky-toolbar, .ft-back-top { display: none !important; }
+      .ft-freeze-zone, .ft-back-top { display: none !important; }
+      .fourtime-table > thead { display: table-header-group !important; }
+      .fourtime-table-wrap { overflow: visible !important; border: 0 !important; }
       .fourtime-table tbody td:first-child { position: static !important; box-shadow: none !important; background: transparent !important; }
     }
   </style>
@@ -228,15 +259,23 @@
         <span class="fine-print">節氣與月將摘要依月份聯動</span>
       </div>
       <div id="ftQuick" class="fourtime-quick-grid"></div>
-      <div class="ft-sticky-toolbar" id="ftStickyToolbar" aria-label="四大吉時固定查詢工具列">
-        <div class="ft-toolbar-badge">四大吉時・快速查詢</div>
-        <label class="field"><span>年份</span><select id="ftStickyYear" aria-label="固定年份2026民國115年" disabled><option value="2026">2026（民國115年）</option></select></label>
-        <label class="field"><span>月份</span><select id="ftStickyMonth" aria-label="快速切換月份"></select></label>
-        <label class="field"><span>日期快速跳轉</span><select id="ftDayJump" aria-label="快速跳至本月日期"><option value="">選擇日期</option></select></label>
-        <button id="ftToolbarTop" type="button" class="secondary ft-toolbar-action">↑ 回到表首</button>
+      <div class="ft-freeze-zone" id="ftFreezeZone" aria-label="四大吉時凍結操作區">
+        <div class="ft-sticky-toolbar" id="ftStickyToolbar" aria-label="四大吉時固定查詢工具列">
+          <div class="ft-toolbar-badge">四大吉時・快速查詢</div>
+          <label class="field"><span>年份</span><select id="ftStickyYear" aria-label="固定年份2026民國115年" disabled><option value="2026">2026（民國115年）</option></select></label>
+          <label class="field"><span>月份</span><select id="ftStickyMonth" aria-label="快速切換月份"></select></label>
+          <label class="field"><span>日期快速跳轉</span><select id="ftDayJump" aria-label="快速跳至本月日期"><option value="">選擇日期</option></select></label>
+          <button id="ftToolbarTop" type="button" class="secondary ft-toolbar-action">↑ 回到表首</button>
+        </div>
+        <div class="ft-frozen-head-viewport" id="ftFrozenHeadViewport" aria-label="固定欄位標題">
+          <table class="ft-frozen-head-table" id="ftFrozenHeadTable" aria-hidden="true">
+            <colgroup id="ftFrozenCols"></colgroup>
+            <thead><tr><th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th></tr></thead>
+          </table>
+        </div>
       </div>
       <div class="table-wrap fourtime-table-wrap" id="ftTableWrap">
-        <table class="fourtime-table">
+        <table class="fourtime-table" id="ftMainTable">
           <thead>
             <tr>
               <th>國曆</th><th>遁局</th><th>節氣</th><th>月將</th><th>交節時間</th><th>農曆</th><th>五行干支</th><th>星期</th><th>寶義制伐</th><th>值日星宿</th><th>建除12神</th><th>貴登天門</th><th>罡塞鬼戶</th><th>天罡指巳<br>魁度天門</th><th>日德</th><th>支德</th><th>貴塞鬼戶</th><th>四大吉時</th><th>斗柄所指</th><th>備註</th>
@@ -328,15 +367,38 @@ function syncFourTimeToolbar(m) {
   }
 }
 
+function syncFrozenHeaderGeometry() {
+  const mainTable = document.getElementById("ftMainTable");
+  const frozenTable = document.getElementById("ftFrozenHeadTable");
+  const colgroup = document.getElementById("ftFrozenCols");
+  const firstRow = mainTable?.querySelector("tbody tr");
+  if (!mainTable || !frozenTable || !colgroup || !firstRow) return;
+  const cells = Array.from(firstRow.cells);
+  if (!cells.length) return;
+  const widths = cells.map(cell => Math.max(1, cell.getBoundingClientRect().width));
+  colgroup.innerHTML = widths.map(w => `<col style="width:${w}px;min-width:${w}px;max-width:${w}px">`).join("");
+  const total = Math.max(mainTable.scrollWidth, widths.reduce((a,b) => a + b, 0));
+  frozenTable.style.width = `${total}px`;
+  frozenTable.style.minWidth = `${total}px`;
+  const wrap = document.getElementById("ftTableWrap");
+  const frozenViewport = document.getElementById("ftFrozenHeadViewport");
+  if (wrap && frozenViewport) frozenViewport.scrollLeft = wrap.scrollLeft;
+}
+
+function syncFrozenHeaderScroll() {
+  const wrap = document.getElementById("ftTableWrap");
+  const frozenViewport = document.getElementById("ftFrozenHeadViewport");
+  if (wrap && frozenViewport) frozenViewport.scrollLeft = wrap.scrollLeft;
+}
+
 function scrollFourTimeToDay(day) {
   if (!day) return;
-  const wrap = document.getElementById("ftTableWrap");
   const row = document.getElementById(`ft-day-${day}`);
-  if (!wrap || !row) return;
-  const head = wrap.querySelector("thead");
-  const headH = head ? head.getBoundingClientRect().height : 44;
-  const targetTop = Math.max(0, row.offsetTop - headH - 8);
-  wrap.scrollTo({ top: targetTop, behavior: "smooth" });
+  const freeze = document.getElementById("ftFreezeZone");
+  if (!row) return;
+  const freezeH = freeze ? freeze.getBoundingClientRect().height : 120;
+  const targetY = row.getBoundingClientRect().top + window.scrollY - freezeH - 10;
+  window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
   row.classList.add("ft-jump-target");
   window.clearTimeout(scrollFourTimeToDay._timer);
   scrollFourTimeToDay._timer = window.setTimeout(() => row.classList.remove("ft-jump-target"), 1800);
@@ -345,9 +407,9 @@ function scrollFourTimeToDay(day) {
 function scrollFourTimeTableTop() {
   const wrap = document.getElementById("ftTableWrap");
   const panel = document.querySelector(".fourtime-table-panel");
-  if (wrap) wrap.scrollTo({ top: 0, left: wrap.scrollLeft, behavior: "smooth" });
+  if (wrap) wrap.scrollTo({ left: wrap.scrollLeft, behavior: "smooth" });
   if (panel) {
-    const y = panel.getBoundingClientRect().top + window.scrollY - 78;
+    const y = panel.getBoundingClientRect().top + window.scrollY - 8;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   }
   const jump = document.getElementById("ftDayJump");
@@ -403,6 +465,10 @@ function renderFourTime() {
     </tr>`).join("");
 
   syncFourTimeToolbar(m);
+  window.requestAnimationFrame(() => {
+    syncFrozenHeaderGeometry();
+    window.requestAnimationFrame(syncFrozenHeaderGeometry);
+  });
 }
 
 function initFourTime() {
@@ -439,6 +505,10 @@ function initFourTime() {
   if (toolbarTop) toolbarTop.addEventListener("click", scrollFourTimeTableTop);
   const floatingTop = document.getElementById("ftBackToTableTop");
   if (floatingTop) floatingTop.addEventListener("click", scrollFourTimeTableTop);
+
+  const tableWrap = document.getElementById("ftTableWrap");
+  if (tableWrap) tableWrap.addEventListener("scroll", syncFrozenHeaderScroll, { passive: true });
+  window.addEventListener("resize", () => window.requestAnimationFrame(syncFrozenHeaderGeometry), { passive: true });
 
   document.getElementById("ftPrint").addEventListener("click", () => window.print());
   renderFourTime();
