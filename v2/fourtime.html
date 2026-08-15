@@ -68,6 +68,114 @@
       }
     }
   </style>
+
+
+  <style id="ft-sticky-table-tools-v20260815">
+    /* 四大吉時操作優化：固定年月、固定表頭、固定日期欄、日期快跳、回表首 */
+    .fourtime-table-panel { overflow: clip !important; min-width: 0; }
+    .ft-sticky-toolbar {
+      position: sticky;
+      top: 8px;
+      z-index: 80;
+      display: grid;
+      grid-template-columns: auto 260px 170px 220px auto;
+      justify-content: center;
+      gap: 10px;
+      align-items: end;
+      margin: 0 0 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(217,184,91,.34);
+      border-radius: 16px;
+      background: rgba(10,15,31,.96);
+      box-shadow: 0 14px 34px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);
+      backdrop-filter: blur(16px);
+    }
+    .ft-sticky-toolbar .ft-toolbar-badge {
+      align-self: center;
+      color: var(--accent-2);
+      font-weight: 900;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .ft-sticky-toolbar .field { gap: 5px; }
+    .ft-sticky-toolbar .field > span { font-size: 12px; }
+    .ft-sticky-toolbar .field select {
+      padding: 9px 11px;
+      min-height: 40px;
+    }
+    .ft-toolbar-action {
+      min-height: 40px;
+      padding: 9px 14px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .fourtime-table-wrap {
+      position: relative;
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+    }
+    .fourtime-table thead th {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 20 !important;
+      background: #161b30 !important;
+      box-shadow: 0 1px 0 rgba(217,184,91,.22), 0 6px 12px rgba(0,0,0,.20);
+    }
+    .fourtime-table thead th:first-child {
+      left: 0 !important;
+      z-index: 32 !important;
+      min-width: 92px;
+      width: 92px;
+      background: #1d243d !important;
+    }
+    .fourtime-table tbody td:first-child {
+      position: sticky !important;
+      left: 0 !important;
+      z-index: 12 !important;
+      min-width: 92px;
+      width: 92px;
+      background: #11182b !important;
+      box-shadow: 1px 0 0 rgba(217,184,91,.24), 8px 0 14px rgba(0,0,0,.12);
+    }
+    .fourtime-table tbody tr:nth-child(even) td:first-child { background: #141c31 !important; }
+    .fourtime-table tbody tr:hover td:first-child { background: #222b46 !important; }
+    .fourtime-table tbody tr.ft-jump-target td {
+      outline: 2px solid rgba(255,214,103,.82);
+      outline-offset: -2px;
+      background: rgba(217,184,91,.13);
+    }
+    .fourtime-table tbody tr.ft-jump-target td:first-child { background: #59491f !important; color: #fff4bd !important; }
+    .ft-back-top {
+      position: fixed;
+      right: 22px;
+      bottom: 24px;
+      z-index: 95;
+      border: 1px solid rgba(217,184,91,.5);
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: #fff2b8;
+      background: rgba(18,24,43,.95);
+      box-shadow: 0 12px 30px rgba(0,0,0,.34);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .ft-back-top:hover { transform: translateY(-1px); border-color: rgba(255,224,122,.8); }
+    @media (max-width: 980px) {
+      .ft-sticky-toolbar { grid-template-columns: repeat(2,minmax(0,1fr)); top: 6px; }
+      .ft-sticky-toolbar .ft-toolbar-badge { grid-column: 1 / -1; }
+      .ft-toolbar-action { width: 100%; }
+    }
+    @media (max-width: 650px) {
+      .ft-sticky-toolbar { grid-template-columns: 1fr 1fr; padding: 9px; gap: 8px; }
+      .ft-sticky-toolbar .ft-toolbar-badge { font-size: 12px; }
+      .ft-back-top { right: 12px; bottom: 14px; padding: 9px 12px; font-size: 13px; }
+    }
+    @media print {
+      .ft-sticky-toolbar, .ft-back-top { display: none !important; }
+      .fourtime-table tbody td:first-child { position: static !important; box-shadow: none !important; background: transparent !important; }
+    }
+  </style>
+
 </head>
 <body class="dark-system fourtime-page">
   <header class="system-header">
@@ -114,13 +222,20 @@
       <article class="panel mini-card"><p>資料狀態</p><strong>全年</strong><small>365日已載入</small></article>
     </section>
 
-    <section class="panel" aria-labelledby="ft-title">
+    <section class="panel fourtime-table-panel" aria-labelledby="ft-title">
       <div class="section-title inline-title fourtime-title-row">
         <div><p>MONTHLY TABLE</p><h2 id="ftTitle">—</h2></div>
         <span class="fine-print">節氣與月將摘要依月份聯動</span>
       </div>
       <div id="ftQuick" class="fourtime-quick-grid"></div>
-      <div class="table-wrap fourtime-table-wrap">
+      <div class="ft-sticky-toolbar" id="ftStickyToolbar" aria-label="四大吉時固定查詢工具列">
+        <div class="ft-toolbar-badge">四大吉時・快速查詢</div>
+        <label class="field"><span>年份</span><select id="ftStickyYear" aria-label="固定年份2026民國115年" disabled><option value="2026">2026（民國115年）</option></select></label>
+        <label class="field"><span>月份</span><select id="ftStickyMonth" aria-label="快速切換月份"></select></label>
+        <label class="field"><span>日期快速跳轉</span><select id="ftDayJump" aria-label="快速跳至本月日期"><option value="">選擇日期</option></select></label>
+        <button id="ftToolbarTop" type="button" class="secondary ft-toolbar-action">↑ 回到表首</button>
+      </div>
+      <div class="table-wrap fourtime-table-wrap" id="ftTableWrap">
         <table class="fourtime-table">
           <thead>
             <tr>
@@ -158,6 +273,9 @@
     <p>天書三式•丁一峰老師術數查詢系統｜供術數教學、研究與個人查詢參考使用。</p>
     <p class="footer-note">未經授權，不得擅自重製、轉載、改作、販售，或移作其他商業用途。</p>
   </footer>
+
+  <button id="ftBackToTableTop" class="ft-back-top" type="button" aria-label="回到四大吉時表首">↑ 回到表首</button>
+
   <!-- v1.9 四大吉時核心直接內嵌：排除 assets 路徑、404、MIME、快取等載入問題 -->
   <script>
 "use strict";
@@ -197,6 +315,45 @@ function getJieqiSummaryRanges(y, m, rows) {
   return ranges;
 }
 
+
+function syncFourTimeToolbar(m) {
+  const stickyMonth = document.getElementById("ftStickyMonth");
+  if (stickyMonth && String(stickyMonth.value) !== String(m)) stickyMonth.value = String(m);
+
+  const dayJump = document.getElementById("ftDayJump");
+  if (dayJump) {
+    const previous = dayJump.value;
+    dayJump.innerHTML = `<option value="">選擇日期</option>` + ftCurrent.map(r => `<option value="${r.d}">${m}月${r.d}日</option>`).join("");
+    if (previous && ftCurrent.some(r => String(r.d) === String(previous))) dayJump.value = previous;
+  }
+}
+
+function scrollFourTimeToDay(day) {
+  if (!day) return;
+  const wrap = document.getElementById("ftTableWrap");
+  const row = document.getElementById(`ft-day-${day}`);
+  if (!wrap || !row) return;
+  const head = wrap.querySelector("thead");
+  const headH = head ? head.getBoundingClientRect().height : 44;
+  const targetTop = Math.max(0, row.offsetTop - headH - 8);
+  wrap.scrollTo({ top: targetTop, behavior: "smooth" });
+  row.classList.add("ft-jump-target");
+  window.clearTimeout(scrollFourTimeToDay._timer);
+  scrollFourTimeToDay._timer = window.setTimeout(() => row.classList.remove("ft-jump-target"), 1800);
+}
+
+function scrollFourTimeTableTop() {
+  const wrap = document.getElementById("ftTableWrap");
+  const panel = document.querySelector(".fourtime-table-panel");
+  if (wrap) wrap.scrollTo({ top: 0, left: wrap.scrollLeft, behavior: "smooth" });
+  if (panel) {
+    const y = panel.getBoundingClientRect().top + window.scrollY - 78;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  }
+  const jump = document.getElementById("ftDayJump");
+  if (jump) jump.value = "";
+}
+
 function renderFourTime() {
   const y = 2026;
   const m = Number(document.getElementById("ftMonth").value);
@@ -222,7 +379,7 @@ function renderFourTime() {
     <article class="fourtime-quick-card"><div class="fourtime-quick-value">${ftCurrent.at(-1)?.doubing || "—"}</div><div class="fourtime-quick-label">月底斗柄</div></article>`;
 
   document.getElementById("ftRows").innerHTML = ftCurrent.map(r => `
-    <tr>
+    <tr id="ft-day-${r.d}" data-day="${r.d}">
       <td class="fourtime-date">${r.m}月${r.d}日</td>
       <td>${r.dunju ?? ""}</td>
       <td>${r.jieqi || ""}</td>
@@ -244,6 +401,8 @@ function renderFourTime() {
       <td>${r.doubing || ""}</td>
       <td class="fourtime-note">${r.jiejieTime ? `本日交節：交節後採用「${r.jieqi}」與「${r.yuejiang}將」` : ""}</td>
     </tr>`).join("");
+
+  syncFourTimeToolbar(m);
 }
 
 function initFourTime() {
@@ -251,10 +410,36 @@ function initFourTime() {
   year.add(new Option("2026（民國115年）", "2026"));
   year.value = "2026";
   year.disabled = true;
+
   const month = document.getElementById("ftMonth");
-  for (let m = 1; m <= 12; m++) month.add(new Option(`${m}月`, String(m)));
+  const stickyMonth = document.getElementById("ftStickyMonth");
+  for (let m = 1; m <= 12; m++) {
+    month.add(new Option(`${m}月`, String(m)));
+    if (stickyMonth) stickyMonth.add(new Option(`${m}月`, String(m)));
+  }
   month.value = "8";
-  month.addEventListener("change", renderFourTime);
+  if (stickyMonth) stickyMonth.value = "8";
+
+  month.addEventListener("change", () => {
+    if (stickyMonth) stickyMonth.value = month.value;
+    renderFourTime();
+    const wrap = document.getElementById("ftTableWrap");
+    if (wrap) wrap.scrollTop = 0;
+  });
+  if (stickyMonth) stickyMonth.addEventListener("change", () => {
+    month.value = stickyMonth.value;
+    renderFourTime();
+    const wrap = document.getElementById("ftTableWrap");
+    if (wrap) wrap.scrollTop = 0;
+  });
+
+  const dayJump = document.getElementById("ftDayJump");
+  if (dayJump) dayJump.addEventListener("change", () => scrollFourTimeToDay(dayJump.value));
+  const toolbarTop = document.getElementById("ftToolbarTop");
+  if (toolbarTop) toolbarTop.addEventListener("click", scrollFourTimeTableTop);
+  const floatingTop = document.getElementById("ftBackToTableTop");
+  if (floatingTop) floatingTop.addEventListener("click", scrollFourTimeTableTop);
+
   document.getElementById("ftPrint").addEventListener("click", () => window.print());
   renderFourTime();
 }
