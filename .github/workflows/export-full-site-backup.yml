@@ -1,0 +1,44 @@
+name: Export full site backup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/export-full-site-backup.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare backup folder
+        run: |
+          mkdir -p backup
+          cp index.html backup/index.html
+          cp wealth.html backup/wealth.html
+          if [ -f README.md ]; then cp README.md backup/README.md; fi
+          cat > backup/README_完整網站留存.txt <<'EOF'
+          天書三式術數查詢系統｜完整網站留存
+
+          本備份包含目前主站四大功能：
+          1. 流年紫白查詢
+          2. 生肖擇日宜忌
+          3. 四大吉時月表
+          4. 財位查詢
+
+          檔案：
+          - index.html：主站與前三項功能，並含財位查詢入口
+          - wealth.html：財位查詢完整頁
+          - README.md：原儲存庫說明（若存在）
+
+          部署方式：將本資料夾內容上傳至 GitHub Pages 根目錄即可。
+          EOF
+      - name: Upload full site backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: dingyifong-full-site-backup-2026-08-26
+          path: backup/
+          if-no-files-found: error
+          retention-days: 7
