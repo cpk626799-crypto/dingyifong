@@ -1,0 +1,38 @@
+name: Add wealth navigation
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-wealth-nav.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch homepage navigation
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old_nav = '''    <button class="tab-button" data-tab="fourTimePage">四大吉時月表</button>\n'''
+          new_nav = old_nav + '    <a class="tab-button" href="./wealth.html" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none">財位查詢</a>\n'
+          if 'href="./wealth.html"' not in s:
+              if old_nav not in s:
+                  raise SystemExit('Navigation anchor point not found')
+              s = s.replace(old_nav, new_nav, 1)
+          s = s.replace('流年紫白・月紫白飛星・生肖擇日宜忌・六壬擇日四大吉時月表', '流年紫白・月紫白飛星・生肖擇日宜忌・六壬擇日四大吉時月表・財位查詢', 1)
+          s = s.replace('天書三式術數查詢系統：流年/月紫白飛星、生肖擇日宜忌、六壬擇日四大吉時月表。', '天書三式術數查詢系統：流年/月紫白飛星、生肖擇日宜忌、六壬擇日四大吉時月表、財位查詢。', 1)
+          p.write_text(s, encoding='utf-8')
+      - name: Commit homepage update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "主站新增財位查詢入口"
+          git push
