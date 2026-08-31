@@ -1,0 +1,3160 @@
+<!DOCTYPE html>
+
+<html class="auth-pending" lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>天書三式•丁一峰老師術數查詢系統｜文昌位</title>
+<link href="assets/styles.css" rel="stylesheet"/><style>
+:root{
+  --bg:#080d18;--panel:#131d34;--panel2:#0d172a;--ink:#f4ead4;--text:#e1e5ee;
+  --muted:#9da7bd;--line:#30405f;--gold:#e8bf50;--gold2:#b98517;--softgold:#f3d98a;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{
+  margin:0;color:var(--text);
+  font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+    #080e1b;
+  background-size:34px 34px;
+}
+.wrap{max-width:1260px;margin:auto;padding:34px 22px 56px}
+.hero,.section{
+  border:1px solid var(--line);border-radius:24px;
+  background:linear-gradient(145deg,#182440,#101a30);
+  box-shadow:0 18px 44px rgba(0,0,0,.27);
+}
+.hero{padding:34px}
+.logo{
+  width:66px;height:66px;border-radius:20px;display:flex;align-items:center;justify-content:center;
+  color:#0b1424;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:30px;font-weight:900;
+  background:linear-gradient(145deg,#f5d875,#dca51e 65%,#a66e08);
+  margin-bottom:28px;
+}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.28em;color:#aeb9cf}
+h1{margin:18px 0;color:var(--ink);font-size:clamp(31px,4vw,50px);line-height:1.25;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+.subtitle{color:var(--muted);font-size:16px;line-height:1.9;max-width:980px}
+.controls{margin-top:28px;display:grid;grid-template-columns:1.05fr 1fr 1.15fr 1.35fr .85fr;gap:14px}
+.field{min-width:0;display:flex;flex-direction:column;gap:8px}
+label{font-weight:800;font-size:13px;color:#c4cbda}
+select{
+  width:100%;min-height:50px;border:1px solid #3b4e73;border-radius:11px;
+  background:#0d1729;color:#f0eee8;font-size:16px;padding:11px 42px 11px 14px;
+}
+select:focus{outline:2px solid var(--gold);outline-offset:1px}
+.hint{
+  margin-top:18px;border-left:4px solid var(--gold);background:rgba(255,255,255,.035);
+  padding:14px 17px;color:#b5becf;font-size:13px;line-height:1.8
+}
+.runtime{margin-top:10px;font-size:12px;color:#7f8ba3}
+.section{margin-top:22px;padding:24px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:16px}
+h2{margin:0;color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:25px}
+h2:before{content:"";display:inline-block;width:4px;height:24px;background:var(--gold);margin-right:10px;vertical-align:-4px}
+.section-note{font-size:13px;color:var(--muted);text-align:right}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:#1a2438;border:1px solid #303e5b;border-radius:13px;padding:16px;min-height:135px}
+.card .name{font-size:13px;color:#aeb7ca;font-weight:800}
+.card .value{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:31px;font-weight:900;color:var(--softgold);margin:7px 0}
+.card .detail{font-size:12px;color:#919caf;line-height:1.6}
+.source-line{margin-top:8px;padding-top:7px;border-top:1px solid #2a354c;font-size:10px;color:#738199;line-height:1.5}
+.boards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.board-panel{background:#0d1728;border:1px solid #30405f;border-radius:16px;padding:18px;min-width:0}
+.board-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.board-title h3{margin:0;color:var(--ink);font-size:19px}
+.board-title h3:before{content:"";display:inline-block;width:4px;height:20px;background:var(--gold);margin-right:9px;vertical-align:-3px}
+.board-base{font-size:12px;color:#9ba6bb;text-align:right;line-height:1.6}
+.board-base strong{color:var(--softgold)}
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);aspect-ratio:1/1;border:1px solid #435473;border-radius:12px;overflow:hidden;background:#091322}
+.palace{padding:10px;display:flex;flex-direction:column;min-width:0;border-right:1px solid #354563;border-bottom:1px solid #354563}
+.palace:nth-child(3n){border-right:none}.palace:nth-child(n+7){border-bottom:none}
+.palace.has-star{
+  position:relative;
+  background:
+    linear-gradient(145deg,rgba(211,168,65,.22),rgba(126,92,28,.12)),
+    #111827;
+  box-shadow:
+    inset 0 0 0 1.5px rgba(224,184,86,.72),
+    inset 0 0 24px rgba(211,168,65,.08);
+}
+.palace.has-star .palace-name{
+  color:#f2d584;
+  font-weight:700;
+}
+.palace.has-star .palace-dir{
+  color:#cbb678;
+  font-weight:600;
+}
+.palace.has-star .tag{
+  background:linear-gradient(180deg,#b98a2f,#8f681f);
+  border-color:#d6b35a;
+  color:#fff4cf;
+  font-weight:700;
+  box-shadow:0 3px 10px rgba(113,82,24,.22);
+}
+.palace.has-star .tag small{
+  color:#f5df9c;
+  font-weight:600;
+}
+.palace-head{display:flex;justify-content:space-between;gap:6px}
+.palace-name{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;font-size:20px;font-weight:900;color:#f0e7d4}
+.palace-dir{font-size:11px;color:#8793a8;text-align:right}
+.star-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:8px}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border-radius:7px;border:1px solid rgba(232,191,80,.32);background:rgba(232,191,80,.13);color:#f2da91;font-size:11px;font-weight:700}
+.tag small{color:#c7b16f}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.sum-row{display:flex;justify-content:space-between;gap:9px;background:#1a2437;border:1px solid #303c57;border-radius:10px;padding:10px 11px;font-size:13px;color:#cad1df}
+.sum-row>div{min-width:0}.sum-row b{color:#e8c76a;white-space:nowrap;font-weight:700}
+.row-source{display:block;margin-top:4px;color:#77839a;font-size:10px;line-height:1.45}
+.season-badge{
+  display:inline-block;
+  margin-left:6px;
+  padding:2px 6px;
+  border:1px solid rgba(224,184,86,.46);
+  border-radius:5px;
+  color:#e8c76a;
+  background:rgba(211,168,65,.08);
+  font-size:10px;
+  font-weight:700;
+  font-style:normal;
+}
+.method{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.method-box{border:1px solid #303a53;border-left:4px solid var(--gold);border-radius:10px;background:#1a2335;padding:16px 17px;color:#aeb7ca;font-size:13px;line-height:1.8}
+.method-box strong{color:#f3ead7}
+.solstice-wrap{display:none}.solstice-wrap.show{display:flex}
+footer{margin-top:24px;border-top:1px solid #202b40;padding:18px;text-align:center;color:#77839a;font-size:12px;line-height:1.8}
+@media(max-width:1080px){.controls{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:950px){.controls{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr 1fr}.boards{grid-template-columns:1fr}}
+@media(max-width:620px){
+  .wrap{padding:18px 12px 40px}.hero,.section{padding:18px}.logo{width:58px;height:58px;border-radius:17px;font-size:26px}
+  h1{font-size:31px}.subtitle{font-size:15px}.controls,.cards{grid-template-columns:1fr}
+  .grid9{aspect-ratio:auto;min-height:440px}.summary,.method{grid-template-columns:1fr}
+  .section-head{align-items:flex-start;flex-direction:column}.section-note{text-align:left}
+}
+
+.board-period{
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:6px;
+  min-height:38px;
+  padding:8px 12px;
+  border:1px solid rgba(232,191,80,.42);
+  border-radius:9px;
+  background:linear-gradient(145deg,rgba(232,191,80,.10),rgba(255,255,255,.025));
+  color:#f6ead3;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.45;
+  text-align:right;
+}
+.board-period .year-gz{
+  color:#f0d783;
+  font-size:16px;
+  font-weight:700;
+}
+.board-period .month-gz{
+  color:#e8c76a;
+  font-size:15px;
+  font-weight:700;
+}
+.board-period small{
+  color:#9eabc1;
+  font-size:10px;
+  font-weight:700;
+}
+@media(max-width:620px){
+  .board-title{flex-direction:column;align-items:flex-start}
+  .board-base{width:100%;text-align:left}
+  .board-period{justify-content:flex-start;text-align:left;width:100%}
+}
+
+
+/* ===== module tabs ===== */
+.module-radio{
+  position:absolute;
+  inline-size:1px;
+  block-size:1px;
+  opacity:0;
+  pointer-events:none;
+}
+.module-tabs{
+  display:flex;
+  gap:10px;
+  margin:0 0 18px;
+  padding:7px;
+  border:1px solid #2f3f5e;
+  border-radius:14px;
+  background:#0d1628;
+}
+.module-tab{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:1;
+  border:1px solid transparent;
+  border-radius:10px;
+  min-height:48px;
+  padding:10px 18px;
+  background:transparent;
+  color:#98a4ba;
+  font:inherit;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+#tabLuma:checked ~ .module-tabs label[for="tabLuma"],
+#tabWenchang:checked ~ .module-tabs label[for="tabWenchang"],
+#tabWealth:checked ~ .module-tabs label[for="tabWealth"],
+#tabPeach:checked ~ .module-tabs label[for="tabPeach"],
+#tabBajie:checked ~ .module-tabs label[for="tabBajie"]{
+  border-color:rgba(224,184,86,.48);
+  background:linear-gradient(145deg,rgba(211,168,65,.16),rgba(211,168,65,.06));
+  color:#f0d783;
+}
+.page-pane{display:none}
+#tabLuma:checked ~ #pageLuma{display:block}
+#tabWenchang:checked ~ #pageWenchang{display:block}
+#tabWealth:checked ~ #pageWealth{display:block}
+#tabPeach:checked ~ #pagePeach{display:block}
+#tabBajie:checked ~ #pageBajie{display:block}
+
+/* ===== Wen Chang tab ===== */
+.wenchang-controls{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.wenchang-results{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.wenchang-panel{
+  border:1px solid #30405f;
+  border-radius:16px;
+  background:#0d1728;
+  padding:18px;
+  min-width:0;
+}
+.wenchang-result{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:14px;
+  align-items:center;
+  padding:15px 16px;
+  margin-bottom:14px;
+  border:1px solid rgba(224,184,86,.34);
+  border-radius:12px;
+  background:linear-gradient(145deg,rgba(211,168,65,.11),rgba(255,255,255,.02));
+}
+.wenchang-result .result-label{
+  color:#9da8bc;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:5px;
+}
+.wenchang-result .result-main{
+  color:#f0d783;
+  font-size:23px;
+  font-weight:700;
+  line-height:1.35;
+}
+.wenchang-result .result-sub{
+  margin-top:4px;
+  color:#aab4c6;
+  font-size:12px;
+  line-height:1.6;
+}
+.wenchang-symbol{
+  min-width:70px;
+  text-align:center;
+  font-size:30px;
+  font-weight:700;
+  color:#f0d783;
+}
+.wenchang-grid .palace.wenchang-active{
+  background:
+    linear-gradient(145deg,rgba(211,168,65,.23),rgba(126,92,28,.11)),
+    #111827;
+  box-shadow:
+    inset 0 0 0 1.5px rgba(224,184,86,.78),
+    inset 0 0 24px rgba(211,168,65,.09);
+}
+.wenchang-grid .palace.wenchang-active .palace-name{color:#f3d98d}
+.wenchang-grid .palace.wenchang-active .palace-dir{color:#cdbb84}
+.wenchang-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-top:auto;
+  padding:5px 8px;
+  border:1px solid rgba(224,184,86,.55);
+  border-radius:7px;
+  background:linear-gradient(180deg,#b98a2f,#8f681f);
+  color:#fff3cc;
+  font-size:11px;
+  font-weight:700;
+}
+.star-mini{
+  margin-top:auto;
+  font-size:12px;
+  line-height:1.45;
+  color:#aeb7c8;
+}
+.star-mini strong{
+  display:block;
+  color:#e3d7bc;
+  font-size:14px;
+  font-weight:700;
+}
+.wenchang-active .star-mini strong,
+.wenchang-active .star-mini{
+  color:#f0d783;
+}
+.wenchang-source{
+  margin-top:14px;
+  padding:14px 16px;
+  border-left:4px solid var(--gold);
+  background:#1a2335;
+  color:#aeb7ca;
+  font-size:12px;
+  line-height:1.8;
+}
+.wenchang-source b{color:#f0d783}
+@media(max-width:760px){
+  .wenchang-controls,.wenchang-results{grid-template-columns:1fr}
+  .module-tabs{overflow-x:auto}
+  .module-tab{white-space:nowrap;flex:1}
+}
+
+
+/* ===== House / Eight Mansion Wen Chang ===== */
+.wenchang-extra-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:18px;
+}
+.wenchang-selector{
+  margin:12px 0 14px;
+}
+.house-rule{
+  margin-top:10px;
+  color:#8793a8;
+  font-size:11px;
+  line-height:1.65;
+}
+.house-highlight{
+  display:inline-flex;
+  align-items:center;
+  padding:3px 7px;
+  border:1px solid rgba(224,184,86,.45);
+  border-radius:6px;
+  color:#e8c76a;
+  background:rgba(211,168,65,.08);
+  font-size:11px;
+  font-weight:700;
+}
+@media(max-width:760px){
+  .wenchang-extra-grid{grid-template-columns:1fr}
+}
+
+
+/* ===== Wealth position ===== */
+.wealth-layout{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:18px;
+}
+.wealth-side{
+  min-width:0;
+}
+.wealth-result-box{
+  margin-top:14px;
+  border:1px solid rgba(224,184,86,.38);
+  border-radius:14px;
+  padding:16px;
+  background:linear-gradient(145deg,rgba(211,168,65,.11),rgba(255,255,255,.02));
+}
+.wealth-result-label{
+  color:#9ca8bc;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+.wealth-result-main{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.wealth-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:7px 10px;
+  border:1px solid rgba(224,184,86,.55);
+  border-radius:8px;
+  background:linear-gradient(180deg,#b98a2f,#8f681f);
+  color:#fff3cc;
+  font-size:14px;
+  font-weight:700;
+}
+.wealth-desc{
+  margin-top:11px;
+  color:#aeb7c8;
+  font-size:12px;
+  line-height:1.75;
+}
+.wealth-grid .palace.wealth-active{
+  background:
+    linear-gradient(145deg,rgba(211,168,65,.24),rgba(126,92,28,.12)),
+    #111827;
+  box-shadow:
+    inset 0 0 0 1.5px rgba(224,184,86,.8),
+    inset 0 0 25px rgba(211,168,65,.09);
+}
+.wealth-grid .palace.wealth-active .palace-name{
+  color:#f3d98d;
+  font-weight:700;
+}
+.wealth-grid .palace.wealth-active .palace-dir{color:#cdbb84}
+.wealth-tag{
+  display:inline-flex;
+  align-items:center;
+  margin-top:auto;
+  padding:5px 8px;
+  border:1px solid rgba(224,184,86,.56);
+  border-radius:7px;
+  background:linear-gradient(180deg,#b98a2f,#8f681f);
+  color:#fff3cc;
+  font-size:11px;
+  font-weight:700;
+}
+.wealth-list{
+  margin-top:16px;
+  display:grid;
+  gap:8px;
+}
+.wealth-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  border:1px solid #303c57;
+  border-radius:9px;
+  background:#1a2437;
+  color:#c9d0dc;
+  font-size:13px;
+}
+.wealth-row b{
+  color:#e8c76a;
+  font-weight:700;
+  white-space:nowrap;
+}
+@media(max-width:900px){
+  .wealth-layout{grid-template-columns:1fr}
+}
+
+
+.wealth-view{display:block}
+.wealth-circle-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px 0 4px;
+}
+.wealth-circle{
+  position:relative;
+  width:min(92vw,520px);
+  height:min(92vw,520px);
+  max-width:520px;
+  max-height:520px;
+  min-width:300px;
+  min-height:300px;
+  border-radius:50%;
+  border:1.5px solid rgba(224,184,86,.45);
+  background:
+    radial-gradient(circle at center, rgba(211,168,65,.08) 0, rgba(255,255,255,.02) 36%, rgba(255,255,255,.01) 36.5%, rgba(255,255,255,.01) 100%),
+    #0d1728;
+  box-shadow: inset 0 0 26px rgba(211,168,65,.05);
+}
+.branch-item{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  min-width:44px;
+  min-height:44px;
+  padding:9px 10px;
+  border:1px solid #314160;
+  border-radius:999px;
+  background:#101b31;
+  color:#d8deea;
+  font-size:16px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.branch-item.active-branch{
+  border-color:rgba(224,184,86,.8);
+  background:linear-gradient(180deg,#b98a2f,#8f681f);
+  color:#fff3cc;
+  box-shadow:0 4px 14px rgba(113,82,24,.25);
+}
+.circle-center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  border:1px solid rgba(224,184,86,.45);
+  background:linear-gradient(145deg,rgba(211,168,65,.12),rgba(255,255,255,.02));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#f0d783;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.35;
+}
+.pos-zi{left:50%; top:8%}
+.pos-chou{left:71%; top:14%}
+.pos-yin{left:86%; top:28%}
+.pos-mao{left:92%; top:50%}
+.pos-chen{left:86%; top:72%}
+.pos-si{left:71%; top:86%}
+.pos-wu{left:50%; top:92%}
+.pos-wei{left:29%; top:86%}
+.pos-shen{left:14%; top:72%}
+.pos-you{left:8%; top:50%}
+.pos-xu{left:14%; top:28%}
+.pos-hai{left:29%; top:14%}
+@media(max-width:620px){
+  .branch-item{min-width:38px; min-height:38px; padding:7px 9px; font-size:15px}
+  .circle-center{width:92px; height:92px; font-size:16px}
+}
+
+
+/* ===== v2.3 十干祿：iPhone / no-JS fallback ===== */
+.wealth-method-shell #wealthLuView{display:none}
+.wealth-method-shell #wealthHouseView{display:block}
+
+/* Modern Safari / iPhone: native select works through CSS even if page JS is blocked */
+@supports selector(.wealth-method-shell:has(option:checked)){
+  .wealth-method-shell:has(#wealthMethod option[value="lu"]:checked) #wealthHouseView{display:none !important}
+  .wealth-method-shell:has(#wealthMethod option[value="lu"]:checked) #wealthLuView{display:block !important}
+  .wealth-method-shell:has(#wealthMethod option[value="house"]:checked) #wealthHouseView{display:block !important}
+  .wealth-method-shell:has(#wealthMethod option[value="house"]:checked) #wealthLuView{display:none !important}
+}
+
+.lu-rule-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 15px;
+}
+.lu-rule-strip span{
+  padding:5px 8px;
+  border:1px solid #35435f;
+  border-radius:7px;
+  background:#121c30;
+  color:#b7c0d0;
+  font-size:11px;
+  font-weight:600;
+}
+.lu-state{display:none}
+
+/* static safe default */
+.lu-state-jia{display:block}
+
+@supports selector(#wealthLuView:has(option:checked)){
+  #wealthLuView .lu-state{display:none}
+  #wealthLuView:has(#wealthBirthGZ option[value^="甲"]:checked) .lu-state-jia{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="乙"]:checked) .lu-state-yi{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="丙"]:checked) .lu-state-bing{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="丁"]:checked) .lu-state-ding{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="戊"]:checked) .lu-state-wu{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="己"]:checked) .lu-state-ji{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="庚"]:checked) .lu-state-geng{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="辛"]:checked) .lu-state-xin{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="壬"]:checked) .lu-state-ren{display:block}
+  #wealthLuView:has(#wealthBirthGZ option[value^="癸"]:checked) .lu-state-gui{display:block}
+}
+
+
+
+/* ===== 桃花位分頁 ===== */
+.peach-method-shell #peachAnnualView{display:none}
+.peach-method-shell #peachZodiacView{display:block}
+@supports selector(.peach-method-shell:has(option:checked)){
+  .peach-method-shell:has(#peachMethod option[value="annual"]:checked) #peachZodiacView{display:none !important}
+  .peach-method-shell:has(#peachMethod option[value="annual"]:checked) #peachAnnualView{display:block !important}
+  .peach-method-shell:has(#peachMethod option[value="zodiac"]:checked) #peachZodiacView{display:block !important}
+  .peach-method-shell:has(#peachMethod option[value="zodiac"]:checked) #peachAnnualView{display:none !important}
+}
+.peach-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.peach-legend span{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid #35435f;border-radius:8px;background:#121c30;color:#c9d0dd;font-size:12px;font-weight:700}
+.peach-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.peach-dot.hong{background:#a94155;box-shadow:0 0 0 1px rgba(255,190,200,.35)}
+.peach-dot.xi{background:#b98a2f;box-shadow:0 0 0 1px rgba(255,234,172,.35)}
+.branch-item.peach-hongluan{border-color:rgba(219,103,126,.9);background:linear-gradient(180deg,#a94155,#762b3a);color:#fff0f3;box-shadow:0 4px 14px rgba(117,43,58,.3)}
+.branch-item.peach-tianxi{border-color:rgba(224,184,86,.9);background:linear-gradient(180deg,#b98a2f,#8f681f);color:#fff3cc;box-shadow:0 4px 14px rgba(113,82,24,.25)}
+.peach-pill-hong{border-color:rgba(219,103,126,.55)!important;background:rgba(169,65,85,.16)!important;color:#ffdce3!important}
+.peach-pill-xi{border-color:rgba(224,184,86,.55)!important;background:rgba(185,138,47,.14)!important;color:#f3dda0!important}
+.peach-circle-note{margin-top:12px;text-align:center;color:#8f9bb0;font-size:12px;line-height:1.7}
+
+
+
+/* ===== 圓形方位標註 ===== */
+.wealth-circle{overflow:visible}
+.circle-dir-label{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+  color:#f0d783;
+  font-size:18px;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.5px;
+  text-shadow:0 1px 8px rgba(0,0,0,.22);
+  white-space:nowrap;
+}
+.circle-dir-top{left:50%;top:0;transform:translate(-50%,-145%)}
+.circle-dir-top-right{left:92%;top:8%;transform:translate(18%,-62%)}
+.circle-dir-right{left:100%;top:50%;transform:translate(38%,-50%)}
+.circle-dir-bottom-right{left:92%;top:92%;transform:translate(18%,6%)}
+.circle-dir-bottom{left:50%;top:100%;transform:translate(-50%,45%)}
+.circle-dir-bottom-left{left:8%;top:92%;transform:translate(-118%,6%)}
+.circle-dir-left{left:0;top:50%;transform:translate(-138%,-50%)}
+.circle-dir-top-left{left:8%;top:8%;transform:translate(-118%,-62%)}
+@media(max-width:620px){
+  .circle-dir-label{font-size:15px}
+  .circle-dir-top{transform:translate(-50%,-128%)}
+  .circle-dir-top-right{transform:translate(8%,-54%)}
+  .circle-dir-right{transform:translate(22%,-50%)}
+  .circle-dir-bottom-right{transform:translate(8%,0)}
+  .circle-dir-bottom{transform:translate(-50%,28%)}
+  .circle-dir-bottom-left{transform:translate(-108%,0)}
+  .circle-dir-left{transform:translate(-122%,-50%)}
+  .circle-dir-top-left{transform:translate(-108%,-54%)}
+}
+
+
+/* ===== 八節三奇分頁｜沿用全站深藍金色 UI ===== */
+.bajie-controls{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:1fr 1.6fr 1fr;
+  gap:14px;
+  align-items:end;
+}
+.bajie-readonly{
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border:1px solid #3b4e73;
+  border-radius:11px;
+  background:#0d1729;
+  padding:9px 14px;
+}
+.bajie-readonly strong{
+  color:var(--softgold);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:25px;
+  font-weight:900;
+}
+.bajie-readonly small{color:#8490a6;font-size:11px;line-height:1.4;text-align:right}
+.bajie-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.bajie-action{
+  min-height:38px;
+  border:1px solid #3b4e73;
+  border-radius:9px;
+  background:#111c30;
+  padding:8px 12px;
+  color:#c7cfdd;
+  font:inherit;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.bajie-action:hover{border-color:rgba(232,191,80,.55);color:#f0d783;background:rgba(232,191,80,.08)}
+.bajie-result-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}
+.bajie-period{color:#9da7bd;font-size:13px;line-height:1.65;margin-top:5px}
+.bajie-method-chip{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:2px;
+  padding:8px 11px;
+  border:1px solid rgba(232,191,80,.38);
+  border-radius:9px;
+  background:rgba(232,191,80,.07);
+  color:#f0d783;
+  font-size:12px;
+  font-weight:800;
+  text-align:right;
+}
+.bajie-method-chip small{color:#8f9bb0;font-size:10px;font-weight:600}
+.bajie-qi-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bajie-qi-card{
+  background:#1a2438;
+  border:1px solid #303e5b;
+  border-radius:13px;
+  padding:16px;
+  min-height:154px;
+}
+.bajie-qi-card .name{font-size:13px;color:#aeb7ca;font-weight:800}
+.bajie-qi-card .value{
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:31px;font-weight:900;color:var(--softgold);margin:7px 0
+}
+.bajie-qi-card .detail{font-size:12px;color:#919caf;line-height:1.7}
+.bajie-qi-card .mountains{margin-top:8px;padding-top:7px;border-top:1px solid #2a354c;color:#c0a85f;font-size:11px;letter-spacing:.08em}
+.bajie-note{
+  margin-top:14px;
+  border-left:4px solid var(--gold);
+  background:rgba(255,255,255,.035);
+  padding:13px 15px;
+  color:#b5becf;
+  font-size:13px;
+  line-height:1.8;
+}
+.bajie-note strong{color:var(--softgold)}
+.bajie-board{max-width:760px;margin:0 auto}
+#bajieGrid .palace{min-height:128px}
+#bajieGrid .palace.bajie-active{
+  background:linear-gradient(145deg,rgba(211,168,65,.22),rgba(126,92,28,.10)),#111827;
+  box-shadow:inset 0 0 0 1.5px rgba(224,184,86,.65),inset 0 0 24px rgba(211,168,65,.08);
+}
+.bajie-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:8px}
+.bajie-tag{display:inline-flex;align-items:center;padding:4px 7px;border-radius:7px;border:1px solid rgba(232,191,80,.34);background:rgba(232,191,80,.12);color:#f2da91;font-size:11px;font-weight:700}
+.bajie-apps{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.bajie-app{border:1px solid #303a53;border-radius:10px;background:#1a2335;padding:11px 13px;color:#d6dbe5;font-size:13px;font-weight:700;text-align:center}
+.bajie-table-wrap{overflow-x:auto;border:1px solid #30405f;border-radius:12px;background:#0d1728}
+.bajie-table{width:100%;min-width:820px;border-collapse:collapse}
+.bajie-table th{padding:12px 14px;background:#111c30;color:#c9ad55;font-size:11px;font-weight:800;letter-spacing:.08em;text-align:left}
+.bajie-table td{padding:13px 14px;border-top:1px solid #2d3a55;color:#c4ccda;font-size:13px;vertical-align:middle}
+.bajie-table tbody tr{cursor:pointer;transition:.15s}
+.bajie-table tbody tr:hover,.bajie-table tbody tr.active{background:rgba(232,191,80,.07)}
+.bajie-table tbody tr.active{box-shadow:inset 3px 0 var(--gold)}
+.bajie-table td strong{color:#eee6d2;display:block}
+.bajie-table td small{display:block;margin-top:3px;color:#7f8ba3;font-size:10px;line-height:1.45}
+.bajie-help{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bajie-help .method-box{margin-top:0}
+@media(max-width:950px){
+  .bajie-controls{grid-template-columns:1fr 1fr}
+  .bajie-controls .field:last-child{grid-column:1/-1}
+}
+@media(max-width:620px){
+  .module-tabs{display:grid;grid-template-columns:1fr 1fr}
+  .module-tab{padding:9px 8px;min-height:44px;font-size:13px}
+  .module-tabs label[for="tabBajie"]{grid-column:1/-1}
+  .bajie-controls,.bajie-qi-cards,.bajie-apps,.bajie-help{grid-template-columns:1fr}
+  .bajie-controls .field:last-child{grid-column:auto}
+  .bajie-result-head{flex-direction:column}
+  .bajie-method-chip{align-items:flex-start;text-align:left;width:100%}
+  #bajieGrid .palace{min-height:112px}
+}
+
+</style><link href="assets/tools-nav-v20260831.css" rel="stylesheet"/><script src="assets/member-auth.js" type="module"></script>
+</head>
+<body class="tool-member-page"><header class="system-header">
+<div class="brand-mark">文</div>
+<p class="eyebrow">天書三式・會員術數工具</p>
+<h1>天書三式•丁一峰老師術數查詢系統</h1>
+<p class="hero__text">文昌位查詢｜獨立會員查詢頁</p>
+<nav aria-label="網站導覽" class="top-nav"><a href="index.html">流年祿馬貴人</a><a href="benming.html">個人流年祿馬貴人</a><a href="renming.html">六十甲子人命擇日</a><a href="renming-query.html">六十甲子年命擇日查詢</a><a href="zibai.html">流年紫白查詢</a><a href="dehu.html">逐日的呼查詢</a><a href="fourtime.html">四大吉時月表</a><a href="yongji.html">永吉造命課</a><a href="tongshu.html">通書六十甲子造命</a><a href="liunian-rules.html">流年法說明</a><a href="benming-rules.html">個人流年法說明</a><a href="renming-rules.html">人命擇日說明</a><a href="rules.html">本版採用規則</a><a href="dehu-rules.html">的呼規則</a></nav>
+<nav aria-label="術數工具導覽" class="tool-subnav"><a href="zhen-luma.html">真祿馬貴人</a><a aria-current="page" href="wenchang.html">文昌位</a><a href="caiwei.html">財位</a><a href="taohua.html">桃花位</a><a href="bajie-sanqi.html">八節三奇</a></nav>
+</header>
+<div aria-label="文昌位查詢" class="wrap">
+<input class="module-radio" id="tabLuma" name="modulePage" type="radio"/>
+<input checked="" class="module-radio" id="tabWenchang" name="modulePage" type="radio"/>
+<input class="module-radio" id="tabWealth" name="modulePage" type="radio"/>
+<input class="module-radio" id="tabPeach" name="modulePage" type="radio"/>
+<input class="module-radio" id="tabBajie" name="modulePage" type="radio"/>
+<nav aria-label="查詢分頁" class="module-tabs">
+<label class="module-tab" for="tabLuma">真祿馬貴人</label>
+<label class="module-tab" for="tabWenchang">文昌位</label>
+<label class="module-tab" for="tabWealth">財位</label>
+<label class="module-tab" for="tabPeach">桃花位</label>
+<label class="module-tab" for="tabBajie">八節三奇</label>
+</nav>
+<div class="page-pane" id="pageLuma">
+<header class="hero">
+<div class="logo">天</div>
+<div class="eyebrow">TIAN SHU SAN SHI · RESEARCH TOOL</div>
+<h1>真祿・真馬・真貴人九宮查詢</h1>
+<p class="subtitle">選擇本命六十甲子，再指定流年與干支月，即時查看本命真祿、真馬、真陽貴、真陰貴，以及流年、流月九宮所到方位。</p>
+<div class="controls">
+<div class="field">
+<label for="birthGZ">本命出生年干支</label>
+<select id="birthGZ"><option selected="" value="甲子">01｜甲子</option>
+<option value="乙丑">02｜乙丑</option>
+<option value="丙寅">03｜丙寅</option>
+<option value="丁卯">04｜丁卯</option>
+<option value="戊辰">05｜戊辰</option>
+<option value="己巳">06｜己巳</option>
+<option value="庚午">07｜庚午</option>
+<option value="辛未">08｜辛未</option>
+<option value="壬申">09｜壬申</option>
+<option value="癸酉">10｜癸酉</option>
+<option value="甲戌">11｜甲戌</option>
+<option value="乙亥">12｜乙亥</option>
+<option value="丙子">13｜丙子</option>
+<option value="丁丑">14｜丁丑</option>
+<option value="戊寅">15｜戊寅</option>
+<option value="己卯">16｜己卯</option>
+<option value="庚辰">17｜庚辰</option>
+<option value="辛巳">18｜辛巳</option>
+<option value="壬午">19｜壬午</option>
+<option value="癸未">20｜癸未</option>
+<option value="甲申">21｜甲申</option>
+<option value="乙酉">22｜乙酉</option>
+<option value="丙戌">23｜丙戌</option>
+<option value="丁亥">24｜丁亥</option>
+<option value="戊子">25｜戊子</option>
+<option value="己丑">26｜己丑</option>
+<option value="庚寅">27｜庚寅</option>
+<option value="辛卯">28｜辛卯</option>
+<option value="壬辰">29｜壬辰</option>
+<option value="癸巳">30｜癸巳</option>
+<option value="甲午">31｜甲午</option>
+<option value="乙未">32｜乙未</option>
+<option value="丙申">33｜丙申</option>
+<option value="丁酉">34｜丁酉</option>
+<option value="戊戌">35｜戊戌</option>
+<option value="己亥">36｜己亥</option>
+<option value="庚子">37｜庚子</option>
+<option value="辛丑">38｜辛丑</option>
+<option value="壬寅">39｜壬寅</option>
+<option value="癸卯">40｜癸卯</option>
+<option value="甲辰">41｜甲辰</option>
+<option value="乙巳">42｜乙巳</option>
+<option value="丙午">43｜丙午</option>
+<option value="丁未">44｜丁未</option>
+<option value="戊申">45｜戊申</option>
+<option value="己酉">46｜己酉</option>
+<option value="庚戌">47｜庚戌</option>
+<option value="辛亥">48｜辛亥</option>
+<option value="壬子">49｜壬子</option>
+<option value="癸丑">50｜癸丑</option>
+<option value="甲寅">51｜甲寅</option>
+<option value="乙卯">52｜乙卯</option>
+<option value="丙辰">53｜丙辰</option>
+<option value="丁巳">54｜丁巳</option>
+<option value="戊午">55｜戊午</option>
+<option value="己未">56｜己未</option>
+<option value="庚申">57｜庚申</option>
+<option value="辛酉">58｜辛酉</option>
+<option value="壬戌">59｜壬戌</option>
+<option value="癸亥">60｜癸亥</option></select>
+</div>
+<div class="field">
+<label for="flowYear">流年</label>
+<select id="flowYear"><option value="1900">1900｜庚子</option>
+<option value="1901">1901｜辛丑</option>
+<option value="1902">1902｜壬寅</option>
+<option value="1903">1903｜癸卯</option>
+<option value="1904">1904｜甲辰</option>
+<option value="1905">1905｜乙巳</option>
+<option value="1906">1906｜丙午</option>
+<option value="1907">1907｜丁未</option>
+<option value="1908">1908｜戊申</option>
+<option value="1909">1909｜己酉</option>
+<option value="1910">1910｜庚戌</option>
+<option value="1911">1911｜辛亥</option>
+<option value="1912">1912｜壬子</option>
+<option value="1913">1913｜癸丑</option>
+<option value="1914">1914｜甲寅</option>
+<option value="1915">1915｜乙卯</option>
+<option value="1916">1916｜丙辰</option>
+<option value="1917">1917｜丁巳</option>
+<option value="1918">1918｜戊午</option>
+<option value="1919">1919｜己未</option>
+<option value="1920">1920｜庚申</option>
+<option value="1921">1921｜辛酉</option>
+<option value="1922">1922｜壬戌</option>
+<option value="1923">1923｜癸亥</option>
+<option value="1924">1924｜甲子</option>
+<option value="1925">1925｜乙丑</option>
+<option value="1926">1926｜丙寅</option>
+<option value="1927">1927｜丁卯</option>
+<option value="1928">1928｜戊辰</option>
+<option value="1929">1929｜己巳</option>
+<option value="1930">1930｜庚午</option>
+<option value="1931">1931｜辛未</option>
+<option value="1932">1932｜壬申</option>
+<option value="1933">1933｜癸酉</option>
+<option value="1934">1934｜甲戌</option>
+<option value="1935">1935｜乙亥</option>
+<option value="1936">1936｜丙子</option>
+<option value="1937">1937｜丁丑</option>
+<option value="1938">1938｜戊寅</option>
+<option value="1939">1939｜己卯</option>
+<option value="1940">1940｜庚辰</option>
+<option value="1941">1941｜辛巳</option>
+<option value="1942">1942｜壬午</option>
+<option value="1943">1943｜癸未</option>
+<option value="1944">1944｜甲申</option>
+<option value="1945">1945｜乙酉</option>
+<option value="1946">1946｜丙戌</option>
+<option value="1947">1947｜丁亥</option>
+<option value="1948">1948｜戊子</option>
+<option value="1949">1949｜己丑</option>
+<option value="1950">1950｜庚寅</option>
+<option value="1951">1951｜辛卯</option>
+<option value="1952">1952｜壬辰</option>
+<option value="1953">1953｜癸巳</option>
+<option value="1954">1954｜甲午</option>
+<option value="1955">1955｜乙未</option>
+<option value="1956">1956｜丙申</option>
+<option value="1957">1957｜丁酉</option>
+<option value="1958">1958｜戊戌</option>
+<option value="1959">1959｜己亥</option>
+<option value="1960">1960｜庚子</option>
+<option value="1961">1961｜辛丑</option>
+<option value="1962">1962｜壬寅</option>
+<option value="1963">1963｜癸卯</option>
+<option value="1964">1964｜甲辰</option>
+<option value="1965">1965｜乙巳</option>
+<option value="1966">1966｜丙午</option>
+<option value="1967">1967｜丁未</option>
+<option value="1968">1968｜戊申</option>
+<option value="1969">1969｜己酉</option>
+<option value="1970">1970｜庚戌</option>
+<option value="1971">1971｜辛亥</option>
+<option value="1972">1972｜壬子</option>
+<option value="1973">1973｜癸丑</option>
+<option value="1974">1974｜甲寅</option>
+<option value="1975">1975｜乙卯</option>
+<option value="1976">1976｜丙辰</option>
+<option value="1977">1977｜丁巳</option>
+<option value="1978">1978｜戊午</option>
+<option value="1979">1979｜己未</option>
+<option value="1980">1980｜庚申</option>
+<option value="1981">1981｜辛酉</option>
+<option value="1982">1982｜壬戌</option>
+<option value="1983">1983｜癸亥</option>
+<option value="1984">1984｜甲子</option>
+<option value="1985">1985｜乙丑</option>
+<option value="1986">1986｜丙寅</option>
+<option value="1987">1987｜丁卯</option>
+<option value="1988">1988｜戊辰</option>
+<option value="1989">1989｜己巳</option>
+<option value="1990">1990｜庚午</option>
+<option value="1991">1991｜辛未</option>
+<option value="1992">1992｜壬申</option>
+<option value="1993">1993｜癸酉</option>
+<option value="1994">1994｜甲戌</option>
+<option value="1995">1995｜乙亥</option>
+<option value="1996">1996｜丙子</option>
+<option value="1997">1997｜丁丑</option>
+<option value="1998">1998｜戊寅</option>
+<option value="1999">1999｜己卯</option>
+<option value="2000">2000｜庚辰</option>
+<option value="2001">2001｜辛巳</option>
+<option value="2002">2002｜壬午</option>
+<option value="2003">2003｜癸未</option>
+<option value="2004">2004｜甲申</option>
+<option value="2005">2005｜乙酉</option>
+<option value="2006">2006｜丙戌</option>
+<option value="2007">2007｜丁亥</option>
+<option value="2008">2008｜戊子</option>
+<option value="2009">2009｜己丑</option>
+<option value="2010">2010｜庚寅</option>
+<option value="2011">2011｜辛卯</option>
+<option value="2012">2012｜壬辰</option>
+<option value="2013">2013｜癸巳</option>
+<option value="2014">2014｜甲午</option>
+<option value="2015">2015｜乙未</option>
+<option value="2016">2016｜丙申</option>
+<option value="2017">2017｜丁酉</option>
+<option value="2018">2018｜戊戌</option>
+<option value="2019">2019｜己亥</option>
+<option value="2020">2020｜庚子</option>
+<option value="2021">2021｜辛丑</option>
+<option value="2022">2022｜壬寅</option>
+<option value="2023">2023｜癸卯</option>
+<option value="2024">2024｜甲辰</option>
+<option value="2025">2025｜乙巳</option>
+<option selected="" value="2026">2026｜丙午</option>
+<option value="2027">2027｜丁未</option>
+<option value="2028">2028｜戊申</option>
+<option value="2029">2029｜己酉</option>
+<option value="2030">2030｜庚戌</option>
+<option value="2031">2031｜辛亥</option>
+<option value="2032">2032｜壬子</option>
+<option value="2033">2033｜癸丑</option>
+<option value="2034">2034｜甲寅</option>
+<option value="2035">2035｜乙卯</option>
+<option value="2036">2036｜丙辰</option>
+<option value="2037">2037｜丁巳</option>
+<option value="2038">2038｜戊午</option>
+<option value="2039">2039｜己未</option>
+<option value="2040">2040｜庚申</option>
+<option value="2041">2041｜辛酉</option>
+<option value="2042">2042｜壬戌</option>
+<option value="2043">2043｜癸亥</option>
+<option value="2044">2044｜甲子</option>
+<option value="2045">2045｜乙丑</option>
+<option value="2046">2046｜丙寅</option>
+<option value="2047">2047｜丁卯</option>
+<option value="2048">2048｜戊辰</option>
+<option value="2049">2049｜己巳</option>
+<option value="2050">2050｜庚午</option>
+<option value="2051">2051｜辛未</option>
+<option value="2052">2052｜壬申</option>
+<option value="2053">2053｜癸酉</option>
+<option value="2054">2054｜甲戌</option>
+<option value="2055">2055｜乙亥</option>
+<option value="2056">2056｜丙子</option>
+<option value="2057">2057｜丁丑</option>
+<option value="2058">2058｜戊寅</option>
+<option value="2059">2059｜己卯</option>
+<option value="2060">2060｜庚辰</option>
+<option value="2061">2061｜辛巳</option>
+<option value="2062">2062｜壬午</option>
+<option value="2063">2063｜癸未</option>
+<option value="2064">2064｜甲申</option>
+<option value="2065">2065｜乙酉</option>
+<option value="2066">2066｜丙戌</option>
+<option value="2067">2067｜丁亥</option>
+<option value="2068">2068｜戊子</option>
+<option value="2069">2069｜己丑</option>
+<option value="2070">2070｜庚寅</option>
+<option value="2071">2071｜辛卯</option>
+<option value="2072">2072｜壬辰</option>
+<option value="2073">2073｜癸巳</option>
+<option value="2074">2074｜甲午</option>
+<option value="2075">2075｜乙未</option>
+<option value="2076">2076｜丙申</option>
+<option value="2077">2077｜丁酉</option>
+<option value="2078">2078｜戊戌</option>
+<option value="2079">2079｜己亥</option>
+<option value="2080">2080｜庚子</option>
+<option value="2081">2081｜辛丑</option>
+<option value="2082">2082｜壬寅</option>
+<option value="2083">2083｜癸卯</option>
+<option value="2084">2084｜甲辰</option>
+<option value="2085">2085｜乙巳</option>
+<option value="2086">2086｜丙午</option>
+<option value="2087">2087｜丁未</option>
+<option value="2088">2088｜戊申</option>
+<option value="2089">2089｜己酉</option>
+<option value="2090">2090｜庚戌</option>
+<option value="2091">2091｜辛亥</option>
+<option value="2092">2092｜壬子</option>
+<option value="2093">2093｜癸丑</option>
+<option value="2094">2094｜甲寅</option>
+<option value="2095">2095｜乙卯</option>
+<option value="2096">2096｜丙辰</option>
+<option value="2097">2097｜丁巳</option>
+<option value="2098">2098｜戊午</option>
+<option value="2099">2099｜己未</option>
+<option value="2100">2100｜庚申</option>
+<option value="2101">2101｜辛酉</option>
+<option value="2102">2102｜壬戌</option>
+<option value="2103">2103｜癸亥</option>
+<option value="2104">2104｜甲子</option>
+<option value="2105">2105｜乙丑</option>
+<option value="2106">2106｜丙寅</option>
+<option value="2107">2107｜丁卯</option>
+<option value="2108">2108｜戊辰</option>
+<option value="2109">2109｜己巳</option>
+<option value="2110">2110｜庚午</option>
+<option value="2111">2111｜辛未</option>
+<option value="2112">2112｜壬申</option>
+<option value="2113">2113｜癸酉</option>
+<option value="2114">2114｜甲戌</option>
+<option value="2115">2115｜乙亥</option>
+<option value="2116">2116｜丙子</option>
+<option value="2117">2117｜丁丑</option>
+<option value="2118">2118｜戊寅</option>
+<option value="2119">2119｜己卯</option>
+<option value="2120">2120｜庚辰</option>
+<option value="2121">2121｜辛巳</option>
+<option value="2122">2122｜壬午</option>
+<option value="2123">2123｜癸未</option>
+<option value="2124">2124｜甲申</option>
+<option value="2125">2125｜乙酉</option>
+<option value="2126">2126｜丙戌</option>
+<option value="2127">2127｜丁亥</option>
+<option value="2128">2128｜戊子</option>
+<option value="2129">2129｜己丑</option>
+<option value="2130">2130｜庚寅</option>
+<option value="2131">2131｜辛卯</option>
+<option value="2132">2132｜壬辰</option>
+<option value="2133">2133｜癸巳</option>
+<option value="2134">2134｜甲午</option>
+<option value="2135">2135｜乙未</option>
+<option value="2136">2136｜丙申</option>
+<option value="2137">2137｜丁酉</option>
+<option value="2138">2138｜戊戌</option>
+<option value="2139">2139｜己亥</option>
+<option value="2140">2140｜庚子</option>
+<option value="2141">2141｜辛丑</option>
+<option value="2142">2142｜壬寅</option>
+<option value="2143">2143｜癸卯</option>
+<option value="2144">2144｜甲辰</option>
+<option value="2145">2145｜乙巳</option>
+<option value="2146">2146｜丙午</option>
+<option value="2147">2147｜丁未</option>
+<option value="2148">2148｜戊申</option>
+<option value="2149">2149｜己酉</option>
+<option value="2150">2150｜庚戌</option>
+<option value="2151">2151｜辛亥</option>
+<option value="2152">2152｜壬子</option>
+<option value="2153">2153｜癸丑</option>
+<option value="2154">2154｜甲寅</option>
+<option value="2155">2155｜乙卯</option>
+<option value="2156">2156｜丙辰</option>
+<option value="2157">2157｜丁巳</option>
+<option value="2158">2158｜戊午</option>
+<option value="2159">2159｜己未</option>
+<option value="2160">2160｜庚申</option>
+<option value="2161">2161｜辛酉</option>
+<option value="2162">2162｜壬戌</option>
+<option value="2163">2163｜癸亥</option>
+<option value="2164">2164｜甲子</option>
+<option value="2165">2165｜乙丑</option>
+<option value="2166">2166｜丙寅</option>
+<option value="2167">2167｜丁卯</option>
+<option value="2168">2168｜戊辰</option>
+<option value="2169">2169｜己巳</option>
+<option value="2170">2170｜庚午</option>
+<option value="2171">2171｜辛未</option>
+<option value="2172">2172｜壬申</option>
+<option value="2173">2173｜癸酉</option>
+<option value="2174">2174｜甲戌</option>
+<option value="2175">2175｜乙亥</option>
+<option value="2176">2176｜丙子</option>
+<option value="2177">2177｜丁丑</option>
+<option value="2178">2178｜戊寅</option>
+<option value="2179">2179｜己卯</option>
+<option value="2180">2180｜庚辰</option>
+<option value="2181">2181｜辛巳</option>
+<option value="2182">2182｜壬午</option>
+<option value="2183">2183｜癸未</option>
+<option value="2184">2184｜甲申</option>
+<option value="2185">2185｜乙酉</option>
+<option value="2186">2186｜丙戌</option>
+<option value="2187">2187｜丁亥</option>
+<option value="2188">2188｜戊子</option>
+<option value="2189">2189｜己丑</option>
+<option value="2190">2190｜庚寅</option>
+<option value="2191">2191｜辛卯</option>
+<option value="2192">2192｜壬辰</option>
+<option value="2193">2193｜癸巳</option>
+<option value="2194">2194｜甲午</option>
+<option value="2195">2195｜乙未</option>
+<option value="2196">2196｜丙申</option>
+<option value="2197">2197｜丁酉</option>
+<option value="2198">2198｜戊戌</option>
+<option value="2199">2199｜己亥</option>
+<option value="2200">2200｜庚子</option></select>
+</div>
+<div class="field">
+<label for="flowMonth">流月（月建／干支月）</label>
+<select id="flowMonth"><option selected="" value="0">正月・寅月｜庚寅</option>
+<option value="1">二月・卯月｜辛卯</option>
+<option value="2">三月・辰月｜壬辰</option>
+<option value="3">四月・巳月｜癸巳</option>
+<option value="4">五月・午月｜甲午</option>
+<option value="5">六月・未月｜乙未</option>
+<option value="6">七月・申月｜丙申</option>
+<option value="7">八月・酉月｜丁酉</option>
+<option value="8">九月・戌月｜戊戌</option>
+<option value="9">十月・亥月｜己亥</option>
+<option value="10">十一月・子月｜庚子</option>
+<option value="11">十二月・丑月｜辛丑</option></select>
+</div>
+<div class="field">
+<label for="flyVersion">古籍版本／流月飛宮法</label>
+<select id="flyVersion">
+<option selected="" value="xieji">《欽定協紀辨方書》｜全順飛・陰陽貴分令</option>
+<option value="zongjing">《造命宗鏡集》｜全年順飛</option>
+<option value="jiyiao">《選擇紀要》｜陰陽遁・冬順夏逆</option>
+<option value="wuyao">《陰陽五要奇書》｜元經吊替法</option>
+</select>
+</div>
+<div class="field solstice-wrap" id="solsticeWrap">
+<label for="solsticeMode" id="solsticeLabel">節令段</label>
+<select id="solsticeMode"></select>
+</div>
+</div>
+<div class="hint" id="versionHint">
+    《欽定協紀辨方書》卷八所錄：以五虎遁取真祿馬貴人，月建干支入中宮順飛九宮；陽貴冬至後用之有力，陰貴夏至後用之有力。
+  </div>
+<div class="runtime" id="runtimeStatus">已載入預設查詢結果｜目前支援四種古籍版本，可即時切換比較。</div>
+</header>
+<section class="section">
+<div class="section-head"><h2>本命真祿馬貴人</h2><div class="section-note" id="birthMeta">本命：甲子｜甲年五虎遁</div></div>
+<div class="cards" id="birthCards"><div class="card">
+<div class="name">真祿</div>
+<div class="value">丙寅</div>
+<div class="detail">原支：寅｜五虎遁至 丙寅</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div>
+<div class="card">
+<div class="name">真馬</div>
+<div class="value">丙寅</div>
+<div class="detail">原支：寅｜五虎遁至 丙寅</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div>
+<div class="card">
+<div class="name">真陽貴</div>
+<div class="value">辛未</div>
+<div class="detail">原支：未｜五虎遁至 辛未</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div>
+<div class="card">
+<div class="name">真陰貴</div>
+<div class="value">丁丑</div>
+<div class="detail">原支：丑｜五虎遁至 丁丑</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>流年太歲真祿馬貴人</h2><div class="section-note" id="yearMeta">2026 年｜太歲 丙午｜丙年五虎遁</div></div>
+<div class="cards" id="yearCards"><div class="card">
+<div class="name">真祿</div>
+<div class="value">癸巳</div>
+<div class="detail">原支：巳｜五虎遁至 癸巳</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div>
+<div class="card">
+<div class="name">真馬</div>
+<div class="value">丙申</div>
+<div class="detail">原支：申｜五虎遁至 丙申</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div>
+<div class="card">
+<div class="name">真陽貴</div>
+<div class="value">丁酉</div>
+<div class="detail">原支：酉｜五虎遁至 丁酉</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div>
+<div class="card">
+<div class="name">真陰貴</div>
+<div class="value">己亥</div>
+<div class="detail">原支：亥｜五虎遁至 己亥</div>
+<div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div>
+</div></div>
+</section>
+<section class="section">
+<div class="section-head"><h2>九宮飛泊</h2><div class="section-note">巽四・離九・坤二／震三・中五・兌七／艮八・坎一・乾六</div></div>
+<div class="boards">
+<div class="board-panel">
+<div class="board-title">
+<h3>左｜流年九宮・尋命貴</h3>
+<div class="board-base" id="annualBase"><div class="board-period"><span class="year-gz">丙午</span><span>｜2026年</span><small>太歲入中・固定順飛</small></div></div>
+</div>
+<div class="grid9" id="annualGrid"><div class="palace">
+<div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div>
+<div class="star-list"><span class="tag">真陰貴<small>丁丑</small></span></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div>
+<div class="star-list"><span class="tag">真陽貴<small>辛未</small></span></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div>
+<div class="star-list"><span class="tag">真祿<small>丙寅</small></span><span class="tag">真馬<small>丙寅</small></span></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div>
+<div class="star-list"></div>
+</div></div>
+<div class="summary" id="annualSummary"><div class="sum-row">
+<div><span>真祿・丙寅</span><small class="row-source">太歲入中尋命貴｜順飛九宮</small></div>
+<b>兌7｜西</b>
+</div>
+<div class="sum-row">
+<div><span>真馬・丙寅</span><small class="row-source">太歲入中尋命貴｜順飛九宮</small></div>
+<b>兌7｜西</b>
+</div>
+<div class="sum-row">
+<div><span>真陽貴・辛未</span><small class="row-source">太歲入中尋命貴｜順飛九宮</small></div>
+<b>震3｜東</b>
+</div>
+<div class="sum-row">
+<div><span>真陰貴・丁丑</span><small class="row-source">太歲入中尋命貴｜順飛九宮</small></div>
+<b>離9｜南</b>
+</div></div>
+</div>
+<div class="board-panel">
+<div class="board-title">
+<h3>右｜流月九宮・尋歲貴</h3>
+<div class="board-base" id="monthlyBase"><div class="board-period"><span class="year-gz">丙午</span><span>｜2026年｜正月：</span><span class="month-gz">庚寅</span><small>月建入中・《協紀辨方書》</small></div></div>
+</div>
+<div class="grid9" id="monthlyGrid"><div class="palace">
+<div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div>
+<div class="star-list"><span class="tag">真馬<small>丙申</small></span></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div>
+<div class="star-list"><span class="tag">真陽貴<small>丁酉</small></span></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div>
+<div class="star-list"><span class="tag">真陰貴<small>己亥</small></span></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace has-star">
+<div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div>
+<div class="star-list"><span class="tag">真祿<small>癸巳</small></span></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div>
+<div class="star-list"></div>
+</div>
+<div class="palace">
+<div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div>
+<div class="star-list"></div>
+</div></div>
+<div class="summary" id="monthlySummary"><div class="sum-row">
+<div><span>真祿・癸巳</span><small class="row-source">《欽定協紀辨方書》卷八｜月建入中順飛</small></div>
+<b>艮8｜東北</b>
+</div>
+<div class="sum-row">
+<div><span>真馬・丙申</span><small class="row-source">《欽定協紀辨方書》卷八｜月建入中順飛</small></div>
+<b>坤2｜西南</b>
+</div>
+<div class="sum-row">
+<div><span>真陽貴・丁酉</span><em class="season-badge">陽貴得令</em><small class="row-source">《欽定協紀辨方書》卷八｜月建入中順飛</small></div>
+<b>震3｜東</b>
+</div>
+<div class="sum-row">
+<div><span>真陰貴・己亥</span><small class="row-source">《欽定協紀辨方書》卷八｜月建入中順飛</small></div>
+<b>中5｜中央</b>
+</div></div>
+</div>
+</div>
+<div class="method">
+<div class="method-box">
+<strong>流年盤：</strong>先依本命以五虎遁求真祿、真馬、真陽貴、真陰貴，再以所選流年太歲干支入中宮，依六十甲子順序順飛九宮，尋本命吉神所到宮位與方位。
+      <div class="source-line">太歲入中尋命貴｜本命真祿馬貴人起例</div>
+</div>
+<div class="method-box">
+<strong>流月盤：</strong><span id="monthlyMethodText">《欽定協紀辨方書》卷八：月建干支入中宮順飛九宮；冬至後陽貴得令，夏至後陰貴得令。</span>
+<div class="source-line" id="monthlySource">法源｜《欽定協紀辨方書》卷八</div>
+</div>
+</div>
+</section>
+</div>
+<div class="page-pane" id="pageWenchang">
+<header class="hero">
+<div class="logo">文</div>
+<div class="eyebrow">WEN CHANG · STUDY &amp; LITERARY STAR</div>
+<h1>文昌位查詢</h1><div class="runtime">iPhone 預覽相容版｜分頁切換不依賴 JavaScript</div>
+<p class="subtitle">本命文昌依出生年天干取文昌星所在支位；流年文昌依流年紫白九星之「四綠文曲星」所到宮位判定。流年以立春換歲。</p>
+<div class="wenchang-controls">
+<div class="field">
+<label for="wenchangBirthGZ">出生年干支</label>
+<select id="wenchangBirthGZ"><option selected="" value="甲子">01｜甲子</option>
+<option value="乙丑">02｜乙丑</option>
+<option value="丙寅">03｜丙寅</option>
+<option value="丁卯">04｜丁卯</option>
+<option value="戊辰">05｜戊辰</option>
+<option value="己巳">06｜己巳</option>
+<option value="庚午">07｜庚午</option>
+<option value="辛未">08｜辛未</option>
+<option value="壬申">09｜壬申</option>
+<option value="癸酉">10｜癸酉</option>
+<option value="甲戌">11｜甲戌</option>
+<option value="乙亥">12｜乙亥</option>
+<option value="丙子">13｜丙子</option>
+<option value="丁丑">14｜丁丑</option>
+<option value="戊寅">15｜戊寅</option>
+<option value="己卯">16｜己卯</option>
+<option value="庚辰">17｜庚辰</option>
+<option value="辛巳">18｜辛巳</option>
+<option value="壬午">19｜壬午</option>
+<option value="癸未">20｜癸未</option>
+<option value="甲申">21｜甲申</option>
+<option value="乙酉">22｜乙酉</option>
+<option value="丙戌">23｜丙戌</option>
+<option value="丁亥">24｜丁亥</option>
+<option value="戊子">25｜戊子</option>
+<option value="己丑">26｜己丑</option>
+<option value="庚寅">27｜庚寅</option>
+<option value="辛卯">28｜辛卯</option>
+<option value="壬辰">29｜壬辰</option>
+<option value="癸巳">30｜癸巳</option>
+<option value="甲午">31｜甲午</option>
+<option value="乙未">32｜乙未</option>
+<option value="丙申">33｜丙申</option>
+<option value="丁酉">34｜丁酉</option>
+<option value="戊戌">35｜戊戌</option>
+<option value="己亥">36｜己亥</option>
+<option value="庚子">37｜庚子</option>
+<option value="辛丑">38｜辛丑</option>
+<option value="壬寅">39｜壬寅</option>
+<option value="癸卯">40｜癸卯</option>
+<option value="甲辰">41｜甲辰</option>
+<option value="乙巳">42｜乙巳</option>
+<option value="丙午">43｜丙午</option>
+<option value="丁未">44｜丁未</option>
+<option value="戊申">45｜戊申</option>
+<option value="己酉">46｜己酉</option>
+<option value="庚戌">47｜庚戌</option>
+<option value="辛亥">48｜辛亥</option>
+<option value="壬子">49｜壬子</option>
+<option value="癸丑">50｜癸丑</option>
+<option value="甲寅">51｜甲寅</option>
+<option value="乙卯">52｜乙卯</option>
+<option value="丙辰">53｜丙辰</option>
+<option value="丁巳">54｜丁巳</option>
+<option value="戊午">55｜戊午</option>
+<option value="己未">56｜己未</option>
+<option value="庚申">57｜庚申</option>
+<option value="辛酉">58｜辛酉</option>
+<option value="壬戌">59｜壬戌</option>
+<option value="癸亥">60｜癸亥</option></select>
+</div>
+<div class="field">
+<label for="wenchangYear">流年</label>
+<select id="wenchangYear"><option value="1900">1900｜庚子</option>
+<option value="1901">1901｜辛丑</option>
+<option value="1902">1902｜壬寅</option>
+<option value="1903">1903｜癸卯</option>
+<option value="1904">1904｜甲辰</option>
+<option value="1905">1905｜乙巳</option>
+<option value="1906">1906｜丙午</option>
+<option value="1907">1907｜丁未</option>
+<option value="1908">1908｜戊申</option>
+<option value="1909">1909｜己酉</option>
+<option value="1910">1910｜庚戌</option>
+<option value="1911">1911｜辛亥</option>
+<option value="1912">1912｜壬子</option>
+<option value="1913">1913｜癸丑</option>
+<option value="1914">1914｜甲寅</option>
+<option value="1915">1915｜乙卯</option>
+<option value="1916">1916｜丙辰</option>
+<option value="1917">1917｜丁巳</option>
+<option value="1918">1918｜戊午</option>
+<option value="1919">1919｜己未</option>
+<option value="1920">1920｜庚申</option>
+<option value="1921">1921｜辛酉</option>
+<option value="1922">1922｜壬戌</option>
+<option value="1923">1923｜癸亥</option>
+<option value="1924">1924｜甲子</option>
+<option value="1925">1925｜乙丑</option>
+<option value="1926">1926｜丙寅</option>
+<option value="1927">1927｜丁卯</option>
+<option value="1928">1928｜戊辰</option>
+<option value="1929">1929｜己巳</option>
+<option value="1930">1930｜庚午</option>
+<option value="1931">1931｜辛未</option>
+<option value="1932">1932｜壬申</option>
+<option value="1933">1933｜癸酉</option>
+<option value="1934">1934｜甲戌</option>
+<option value="1935">1935｜乙亥</option>
+<option value="1936">1936｜丙子</option>
+<option value="1937">1937｜丁丑</option>
+<option value="1938">1938｜戊寅</option>
+<option value="1939">1939｜己卯</option>
+<option value="1940">1940｜庚辰</option>
+<option value="1941">1941｜辛巳</option>
+<option value="1942">1942｜壬午</option>
+<option value="1943">1943｜癸未</option>
+<option value="1944">1944｜甲申</option>
+<option value="1945">1945｜乙酉</option>
+<option value="1946">1946｜丙戌</option>
+<option value="1947">1947｜丁亥</option>
+<option value="1948">1948｜戊子</option>
+<option value="1949">1949｜己丑</option>
+<option value="1950">1950｜庚寅</option>
+<option value="1951">1951｜辛卯</option>
+<option value="1952">1952｜壬辰</option>
+<option value="1953">1953｜癸巳</option>
+<option value="1954">1954｜甲午</option>
+<option value="1955">1955｜乙未</option>
+<option value="1956">1956｜丙申</option>
+<option value="1957">1957｜丁酉</option>
+<option value="1958">1958｜戊戌</option>
+<option value="1959">1959｜己亥</option>
+<option value="1960">1960｜庚子</option>
+<option value="1961">1961｜辛丑</option>
+<option value="1962">1962｜壬寅</option>
+<option value="1963">1963｜癸卯</option>
+<option value="1964">1964｜甲辰</option>
+<option value="1965">1965｜乙巳</option>
+<option value="1966">1966｜丙午</option>
+<option value="1967">1967｜丁未</option>
+<option value="1968">1968｜戊申</option>
+<option value="1969">1969｜己酉</option>
+<option value="1970">1970｜庚戌</option>
+<option value="1971">1971｜辛亥</option>
+<option value="1972">1972｜壬子</option>
+<option value="1973">1973｜癸丑</option>
+<option value="1974">1974｜甲寅</option>
+<option value="1975">1975｜乙卯</option>
+<option value="1976">1976｜丙辰</option>
+<option value="1977">1977｜丁巳</option>
+<option value="1978">1978｜戊午</option>
+<option value="1979">1979｜己未</option>
+<option value="1980">1980｜庚申</option>
+<option value="1981">1981｜辛酉</option>
+<option value="1982">1982｜壬戌</option>
+<option value="1983">1983｜癸亥</option>
+<option value="1984">1984｜甲子</option>
+<option value="1985">1985｜乙丑</option>
+<option value="1986">1986｜丙寅</option>
+<option value="1987">1987｜丁卯</option>
+<option value="1988">1988｜戊辰</option>
+<option value="1989">1989｜己巳</option>
+<option value="1990">1990｜庚午</option>
+<option value="1991">1991｜辛未</option>
+<option value="1992">1992｜壬申</option>
+<option value="1993">1993｜癸酉</option>
+<option value="1994">1994｜甲戌</option>
+<option value="1995">1995｜乙亥</option>
+<option value="1996">1996｜丙子</option>
+<option value="1997">1997｜丁丑</option>
+<option value="1998">1998｜戊寅</option>
+<option value="1999">1999｜己卯</option>
+<option value="2000">2000｜庚辰</option>
+<option value="2001">2001｜辛巳</option>
+<option value="2002">2002｜壬午</option>
+<option value="2003">2003｜癸未</option>
+<option value="2004">2004｜甲申</option>
+<option value="2005">2005｜乙酉</option>
+<option value="2006">2006｜丙戌</option>
+<option value="2007">2007｜丁亥</option>
+<option value="2008">2008｜戊子</option>
+<option value="2009">2009｜己丑</option>
+<option value="2010">2010｜庚寅</option>
+<option value="2011">2011｜辛卯</option>
+<option value="2012">2012｜壬辰</option>
+<option value="2013">2013｜癸巳</option>
+<option value="2014">2014｜甲午</option>
+<option value="2015">2015｜乙未</option>
+<option value="2016">2016｜丙申</option>
+<option value="2017">2017｜丁酉</option>
+<option value="2018">2018｜戊戌</option>
+<option value="2019">2019｜己亥</option>
+<option value="2020">2020｜庚子</option>
+<option value="2021">2021｜辛丑</option>
+<option value="2022">2022｜壬寅</option>
+<option value="2023">2023｜癸卯</option>
+<option value="2024">2024｜甲辰</option>
+<option value="2025">2025｜乙巳</option>
+<option selected="" value="2026">2026｜丙午</option>
+<option value="2027">2027｜丁未</option>
+<option value="2028">2028｜戊申</option>
+<option value="2029">2029｜己酉</option>
+<option value="2030">2030｜庚戌</option>
+<option value="2031">2031｜辛亥</option>
+<option value="2032">2032｜壬子</option>
+<option value="2033">2033｜癸丑</option>
+<option value="2034">2034｜甲寅</option>
+<option value="2035">2035｜乙卯</option>
+<option value="2036">2036｜丙辰</option>
+<option value="2037">2037｜丁巳</option>
+<option value="2038">2038｜戊午</option>
+<option value="2039">2039｜己未</option>
+<option value="2040">2040｜庚申</option>
+<option value="2041">2041｜辛酉</option>
+<option value="2042">2042｜壬戌</option>
+<option value="2043">2043｜癸亥</option>
+<option value="2044">2044｜甲子</option>
+<option value="2045">2045｜乙丑</option>
+<option value="2046">2046｜丙寅</option>
+<option value="2047">2047｜丁卯</option>
+<option value="2048">2048｜戊辰</option>
+<option value="2049">2049｜己巳</option>
+<option value="2050">2050｜庚午</option>
+<option value="2051">2051｜辛未</option>
+<option value="2052">2052｜壬申</option>
+<option value="2053">2053｜癸酉</option>
+<option value="2054">2054｜甲戌</option>
+<option value="2055">2055｜乙亥</option>
+<option value="2056">2056｜丙子</option>
+<option value="2057">2057｜丁丑</option>
+<option value="2058">2058｜戊寅</option>
+<option value="2059">2059｜己卯</option>
+<option value="2060">2060｜庚辰</option>
+<option value="2061">2061｜辛巳</option>
+<option value="2062">2062｜壬午</option>
+<option value="2063">2063｜癸未</option>
+<option value="2064">2064｜甲申</option>
+<option value="2065">2065｜乙酉</option>
+<option value="2066">2066｜丙戌</option>
+<option value="2067">2067｜丁亥</option>
+<option value="2068">2068｜戊子</option>
+<option value="2069">2069｜己丑</option>
+<option value="2070">2070｜庚寅</option>
+<option value="2071">2071｜辛卯</option>
+<option value="2072">2072｜壬辰</option>
+<option value="2073">2073｜癸巳</option>
+<option value="2074">2074｜甲午</option>
+<option value="2075">2075｜乙未</option>
+<option value="2076">2076｜丙申</option>
+<option value="2077">2077｜丁酉</option>
+<option value="2078">2078｜戊戌</option>
+<option value="2079">2079｜己亥</option>
+<option value="2080">2080｜庚子</option>
+<option value="2081">2081｜辛丑</option>
+<option value="2082">2082｜壬寅</option>
+<option value="2083">2083｜癸卯</option>
+<option value="2084">2084｜甲辰</option>
+<option value="2085">2085｜乙巳</option>
+<option value="2086">2086｜丙午</option>
+<option value="2087">2087｜丁未</option>
+<option value="2088">2088｜戊申</option>
+<option value="2089">2089｜己酉</option>
+<option value="2090">2090｜庚戌</option>
+<option value="2091">2091｜辛亥</option>
+<option value="2092">2092｜壬子</option>
+<option value="2093">2093｜癸丑</option>
+<option value="2094">2094｜甲寅</option>
+<option value="2095">2095｜乙卯</option>
+<option value="2096">2096｜丙辰</option>
+<option value="2097">2097｜丁巳</option>
+<option value="2098">2098｜戊午</option>
+<option value="2099">2099｜己未</option>
+<option value="2100">2100｜庚申</option>
+<option value="2101">2101｜辛酉</option>
+<option value="2102">2102｜壬戌</option>
+<option value="2103">2103｜癸亥</option>
+<option value="2104">2104｜甲子</option>
+<option value="2105">2105｜乙丑</option>
+<option value="2106">2106｜丙寅</option>
+<option value="2107">2107｜丁卯</option>
+<option value="2108">2108｜戊辰</option>
+<option value="2109">2109｜己巳</option>
+<option value="2110">2110｜庚午</option>
+<option value="2111">2111｜辛未</option>
+<option value="2112">2112｜壬申</option>
+<option value="2113">2113｜癸酉</option>
+<option value="2114">2114｜甲戌</option>
+<option value="2115">2115｜乙亥</option>
+<option value="2116">2116｜丙子</option>
+<option value="2117">2117｜丁丑</option>
+<option value="2118">2118｜戊寅</option>
+<option value="2119">2119｜己卯</option>
+<option value="2120">2120｜庚辰</option>
+<option value="2121">2121｜辛巳</option>
+<option value="2122">2122｜壬午</option>
+<option value="2123">2123｜癸未</option>
+<option value="2124">2124｜甲申</option>
+<option value="2125">2125｜乙酉</option>
+<option value="2126">2126｜丙戌</option>
+<option value="2127">2127｜丁亥</option>
+<option value="2128">2128｜戊子</option>
+<option value="2129">2129｜己丑</option>
+<option value="2130">2130｜庚寅</option>
+<option value="2131">2131｜辛卯</option>
+<option value="2132">2132｜壬辰</option>
+<option value="2133">2133｜癸巳</option>
+<option value="2134">2134｜甲午</option>
+<option value="2135">2135｜乙未</option>
+<option value="2136">2136｜丙申</option>
+<option value="2137">2137｜丁酉</option>
+<option value="2138">2138｜戊戌</option>
+<option value="2139">2139｜己亥</option>
+<option value="2140">2140｜庚子</option>
+<option value="2141">2141｜辛丑</option>
+<option value="2142">2142｜壬寅</option>
+<option value="2143">2143｜癸卯</option>
+<option value="2144">2144｜甲辰</option>
+<option value="2145">2145｜乙巳</option>
+<option value="2146">2146｜丙午</option>
+<option value="2147">2147｜丁未</option>
+<option value="2148">2148｜戊申</option>
+<option value="2149">2149｜己酉</option>
+<option value="2150">2150｜庚戌</option>
+<option value="2151">2151｜辛亥</option>
+<option value="2152">2152｜壬子</option>
+<option value="2153">2153｜癸丑</option>
+<option value="2154">2154｜甲寅</option>
+<option value="2155">2155｜乙卯</option>
+<option value="2156">2156｜丙辰</option>
+<option value="2157">2157｜丁巳</option>
+<option value="2158">2158｜戊午</option>
+<option value="2159">2159｜己未</option>
+<option value="2160">2160｜庚申</option>
+<option value="2161">2161｜辛酉</option>
+<option value="2162">2162｜壬戌</option>
+<option value="2163">2163｜癸亥</option>
+<option value="2164">2164｜甲子</option>
+<option value="2165">2165｜乙丑</option>
+<option value="2166">2166｜丙寅</option>
+<option value="2167">2167｜丁卯</option>
+<option value="2168">2168｜戊辰</option>
+<option value="2169">2169｜己巳</option>
+<option value="2170">2170｜庚午</option>
+<option value="2171">2171｜辛未</option>
+<option value="2172">2172｜壬申</option>
+<option value="2173">2173｜癸酉</option>
+<option value="2174">2174｜甲戌</option>
+<option value="2175">2175｜乙亥</option>
+<option value="2176">2176｜丙子</option>
+<option value="2177">2177｜丁丑</option>
+<option value="2178">2178｜戊寅</option>
+<option value="2179">2179｜己卯</option>
+<option value="2180">2180｜庚辰</option>
+<option value="2181">2181｜辛巳</option>
+<option value="2182">2182｜壬午</option>
+<option value="2183">2183｜癸未</option>
+<option value="2184">2184｜甲申</option>
+<option value="2185">2185｜乙酉</option>
+<option value="2186">2186｜丙戌</option>
+<option value="2187">2187｜丁亥</option>
+<option value="2188">2188｜戊子</option>
+<option value="2189">2189｜己丑</option>
+<option value="2190">2190｜庚寅</option>
+<option value="2191">2191｜辛卯</option>
+<option value="2192">2192｜壬辰</option>
+<option value="2193">2193｜癸巳</option>
+<option value="2194">2194｜甲午</option>
+<option value="2195">2195｜乙未</option>
+<option value="2196">2196｜丙申</option>
+<option value="2197">2197｜丁酉</option>
+<option value="2198">2198｜戊戌</option>
+<option value="2199">2199｜己亥</option>
+<option value="2200">2200｜庚子</option></select>
+</div>
+</div>
+<div class="hint">
+      本命文昌：甲巳、乙午、丙申、丁酉、戊申、己酉、庚亥、辛子、壬寅、癸卯。流年文昌：以當年四綠文曲星飛臨之九宮方位為準。分頁本身採 iPhone 相容的原生 CSS 切換，不依賴 JavaScript。
+    </div>
+</header>
+<section class="section">
+<div class="section-head">
+<h2>文昌位</h2>
+<div class="section-note">本命文昌優先看年干；流年文昌隨紫白九星逐年移動</div>
+</div>
+<div class="wenchang-results">
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>左｜本命文昌位</h3>
+<div class="board-base" id="personalWenchangMeta">甲子｜年干甲</div>
+</div>
+<div class="wenchang-result">
+<div>
+<div class="result-label">本命文昌位</div>
+<div class="result-main" id="personalWenchangResult">巳｜東南偏南</div>
+<div class="result-sub" id="personalWenchangDetail">巳屬巽宮範圍｜巽4・東南</div>
+</div>
+<div class="wenchang-symbol" id="personalWenchangSymbol">巳</div>
+</div>
+<div class="grid9 wenchang-grid" id="personalWenchangGrid"><div class="palace wenchang-active"><div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div><div class="star-list"><span class="wenchang-tag">本命文昌・巳</span></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div><div class="star-list"></div></div></div>
+</div>
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>右｜流年文昌位</h3>
+<div class="board-base" id="annualWenchangMeta">丙午｜2026年</div>
+</div>
+<div class="wenchang-result">
+<div>
+<div class="result-label">流年四綠文昌位</div>
+<div class="result-main" id="annualWenchangResult">艮8｜東北方</div>
+<div class="result-sub" id="annualWenchangDetail">2026 丙午年｜一白入中｜四綠文曲星飛臨艮宮</div>
+</div>
+<div class="wenchang-symbol">四綠</div>
+</div>
+<div class="grid9 wenchang-grid" id="annualWenchangGrid"><div class="palace"><div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div><div class="star-mini"><strong>九紫右弼</strong></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div><div class="star-mini"><strong>五黃廉貞</strong></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div><div class="star-mini"><strong>七赤破軍</strong></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div><div class="star-mini"><strong>八白左輔</strong></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div><div class="star-mini"><strong>一白貪狼</strong></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div><div class="star-mini"><strong>三碧祿存</strong></div></div>
+<div class="palace wenchang-active"><div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div><div class="star-mini"><strong>四綠文曲</strong><span class="wenchang-tag">流年文昌・四綠</span></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div><div class="star-mini"><strong>六白武曲</strong></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div><div class="star-mini"><strong>二黑巨門</strong></div></div></div>
+</div>
+</div>
+<div class="wenchang-extra-grid">
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>宅星文昌位（紫白九星法）</h3>
+<div class="board-base">坐山本卦入中取四綠</div>
+</div>
+<div class="wenchang-selector field">
+<label for="houseDirection">房屋坐向（以坐山本卦起盤）</label>
+<select id="houseDirection">
+<option value="E-W">坐東向西</option>
+<option value="W-E">坐西向東</option>
+<option value="S-N">坐南向北</option>
+<option value="N-S">坐北向南</option>
+<option value="SE-NW">坐東南向西北</option>
+<option value="NW-SE">坐西北向東南</option>
+<option value="SW-NE">坐西南向東北</option>
+<option value="NE-SW">坐東北向西南</option>
+</select>
+</div>
+<div class="wenchang-result">
+<div>
+<div class="result-label">宅星文昌位</div>
+<div class="result-main" id="houseWenchangResult">西北方｜乾6</div>
+<div class="result-sub" id="houseWenchangDetail">坐東向西 → 震三入中，四綠文曲飛臨乾宮</div>
+</div>
+<div class="wenchang-symbol" id="houseWenchangSymbol">乾</div>
+</div>
+<div class="grid9 wenchang-grid" id="houseWenchangGrid"><div class="palace"><div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div><div class="star-list"></div></div>
+<div class="palace wenchang-active"><div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div><div class="star-list"><span class="wenchang-tag">宅星文昌</span></div></div></div>
+<div class="house-rule">此法以房屋<strong>坐山本卦</strong>的洛書數入中宮，九星順飛，取<strong>四綠文曲星</strong>所到之宮為宅星文昌位。
+          <div class="source-line">紫白宅星法｜《推測易知》卷二：「兼取坐山本卦入中宮，飛佈八方」</div>
+</div>
+</div>
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>八宅派文昌位</h3>
+<div class="board-base">六煞＝文曲水</div>
+</div>
+<div class="wenchang-selector field">
+<label for="eightMansionGate">八宅門位</label>
+<select id="eightMansionGate">
+<option value="乾">乾門</option>
+<option value="坎">坎門</option>
+<option value="艮">艮門</option>
+<option value="震">震門</option>
+<option value="巽">巽門</option>
+<option value="離">離門</option>
+<option value="坤">坤門</option>
+<option value="兌">兌門</option>
+</select>
+</div>
+<div class="wenchang-result">
+<div>
+<div class="result-label">八宅派文昌位（六煞位）</div>
+<div class="result-main" id="eightMansionResult">坎1｜北方</div>
+<div class="result-sub" id="eightMansionDetail">乾門 → 六煞文曲在坎方</div>
+</div>
+<div class="wenchang-symbol" id="eightMansionSymbol">坎</div>
+</div>
+<div class="grid9 wenchang-grid" id="eightMansionGrid"><div class="palace"><div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div><div class="star-list"></div></div>
+<div class="palace wenchang-active"><div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div><div class="star-list"><span class="wenchang-tag">六煞文曲</span></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div><div class="star-list"></div></div></div>
+<div class="house-rule">八宅派以<strong>六煞位為文曲水</strong>，因此取六煞方作為文昌位。</div>
+</div>
+</div>
+<div class="wenchang-source">
+<b>排法說明：</b>個人文昌依出生年干取文昌支；流年文昌依紫白飛星四綠文曲星所到宮；宅星文昌依坐山本卦洛書數入中、順飛九星取四綠文曲所到之宮；八宅派文昌則取各門之六煞文曲位。四種方法分屬不同層次，網站分開顯示，避免混用。
+    </div>
+</section>
+</div>
+<div class="page-pane" id="pageWealth">
+<header class="hero">
+<div class="logo">財</div>
+<div class="eyebrow">WEALTH POSITION · EIGHT MANSIONS</div>
+<h1>八宅財位查詢</h1>
+<p class="subtitle">依房屋坐向判定八宅財方。選擇宅向後，系統會同時標示該宅的所有財位，並在九宮格中以金黃色顯示。</p>
+<div class="hint">
+      本頁依八宅財位規則整理。此處「財位」為宅向吉方查詢，<strong>不等同魚缸適合擺放方位</strong>；魚缸、水法宜另行判斷。
+    </div>
+</header>
+<section class="section">
+<div class="section-head">
+<h2>財位</h2>
+<div class="section-note">八宅財位｜依房屋坐向查詢</div>
+</div>
+<div class="wealth-method-shell" id="wealthMethodShell">
+<div class="field" style="margin-bottom:16px;max-width:420px">
+<label for="wealthMethod">財位查法</label>
+<select id="wealthMethod" onchange="window.toggleWealthMethod&amp;&amp;window.toggleWealthMethod()">
+<option selected="" value="house">八宅財位</option>
+<option value="lu">本命祿位財位（十干祿位）</option>
+</select>
+</div>
+<div class="wealth-view" id="wealthHouseView">
+<div class="wealth-layout">
+<div class="wealth-side">
+<div class="field">
+<label for="wealthHouse">房屋坐向／宅卦</label>
+<select id="wealthHouse">
+<option selected="" value="坎">坎宅｜坐北向南</option>
+<option value="離">離宅｜坐南向北</option>
+<option value="震">震宅｜坐東向西</option>
+<option value="兌">兌宅｜坐西向東</option>
+<option value="乾">乾宅｜坐西北向東南</option>
+<option value="坤">坤宅｜坐西南向東北</option>
+<option value="巽">巽宅｜坐東南向西北</option>
+<option value="艮">艮宅｜坐東北向西南</option>
+</select>
+</div>
+<div class="wealth-result-box">
+<div class="wealth-result-label">本宅財位</div>
+<div class="wealth-result-main" id="wealthResult">
+<span class="wealth-pill">坤2｜西南方</span>
+<span class="wealth-pill">坎1｜正北方</span>
+</div>
+<div class="wealth-desc" id="wealthDetail">坎宅（坐北向南） → 財位在西南方、正北方。</div>
+</div>
+<div class="wealth-list" id="wealthList">
+<div class="wealth-row"><span>財位一</span><b>坤2｜西南</b></div>
+<div class="wealth-row"><span>財位二</span><b>坎1｜正北</b></div>
+</div>
+<div class="wenchang-source">
+<b>八宅財位：</b>依宅卦及坐向取吉方。部分宅有兩個財位，兌宅則列三個財位。此頁依你提供的八宅財位表建立，與紫白流年財星、玄空旺星、水法財位屬不同系統。
+          </div>
+</div>
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>九宮財位</h3>
+<div class="board-base" id="wealthMeta">坎宅｜坐北向南</div>
+</div>
+<div class="grid9 wealth-grid" id="wealthGrid"><div class="palace"><div class="palace-head"><div class="palace-name">巽4</div><div class="palace-dir">東南</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">離9</div><div class="palace-dir">南</div></div><div class="star-list"></div></div>
+<div class="palace wealth-active"><div class="palace-head"><div class="palace-name">坤2</div><div class="palace-dir">西南</div></div><div class="star-list"><span class="wealth-tag">財位</span></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">震3</div><div class="palace-dir">東</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">中5</div><div class="palace-dir">中央</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">兌7</div><div class="palace-dir">西</div></div><div class="star-list"></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">艮8</div><div class="palace-dir">東北</div></div><div class="star-list"></div></div>
+<div class="palace wealth-active"><div class="palace-head"><div class="palace-name">坎1</div><div class="palace-dir">北</div></div><div class="star-list"><span class="wealth-tag">財位</span></div></div>
+<div class="palace"><div class="palace-head"><div class="palace-name">乾6</div><div class="palace-dir">西北</div></div><div class="star-list"></div></div></div>
+</div>
+</div>
+</div>
+<div class="wealth-view" id="wealthLuView">
+<div class="field" style="margin-bottom:16px;max-width:420px">
+<label for="wealthBirthGZ">出生年干支</label>
+<select id="wealthBirthGZ" onchange="window.renderWealthLu&amp;&amp;window.renderWealthLu()"><option selected="" value="甲子">01｜甲子</option><option value="乙丑">02｜乙丑</option><option value="丙寅">03｜丙寅</option><option value="丁卯">04｜丁卯</option><option value="戊辰">05｜戊辰</option><option value="己巳">06｜己巳</option><option value="庚午">07｜庚午</option><option value="辛未">08｜辛未</option><option value="壬申">09｜壬申</option><option value="癸酉">10｜癸酉</option><option value="甲戌">11｜甲戌</option><option value="乙亥">12｜乙亥</option><option value="丙子">13｜丙子</option><option value="丁丑">14｜丁丑</option><option value="戊寅">15｜戊寅</option><option value="己卯">16｜己卯</option><option value="庚辰">17｜庚辰</option><option value="辛巳">18｜辛巳</option><option value="壬午">19｜壬午</option><option value="癸未">20｜癸未</option><option value="甲申">21｜甲申</option><option value="乙酉">22｜乙酉</option><option value="丙戌">23｜丙戌</option><option value="丁亥">24｜丁亥</option><option value="戊子">25｜戊子</option><option value="己丑">26｜己丑</option><option value="庚寅">27｜庚寅</option><option value="辛卯">28｜辛卯</option><option value="壬辰">29｜壬辰</option><option value="癸巳">30｜癸巳</option><option value="甲午">31｜甲午</option><option value="乙未">32｜乙未</option><option value="丙申">33｜丙申</option><option value="丁酉">34｜丁酉</option><option value="戊戌">35｜戊戌</option><option value="己亥">36｜己亥</option><option value="庚子">37｜庚子</option><option value="辛丑">38｜辛丑</option><option value="壬寅">39｜壬寅</option><option value="癸卯">40｜癸卯</option><option value="甲辰">41｜甲辰</option><option value="乙巳">42｜乙巳</option><option value="丙午">43｜丙午</option><option value="丁未">44｜丁未</option><option value="戊申">45｜戊申</option><option value="己酉">46｜己酉</option><option value="庚戌">47｜庚戌</option><option value="辛亥">48｜辛亥</option><option value="壬子">49｜壬子</option><option value="癸丑">50｜癸丑</option><option value="甲寅">51｜甲寅</option><option value="乙卯">52｜乙卯</option><option value="丙辰">53｜丙辰</option><option value="丁巳">54｜丁巳</option><option value="戊午">55｜戊午</option><option value="己未">56｜己未</option><option value="庚申">57｜庚申</option><option value="辛酉">58｜辛酉</option><option value="壬戌">59｜壬戌</option><option value="癸亥">60｜癸亥</option></select>
+</div>
+<div class="lu-rule-strip">
+<span>甲祿寅</span><span>乙祿卯</span><span>丙戊祿巳</span><span>丁己祿午</span>
+<span>庚祿申</span><span>辛祿酉</span><span>壬祿亥</span><span>癸祿子</span>
+</div>
+<div class="wealth-layout wealth-lu-layout" style="grid-template-columns:360px 1fr">
+<div class="wealth-side">
+<div class="wealth-result-box">
+<div class="wealth-result-label">本命祿位財位</div>
+<div class="wealth-result-main" id="wealthLuResult"><span class="wealth-pill">甲祿在寅</span></div>
+<div class="wealth-desc" id="wealthLuDetail">甲子年 → 年干甲，祿在寅，方位為東北偏東。</div>
+</div>
+<div class="wealth-list" id="wealthLuList">
+<div class="wealth-row"><span>出生年干支</span><b>甲子</b></div>
+<div class="wealth-row"><span>出生年干</span><b>甲</b></div>
+<div class="wealth-row"><span>祿位地支</span><b>寅</b></div>
+<div class="wealth-row"><span>對應方位</span><b>東北偏東</b></div>
+<div class="wealth-row"><span>理論來源</span><b>十干祿位・臨官</b></div>
+</div>
+<div class="wenchang-source" id="wealthLuSource">
+<b>甲祿在寅：</b>十干祿以天干在十二長生中的「臨官」位置為祿。此工具依你設定，以<strong>出生年干</strong>取祿位，作為本命祿位財位。
+    </div>
+</div>
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>十二地支方位圖</h3>
+<div class="board-base" id="wealthLuMeta">甲子｜甲祿在寅・東北偏東</div>
+</div>
+<div class="wealth-circle-wrap">
+<div class="wealth-circle" id="wealthLuCircle">
+<div class="circle-center">祿位<br/>財位</div>
+<div class="branch-item pos-zi" data-lu-branch="午">午</div>
+<div class="branch-item pos-chou" data-lu-branch="未">未</div>
+<div class="branch-item pos-yin" data-lu-branch="申">申</div>
+<div class="branch-item pos-mao" data-lu-branch="酉">酉</div>
+<div class="branch-item pos-chen" data-lu-branch="戌">戌</div>
+<div class="branch-item pos-si" data-lu-branch="亥">亥</div>
+<div class="branch-item pos-wu" data-lu-branch="子">子</div>
+<div class="branch-item pos-wei" data-lu-branch="丑">丑</div>
+<div class="branch-item pos-shen active-branch" data-lu-branch="寅">寅</div>
+<div class="branch-item pos-you" data-lu-branch="卯">卯</div>
+<div class="branch-item pos-xu" data-lu-branch="辰">辰</div>
+<div class="branch-item pos-hai" data-lu-branch="巳">巳</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="page-pane" id="pagePeach">
+<header class="hero">
+<div class="logo">桃</div>
+<div class="eyebrow">PEACH BLOSSOM · HONG LUAN · TIAN XI</div>
+<h1>桃花位查詢</h1>
+<p class="subtitle">提供兩種桃花方位查法：依生肖取咸池桃花位，或依流年太歲推紅鸞方、天喜方。</p>
+<div class="hint">
+      生肖桃花與流年紅鸞、天喜屬不同查法，本頁分開計算、分開顯示。十二地支方位固定採<strong>左東、上南、下北、右西</strong>。
+    </div>
+</header>
+<section class="section">
+<div class="section-head">
+<h2>桃花位</h2>
+<div class="section-note">生肖桃花｜流年紅鸞・天喜</div>
+</div>
+<div class="peach-method-shell" id="peachMethodShell">
+<div class="field" style="margin-bottom:16px;max-width:420px">
+<label for="peachMethod">桃花位查法</label>
+<select id="peachMethod" onchange="window.togglePeachMethod&amp;&amp;window.togglePeachMethod()">
+<option selected="" value="zodiac">生肖桃花位</option>
+<option value="annual">流年紅鸞・天喜方</option>
+</select>
+</div>
+<div class="wealth-view" id="peachZodiacView">
+<div class="wealth-layout">
+<div class="wealth-side">
+<div class="field">
+<label for="peachZodiac">出生生肖</label>
+<select id="peachZodiac" onchange="window.renderPeachZodiac&amp;&amp;window.renderPeachZodiac()">
+<option selected="" value="子">子鼠</option><option value="丑">丑牛</option><option value="寅">寅虎</option>
+<option value="卯">卯兔</option><option value="辰">辰龍</option><option value="巳">巳蛇</option>
+<option value="午">午馬</option><option value="未">未羊</option><option value="申">申猴</option>
+<option value="酉">酉雞</option><option value="戌">戌狗</option><option value="亥">亥豬</option>
+</select>
+</div>
+<div class="wealth-result-box">
+<div class="wealth-result-label">生肖桃花位</div>
+<div class="wealth-result-main" id="peachZodiacResult"><span class="wealth-pill">酉｜正西</span></div>
+<div class="wealth-desc" id="peachZodiacDetail">子鼠 → 申子辰三合，桃花在酉，方位為正西。</div>
+</div>
+<div class="wealth-list" id="peachZodiacList">
+<div class="wealth-row"><span>出生生肖</span><b>子鼠</b></div>
+<div class="wealth-row"><span>三合局</span><b>申子辰</b></div>
+<div class="wealth-row"><span>桃花地支</span><b>酉</b></div>
+<div class="wealth-row"><span>桃花方位</span><b>正西</b></div>
+</div>
+<div class="wenchang-source">
+<b>生肖桃花位：</b>寅午戌桃花在卯；申子辰桃花在酉；巳酉丑桃花在午；亥卯未桃花在子。此法取生肖所屬三合局之咸池桃花。
+            </div>
+</div>
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>十二地支桃花方位圖</h3>
+<div class="board-base" id="peachZodiacMeta">子鼠｜桃花在酉・正西</div>
+</div>
+<div class="wealth-circle-wrap"><div class="wealth-circle"><div class="circle-center">生肖<br/>桃花位</div><div class="branch-item pos-zi" data-peach-zodiac-branch="午">午</div><div class="branch-item pos-chou" data-peach-zodiac-branch="未">未</div><div class="branch-item pos-yin" data-peach-zodiac-branch="申">申</div><div class="branch-item pos-mao" data-peach-zodiac-branch="酉">酉</div><div class="branch-item pos-chen" data-peach-zodiac-branch="戌">戌</div><div class="branch-item pos-si" data-peach-zodiac-branch="亥">亥</div><div class="branch-item pos-wu" data-peach-zodiac-branch="子">子</div><div class="branch-item pos-wei" data-peach-zodiac-branch="丑">丑</div><div class="branch-item pos-shen" data-peach-zodiac-branch="寅">寅</div><div class="branch-item pos-you" data-peach-zodiac-branch="卯">卯</div><div class="branch-item pos-xu" data-peach-zodiac-branch="辰">辰</div><div class="branch-item pos-hai" data-peach-zodiac-branch="巳">巳</div></div></div>
+</div>
+</div>
+</div>
+<div class="wealth-view" id="peachAnnualView">
+<div class="wealth-layout">
+<div class="wealth-side">
+<div class="field">
+<label for="peachYear">流年</label>
+<select id="peachYear" onchange="window.renderPeachAnnual&amp;&amp;window.renderPeachAnnual()"><option selected="" value="2026">2026｜丙午年</option>
+<option value="2027">2027｜丁未年</option>
+<option value="2028">2028｜戊申年</option>
+<option value="2029">2029｜己酉年</option>
+<option value="2030">2030｜庚戌年</option>
+<option value="2031">2031｜辛亥年</option>
+<option value="2032">2032｜壬子年</option>
+<option value="2033">2033｜癸丑年</option>
+<option value="2034">2034｜甲寅年</option>
+<option value="2035">2035｜乙卯年</option>
+<option value="2036">2036｜丙辰年</option>
+<option value="2037">2037｜丁巳年</option>
+<option value="2038">2038｜戊午年</option>
+<option value="2039">2039｜己未年</option>
+<option value="2040">2040｜庚申年</option>
+<option value="2041">2041｜辛酉年</option>
+<option value="2042">2042｜壬戌年</option>
+<option value="2043">2043｜癸亥年</option>
+<option value="2044">2044｜甲子年</option>
+<option value="2045">2045｜乙丑年</option>
+<option value="2046">2046｜丙寅年</option>
+<option value="2047">2047｜丁卯年</option>
+<option value="2048">2048｜戊辰年</option>
+<option value="2049">2049｜己巳年</option>
+<option value="2050">2050｜庚午年</option>
+<option value="2051">2051｜辛未年</option>
+<option value="2052">2052｜壬申年</option>
+<option value="2053">2053｜癸酉年</option>
+<option value="2054">2054｜甲戌年</option>
+<option value="2055">2055｜乙亥年</option>
+<option value="2056">2056｜丙子年</option>
+<option value="2057">2057｜丁丑年</option>
+<option value="2058">2058｜戊寅年</option>
+<option value="2059">2059｜己卯年</option>
+<option value="2060">2060｜庚辰年</option>
+<option value="2061">2061｜辛巳年</option>
+<option value="2062">2062｜壬午年</option>
+<option value="2063">2063｜癸未年</option>
+<option value="2064">2064｜甲申年</option>
+<option value="2065">2065｜乙酉年</option>
+<option value="2066">2066｜丙戌年</option>
+<option value="2067">2067｜丁亥年</option>
+<option value="2068">2068｜戊子年</option>
+<option value="2069">2069｜己丑年</option>
+<option value="2070">2070｜庚寅年</option>
+<option value="2071">2071｜辛卯年</option>
+<option value="2072">2072｜壬辰年</option>
+<option value="2073">2073｜癸巳年</option>
+<option value="2074">2074｜甲午年</option>
+<option value="2075">2075｜乙未年</option>
+<option value="2076">2076｜丙申年</option>
+<option value="2077">2077｜丁酉年</option>
+<option value="2078">2078｜戊戌年</option>
+<option value="2079">2079｜己亥年</option>
+<option value="2080">2080｜庚子年</option>
+<option value="2081">2081｜辛丑年</option>
+<option value="2082">2082｜壬寅年</option>
+<option value="2083">2083｜癸卯年</option>
+<option value="2084">2084｜甲辰年</option>
+<option value="2085">2085｜乙巳年</option>
+<option value="2086">2086｜丙午年</option>
+<option value="2087">2087｜丁未年</option>
+<option value="2088">2088｜戊申年</option>
+<option value="2089">2089｜己酉年</option>
+<option value="2090">2090｜庚戌年</option>
+<option value="2091">2091｜辛亥年</option>
+<option value="2092">2092｜壬子年</option>
+<option value="2093">2093｜癸丑年</option>
+<option value="2094">2094｜甲寅年</option>
+<option value="2095">2095｜乙卯年</option>
+<option value="2096">2096｜丙辰年</option>
+<option value="2097">2097｜丁巳年</option>
+<option value="2098">2098｜戊午年</option>
+<option value="2099">2099｜己未年</option>
+<option value="2100">2100｜庚申年</option>
+<option value="2101">2101｜辛酉年</option>
+<option value="2102">2102｜壬戌年</option>
+<option value="2103">2103｜癸亥年</option>
+<option value="2104">2104｜甲子年</option>
+<option value="2105">2105｜乙丑年</option>
+<option value="2106">2106｜丙寅年</option>
+<option value="2107">2107｜丁卯年</option>
+<option value="2108">2108｜戊辰年</option>
+<option value="2109">2109｜己巳年</option>
+<option value="2110">2110｜庚午年</option>
+<option value="2111">2111｜辛未年</option>
+<option value="2112">2112｜壬申年</option>
+<option value="2113">2113｜癸酉年</option>
+<option value="2114">2114｜甲戌年</option>
+<option value="2115">2115｜乙亥年</option>
+<option value="2116">2116｜丙子年</option>
+<option value="2117">2117｜丁丑年</option>
+<option value="2118">2118｜戊寅年</option>
+<option value="2119">2119｜己卯年</option>
+<option value="2120">2120｜庚辰年</option>
+<option value="2121">2121｜辛巳年</option>
+<option value="2122">2122｜壬午年</option>
+<option value="2123">2123｜癸未年</option>
+<option value="2124">2124｜甲申年</option>
+<option value="2125">2125｜乙酉年</option>
+<option value="2126">2126｜丙戌年</option>
+<option value="2127">2127｜丁亥年</option>
+<option value="2128">2128｜戊子年</option>
+<option value="2129">2129｜己丑年</option>
+<option value="2130">2130｜庚寅年</option>
+<option value="2131">2131｜辛卯年</option>
+<option value="2132">2132｜壬辰年</option>
+<option value="2133">2133｜癸巳年</option>
+<option value="2134">2134｜甲午年</option>
+<option value="2135">2135｜乙未年</option>
+<option value="2136">2136｜丙申年</option>
+<option value="2137">2137｜丁酉年</option>
+<option value="2138">2138｜戊戌年</option>
+<option value="2139">2139｜己亥年</option>
+<option value="2140">2140｜庚子年</option>
+<option value="2141">2141｜辛丑年</option>
+<option value="2142">2142｜壬寅年</option>
+<option value="2143">2143｜癸卯年</option>
+<option value="2144">2144｜甲辰年</option>
+<option value="2145">2145｜乙巳年</option>
+<option value="2146">2146｜丙午年</option>
+<option value="2147">2147｜丁未年</option>
+<option value="2148">2148｜戊申年</option>
+<option value="2149">2149｜己酉年</option>
+<option value="2150">2150｜庚戌年</option>
+<option value="2151">2151｜辛亥年</option>
+<option value="2152">2152｜壬子年</option>
+<option value="2153">2153｜癸丑年</option>
+<option value="2154">2154｜甲寅年</option>
+<option value="2155">2155｜乙卯年</option>
+<option value="2156">2156｜丙辰年</option>
+<option value="2157">2157｜丁巳年</option>
+<option value="2158">2158｜戊午年</option>
+<option value="2159">2159｜己未年</option>
+<option value="2160">2160｜庚申年</option>
+<option value="2161">2161｜辛酉年</option>
+<option value="2162">2162｜壬戌年</option>
+<option value="2163">2163｜癸亥年</option>
+<option value="2164">2164｜甲子年</option>
+<option value="2165">2165｜乙丑年</option>
+<option value="2166">2166｜丙寅年</option>
+<option value="2167">2167｜丁卯年</option>
+<option value="2168">2168｜戊辰年</option>
+<option value="2169">2169｜己巳年</option>
+<option value="2170">2170｜庚午年</option>
+<option value="2171">2171｜辛未年</option>
+<option value="2172">2172｜壬申年</option>
+<option value="2173">2173｜癸酉年</option>
+<option value="2174">2174｜甲戌年</option>
+<option value="2175">2175｜乙亥年</option>
+<option value="2176">2176｜丙子年</option>
+<option value="2177">2177｜丁丑年</option>
+<option value="2178">2178｜戊寅年</option>
+<option value="2179">2179｜己卯年</option>
+<option value="2180">2180｜庚辰年</option>
+<option value="2181">2181｜辛巳年</option>
+<option value="2182">2182｜壬午年</option>
+<option value="2183">2183｜癸未年</option>
+<option value="2184">2184｜甲申年</option>
+<option value="2185">2185｜乙酉年</option>
+<option value="2186">2186｜丙戌年</option>
+<option value="2187">2187｜丁亥年</option>
+<option value="2188">2188｜戊子年</option>
+<option value="2189">2189｜己丑年</option>
+<option value="2190">2190｜庚寅年</option>
+<option value="2191">2191｜辛卯年</option>
+<option value="2192">2192｜壬辰年</option>
+<option value="2193">2193｜癸巳年</option>
+<option value="2194">2194｜甲午年</option>
+<option value="2195">2195｜乙未年</option>
+<option value="2196">2196｜丙申年</option>
+<option value="2197">2197｜丁酉年</option>
+<option value="2198">2198｜戊戌年</option>
+<option value="2199">2199｜己亥年</option>
+<option value="2200">2200｜庚子年</option></select>
+</div>
+<div class="wealth-result-box">
+<div class="wealth-result-label">流年紅鸞・天喜方</div>
+<div class="wealth-result-main" id="peachAnnualResult">
+<span class="wealth-pill peach-pill-hong">紅鸞｜酉・正西</span>
+<span class="wealth-pill peach-pill-xi">天喜｜卯・正東</span>
+</div>
+<div class="wealth-desc" id="peachAnnualDetail">2026 丙午年 → 紅鸞在酉（正西），天喜在卯（正東）。</div>
+</div>
+<div class="wealth-list" id="peachAnnualList">
+<div class="wealth-row"><span>流年干支</span><b>丙午</b></div>
+<div class="wealth-row"><span>紅鸞</span><b>酉｜正西</b></div>
+<div class="wealth-row"><span>天喜</span><b>卯｜正東</b></div>
+<div class="wealth-row"><span>關係</span><b>紅鸞、天喜相對六宮</b></div>
+</div>
+<div class="wenchang-source">
+<b>流年紅鸞、天喜：</b>紅鸞以子年起卯，逐年逆行十二支；天喜取紅鸞對宮。例：午年紅鸞在酉，天喜在卯。
+            </div>
+<div class="peach-legend"><span><i class="peach-dot hong"></i>紅鸞</span><span><i class="peach-dot xi"></i>天喜</span></div>
+</div>
+<div class="wenchang-panel">
+<div class="board-title">
+<h3>十二地支紅鸞・天喜方位圖</h3>
+<div class="board-base" id="peachAnnualMeta">2026 丙午｜紅鸞酉・天喜卯</div>
+</div>
+<div class="wealth-circle-wrap"><div class="wealth-circle"><div class="circle-center">紅鸞<br/>天喜</div><div class="branch-item pos-zi" data-peach-annual-branch="午">午</div><div class="branch-item pos-chou" data-peach-annual-branch="未">未</div><div class="branch-item pos-yin" data-peach-annual-branch="申">申</div><div class="branch-item pos-mao" data-peach-annual-branch="酉">酉</div><div class="branch-item pos-chen" data-peach-annual-branch="戌">戌</div><div class="branch-item pos-si" data-peach-annual-branch="亥">亥</div><div class="branch-item pos-wu" data-peach-annual-branch="子">子</div><div class="branch-item pos-wei" data-peach-annual-branch="丑">丑</div><div class="branch-item pos-shen" data-peach-annual-branch="寅">寅</div><div class="branch-item pos-you" data-peach-annual-branch="卯">卯</div><div class="branch-item pos-xu" data-peach-annual-branch="辰">辰</div><div class="branch-item pos-hai" data-peach-annual-branch="巳">巳</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="page-pane" id="pageBajie">
+<header class="hero">
+<div class="logo">奇</div>
+<div class="eyebrow">BA JIE SAN QI · EIGHT NODES &amp; THREE WONDERS</div>
+<h1>八節三奇查詢</h1>
+<p class="subtitle">依八節本宮、陰陽順逆與五虎遁，查詢乙奇、丙奇、丁奇所到九宮與二十四山。選擇西元年及八節期間後，系統即時顯示三奇到山、到方。</p>
+<div class="bajie-controls">
+<div class="field">
+<label for="bajieYear">西元年</label>
+<select aria-label="選擇八節三奇西元年" id="bajieYear"></select>
+</div>
+<div class="field">
+<label for="bajieTerm">八節期間</label>
+<select aria-label="選擇八節期間" id="bajieTerm"></select>
+</div>
+<div class="field">
+<label>干支年</label>
+<div class="bajie-readonly"><strong id="bajieGanzhi">丙午</strong><small>立春至<br/>次年立春</small></div>
+</div>
+</div>
+<div class="bajie-actions">
+<button class="bajie-action" id="bajieReset" type="button">回到今年</button>
+<button class="bajie-action" id="bajiePrint" type="button">列印／另存 PDF</button>
+</div>
+<div class="hint">八節本宮：冬至坎、立春艮、春分震、立夏巽；夏至離、立秋坤、秋分兌、立冬乾。冬至至立夏用陽遁順飛，夏至至立冬用陰遁逆飛。</div>
+</header>
+<section class="section">
+<div class="bajie-result-head">
+<div>
+<div class="section-head" style="margin-bottom:0"><h2 id="bajieResultTitle">八節三奇結果</h2></div>
+<div class="bajie-period" id="bajiePeriodText"></div>
+</div>
+<div class="bajie-method-chip" id="bajieMethodChip"></div>
+</div>
+<div class="bajie-qi-cards" id="bajieQiCards"></div>
+<div class="bajie-note" id="bajieTaiSuiNote"></div>
+</section>
+<section class="section">
+<div class="section-head">
+<h2>三奇落宮圖</h2>
+<div class="section-note">上南・下北｜左東・右西</div>
+</div>
+<div class="board-panel bajie-board">
+<div class="board-title">
+<h3>九宮定位</h3>
+<div class="board-base" id="bajieBoardMeta">乙・丙・丁三奇</div>
+</div>
+<div class="grid9" id="bajieGrid"></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head">
+<h2>三奇應用</h2>
+<div class="section-note">乙、丙、丁三奇到山、到方</div>
+</div>
+<div class="bajie-apps">
+<div class="bajie-app">修造、修方</div>
+<div class="bajie-app">安葬</div>
+<div class="bajie-app">制伏凶煞</div>
+<div class="bajie-app">進田產</div>
+<div class="bajie-app">生貴子</div>
+<div class="bajie-app">旺人丁</div>
+</div>
+</section>
+<section class="section">
+<div class="section-head">
+<h2 id="bajieAnnualTitle">全年八節三奇表</h2>
+<div class="section-note">點選任一列，可切換上方八節期間</div>
+</div>
+<div class="bajie-table-wrap">
+<table class="bajie-table">
+<thead><tr><th>八節期間</th><th>遁法</th><th>乙奇</th><th>丙奇</th><th>丁奇</th></tr></thead>
+<tbody id="bajieAnnualBody"></tbody>
+</table>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><h2>排法與使用說明</h2><div class="section-note">八節本宮・太歲泊宮・五虎遁・三奇飛泊</div></div>
+<div class="bajie-help">
+<div class="method-box"><strong>八節本宮：</strong>冬至坎、立春艮、春分震、立夏巽，皆用陽遁順飛；夏至離、立秋坤、秋分兌、立冬乾，皆用陰遁逆飛。</div>
+<div class="method-box"><strong>尋三奇：</strong>先尋本年太歲所泊之宮，再於該宮起五虎遁，依原局順逆飛尋乙、丙、丁三奇。三奇到山、到方仍宜配合完整日課及其他山方條件綜合判斷。</div>
+</div>
+<div class="source-line" style="margin-top:14px">資料依所附《八節三奇》頁面整理；原表第152頁「戊申」重出部分，沿用原工具依正文算法之校正資料。</div>
+</section>
+</div>
+<footer>© 2026 丁一峰老師｜天書三式術數教學、研究與個人查詢使用</footer>
+</div>
+<script>
+(function(){
+  // ES5-style JavaScript for broad compatibility with iPhone / embedded preview browsers.
+  var stems=["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"];
+  var branches=["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"];
+  var monthBranches=["寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑"];
+  var monthNames=["正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+  var ganzhi60=["甲子", "乙丑", "丙寅", "丁卯", "戊辰", "己巳", "庚午", "辛未", "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰", "辛巳", "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯", "壬辰", "癸巳", "甲午", "乙未", "丙申", "丁酉", "戊戌", "己亥", "庚子", "辛丑", "壬寅", "癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申", "己酉", "庚戌", "辛亥", "壬子", "癸丑", "甲寅", "乙卯", "丙辰", "丁巳", "戊午", "己未", "庚申", "辛酉", "壬戌", "癸亥"];
+  var luBranch={"甲": "寅", "乙": "卯", "丙": "巳", "丁": "午", "戊": "巳", "己": "午", "庚": "申", "辛": "酉", "壬": "亥", "癸": "子"};
+  var noble={"甲": {"yang": "未", "yin": "丑"}, "乙": {"yang": "申", "yin": "子"}, "丙": {"yang": "酉", "yin": "亥"}, "丁": {"yang": "亥", "yin": "酉"}, "戊": {"yang": "丑", "yin": "未"}, "己": {"yang": "子", "yin": "申"}, "庚": {"yang": "丑", "yin": "未"}, "辛": {"yang": "寅", "yin": "午"}, "壬": {"yang": "卯", "yin": "巳"}, "癸": {"yang": "巳", "yin": "卯"}};
+  var tigerStart={"甲": 2, "己": 2, "乙": 4, "庚": 4, "丙": 6, "辛": 6, "丁": 8, "壬": 8, "戊": 0, "癸": 0};
+  var gridOrder=["巽", "離", "坤", "震", "中", "兌", "艮", "坎", "乾"];
+  var flyForward=["中", "乾", "兌", "艮", "離", "坎", "坤", "震", "巽"];
+  var flyReverse=["中", "巽", "震", "坤", "坎", "離", "艮", "兌", "乾"];
+  var palaceInfo={
+    "巽":{num:4,dir:"東南"},"離":{num:9,dir:"南"},"坤":{num:2,dir:"西南"},
+    "震":{num:3,dir:"東"},"中":{num:5,dir:"中央"},"兌":{num:7,dir:"西"},
+    "艮":{num:8,dir:"東北"},"坎":{num:1,dir:"北"},"乾":{num:6,dir:"西北"}
+  };
+
+  function yearGanzhi(year){ return ganzhi60[((year-1984)%60+60)%60]; }
+  function tigerGanzhi(yearStem,targetBranch){
+    var m=monthBranches.indexOf(targetBranch);
+    return stems[(tigerStart[yearStem]+m)%10]+targetBranch;
+  }
+  function horseBranch(b){
+    if(["申","子","辰"].indexOf(b)>=0) return "寅";
+    if(["寅","午","戌"].indexOf(b)>=0) return "申";
+    if(["亥","卯","未"].indexOf(b)>=0) return "巳";
+    return "亥";
+  }
+  function trueStars(gz){
+    var s=gz.charAt(0),b=gz.charAt(1);
+    var lb=luBranch[s],hb=horseBranch(b),yb=noble[s].yang,ib=noble[s].yin;
+    return [
+      {key:"lu",name:"真祿",branch:lb,gz:tigerGanzhi(s,lb)},
+      {key:"horse",name:"真馬",branch:hb,gz:tigerGanzhi(s,hb)},
+      {key:"yang",name:"真陽貴",branch:yb,gz:tigerGanzhi(s,yb)},
+      {key:"yin",name:"真陰貴",branch:ib,gz:tigerGanzhi(s,ib)}
+    ];
+  }
+  function monthGanzhiForYear(yearGz,mi){ return tigerGanzhi(yearGz.charAt(0),monthBranches[mi]); }
+  function palaceFor(baseGz,targetGz,direction){
+    var bi=ganzhi60.indexOf(baseGz),ti=ganzhi60.indexOf(targetGz);
+    var steps=(ti-bi+60)%60;
+    var seq=direction==="reverse"?flyReverse:flyForward;
+    return seq[steps%9];
+  }
+  function getVersion(){ return document.getElementById("flyVersion").value; }
+  function getMonthIndex(){ return parseInt(document.getElementById("flowMonth").value,10); }
+
+  function seasonPhase(){
+    var mi=getMonthIndex();
+    var version=getVersion();
+    if(mi===4){
+      var v=document.getElementById("solsticeMode").value;
+      return v==="afterSummer"?"summer":"winter";
+    }
+    if(mi===10){
+      var w=document.getElementById("solsticeMode").value;
+      return w==="afterWinter"?"winter":"summer";
+    }
+    if([0,1,2,3,11].indexOf(mi)>=0) return "winter";
+    return "summer";
+  }
+
+  function updateSolsticeControl(){
+    var version=getVersion(),mi=getMonthIndex();
+    var wrap=document.getElementById("solsticeWrap");
+    var mode=document.getElementById("solsticeMode");
+    var label=document.getElementById("solsticeLabel");
+    mode.innerHTML="";
+    if((version==="xieji"||version==="jiyiao"||version==="wuyao") && (mi===4||mi===10)){
+      wrap.className="field solstice-wrap show";
+      if(mi===4){
+        label.textContent="午月節令段";
+        mode.options.add(new Option("夏至前","beforeSummer"));
+        mode.options.add(new Option("夏至後","afterSummer"));
+      }else{
+        label.textContent="子月節令段";
+        mode.options.add(new Option("冬至前","beforeWinter"));
+        mode.options.add(new Option("冬至後","afterWinter"));
+      }
+    }else{
+      wrap.className="field solstice-wrap";
+    }
+  }
+
+  function monthlyDirection(){
+    var v=getVersion();
+    if(v==="xieji"||v==="zongjing"||v==="wuyao") return "forward";
+    return seasonPhase()==="winter"?"forward":"reverse";
+  }
+
+  function nobleSeasonLabel(){
+    return seasonPhase()==="winter"?"陽貴得令":"陰貴得令";
+  }
+
+  function versionInfo(){
+    var v=getVersion();
+    if(v==="xieji"){
+      return {
+        title:"《欽定協紀辨方書》｜全順飛・陰陽貴分令",
+        short:"《協紀辨方書》｜順飛・"+nobleSeasonLabel(),
+        hint:"《欽定協紀辨方書》卷八所錄：以五虎遁取真祿馬貴人，月建干支入中宮順飛九宮；陽貴冬至後用之有力，陰貴夏至後用之有力。",
+        method:"《欽定協紀辨方書》卷八：月建干支入中宮順飛九宮；"+(seasonPhase()==="winter"?"陽貴冬至後得令。":"陰貴夏至後得令。"),
+        source:"法源｜《欽定協紀辨方書》卷八"
+      };
+    }
+    if(v==="zongjing"){
+      return {
+        title:"《造命宗鏡集》｜全年順飛",
+        short:"《造命宗鏡集》｜全年順飛",
+        hint:"《造命宗鏡集》法：月建入中宮，順尋太歲真祿、真馬、真貴人所到九宮。",
+        method:"《造命宗鏡集》：以月建干支入中宮，全年固定順飛九宮，尋太歲真祿馬貴人。",
+        source:"法源｜《造命宗鏡集》"
+      };
+    }
+    if(v==="wuyao"){
+      return {
+        title:"《陰陽五要奇書》｜元經吊替法",
+        short:"《陰陽五要奇書》｜元經吊替・"+nobleSeasonLabel(),
+        hint:"《陰陽五要奇書》元經吊替法：太歲入中尋本命祿馬貴人，月建入中尋歲祿馬貴人；重視吊替飛宮、陰陽貴得令與歲命交會。",
+        method:"《陰陽五要奇書》元經吊替法：月建干支入中順飛九宮，尋太歲真祿、真馬、真貴人；"+(seasonPhase()==="winter"?"冬至後陽貴得令。":"夏至後陰貴得令。")+"並以歲命交會為重要判斷。",
+        source:"法源｜《陰陽五要奇書》・元經吊替法"
+      };
+    }
+    return {
+      title:"《選擇紀要》｜陰陽遁・冬順夏逆",
+      short:"《選擇紀要》｜"+(seasonPhase()==="winter"?"冬至後順飛":"夏至後逆飛"),
+      hint:"《選擇紀要》法：太歲入中尋命貴固定順行；月建入中尋歲貴則分冬、夏至順逆遁。",
+      method:"《選擇紀要》：月建入中尋歲貴，"+(seasonPhase()==="winter"?"冬至後順飛。":"夏至後逆飛。"),
+      source:"法源｜《選擇紀要》"
+    };
+  }
+
+  function fillMonths(){
+    var year=parseInt(document.getElementById("flowYear").value,10);
+    var ygz=yearGanzhi(year);
+    var sel=document.getElementById("flowMonth");
+    var old=sel.value||"0";
+    var i,o;
+    sel.options.length=0;
+    for(i=0;i<12;i++){
+      o=new Option(monthNames[i]+"・"+monthBranches[i]+"月｜"+monthGanzhiForYear(ygz,i),String(i));
+      sel.options.add(o);
+    }
+    sel.value=old;
+    if(sel.selectedIndex<0) sel.selectedIndex=0;
+    updateSolsticeControl();
+  }
+
+  function renderCards(id,stars){
+    var el=document.getElementById(id),s="",i,st;
+    for(i=0;i<stars.length;i++){
+      st=stars[i];
+      s+='<div class="card"><div class="name">'+st.name+'</div><div class="value">'+st.gz+
+         '</div><div class="detail">原支：'+st.branch+'｜五虎遁至 '+st.gz+
+         '</div><div class="source-line">五虎遁真祿馬貴人法｜《欽定協紀辨方書》卷八所錄</div></div>';
+    }
+    el.innerHTML=s;
+  }
+
+  function renderGrid(gridId,sumId,baseGz,stars,direction,isMonthly){
+    var placements={},i,p,st,info,s="",tags="",sum="";
+    for(i=0;i<gridOrder.length;i++) placements[gridOrder[i]]=[];
+    for(i=0;i<stars.length;i++){
+      p=palaceFor(baseGz,stars[i].gz,direction);
+      placements[p].push(stars[i]);
+    }
+    for(i=0;i<gridOrder.length;i++){
+      p=gridOrder[i];info=palaceInfo[p];tags="";
+      for(var j=0;j<placements[p].length;j++){
+        st=placements[p][j];
+        tags+='<span class="tag">'+st.name+'<small>'+st.gz+'</small></span>';
+      }
+      s+='<div class="palace'+(placements[p].length?' has-star':'')+'"><div class="palace-head">'+
+         '<div class="palace-name">'+p+info.num+'</div><div class="palace-dir">'+info.dir+'</div></div>'+
+         '<div class="star-list">'+tags+'</div></div>';
+    }
+    document.getElementById(gridId).innerHTML=s;
+
+    var vi=versionInfo();
+    for(i=0;i<stars.length;i++){
+      st=stars[i];p=palaceFor(baseGz,st.gz,direction);info=palaceInfo[p];
+      var badge="";
+      if(isMonthly && (getVersion()==="xieji"||getVersion()==="wuyao")){
+        if(seasonPhase()==="winter" && st.key==="yang") badge='<em class="season-badge">陽貴得令</em>';
+        if(seasonPhase()==="summer" && st.key==="yin") badge='<em class="season-badge">陰貴得令</em>';
+      }
+      var src=isMonthly?vi.source.replace("法源｜",""):"太歲入中尋命貴｜順飛九宮";
+      var meet="";
+      if(isMonthly && getVersion()==="wuyao"){
+        var birthGz=document.getElementById("birthGZ").value;
+        var birthStars=trueStars(birthGz);
+        var ygz=yearGanzhi(parseInt(document.getElementById("flowYear").value,10));
+        for(var k=0;k<birthStars.length;k++){
+          var bp=palaceFor(ygz,birthStars[k].gz,"forward");
+          if(bp===p){ meet='<em class="season-badge">歲命交會</em>'; break; }
+        }
+      }
+      sum+='<div class="sum-row"><div><span>'+st.name+'・'+st.gz+'</span>'+badge+meet+
+           '<small class="row-source">'+src+'</small></div><b>'+p+info.num+'｜'+info.dir+'</b></div>';
+    }
+    document.getElementById(sumId).innerHTML=sum;
+  }
+
+  function update(){
+    var birthGz=document.getElementById("birthGZ").value;
+    var year=parseInt(document.getElementById("flowYear").value,10);
+    var ygz=yearGanzhi(year);
+    var mi=getMonthIndex();
+    var mgz=monthGanzhiForYear(ygz,mi);
+    var birthStars=trueStars(birthGz);
+    var yearStars=trueStars(ygz);
+    var dir=monthlyDirection();
+    var vi=versionInfo();
+
+    renderCards("birthCards",birthStars);
+    renderCards("yearCards",yearStars);
+
+    document.getElementById("birthMeta").textContent="本命："+birthGz+"｜"+birthGz.charAt(0)+"年五虎遁";
+    document.getElementById("yearMeta").textContent=year+" 年｜太歲 "+ygz+"｜"+ygz.charAt(0)+"年五虎遁";
+    document.getElementById("annualBase").innerHTML=
+      '<div class="board-period"><span class="year-gz">'+ygz+'</span><span>｜'+year+'年</span><small>太歲入中・固定順飛</small></div>';
+
+    document.getElementById("monthlyBase").innerHTML=
+      '<div class="board-period"><span class="year-gz">'+ygz+'</span><span>｜'+year+'年｜'+monthNames[mi]+'：</span><span class="month-gz">'+mgz+'</span><small>月建入中・'+vi.short+'</small></div>';
+    document.getElementById("versionHint").textContent=vi.hint;
+    document.getElementById("monthlyMethodText").textContent=vi.method;
+    document.getElementById("monthlySource").textContent=vi.source;
+
+    renderGrid("annualGrid","annualSummary",ygz,birthStars,"forward",false);
+    renderGrid("monthlyGrid","monthlySummary",mgz,yearStars,dir,true);
+  }
+
+  function safeUpdate(){
+    try{
+      update();
+      document.getElementById("runtimeStatus").textContent="連動查詢已啟用｜選擇本命、流年、流月或版本後會即時重算。";
+    }catch(e){
+      document.getElementById("runtimeStatus").textContent="目前保留預設查詢結果；連動載入異常："+e.message;
+    }
+  }
+
+
+  // ===== 文昌位分頁 =====
+  var wenchangBranchByStem={
+    "甲":"巳","乙":"午","丙":"申","丁":"酉","戊":"申",
+    "己":"酉","庚":"亥","辛":"子","壬":"寅","癸":"卯"
+  };
+  var branchDirection={
+    "巳":"東南偏南","午":"正南","申":"西南偏西","酉":"正西","亥":"西北偏北",
+    "子":"正北","寅":"東北偏東","卯":"正東"
+  };
+  var branchPalace={
+    "巳":"巽","午":"離","申":"坤","酉":"兌","亥":"乾","子":"坎","寅":"艮","卯":"震"
+  };
+  var starName={
+    1:"一白貪狼",2:"二黑巨門",3:"三碧祿存",4:"四綠文曲",5:"五黃廉貞",
+    6:"六白武曲",7:"七赤破軍",8:"八白左輔",9:"九紫右弼"
+  };
+
+  function annualCenterStar(year){
+    // 2026 一白入中、2027 九紫入中；逐年逆數，九年一循環。
+    return (((2026-year)%9+9)%9)+1;
+  }
+
+  function annualStarsByPalace(year){
+    var center=annualCenterStar(year), result={},i,p,star;
+    for(i=0;i<flyForward.length;i++){
+      p=flyForward[i];
+      star=((center-1+i)%9)+1;
+      result[p]=star;
+    }
+    return result;
+  }
+
+  function fourGreenPalace(year){
+    var stars=annualStarsByPalace(year),i,p;
+    for(i=0;i<gridOrder.length;i++){
+      p=gridOrder[i];
+      if(stars[p]===4) return p;
+    }
+    return "中";
+  }
+
+  function renderPersonalWenchang(){
+    var gz=document.getElementById("wenchangBirthGZ").value;
+    var stem=gz.charAt(0);
+    var branch=wenchangBranchByStem[stem];
+    var palace=branchPalace[branch];
+    var info=palaceInfo[palace];
+    document.getElementById("personalWenchangMeta").textContent=gz+"｜年干"+stem;
+    document.getElementById("personalWenchangResult").textContent=branch+"｜"+branchDirection[branch];
+    document.getElementById("personalWenchangDetail").textContent=branch+"屬"+palace+"宮範圍｜"+palace+info.num+"・"+info.dir;
+    document.getElementById("personalWenchangSymbol").textContent=branch;
+
+    var s="",i,p,cls,tag;
+    for(i=0;i<gridOrder.length;i++){
+      p=gridOrder[i];info=palaceInfo[p];
+      cls=p===palace?" wenchang-active":"";
+      tag=p===palace?'<span class="wenchang-tag">本命文昌・'+branch+'</span>':"";
+      s+='<div class="palace'+cls+'"><div class="palace-head"><div class="palace-name">'+p+info.num+
+         '</div><div class="palace-dir">'+info.dir+'</div></div><div class="star-list">'+tag+'</div></div>';
+    }
+    document.getElementById("personalWenchangGrid").innerHTML=s;
+  }
+
+  function renderAnnualWenchang(){
+    var year=parseInt(document.getElementById("wenchangYear").value,10);
+    var ygz=yearGanzhi(year);
+    var center=annualCenterStar(year);
+    var stars=annualStarsByPalace(year);
+    var wp=fourGreenPalace(year);
+    var wi=palaceInfo[wp];
+
+    document.getElementById("annualWenchangMeta").textContent=ygz+"｜"+year+"年";
+    document.getElementById("annualWenchangResult").textContent=wp+wi.num+"｜"+wi.dir+"方";
+    document.getElementById("annualWenchangDetail").textContent=
+      year+" "+ygz+"年｜"+starName[center]+"入中｜四綠文曲星飛臨"+wp+"宮";
+
+    var s="",i,p,info,st,cls,tag;
+    for(i=0;i<gridOrder.length;i++){
+      p=gridOrder[i];info=palaceInfo[p];st=stars[p];
+      cls=st===4?" wenchang-active":"";
+      tag=st===4?'<span class="wenchang-tag">流年文昌・四綠</span>':"";
+      s+='<div class="palace'+cls+'"><div class="palace-head"><div class="palace-name">'+p+info.num+
+         '</div><div class="palace-dir">'+info.dir+'</div></div><div class="star-mini"><strong>'+
+         starName[st]+'</strong>'+tag+'</div></div>';
+    }
+    document.getElementById("annualWenchangGrid").innerHTML=s;
+  }
+
+
+
+  // ===== 宅星文昌位（紫白九星法） =====
+  var houseWenchangMap={
+    "E-W":{label:"坐東向西",palace:"乾",dir:"西北方"},
+    "W-E":{label:"坐西向東",palace:"坤",dir:"西南方"},
+    "S-N":{label:"坐南向北",palace:"離",dir:"南方"},
+    "N-S":{label:"坐北向南",palace:"艮",dir:"東北方"},
+    "SE-NW":{label:"坐東南向西北",palace:"中",dir:"中央"},
+    "NW-SE":{label:"坐西北向東南",palace:"震",dir:"東方"},
+    "SW-NE":{label:"坐西南向東北",palace:"兌",dir:"西方"},
+    "NE-SW":{label:"坐東北向西南",palace:"坎",dir:"北方"}
+  };
+
+  // ===== 八宅派：六煞＝文曲水 =====
+  var eightMansionWenchang={
+    "乾":{palace:"坎",dir:"北方"},
+    "坎":{palace:"乾",dir:"西北方"},
+    "艮":{palace:"震",dir:"東方"},
+    "震":{palace:"艮",dir:"東北方"},
+    "巽":{palace:"兌",dir:"西方"},
+    "離":{palace:"坤",dir:"西南方"},
+    "坤":{palace:"離",dir:"南方"},
+    "兌":{palace:"巽",dir:"東南方"}
+  };
+
+  function renderSimpleWenchangGrid(containerId,targetPalace,label){
+    var s="",i,p,info,cls,tag;
+    for(i=0;i<gridOrder.length;i++){
+      p=gridOrder[i];
+      info=palaceInfo[p];
+      cls=p===targetPalace?" wenchang-active":"";
+      tag=p===targetPalace?'<span class="wenchang-tag">'+label+'</span>':"";
+      s+='<div class="palace'+cls+'"><div class="palace-head"><div class="palace-name">'+p+info.num+
+         '</div><div class="palace-dir">'+info.dir+'</div></div><div class="star-list">'+tag+'</div></div>';
+    }
+    document.getElementById(containerId).innerHTML=s;
+  }
+
+  function renderHouseWenchang(){
+    var key=document.getElementById("houseDirection").value;
+    var data=houseWenchangMap[key];
+    var info=palaceInfo[data.palace];
+    document.getElementById("houseWenchangResult").textContent=
+      data.dir+"｜"+data.palace+info.num;
+    document.getElementById("houseWenchangDetail").textContent=
+      data.label+" → 坐山本卦入中，四綠文曲所到："+data.dir;
+    document.getElementById("houseWenchangSymbol").textContent=data.palace;
+    renderSimpleWenchangGrid("houseWenchangGrid",data.palace,"宅星文昌・四綠");
+  }
+
+  function renderEightMansionWenchang(){
+    var gate=document.getElementById("eightMansionGate").value;
+    var data=eightMansionWenchang[gate];
+    var info=palaceInfo[data.palace];
+    document.getElementById("eightMansionResult").textContent=
+      data.palace+info.num+"｜"+data.dir;
+    document.getElementById("eightMansionDetail").textContent=
+      gate+"門 → 六煞文曲在"+data.palace+"方";
+    document.getElementById("eightMansionSymbol").textContent=data.palace;
+    renderSimpleWenchangGrid("eightMansionGrid",data.palace,"六煞文曲");
+  }
+
+  document.getElementById("wenchangBirthGZ").addEventListener("change",renderPersonalWenchang);
+  document.getElementById("wenchangYear").addEventListener("change",renderAnnualWenchang);
+  document.getElementById("houseDirection").addEventListener("change",renderHouseWenchang);
+  document.getElementById("eightMansionGate").addEventListener("change",renderEightMansionWenchang);
+
+  renderPersonalWenchang();
+  renderAnnualWenchang();
+  renderHouseWenchang();
+  renderEightMansionWenchang();
+
+
+  // ===== 八宅財位 =====
+  var wealthMap={
+    "坎":{label:"坎宅（坐北向南）",palaces:["坤","坎"]},
+    "離":{label:"離宅（坐南向北）",palaces:["艮","離"]},
+    "震":{label:"震宅（坐東向西）",palaces:["震","乾"]},
+    "兌":{label:"兌宅（坐西向東）",palaces:["離","巽","乾"]},
+    "乾":{label:"乾宅（坐西北向東南）",palaces:["兌","乾"]},
+    "坤":{label:"坤宅（坐西南向東北）",palaces:["震","坤"]},
+    "巽":{label:"巽宅（坐東南向西北）",palaces:["坤","巽"]},
+    "艮":{label:"艮宅（坐東北向西南）",palaces:["艮","乾"]}
+  };
+
+  function wealthDirectionText(p){
+    if(p==="離") return "正南";
+    if(p==="坎") return "正北";
+    if(p==="震") return "正東";
+    if(p==="兌") return "正西";
+    return palaceInfo[p].dir;
+  }
+
+  function renderWealth(){
+    var key=document.getElementById("wealthHouse").value;
+    var data=wealthMap[key];
+    var i,p,info;
+    var pills="",rows="",grid="";
+
+    document.getElementById("wealthMeta").textContent=data.label.replace("（","｜").replace("）","");
+    for(i=0;i<data.palaces.length;i++){
+      p=data.palaces[i];
+      info=palaceInfo[p];
+      pills+='<span class="wealth-pill">'+p+info.num+'｜'+wealthDirectionText(p)+'方</span>';
+      rows+='<div class="wealth-row"><span>財位'+(i===0?"一":i===1?"二":"三")+
+            '</span><b>'+p+info.num+'｜'+wealthDirectionText(p)+'</b></div>';
+    }
+    document.getElementById("wealthResult").innerHTML=pills;
+    document.getElementById("wealthList").innerHTML=rows;
+
+    var dirs=[];
+    for(i=0;i<data.palaces.length;i++) dirs.push(wealthDirectionText(data.palaces[i])+"方");
+    document.getElementById("wealthDetail").textContent=data.label+" → 財位在"+dirs.join("、")+"。";
+
+    for(i=0;i<gridOrder.length;i++){
+      p=gridOrder[i];
+      info=palaceInfo[p];
+      var active=data.palaces.indexOf(p)>=0;
+      grid+='<div class="palace'+(active?' wealth-active':'')+'">'+
+            '<div class="palace-head"><div class="palace-name">'+p+info.num+
+            '</div><div class="palace-dir">'+info.dir+'</div></div>'+
+            '<div class="star-list">'+(active?'<span class="wealth-tag">財位</span>':'')+'</div></div>';
+    }
+    document.getElementById("wealthGrid").innerHTML=grid;
+  }
+
+
+  var luBranchByStem={
+    "甲":"寅","乙":"卯","丙":"巳","丁":"午","戊":"巳","己":"午","庚":"申","辛":"酉","壬":"亥","癸":"子"
+  };
+  var luStemClass={
+    "甲":"jia","乙":"yi","丙":"bing","丁":"ding","戊":"wu",
+    "己":"ji","庚":"geng","辛":"xin","壬":"ren","癸":"gui"
+  };
+
+  function renderWealthLu(){
+    var sel=document.getElementById("wealthBirthGZ");
+    if(!sel) return;
+    var gz=sel.value||"甲子";
+    var stem=gz.charAt(0);
+    var lb=luBranchByStem[stem];
+    var dir=(typeof peachDirection!=="undefined" && peachDirection[lb]) ? peachDirection[lb] : "";
+    var result=document.getElementById("wealthLuResult");
+    var detail=document.getElementById("wealthLuDetail");
+    var list=document.getElementById("wealthLuList");
+    var source=document.getElementById("wealthLuSource");
+    var meta=document.getElementById("wealthLuMeta");
+    var marks=document.querySelectorAll('#wealthLuCircle [data-lu-branch]');
+    var i;
+
+    if(result) result.innerHTML='<span class="wealth-pill">'+stem+'祿在'+lb+'</span>';
+    if(detail) detail.textContent=gz+'年 → 年干'+stem+'，祿在'+lb+'，方位為'+dir+'。';
+    if(list) list.innerHTML=
+      '<div class="wealth-row"><span>出生年干支</span><b>'+gz+'</b></div>'+ 
+      '<div class="wealth-row"><span>出生年干</span><b>'+stem+'</b></div>'+ 
+      '<div class="wealth-row"><span>祿位地支</span><b>'+lb+'</b></div>'+ 
+      '<div class="wealth-row"><span>對應方位</span><b>'+dir+'</b></div>'+ 
+      '<div class="wealth-row"><span>理論來源</span><b>十干祿位・臨官</b></div>';
+    if(source) source.innerHTML='<b>'+stem+'祿在'+lb+'：</b>十干祿以天干在十二長生中的「臨官」位置為祿。此工具依你設定，以<strong>出生年干</strong>取祿位，作為本命祿位財位。';
+    if(meta) meta.textContent=gz+'｜'+stem+'祿在'+lb+'・'+dir;
+
+    for(i=0;i<marks.length;i++) marks[i].classList.remove("active-branch");
+    var active=document.querySelector('#wealthLuCircle [data-lu-branch="'+lb+'"]');
+    if(active) active.classList.add("active-branch");
+  }
+
+  function toggleWealthMethod(){
+    var method=document.getElementById("wealthMethod");
+    if(!method) return;
+    var house=document.getElementById("wealthHouseView");
+    var lu=document.getElementById("wealthLuView");
+    if(method.value==="lu"){
+      if(house) house.style.display="none";
+      if(lu) lu.style.display="block";
+      renderWealthLu();
+    }else{
+      if(house) house.style.display="block";
+      if(lu) lu.style.display="none";
+      renderWealth();
+    }
+  }
+
+
+
+  // ===== 桃花位 =====
+  var peachAnimals={"子":"鼠","丑":"牛","寅":"虎","卯":"兔","辰":"龍","巳":"蛇","午":"馬","未":"羊","申":"猴","酉":"雞","戌":"狗","亥":"豬"};
+  var peachDirection={
+    "子":"正北","丑":"東北偏北","寅":"東北偏東","卯":"正東","辰":"東南偏東","巳":"東南偏南",
+    "午":"正南","未":"西南偏南","申":"西南偏西","酉":"正西","戌":"西北偏西","亥":"西北偏北"
+  };
+  var zodiacPeach={
+    "寅":{group:"寅午戌",peach:"卯"},"午":{group:"寅午戌",peach:"卯"},"戌":{group:"寅午戌",peach:"卯"},
+    "申":{group:"申子辰",peach:"酉"},"子":{group:"申子辰",peach:"酉"},"辰":{group:"申子辰",peach:"酉"},
+    "巳":{group:"巳酉丑",peach:"午"},"酉":{group:"巳酉丑",peach:"午"},"丑":{group:"巳酉丑",peach:"午"},
+    "亥":{group:"亥卯未",peach:"子"},"卯":{group:"亥卯未",peach:"子"},"未":{group:"亥卯未",peach:"子"}
+  };
+  var hongLuanByYearBranch={"子":"卯","丑":"寅","寅":"丑","卯":"子","辰":"亥","巳":"戌","午":"酉","未":"申","申":"未","酉":"午","戌":"巳","亥":"辰"};
+  var tianXiByBranch={"子":"午","丑":"未","寅":"申","卯":"酉","辰":"戌","巳":"亥","午":"子","未":"丑","申":"寅","酉":"卯","戌":"辰","亥":"巳"};
+
+  function peachGanzhiYear(y){
+    var s=stems[(y-4)%10], b=branches[(y-4)%12];
+    return s+b;
+  }
+  function clearPeachMarks(selector){
+    var els=document.querySelectorAll(selector),i;
+    for(i=0;i<els.length;i++){
+      els[i].classList.remove("active-branch");
+      els[i].classList.remove("peach-hongluan");
+      els[i].classList.remove("peach-tianxi");
+    }
+  }
+  function renderPeachZodiac(){
+    var sel=document.getElementById("peachZodiac");
+    if(!sel) return;
+    var z=sel.value||"子", data=zodiacPeach[z], p=data.peach;
+    var animal=peachAnimals[z], label=z+animal;
+    document.getElementById("peachZodiacResult").innerHTML='<span class="wealth-pill">'+p+'｜'+peachDirection[p]+'</span>';
+    document.getElementById("peachZodiacDetail").textContent=label+' → '+data.group+'三合，桃花在'+p+'，方位為'+peachDirection[p]+'。';
+    document.getElementById("peachZodiacList").innerHTML=
+      '<div class="wealth-row"><span>出生生肖</span><b>'+label+'</b></div>'+ 
+      '<div class="wealth-row"><span>三合局</span><b>'+data.group+'</b></div>'+ 
+      '<div class="wealth-row"><span>桃花地支</span><b>'+p+'</b></div>'+ 
+      '<div class="wealth-row"><span>桃花方位</span><b>'+peachDirection[p]+'</b></div>';
+    document.getElementById("peachZodiacMeta").textContent=label+'｜桃花在'+p+'・'+peachDirection[p];
+    clearPeachMarks('[data-peach-zodiac-branch]');
+    var active=document.querySelector('[data-peach-zodiac-branch="'+p+'"]');
+    if(active) active.classList.add("active-branch");
+  }
+  function renderPeachAnnual(){
+    var sel=document.getElementById("peachYear");
+    if(!sel) return;
+    var y=parseInt(sel.value,10)||2026, gz=peachGanzhiYear(y), yb=gz.charAt(1);
+    var hong=hongLuanByYearBranch[yb], xi=tianXiByBranch[hong];
+    document.getElementById("peachAnnualResult").innerHTML=
+      '<span class="wealth-pill peach-pill-hong">紅鸞｜'+hong+'・'+peachDirection[hong]+'</span>'+ 
+      '<span class="wealth-pill peach-pill-xi">天喜｜'+xi+'・'+peachDirection[xi]+'</span>';
+    document.getElementById("peachAnnualDetail").textContent=y+' '+gz+'年 → 紅鸞在'+hong+'（'+peachDirection[hong]+'），天喜在'+xi+'（'+peachDirection[xi]+'）。';
+    document.getElementById("peachAnnualList").innerHTML=
+      '<div class="wealth-row"><span>流年干支</span><b>'+gz+'</b></div>'+ 
+      '<div class="wealth-row"><span>紅鸞</span><b>'+hong+'｜'+peachDirection[hong]+'</b></div>'+ 
+      '<div class="wealth-row"><span>天喜</span><b>'+xi+'｜'+peachDirection[xi]+'</b></div>'+ 
+      '<div class="wealth-row"><span>關係</span><b>紅鸞、天喜相對六宮</b></div>';
+    document.getElementById("peachAnnualMeta").textContent=y+' '+gz+'｜紅鸞'+hong+'・天喜'+xi;
+    clearPeachMarks('[data-peach-annual-branch]');
+    var h=document.querySelector('[data-peach-annual-branch="'+hong+'"]');
+    var x=document.querySelector('[data-peach-annual-branch="'+xi+'"]');
+    if(h) h.classList.add("peach-hongluan");
+    if(x) x.classList.add("peach-tianxi");
+  }
+  function togglePeachMethod(){
+    var method=document.getElementById("peachMethod");
+    if(!method) return;
+    var zodiac=document.getElementById("peachZodiacView"), annual=document.getElementById("peachAnnualView");
+    if(method.value==="annual"){
+      if(zodiac) zodiac.style.display="none";
+      if(annual) annual.style.display="block";
+      renderPeachAnnual();
+    }else{
+      if(zodiac) zodiac.style.display="block";
+      if(annual) annual.style.display="none";
+      renderPeachZodiac();
+    }
+  }
+
+  function addBranchDirectionLabels(){
+    var circles=document.querySelectorAll(".wealth-circle");
+    var items=[
+      {cls:"circle-dir-top",text:"南"},
+      {cls:"circle-dir-top-right",text:"西南"},
+      {cls:"circle-dir-right",text:"西"},
+      {cls:"circle-dir-bottom-right",text:"西北"},
+      {cls:"circle-dir-bottom",text:"北"},
+      {cls:"circle-dir-bottom-left",text:"東北"},
+      {cls:"circle-dir-left",text:"東"},
+      {cls:"circle-dir-top-left",text:"東南"}
+    ];
+    var i,j,c,label;
+    for(i=0;i<circles.length;i++){
+      c=circles[i];
+      if(c.getAttribute("data-dirs-added")==="1") continue;
+      for(j=0;j<items.length;j++){
+        label=document.createElement("div");
+        label.className="circle-dir-label "+items[j].cls;
+        label.textContent=items[j].text;
+        c.appendChild(label);
+      }
+      c.setAttribute("data-dirs-added","1");
+    }
+  }
+
+  if(document.getElementById("peachMethod")) document.getElementById("peachMethod").addEventListener("change",togglePeachMethod);
+  if(document.getElementById("peachZodiac")) document.getElementById("peachZodiac").addEventListener("change",renderPeachZodiac);
+  if(document.getElementById("peachYear")) document.getElementById("peachYear").addEventListener("change",renderPeachAnnual);
+  renderPeachZodiac();
+  renderPeachAnnual();
+  togglePeachMethod();
+  addBranchDirectionLabels();
+
+  window.renderWealthLu=renderWealthLu;
+  window.toggleWealthMethod=toggleWealthMethod;
+  window.renderPeachZodiac=renderPeachZodiac;
+  window.renderPeachAnnual=renderPeachAnnual;
+  window.togglePeachMethod=togglePeachMethod;
+
+
+  document.getElementById("wealthMethod").addEventListener("change",toggleWealthMethod);
+  document.getElementById("wealthBirthGZ").addEventListener("change",renderWealthLu);
+  renderWealth();
+  renderWealthLu();
+  toggleWealthMethod();
+  document.getElementById("birthGZ").addEventListener("change",safeUpdate);
+  document.getElementById("flowYear").addEventListener("change",function(){fillMonths();safeUpdate();});
+  document.getElementById("flowMonth").addEventListener("change",function(){updateSolsticeControl();safeUpdate();});
+  document.getElementById("flyVersion").addEventListener("change",function(){updateSolsticeControl();safeUpdate();});
+  document.getElementById("solsticeMode").addEventListener("change",safeUpdate);
+
+  updateSolsticeControl();
+  safeUpdate();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var BJ_STEMS=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+  var BJ_BRANCHES=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+  var BJ_PALACES={
+    1:{number:1,name:"坎",direction:"北",mountains:["壬","子","癸"]},
+    2:{number:2,name:"坤",direction:"西南",mountains:["未","坤","申"]},
+    3:{number:3,name:"震",direction:"東",mountains:["甲","卯","乙"]},
+    4:{number:4,name:"巽",direction:"東南",mountains:["辰","巽","巳"]},
+    5:{number:5,name:"中",direction:"中央",mountains:[]},
+    6:{number:6,name:"乾",direction:"西北",mountains:["戌","乾","亥"]},
+    7:{number:7,name:"兌",direction:"西",mountains:["庚","酉","辛"]},
+    8:{number:8,name:"艮",direction:"東北",mountains:["丑","艮","寅"]},
+    9:{number:9,name:"離",direction:"南",mountains:["丙","午","丁"]}
+  };
+  var BJ_TERMS=[
+    {key:"lichun",name:"立春",period:"立春後・春分前",base:8,dir:1,dun:"陽遁"},
+    {key:"chunfen",name:"春分",period:"春分後・立夏前",base:3,dir:1,dun:"陽遁"},
+    {key:"lixia",name:"立夏",period:"立夏後・夏至前",base:4,dir:1,dun:"陽遁"},
+    {key:"xiazhi",name:"夏至",period:"夏至後・立秋前",base:9,dir:-1,dun:"陰遁"},
+    {key:"liqiu",name:"立秋",period:"立秋後・秋分前",base:2,dir:-1,dun:"陰遁"},
+    {key:"qiufen",name:"秋分",period:"秋分後・立冬前",base:7,dir:-1,dun:"陰遁"},
+    {key:"lidong",name:"立冬",period:"立冬後・冬至前",base:6,dir:-1,dun:"陰遁"},
+    {key:"dongzhi",name:"冬至",period:"冬至後・次年立春前",base:1,dir:1,dun:"陽遁"}
+  ];
+  var BJ_TIGER={"甲":2,"己":2,"乙":4,"庚":4,"丙":6,"辛":6,"丁":8,"壬":8,"戊":0,"癸":0};
+  var BJ_QI={"乙奇":1,"丙奇":2,"丁奇":3};
+  var BJ_QI_NAMES=["乙奇","丙奇","丁奇"];
+  var BJ_GRID=[4,9,2,3,5,7,8,1,6];
+
+  function bjMod(n,d){return ((n%d)+d)%d;}
+  function bjWrap(n){return bjMod(n-1,9)+1;}
+  function bjMountainText(p){return p.mountains.length?p.mountains.join("・"):"中宮無配三山";}
+  function bjYearIndex(year){return bjMod(year-1984,60);}
+  function bjTermByKey(key){var i;for(i=0;i<BJ_TERMS.length;i++)if(BJ_TERMS[i].key===key)return BJ_TERMS[i];return BJ_TERMS[0];}
+  function bjCalculate(year,term){
+    var index=bjYearIndex(year),stem=BJ_STEMS[index%10],branch=BJ_BRANCHES[index%12];
+    var taiSuiNumber=bjWrap(term.base+term.dir*index),start=BJ_TIGER[stem],qi={},i,name,offset,number;
+    for(i=0;i<BJ_QI_NAMES.length;i++){
+      name=BJ_QI_NAMES[i];
+      offset=bjMod(BJ_QI[name]-start,10);
+      number=bjWrap(taiSuiNumber+term.dir*offset);
+      qi[name]={offset:offset,palace:BJ_PALACES[number]};
+    }
+    return {year:year,ganzhi:stem+branch,term:term,taiSui:BJ_PALACES[taiSuiNumber],qi:qi};
+  }
+  function bjOption(value,text){var o=document.createElement("option");o.value=value;o.text=text;return o;}
+  function bjCard(name,item){
+    return '<div class="bajie-qi-card"><div class="name">'+name+'｜飛 '+item.offset+' 宮</div>'+ 
+      '<div class="value">'+item.palace.name+item.palace.number+'</div>'+ 
+      '<div class="detail">方位：'+item.palace.direction+'方</div>'+ 
+      '<div class="mountains">二十四山：'+bjMountainText(item.palace)+'</div></div>';
+  }
+  function bjSummary(p){return '<strong>'+p.name+p.number+'宮</strong><small>'+p.direction+'｜'+bjMountainText(p)+'</small>';}
+
+  var yearSelect=document.getElementById("bajieYear");
+  var termSelect=document.getElementById("bajieTerm");
+  if(!yearSelect||!termSelect)return;
+  var currentYear=Math.min(2200,Math.max(1900,(new Date()).getFullYear()));
+  var y,i;
+  for(y=1900;y<=2200;y++)yearSelect.appendChild(bjOption(String(y),y+" 年"));
+  for(i=0;i<BJ_TERMS.length;i++)termSelect.appendChild(bjOption(BJ_TERMS[i].key,BJ_TERMS[i].period));
+  yearSelect.value=String(currentYear);
+  termSelect.value="lichun";
+
+  function renderBajie(){
+    var year=parseInt(yearSelect.value,10)||currentYear;
+    var term=bjTermByKey(termSelect.value);
+    var result=bjCalculate(year,term),html="",name,item,p,labels,j,n;
+    document.getElementById("bajieGanzhi").textContent=result.ganzhi;
+    document.getElementById("bajieResultTitle").textContent=year+"年・"+result.ganzhi+"年";
+    document.getElementById("bajiePeriodText").textContent=term.period;
+    document.getElementById("bajieMethodChip").innerHTML=term.dun+"・"+(term.dir===1?"順飛":"逆飛")+'<small>'+term.name+'起'+BJ_PALACES[term.base].name+term.base+'宮</small>';
+    for(i=0;i<BJ_QI_NAMES.length;i++){name=BJ_QI_NAMES[i];html+=bjCard(name,result.qi[name]);}
+    document.getElementById("bajieQiCards").innerHTML=html;
+    document.getElementById("bajieTaiSuiNote").innerHTML='本節太歲泊於 <strong>'+result.taiSui.name+result.taiSui.number+'宮</strong>，於該宮起本年五虎遁，再依八節'+(term.dir===1?'順飛':'逆飛')+'尋乙、丙、丁三奇。';
+    document.getElementById("bajieBoardMeta").textContent=year+" "+result.ganzhi+"｜"+term.name+"・"+term.dun+(term.dir===1?"順飛":"逆飛");
+
+    var byPalace={};
+    for(i=0;i<BJ_QI_NAMES.length;i++){
+      name=BJ_QI_NAMES[i];n=result.qi[name].palace.number;
+      if(!byPalace[n])byPalace[n]=[];
+      byPalace[n].push(name);
+    }
+    html="";
+    for(i=0;i<BJ_GRID.length;i++){
+      n=BJ_GRID[i];p=BJ_PALACES[n];labels=byPalace[n]||[];
+      html+='<div class="palace'+(labels.length?' bajie-active':'')+'"><div class="palace-head"><div class="palace-name">'+p.name+p.number+'</div><div class="palace-dir">'+p.direction+'</div></div><div class="bajie-tags">';
+      for(j=0;j<labels.length;j++)html+='<span class="bajie-tag">'+labels[j]+'</span>';
+      html+='</div></div>';
+    }
+    document.getElementById("bajieGrid").innerHTML=html;
+
+    document.getElementById("bajieAnnualTitle").textContent=result.ganzhi+"年八節三奇表";
+    html="";
+    for(i=0;i<BJ_TERMS.length;i++){
+      var t=BJ_TERMS[i],row=bjCalculate(year,t);
+      html+='<tr data-bajie-term="'+t.key+'"'+(t.key===term.key?' class="active"':'')+'><td><strong>'+t.name+'</strong><small>'+t.period+'</small></td><td>'+t.dun+'・'+(t.dir===1?'順飛':'逆飛')+'</td>';
+      for(j=0;j<BJ_QI_NAMES.length;j++){name=BJ_QI_NAMES[j];html+='<td>'+bjSummary(row.qi[name].palace)+'</td>';}
+      html+='</tr>';
+    }
+    var body=document.getElementById("bajieAnnualBody");body.innerHTML=html;
+    var rows=body.getElementsByTagName("tr");
+    for(i=0;i<rows.length;i++){
+      rows[i].onclick=function(){termSelect.value=this.getAttribute("data-bajie-term");renderBajie();document.getElementById("pageBajie").scrollIntoView();};
+    }
+  }
+
+  yearSelect.onchange=renderBajie;
+  termSelect.onchange=renderBajie;
+  document.getElementById("bajieReset").onclick=function(){yearSelect.value=String(currentYear);termSelect.value="lichun";renderBajie();};
+  document.getElementById("bajiePrint").onclick=function(){window.print();};
+  renderBajie();
+})();
+</script>
+</body>
+</html>

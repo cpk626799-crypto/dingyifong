@@ -1,0 +1,112 @@
+{
+  "baseline_file_count": 44,
+  "baseline_unchanged_except_index": {
+    "fourtime.html": true,
+    "README.md": true,
+    "SUPABASE_CLOUDFLARE_V2_SETUP.md": true,
+    "admin.html": true,
+    "rules.html": true,
+    "jishi.html": true,
+    "zibai.html": true,
+    "verify.html": true,
+    "benming.html": true,
+    "dehu-rules.html": true,
+    "renming.html": true,
+    "yongji.html": true,
+    "login.html": true,
+    "UI_STYLE_GUIDE.md": true,
+    "dehu.html": true,
+    "_headers": true,
+    "pending.html": true,
+    "tongshu.html": true,
+    "register.html": true,
+    "liunian-rules.html": true,
+    "renming-query.html": true,
+    "CWA_115_SOLAR_TERMS.md": true,
+    "RULES.md": true,
+    "benming-rules.html": true,
+    "COPYRIGHT.md": true,
+    "renming-rules.html": true,
+    "assets/supabase-config.js": true,
+    "assets/dehu-data.js": true,
+    "assets/renming.js": true,
+    "assets/dehu-rules.js": true,
+    "assets/dehu.js": true,
+    "assets/styles.css": true,
+    "assets/member-auth.js": true,
+    "assets/supabase-client.js": true,
+    "assets/renming-query.js": true,
+    "assets/admin.js": true,
+    "assets/zibai.js": true,
+    "assets/auth-pages.js": true,
+    "assets/liunian.js": true,
+    "assets/renming-data.js": true,
+    "assets/app.js": true,
+    "assets/benming.js": true,
+    "assets/zaoming.js": true
+  },
+  "changed_or_new": [
+    "index.html",
+    "assets/tools-nav-v20260831.css",
+    "zhen-luma.html",
+    "wenchang.html",
+    "caiwei.html",
+    "taohua.html",
+    "bajie-sanqi.html",
+    "MEMBER_TOOLS_INTEGRATION_20260831.md"
+  ],
+  "critical_hashes": {
+    "assets/member-auth.js": {
+      "sha256": "74b2891064e06d2d831bf970e30839e16f905a6e7a1c593ff7d68ca1a5cacf84",
+      "unchanged": true
+    },
+    "assets/auth-pages.js": {
+      "sha256": "6e66a97bf6fd5ab925143be5aabb46c7992df9f903c49dfc08ae6a09e985fc3b",
+      "unchanged": true
+    },
+    "assets/supabase-client.js": {
+      "sha256": "cdf16b651f20f5feb149196aa3e4d06d92be2e63f1d4788585c58f091ccadc31",
+      "unchanged": true
+    },
+    "assets/supabase-config.js": {
+      "sha256": "b8fc3209b3fb92a14f4e495d60b6d825659ca1393be20ecc44b0ff45382bc27e",
+      "unchanged": true
+    },
+    "assets/admin.js": {
+      "sha256": "acde983600d924524e32a7d484244ae5d213351c71d4fda256a97bfebd91ea65",
+      "unchanged": true
+    },
+    "fourtime.html": {
+      "sha256": "3f5e7fb3808da81e56da785d0ce12c1e7477f5cd6d208adc2b520193495127a7",
+      "unchanged": true
+    },
+    "yongji.html": {
+      "sha256": "d9752eedd454b16037d460b1e8ffbd6d7c23368c1aac40f00d7cc5be94d57358",
+      "unchanged": true
+    },
+    "tongshu.html": {
+      "sha256": "54a67bf921e01858061adc5395180a43d84ae5b22d4e0fb8cdcd03d7f233d49a",
+      "unchanged": true
+    },
+    "benming.html": {
+      "sha256": "321cd001598b963f380da204be237ecdbc672c4b604c18c89c4f5730c83a7cbe",
+      "unchanged": true
+    },
+    "zibai.html": {
+      "sha256": "7c7b75b41052961f2f4f334848923c2695955c79dd8c7212609a75e5f8856c39",
+      "unchanged": true
+    },
+    "dehu.html": {
+      "sha256": "f9434513cdff1bf40d07412df3b1adb6211af255ff449b7265c46e6fa3533f61",
+      "unchanged": true
+    },
+    "renming.html": {
+      "sha256": "74afc4f066543c50eab5bcdd2f91d4b4058827efc5b41af8f1e122d54736f1f2",
+      "unchanged": true
+    },
+    "renming-query.html": {
+      "sha256": "bf5d15e31635294b7cee3cf468f1f86fc2d51b8234efb83468fbdd173e435264",
+      "unchanged": true
+    }
+  }
+}
