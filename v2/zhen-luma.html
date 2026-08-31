@@ -777,6 +777,19 @@ body.tool-member-page .system-header{width:min(1280px,calc(100vw - 40px))!import
 body.tool-member-page .system-header .top-nav{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;width:100%!important;max-width:1280px!important;margin:20px auto 0!important;padding:8px!important;gap:8px!important;border-radius:24px!important;box-sizing:border-box!important}
 body.tool-member-page .system-header .top-nav>a{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;min-height:54px!important;margin:0!important;padding:8px 7px!important;box-sizing:border-box!important;text-align:center!important;white-space:normal!important;word-break:keep-all!important;line-height:1.35!important;border-radius:18px!important}
 body.tool-member-page .module-tabs{display:none!important}
+/* 2026-08-31 修正：全站 styles.css 內 .hero{display:none} 會誤把真祿馬貴人查詢控制區隱藏。
+   會員工具頁只恢復 pageLuma 的查詢容器，並隱藏重複的大標題/Logo，保留本命、流年、流月、古籍版本、節令段與法源說明。 */
+body.tool-member-page #pageLuma > .hero{
+  display:block!important;
+  margin:0 0 22px!important;
+  padding:24px!important;
+}
+body.tool-member-page #pageLuma > .hero > .logo,
+body.tool-member-page #pageLuma > .hero > .eyebrow,
+body.tool-member-page #pageLuma > .hero > h1,
+body.tool-member-page #pageLuma > .hero > .subtitle{
+  display:none!important;
+}
 .liunian-horizontal-shell{width:min(1280px,calc(100% - 36px))!important}
 @media(max-width:1100px){body.tool-member-page .system-header{width:min(100% - 32px,980px)!important}body.tool-member-page .system-header .top-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}.system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:700px){body.tool-member-page .system-header{width:min(100% - 20px,680px)!important}body.tool-member-page .system-header .top-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}.system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))!important}.liunian-horizontal-shell{width:min(100% - 20px,1280px)!important}}
