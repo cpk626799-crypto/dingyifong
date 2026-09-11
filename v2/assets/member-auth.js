@@ -69,6 +69,36 @@ function injectMemberBar(profile) {
   else render();
 }
 
+function injectXuankongToolNav() {
+  const render = () => {
+    const nav = document.querySelector('.system-header .tool-subnav');
+    if (!nav) return;
+
+    if (!document.getElementById('xuankong-tool-nav-style')) {
+      const style = document.createElement('style');
+      style.id = 'xuankong-tool-nav-style';
+      style.textContent = `
+        .system-header .tool-subnav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+        @media(max-width:1100px){.system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+        @media(max-width:700px){.system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+      `;
+      document.head.appendChild(style);
+    }
+
+    let link = nav.querySelector('a[href="xuankong.html"]');
+    if (!link) {
+      link = document.createElement('a');
+      link.href = 'xuankong.html';
+      link.textContent = '玄空飛星';
+      nav.appendChild(link);
+    }
+    if (currentFile() === 'xuankong.html') link.setAttribute('aria-current', 'page');
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, { once: true });
+  else render();
+}
+
 function escapeHtml(value) {
   return String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -108,6 +138,7 @@ async function guard() {
 
     window.TIANSHU_MEMBER = Object.freeze({ profile, user: session.user });
     injectMemberBar(profile);
+    injectXuankongToolNav();
     unlockPage();
   } catch (error) {
     console.error('[member-auth]', error);

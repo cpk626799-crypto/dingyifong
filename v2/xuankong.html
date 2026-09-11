@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>天書三式•丁一峰老師術數查詢系統｜玄空飛星</title>
+  <meta name="description" content="玄空飛星：西元年、干支、三元九運、紫白旺衰、二十四山坐向與正向下卦飛星盤聯動查詢。" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260911xk1" />
+  <link rel="stylesheet" href="assets/tools-nav-v20260831.css?v=20260911xk1" />
+  <link rel="stylesheet" href="assets/xuankong.css?v=20260911xk1" />
+  <script type="module" src="assets/member-auth.js"></script>
+</head>
+<body class="dark-system tool-member-page xuankong-page">
+<header class="system-header">
+  <div class="brand-mark">玄</div>
+  <p class="eyebrow">玄空飛星・三元九運・二十四山</p>
+  <h1>天書三式•丁一峰老師術數查詢系統</h1>
+  <p class="hero__text">西元年／干支／三元九運／紫白旺衰／二十四山坐向度數／正向下卦飛星盤</p>
+  <nav class="top-nav" aria-label="網站導覽">
+    <a href="index.html">流年祿馬貴人</a><a href="benming.html">個人流年祿馬貴人</a><a href="renming.html">六十甲子人命擇日</a><a href="renming-query.html">六十甲子年命擇日查詢</a><a href="zibai.html">流年紫白查詢</a><a href="dehu.html">逐日的呼查詢</a><a href="fourtime.html">四大吉時月表</a><a href="yongji.html">永吉造命課</a><a href="tongshu.html">通書六十甲子造命</a><a href="liunian-rules.html">流年法說明</a><a href="benming-rules.html">個人流年法說明</a><a href="renming-rules.html">人命擇日說明</a><a href="rules.html">本版採用規則</a><a href="dehu-rules.html">的呼規則</a>
+  </nav>
+  <nav class="tool-subnav" aria-label="術數工具導覽">
+    <a href="zhen-luma.html">真祿馬貴人</a><a href="wenchang.html">文昌位</a><a href="caiwei.html">財位</a><a href="taohua.html">桃花位</a><a href="bajie-sanqi.html">八節三奇</a><a href="xuankong.html" aria-current="page">玄空飛星</a>
+  </nav>
+</header>
+<main class="xuankong-shell">
+  <section class="panel xk-lock" id="planLock"><div class="lock-icon">🔒</div><h2>正式會員功能</h2><p class="fine-print">玄空飛星查詢提供正式會員與永久會員使用。一般會員仍可使用原有開放項目。</p><a class="rule-link" href="index.html">返回會員首頁</a></section>
+  <div id="xuankongApp" hidden>
+    <section class="panel" id="query-panel"><div class="panel-heading"><span class="seal">壹</span><div class="section-title"><p>QUERY</p><h2>玄空飛星查詢條件</h2></div></div><div class="xk-control-grid"><label class="field"><span>西元年</span><select id="yearSelect"></select></label><label class="field"><span>坐山（24山）</span><select id="sitSelect"></select></label><label class="field"><span>朝向（自動聯動）</span><input id="faceInput" readonly></label><div class="field"><span>年份快速切換</span><div class="xk-actions"><button class="secondary" id="prevYear" type="button">－1 年</button><button class="secondary" id="nextYear" type="button">＋1 年</button></div></div></div><div class="xk-stats"><div class="xk-stat"><small>年干支</small><strong id="ganzhi">—</strong></div><div class="xk-stat"><small>三元</small><strong id="yuan">—</strong></div><div class="xk-stat"><small>九運</small><strong id="period">—</strong></div><div class="xk-stat"><small>本運區間</small><strong id="periodYears">—</strong></div><div class="xk-stat"><small>當運旺星</small><strong id="wangStar">—</strong></div><div class="xk-stat"><small>山向格局</small><strong id="pattern">—</strong></div></div><div class="xk-period-quick" id="periodQuick"></div></section>
+    <div class="xk-layout"><section class="panel"><div class="panel-heading"><span class="seal">貳</span><div class="section-title"><p>NINE PALACES</p><h2>玄空飛星盤</h2></div></div><div class="xk-chart-wrap"><div class="xk-dir xk-s">南</div><div class="xk-dir xk-n">北</div><div class="xk-dir xk-e">東</div><div class="xk-dir xk-w">西</div><div class="xk-grid" id="starGrid"></div></div><p class="fine-print xk-center">每宮：左＝山星・右＝向星・下＝運星｜灰框＝坐宮・金框＝向宮</p></section><section class="panel"><div class="panel-heading"><span class="seal">參</span><div class="section-title"><p>RESULT</p><h2>本局資料</h2></div></div><div class="xk-result"><span class="xk-badge" id="patternBadge">—</span><div class="xk-title" id="directionTitle">—</div><p class="fine-print" id="periodText">—</p><div class="xk-degrees"><div class="xk-degree"><small>坐山度數</small><div id="sitDeg">—</div></div><div class="xk-degree"><small>朝向度數</small><div id="faceDeg">—</div></div></div><div class="note-box" id="ruleText"></div></div><h3>紫白九星旺衰</h3><div class="star-strip" id="starStrip"></div><p class="fine-print">目前採二分顯示：當運星標示「旺」，其餘標示「衰／失運」。若後續指定古籍規則，可再細分生氣、退氣、衰氣、死氣與煞氣。</p><div class="xk-actions"><button id="copyBtn" type="button">複製結果</button><button class="secondary" type="button" onclick="window.print()">列印 / PDF</button></div></section></div>
+    <section class="panel" id="mountain-overview"><div class="panel-heading"><span class="seal">肆</span><div class="section-title"><p>24 MOUNTAINS</p><h2>本運二十四山總表</h2></div></div><p class="fine-print">點選任一列，可直接切換該坐山並查看飛星盤。</p><div class="table-wrap"><table><thead><tr><th>方位宮</th><th>坐山</th><th>坐山度數</th><th>向</th><th>向度數</th><th>元龍</th><th>格局</th></tr></thead><tbody id="mountainTable"></tbody></table></div></section>
+    <section class="panel" id="period-overview"><div class="panel-heading"><span class="seal">伍</span><div class="section-title"><p>SAN YUAN JIU YUN</p><h2>一運至九運格局總覽</h2></div></div><div class="period-summary" id="periodSummary"></div></section>
+    <section class="panel"><div class="panel-heading"><span class="seal">陸</span><div class="section-title"><p>RULES</p><h2>排盤範圍</h2></div></div><div class="note-box">本頁為玄空飛星正向盤（下卦）：每山 15°。運盤以當運星入中順飛；山、向星取坐宮與向宮之運星入中，再依同元龍陰陽判順逆。目前不含兼向、替卦、分金與換天心。</div></section>
+  </div>
+</main>
+<footer class="footer"><p><strong>天書三式丁一峰老師製作</strong></p><p>© 2026 丁一峰老師 版權所有，僅供教學研究。</p></footer>
+<script src="assets/xuankong.js?v=20260911xk1"></script>
+</body></html>
