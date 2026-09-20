@@ -7,6 +7,18 @@ const DEHU_STATE = {
 const DEHU_ELEMENT_CLASS = { 金: 'metal', 木: 'wood', 水: 'water', 火: 'fire', 土: 'earth' };
 const DEHU_ELEMENT_COLOR = { 金: 'var(--dehu-metal)', 木: 'var(--dehu-wood)', 水: 'var(--dehu-water)', 火: 'var(--dehu-fire)', 土: 'var(--dehu-earth)' };
 
+// 生人五音：直接依生人納音五行換算，避免與的呼排圖之「日柱本音」混淆。
+const DEHU_PERSON_TONE_BY_ELEMENT = {
+  土: { tone: '宮音', toneElement: '土', full: '宮音（土）' },
+  金: { tone: '商音', toneElement: '金', full: '商音（金）' },
+  木: { tone: '角音', toneElement: '木', full: '角音（木）' },
+  火: { tone: '徵音', toneElement: '火', full: '徵音（火）' },
+  水: { tone: '羽音', toneElement: '水', full: '羽音（水）' }
+};
+function dehuPersonTone(element) {
+  return DEHU_PERSON_TONE_BY_ELEMENT[element] || { tone: '—', toneElement: element || '—', full: '—' };
+}
+
 function dehu$(selector) { return document.querySelector(selector); }
 function dehuEscape(text) {
   return String(text)
@@ -55,10 +67,10 @@ function dehuRender() {
     <article class="dehu-result-card">
       <div class="topline">
         <h3>${dehuEscape(result.person)}人 ${dehuElementBadge(result.personElement)}</h3>
-        <strong>${dehuEscape(result.tableToneFull)}</strong>
+        <strong>${dehuEscape(dehuPersonTone(result.personElement).full)}</strong>
       </div>
       <p>生人納音：<b>${dehuEscape(result.personNaYin)}</b>｜生人五行：${dehuElementText(result.personElement)}</p>
-      <p>表內標記：${dehuEscape(result.person)}人 → <b>${dehuEscape(result.tableToneFull)}</b></p>
+      <p>生人五音（依納音）：${dehuEscape(result.person)}人 → <b>${dehuEscape(dehuPersonTone(result.personElement).full)}</b></p>
       <span class="tag good">實務上宜避之</span>
     </article>`).join('');
 }
@@ -78,7 +90,7 @@ function dehuRenderTable(filter = '') {
   const q = filter.trim().toLowerCase();
   const rows = dehuFlattenRows().filter(({ rec, result }) => {
     if (!q) return true;
-    return [rec.day, rec.naYin, rec.element, rec.toneFull, rec.branchPosition, result.person, result.personNaYin, result.personElement, result.tableToneFull]
+    return [rec.day, rec.naYin, rec.element, rec.toneFull, rec.branchPosition, result.person, result.personNaYin, result.personElement, dehuPersonTone(result.personElement).full]
       .join(' ').toLowerCase().includes(q);
   });
   body.innerHTML = rows.map(({ rec, result }) => `
@@ -91,14 +103,14 @@ function dehuRenderTable(filter = '') {
       <td><b>${dehuEscape(result.person)}人</b></td>
       <td>${dehuEscape(result.personNaYin)}</td>
       <td>${dehuElementText(result.personElement)}</td>
-      <td>${dehuEscape(result.tableToneFull)}</td>
+      <td>${dehuEscape(dehuPersonTone(result.personElement).full)}</td>
     </tr>`).join('');
 }
 function dehuDownloadCSV() {
-  const header = ['日柱','日柱納音','日柱五行','所屬五音','日支位置','的呼生人','生人納音','生人五行','表內五音分類'];
+  const header = ['日柱','日柱納音','日柱五行','日柱本音（五音）','日支位置','的呼生人','生人納音','生人五行','生人五音（依納音）'];
   const rows = dehuFlattenRows().map(({ rec, result }) => [
     `${rec.day}日`, rec.naYin, rec.element, rec.toneFull, rec.branchPosition,
-    `${result.person}人`, result.personNaYin, result.personElement, result.tableToneFull
+    `${result.person}人`, result.personNaYin, result.personElement, dehuPersonTone(result.personElement).full
   ]);
   const csv = [header, ...rows].map(line => line.map(cell => `"${String(cell).replaceAll('"','""')}"`).join(',')).join('\n');
   const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
@@ -122,12 +134,12 @@ function dehuToast(text) {
 }
 async function dehuCopy() {
   const rec = dehuRecord(DEHU_STATE.currentDay);
-  const resultLines = rec.results.map(r => `${r.person}人（${r.personNaYin}，${r.personElement}）→ ${r.tableToneFull}`);
+  const resultLines = rec.results.map(r => `${r.person}人（${r.personNaYin}，${r.personElement}）→ ${dehuPersonTone(r.personElement).full}`);
   const text = [
     `逐日入殮移柩安葬的呼`,
     `日柱：${rec.day}日`,
     `納音：${rec.naYin}（${rec.element}）`,
-    `所屬五音：${rec.toneFull}`,
+    `日柱本音（五音）：${rec.toneFull}`,
     `日支位置：${rec.branchPosition}`,
     `的呼：${resultLines.join('；')}`
   ].join('\n');
