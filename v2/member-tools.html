@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>天書三式•丁一峰老師術數查詢系統｜全功能卡片化首頁</title>
+<link rel="stylesheet" href="assets/styles.css?v=20260923b">
+<script type="module" src="assets/member-auth.js"></script>
+<style>
+:root{--bg:#070b14;--panel:#151d33;--panel2:#0b1121;--line:#29334d;--text:#f6eed9;--muted:#98a4b9;--gold:#e0b84e;--gold2:#f2d578;--radius:22px;--font:"Noto Sans TC","Source Han Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+*{box-sizing:border-box}html{color-scheme:dark}body{margin:0;min-height:100vh;font-family:var(--font);color:var(--text);background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),radial-gradient(circle at 50% -8%,rgba(64,80,132,.22),transparent 42rem),radial-gradient(circle at 5% 34%,rgba(222,178,69,.06),transparent 28rem),var(--bg);background-size:52px 52px,52px 52px,auto,auto,auto}
+.hero{padding:30px 18px 18px;text-align:center}.mark{width:54px;height:54px;margin:0 auto 13px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#f3d578,#b97e20);color:#17120a;font-weight:1000;font-size:1.3rem;box-shadow:0 0 28px rgba(228,184,70,.35)}.eyebrow{color:var(--gold);font-size:.82rem;font-weight:900;letter-spacing:.22em}.hero h1{margin:6px 0 8px;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.15}.hero p{margin:0 auto;max-width:900px;color:var(--muted);line-height:1.7}
+main{max-width:1380px;margin:0 auto 60px;padding:0 18px}.stack{display:grid;gap:18px}.panel{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(27,37,64,.97),rgba(15,22,40,.97));box-shadow:0 24px 80px rgba(0,0,0,.36)}.panel + .panel{margin-top:2px}
+.grid{display:grid;gap:14px}.grid.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.tool{position:relative;min-height:144px;padding:18px;border:1px solid #2c3854;border-radius:18px;background:linear-gradient(155deg,rgba(11,17,33,.95),rgba(22,31,54,.95));text-decoration:none;color:inherit;transition:.18s;overflow:hidden}.tool:before{content:"";position:absolute;inset:auto -30px -50px auto;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(224,184,78,.10),transparent 65%)}.tool:hover{transform:translateY(-2px);border-color:rgba(224,184,78,.55);box-shadow:0 14px 34px rgba(0,0,0,.28)}.icon{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;background:rgba(224,184,78,.10);border:1px solid rgba(224,184,78,.28);color:var(--gold2);font-weight:1000;font-size:1rem}.tool h3{margin:13px 0 5px;font-size:1.02rem;line-height:1.35}.tool p{margin:0;color:#9eabc0;font-size:.84rem;line-height:1.55}.arrow{position:absolute;right:14px;bottom:12px;color:var(--gold);font-weight:900}.footer{text-align:center;color:#7f8aa0;font-size:.8rem;padding:0 16px 30px}
+@media(max-width:1180px){.grid.cols-5{grid-template-columns:repeat(3,1fr)}.grid.cols-4{grid-template-columns:repeat(3,1fr)}}@media(max-width:720px){.grid.cols-5,.grid.cols-4,.grid.cols-3{grid-template-columns:repeat(2,1fr)}.tool{min-height:140px}}@media(max-width:480px){.grid.cols-5,.grid.cols-4,.grid.cols-3{grid-template-columns:1fr}.hero{padding-top:24px}.panel{padding:15px;border-radius:18px}}
+.hero.system-header{display:block!important}
+</style></head><body>
+<header class="hero system-header"><div class="mark">天</div><div class="eyebrow">MEMBER HOME · CARD VIEW</div><h1>天書三式•丁一峰老師術數查詢系統</h1><p>會員功能首頁｜點選功能卡片進入各項查詢。</p></header>
+<main><div class="stack">
+<section class="panel"><div class="grid cols-5">
+<a class="tool" href="index.html"><span class="icon">流</span><h3>流年祿馬貴人</h3><p>原穩定版首頁查詢功能。</p><span class="arrow">→</span></a>
+<a class="tool" href="benming.html"><span class="icon">個</span><h3>個人流年祿馬貴人</h3><p>個人真祿、真馬、陽貴、陰貴查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="renming.html"><span class="icon">人</span><h3>六十甲子人命擇日</h3><p>六十甲子人命擇日月表。</p><span class="arrow">→</span></a>
+<a class="tool" href="renming-query.html"><span class="icon">年</span><h3>六十甲子年命擇日查詢</h3><p>人命擇日綜合查詢介面。</p><span class="arrow">→</span></a>
+<a class="tool" href="zibai.html"><span class="icon">紫</span><h3>流年紫白查詢</h3><p>流年紫白飛星查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="dehu.html"><span class="icon">呼</span><h3>逐日的呼查詢</h3><p>逐日的呼吉凶查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="fourtime.html"><span class="icon">吉</span><h3>四大吉時月表</h3><p>四大吉時對照月表。</p><span class="arrow">→</span></a>
+<a class="tool" href="yongji.html"><span class="icon">永</span><h3>永吉造命課</h3><p>永吉造命課查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="tongshu.html"><span class="icon">通</span><h3>通書六十甲子造命</h3><p>通書造命法查詢。</p><span class="arrow">→</span></a>
+</div></section>
+<section class="panel"><div class="grid cols-5">
+<a class="tool" href="zhen-luma.html"><span class="icon">真</span><h3>真祿馬貴人</h3><p>本命真祿、真馬、真陽貴、真陰貴與流年流月九宮。</p><span class="arrow">→</span></a>
+<a class="tool" href="wenchang.html"><span class="icon">文</span><h3>文昌</h3><p>本命與流年文昌方位查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="caiwei.html"><span class="icon">財</span><h3>財位</h3><p>依既有財位規則與方位介面查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="taohua.html"><span class="icon">桃</span><h3>桃花位</h3><p>生肖桃花與既有桃花方位查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="buzhen.html"><span class="icon">佈</span><h3>流年佈陣用日</h3><p>流年與出生干支連動催財、事業、天官與真官用日。</p><span class="arrow">→</span></a>
+</div>
+<div class="grid cols-3" style="margin-top:14px;max-width:860px;margin-left:auto;margin-right:auto">
+<a class="tool" href="liufu.html"><span class="icon">富</span><h3>六富日查詢</h3><p>2027～2100 六富日、建除十二神與國農曆日期。</p><span class="arrow">→</span></a>
+<a class="tool" href="bajie-sanqi.html"><span class="icon">奇</span><h3>八節三奇</h3><p>八節三奇到山到方與九宮查詢。</p><span class="arrow">→</span></a>
+<a class="tool" href="xuankong.html"><span class="icon">玄</span><h3>玄空飛星</h3><p>三元九運、二十四山與西元年聯動查詢。</p><span class="arrow">→</span></a>
+</div></section>
+<section class="panel"><div class="grid cols-5">
+<a class="tool" href="liunian-rules.html"><span class="icon">說</span><h3>流年法說明</h3><p>流年法詳細說明。</p><span class="arrow">→</span></a>
+<a class="tool" href="benming-rules.html"><span class="icon">個</span><h3>個人流年法說明</h3><p>個人流年法使用說明。</p><span class="arrow">→</span></a>
+<a class="tool" href="renming-rules.html"><span class="icon">命</span><h3>人命擇日說明</h3><p>人命擇日法詳細說明。</p><span class="arrow">→</span></a>
+<a class="tool" href="rules.html"><span class="icon">規</span><h3>本版採用規則</h3><p>系統採用規則說明。</p><span class="arrow">→</span></a>
+<a class="tool" href="dehu-rules.html"><span class="icon">呼</span><h3>的呼規則</h3><p>的呼查詢規則說明。</p><span class="arrow">→</span></a>
+</div></section>
+</div></main><div class="footer">© 2026 丁一峰老師 版權所有｜天書三式•丁一峰老師術數查詢系統</div></body></html>
