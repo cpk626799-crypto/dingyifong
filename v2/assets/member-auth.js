@@ -69,30 +69,155 @@ function injectMemberBar(profile) {
   else render();
 }
 
-function injectXuankongToolNav() {
+function injectUnifiedMemberNavigation() {
   const render = () => {
-    const nav = document.querySelector('.system-header .tool-subnav');
-    if (!nav) return;
-
-    if (!document.getElementById('xuankong-tool-nav-style')) {
+    if (!document.getElementById('member-nav-unified-style')) {
       const style = document.createElement('style');
-      style.id = 'xuankong-tool-nav-style';
+      style.id = 'member-nav-unified-style';
       style.textContent = `
-        .system-header .tool-subnav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
-        @media(max-width:1100px){.system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-        @media(max-width:700px){.system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+        /* 會員頁共用導覽：恢復原穩定版 7×2 主導覽，工具列固定 5＋3 */
+        .system-header .top-nav{
+          display:grid!important;
+          grid-template-columns:repeat(7,minmax(0,1fr))!important;
+          grid-auto-flow:row!important;
+          width:100%!important;
+          max-width:1280px!important;
+          margin:20px auto 0!important;
+          padding:8px!important;
+          gap:8px!important;
+          align-items:stretch!important;
+          justify-items:stretch!important;
+          border-radius:24px!important;
+          box-sizing:border-box!important;
+          overflow:visible!important;
+        }
+        .system-header .top-nav>a{
+          display:flex!important;
+          align-items:center!important;
+          justify-content:center!important;
+          width:100%!important;
+          min-width:0!important;
+          min-height:54px!important;
+          margin:0!important;
+          padding:8px 7px!important;
+          box-sizing:border-box!important;
+          text-align:center!important;
+          white-space:normal!important;
+          word-break:keep-all!important;
+          overflow-wrap:normal!important;
+          line-height:1.35!important;
+          border-radius:18px!important;
+          flex:none!important;
+        }
+        .system-header .tool-subnav{
+          width:100%!important;
+          max-width:1280px!important;
+          margin:10px auto 0!important;
+          padding:7px!important;
+          display:grid!important;
+          grid-template-columns:repeat(5,minmax(0,1fr))!important;
+          gap:8px!important;
+          border:1px solid rgba(115,132,176,.22)!important;
+          border-radius:18px!important;
+          background:rgba(8,12,24,.78)!important;
+          box-shadow:0 18px 46px rgba(0,0,0,.26)!important;
+          box-sizing:border-box!important;
+          overflow:visible!important;
+        }
+        .system-header .tool-subnav>a{
+          min-width:0!important;
+          min-height:48px!important;
+          padding:9px 10px!important;
+          display:flex!important;
+          align-items:center!important;
+          justify-content:center!important;
+          border:1px solid transparent!important;
+          border-radius:12px!important;
+          color:#aab4c7!important;
+          background:transparent!important;
+          text-decoration:none!important;
+          font-weight:900!important;
+          line-height:1.35!important;
+          text-align:center!important;
+          white-space:normal!important;
+          word-break:keep-all!important;
+        }
+        .system-header .tool-subnav>a[aria-current="page"]{
+          color:#17120a!important;
+          border-color:rgba(224,184,86,.52)!important;
+          background:linear-gradient(145deg,#f2d477,#d4a035)!important;
+          box-shadow:0 8px 22px rgba(217,168,58,.2)!important;
+        }
+        @media(min-width:1101px){
+          .system-header .tool-subnav>a:nth-child(6){grid-column:2!important}
+          .system-header .tool-subnav>a:nth-child(7){grid-column:3!important}
+          .system-header .tool-subnav>a:nth-child(8){grid-column:4!important}
+        }
+
+        /* 右上會員資訊固定橫排，避免姓名與會員方案被擠成直排 */
+        .system-header .member-session-bar{
+          width:max-content!important;
+          max-width:calc(100% - 24px)!important;
+          display:flex!important;
+          flex-direction:row!important;
+          align-items:center!important;
+          justify-content:flex-end!important;
+          gap:8px!important;
+          flex-wrap:nowrap!important;
+        }
+        .system-header .member-chip{
+          min-width:max-content!important;
+          width:max-content!important;
+          display:grid!important;
+          text-align:right!important;
+        }
+        .system-header .member-chip b,
+        .system-header .member-chip small,
+        .system-header .member-admin-link,
+        .system-header .member-logout-btn{
+          white-space:nowrap!important;
+          word-break:keep-all!important;
+        }
+
+        @media(max-width:1100px){
+          .system-header .top-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+          .system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+          .system-header .tool-subnav>a:nth-child(n){grid-column:auto!important}
+        }
+        @media(max-width:700px){
+          .system-header .top-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+          .system-header .top-nav>a{min-height:48px!important;padding:8px 5px!important}
+          .system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+          .system-header .member-session-bar{
+            position:static!important;
+            margin:12px auto 0!important;
+            max-width:100%!important;
+            justify-content:center!important;
+            flex-wrap:wrap!important;
+          }
+          .system-header .member-chip{text-align:center!important}
+        }
       `;
       document.head.appendChild(style);
     }
 
-    let link = nav.querySelector('a[href="xuankong.html"]');
-    if (!link) {
-      link = document.createElement('a');
-      link.href = 'xuankong.html';
-      link.textContent = '玄空飛星';
-      nav.appendChild(link);
-    }
-    if (currentFile() === 'xuankong.html') link.setAttribute('aria-current', 'page');
+    const nav = document.querySelector('.system-header .tool-subnav');
+    if (!nav) return;
+
+    const tools = [
+      ['zhen-luma.html', '真祿馬貴人'],
+      ['wenchang.html', '文昌'],
+      ['caiwei.html', '財位'],
+      ['taohua.html', '桃花位'],
+      ['buzhen.html', '流年佈陣用日'],
+      ['liufu.html', '六富日查詢'],
+      ['bajie-sanqi.html', '八節三奇'],
+      ['xuankong.html', '玄空飛星']
+    ];
+    const page = currentFile();
+    nav.innerHTML = tools.map(([href, label]) =>
+      `<a href="${href}"${page === href ? ' aria-current="page"' : ''}>${label}</a>`
+    ).join('');
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, { once: true });
@@ -138,7 +263,7 @@ async function guard() {
 
     window.TIANSHU_MEMBER = Object.freeze({ profile, user: session.user });
     injectMemberBar(profile);
-    injectXuankongToolNav();
+    injectUnifiedMemberNavigation();
     unlockPage();
   } catch (error) {
     console.error('[member-auth]', error);
