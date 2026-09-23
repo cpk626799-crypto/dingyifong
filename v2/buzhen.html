@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="天書三式・丁一峰老師術數查詢系統｜流年催官・事業用日查詢 2020–2100">
+  <title>流年佈陣用日｜天書三式・丁一峰老師術數查詢系統</title>
+<link rel="stylesheet" href="assets/styles.css?v=20260923a">
+<script type="module" src="assets/member-auth.js"></script>
+<style>
+:root{--bg:#070b14;--bg2:#0b1120;--panel:#151d33;--panel2:#0a1020;--panel3:#1b2540;--line:#29334d;--line-soft:rgba(255,255,255,.065);--text:#f6eed9;--text2:#eef1f6;--muted:#98a4b9;--gold:#e0b84e;--gold2:#f2d578;--gold3:#ba8124;--danger:#d35d69;--shadow:0 24px 80px rgba(0,0,0,.36);--radius:22px;--font:"Noto Sans TC","Source Han Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;color-scheme:dark}body{margin:0;min-height:100vh;font-family:var(--font);color:var(--text);line-height:1.65;background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),radial-gradient(circle at 50% -12%,rgba(66,82,136,.22),transparent 43rem),radial-gradient(circle at 5% 35%,rgba(222,178,69,.055),transparent 29rem),var(--bg);background-size:52px 52px,52px 52px,auto,auto,auto}
+button,select{font:inherit}button{color:inherit}
+main{max-width:1240px;margin:0 auto 64px;padding:0 18px}
+.panel{position:relative;margin-bottom:18px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(27,37,64,.97),rgba(15,22,40,.97));box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.035);overflow:hidden}
+.panel::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,rgba(255,255,255,.025),transparent 34%)}.panel>*{position:relative;z-index:1}
+.section-kicker{display:flex;align-items:center;gap:9px;margin-bottom:5px;color:var(--gold);font-size:.8rem;font-weight:900;letter-spacing:.13em}.section-kicker span{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;color:#17120a;background:linear-gradient(145deg,#f0d06d,#b87f23);box-shadow:0 6px 18px rgba(218,171,62,.18);letter-spacing:0}
+.panel h2{margin:0 0 8px;color:#f2f3f8;font-size:1.43rem;letter-spacing:.015em}.panel-intro{margin:0 0 17px;color:var(--muted);font-size:.9rem}.compact-panel{padding-bottom:20px}
+.query-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.control-card{padding:14px;border:1px solid var(--line);border-radius:17px;background:#0a1020;display:flex;flex-direction:column;gap:8px;min-width:0}.field label{color:#aeb7ca;font-weight:850;font-size:.88rem}.field small{color:#77849a;font-size:.76rem;line-height:1.5}
+select,.readonly-value{width:100%;min-height:46px;padding:10px 13px;border:1px solid #27314b;border-radius:12px;background:#080e1c;color:#f5f0e4;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}select:focus{outline:3px solid rgba(224,184,78,.14);border-color:var(--gold)}.readonly-value{display:flex;align-items:center;color:var(--gold2);font-size:1.15rem;font-weight:900}
+.query-actions{display:flex;justify-content:flex-end;margin-top:15px}.btn{min-height:44px;border:1px solid #29324a;border-radius:999px;cursor:pointer;font-weight:900;letter-spacing:.03em;transition:.18s;padding:9px 17px}.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}.btn-dark{background:#080e1c;color:#eee7d6}
+.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}.summary-card{min-height:116px;padding:16px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,#1b2540,#121a2f);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}.summary-card .label{color:var(--gold);font-size:.78rem;font-weight:900;letter-spacing:.08em}.summary-card .value{margin-top:7px;color:#fbf1d6;font-size:1.45rem;font-weight:900;line-height:1.25}.summary-card .note{margin-top:7px;color:#919db2;font-size:.82rem}
+.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:15px}.result-card{min-width:0;border:1px solid var(--line);border-radius:20px;background:#0a1020;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}.card-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 17px;border-bottom:1px solid #26314a;background:linear-gradient(145deg,#171f37,#10182b)}.cat{color:#eef0f5;font-weight:900;font-size:1.05rem;letter-spacing:.02em}.day-gz{flex:0 0 auto;min-width:62px;text-align:center;padding:6px 10px;border:1px solid #65583a;border-radius:999px;color:var(--gold2);background:rgba(197,155,57,.1);font-size:1.07rem;font-weight:900}
+.meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:#202a42}.meta-item{background:#0b1223;padding:11px 10px;min-height:67px;min-width:0}.meta-item span{display:block;color:#7f8ca2;font-size:.72rem;margin-bottom:4px;white-space:nowrap}.meta-item strong{display:block;color:#e9edf4;font-size:.9rem;overflow-wrap:anywhere}
+.date-section{padding:15px 16px 17px}.date-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.date-title strong{color:#f0d16f;font-size:.86rem}.date-title span{color:#8996aa;font-size:.78rem}.dates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.date{min-height:80px;padding:10px;border:1px solid #26314a;border-radius:13px;background:#090f20;transition:.15s}.date:hover{border-color:#534827;background:#0d1424}.date .solar{color:#f1d172;font-weight:900;font-size:.9rem;margin-bottom:4px}.date .sub{color:#8f9bb0;font-size:.76rem;line-height:1.52}.empty{grid-column:1/-1;padding:30px;text-align:center;color:#8996aa;background:#090f20;border:1px dashed #33405c;border-radius:15px}
+.notice{margin-top:13px;padding:14px 15px;border:1px solid #2a344e;border-radius:14px;background:#0b1223;color:#8f9bb1;font-size:.84rem;line-height:1.75}.footer{margin-top:22px;padding:17px;border:1px solid var(--line);border-radius:18px;background:#0b1121;color:#97a3b7;font-size:.8rem;text-align:center}.copyright{margin-top:12px;padding-top:12px;border-top:1px dashed #33405c;color:#c5b98f;font-weight:850}
+.member-home-link{position:fixed;right:18px;bottom:18px;z-index:9999;padding:10px 15px;border:1px solid rgba(224,184,78,.45);border-radius:999px;background:rgba(7,11,20,.94);color:#f2d578!important;font-weight:900;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;box-shadow:0 12px 32px rgba(0,0,0,.35);text-decoration:none}.member-home-link:hover{background:#e0b84e;color:#15100a!important}
+@media(max-width:1000px){.query-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.result-grid{grid-template-columns:1fr}}
+@media(max-width:720px){main{padding:0 12px}.panel{padding:16px;border-radius:18px}.query-grid,.summary-grid{grid-template-columns:1fr}.query-actions{justify-content:stretch}.query-actions .btn{width:100%}.meta{grid-template-columns:repeat(2,minmax(0,1fr))}.meta-item:last-child{grid-column:1/-1}.dates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:430px){.dates{grid-template-columns:1fr}}@media(max-width:600px){.member-home-link{right:10px;bottom:10px;padding:8px 12px;font-size:13px}}
+</style>
+</head>
+<body class="tool-member-page">
+<header class="system-header">
+<div class="brand-mark">天</div><p class="eyebrow">TIAN SHU SAN SHI · MEMBER TOOLS</p><h1>天書三式•丁一峰老師術數查詢系統</h1><p class="hero__text">流年佈陣用日｜催財・事業・天祿・天官・真官用日</p>
+<nav class="top-nav" aria-label="網站導覽"><a href="index.html">流年祿馬貴人</a><a href="benming.html">個人流年祿馬貴人</a><a href="renming.html">六十甲子人命擇日</a><a href="renming-query.html">六十甲子年命擇日查詢</a><a href="zibai.html">流年紫白查詢</a><a href="dehu.html">逐日的呼查詢</a><a href="fourtime.html">四大吉時月表</a><a href="yongji.html">永吉造命課</a><a href="tongshu.html">通書六十甲子造命</a><a href="liunian-rules.html">流年法說明</a><a href="benming-rules.html">個人流年法說明</a><a href="renming-rules.html">人命擇日說明</a><a href="rules.html">本版採用規則</a><a href="dehu-rules.html">的呼規則</a></nav>
+<nav class="tool-subnav" aria-label="術數工具導覽"><a href="zhen-luma.html">真祿馬貴人</a><a href="wenchang.html">文昌</a><a href="caiwei.html">財位</a><a href="taohua.html">桃花位</a><a href="buzhen.html" aria-current="page">流年佈陣用日</a><a href="liufu.html">六富日查詢</a><a href="bajie-sanqi.html">八節三奇</a><a href="xuankong.html">玄空飛星</a></nav>
+</header>
+<main>
+<section class="panel" id="query-panel"><div class="section-kicker"><span>01</span> QUERY</div><h2>查詢條件</h2><p class="panel-intro">選擇流年與出生年干支，系統會自動取得出生年天干，連動顯示該命干的催官、事業及生成官星用日。</p>
+<div class="query-grid" aria-label="查詢條件"><div class="control-card field"><label for="yearSelect">查詢流年（西元）</label><select id="yearSelect"></select><small>可查詢 2020–2100 年。</small></div><div class="control-card field"><label for="birthSelect">出生年干支</label><select id="birthSelect"></select><small>由六十甲子中選擇。</small></div><div class="control-card field"><label>出生年天干</label><div class="readonly-value" id="birthStem">甲</div><small>依出生年干支自動取得。</small></div><div class="control-card field"><label>流年干支</label><div class="readonly-value" id="yearGz">丁未</div><small>依所選西元年自動換算。</small></div></div><div class="query-actions"><button class="btn btn-dark" id="resetBtn" type="button">重設查詢</button></div></section>
+<section class="panel" id="summary-panel"><div class="section-kicker"><span>02</span> SUMMARY</div><h2>查詢摘要</h2><div class="summary-grid" id="summary" aria-live="polite"></div></section>
+<section class="panel" id="result-panel"><div class="section-kicker"><span>03</span> RESULT</div><h2>催官・事業用日</h2><div class="result-grid" id="results" aria-live="polite"></div></section>
+<section class="panel compact-panel"><div class="section-kicker"><span>說</span> 使用說明</div><div class="notice">本查詢依「出生年天干」連動，因此同一天干、不同年支會使用同一組四算法用日。部分命干沒有「生成官星／真官次日」，畫面只顯示 Excel 中實際存在的類別。日期資料沿用目前已校正的 2020–2100 年資料。</div></section>
+<footer class="footer"><div>天書三式丁一峰老師製作</div><div class="copyright">© 2026 丁一峰老師 版權所有，僅供教學研究</div></footer>
+</main>
+<script>
+async function __loadTsData(){
+  const files=['assets/buzhen-data-2020-2039.json','assets/buzhen-data-2040-2059.json','assets/buzhen-data-2060-2079.json','assets/buzhen-data-2080-2099.json','assets/buzhen-data-2100.json'];
+  const [parts,meta]=await Promise.all([
+    Promise.all(files.map(async u=>{const r=await fetch(u,{cache:'force-cache'});if(!r.ok)throw new Error(`資料檔載入失敗：${u}`);return r.json();})),
+    fetch('assets/buzhen-meta.json',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('資料索引載入失敗');return r.json();})
+  ]);
+  window.CUI_GUAN_DATA=Object.assign({},...parts);window.CUI_GUAN_META=meta;
+}
+function __startBuzhenApp(){
+  const DB=window.CUI_GUAN_DATA,META=window.CUI_GUAN_META,yearEl=document.querySelector('#yearSelect'),birthEl=document.querySelector('#birthSelect'),stemEl=document.querySelector('#birthStem'),yearGzEl=document.querySelector('#yearGz'),resultsEl=document.querySelector('#results'),summaryEl=document.querySelector('#summary'),resetBtn=document.querySelector('#resetBtn');
+  const stems='甲乙丙丁戊己庚辛壬癸',branches='子丑寅卯辰巳午未申酉戌亥',cats=['催財祿運','事業天祿','催天官','生成官星／真官主日','生成官星／真官次日'];
+  const opt=(v,t=v)=>{const o=document.createElement('option');o.value=v;o.textContent=t;return o};META.years.forEach(y=>yearEl.appendChild(opt(y,`${y} 年`)));META.jiazi.forEach(gz=>birthEl.appendChild(opt(gz)));
+  const esc=(v='')=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])),yearGz=y=>{const i=((Number(y)-1984)%60+60)%60;return stems[i%10]+branches[i%12]},fmt=s=>s?s.replaceAll('-','/'):'',meta=(l,v)=>`<div class="meta-item"><span>${l}</span><strong>${esc(v||'—')}</strong></div>`;
+  function card(x){const ds=x.dates.map(d=>`<div class="date"><div class="solar">${esc(fmt(d.solar))}</div><div class="sub">${esc(d.weekday)}<br>農曆 ${esc(d.lunar)}</div></div>`).join('');return `<article class="result-card"><div class="card-head"><div class="cat">${esc(x.category)}</div><div class="day-gz">${esc(x.dayGz)}</div></div><div class="meta">${meta('旺相階段',x.stage)}${meta('等級',x.grade)}${meta('順飛步數',x.steps===null?'':String(x.steps))}${meta('落宮',x.palace)}${meta('方位',x.direction)}</div><div class="date-section"><div class="date-title"><strong>本年度可佈陣日期</strong><span>${x.dates.length} 日</span></div><div class="dates">${ds||'<div class="empty">本年度無資料</div>'}</div></div></article>`}
+  function summaryCard(label,value,note){return `<div class="summary-card"><div class="label">${esc(label)}</div><div class="value">${esc(value)}</div><div class="note">${esc(note)}</div></div>`}
+  function render(){const y=String(yearEl.value),b=birthEl.value,s=b.charAt(0),yg=yearGz(y);stemEl.textContent=s;yearGzEl.textContent=yg;const items=(DB[y]&&DB[y][s])?[...DB[y][s]]:[];items.sort((a,b)=>cats.indexOf(a.category)-cats.indexOf(b.category));const n=items.reduce((t,x)=>t+x.dates.length,0);summaryEl.innerHTML=summaryCard('查詢流年',`${y}・${yg}`,'西元年／流年干支')+summaryCard('本命條件',`${b}命・${s}干`,'依出生年天干連動')+summaryCard('年度結果',`${items.length} 類・${n} 日`,'用日類別／可佈陣日期');resultsEl.innerHTML=items.length?items.map(card).join(''):'<div class="empty">查無此組合資料，請重新選擇。</div>';try{const u=new URL(location.href);u.searchParams.set('year',y);u.searchParams.set('birth',b);history.replaceState(null,'',u)}catch(e){}}
+  function init(){const p=new URLSearchParams(location.search),y=p.get('year'),b=p.get('birth');yearEl.value=META.years.includes(Number(y))?y:'2027';birthEl.value=META.jiazi.includes(b)?b:'甲子';render()}
+  yearEl.addEventListener('change',render);birthEl.addEventListener('change',render);resetBtn.addEventListener('click',()=>{yearEl.value='2027';birthEl.value='甲子';render()});init();
+}
+__loadTsData().then(__startBuzhenApp).catch(err=>{console.error(err);document.body.insertAdjacentHTML("beforeend",`<div style="position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;padding:14px;border:1px solid #8a5a2b;background:#1a1110;color:#ffd9a8;border-radius:12px">資料載入失敗：${err.message}</div>`);});
+</script>
+<a class="member-home-link" href="member-tools.html">← 會員工具首頁</a>
+</body></html>
