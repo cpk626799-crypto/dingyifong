@@ -12,33 +12,57 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Prepare backup folder
+      - name: Checkout exact production snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: 6d4e78eeba19fe85bac41b28d898057dcf3b226f
+
+      - name: Prepare complete backup
+        shell: bash
         run: |
-          mkdir -p backup
-          cp index.html backup/index.html
-          cp wealth.html backup/wealth.html
-          if [ -f README.md ]; then cp README.md backup/README.md; fi
-          cat > backup/README_完整網站留存.txt <<'EOF'
-          天書三式術數查詢系統｜完整網站留存
+          set -euo pipefail
+          ROOT="天書三式_正式站完整保存_20260923"
+          mkdir -p "$ROOT"
+          shopt -s dotglob extglob
+          cp -a !("$ROOT"|".git") "$ROOT"/
+          cat > "$ROOT/備份版本資訊.txt" <<'EOF'
+          天書三式•丁一峰老師術數查詢系統｜正式站完整保存包
 
-          本備份包含目前主站四大功能：
-          1. 流年紫白查詢
-          2. 生肖擇日宜忌
-          3. 四大吉時月表
-          4. 財位查詢
+          保存日期：2026-09-23
+          GitHub repository：cpk626799-crypto/dingyifong
+          正式分支：main
+          正式版本 commit：6d4e78eeba19fe85bac41b28d898057dcf3b226f
+          Commit 簡稱：6d4e78e
+          Cloudflare Pages：已部署成功
+          GitHub build / deploy：已通過
 
-          檔案：
-          - index.html：主站與前三項功能，並含財位查詢入口
-          - wealth.html：財位查詢完整頁
-          - README.md：原儲存庫說明（若存在）
+          本保存包為上述正式 commit 的完整網站快照，包含：
+          - 根目錄公開站檔案
+          - v2 會員制網站完整檔案
+          - Supabase 前端連線設定
+          - 會員登入、停權、期限與方案相關前端程式
+          - 全功能卡片化會員首頁
+          - 流年佈陣用日 2020–2100
+          - 六富日查詢 2027–2100
+          - 真祿馬貴人、文昌、財位、桃花位、八節三奇、玄空飛星
+          - 逐日的呼、四大吉時、流年紫白、人命擇日、永吉造命課、通書等既有功能
+          - GitHub Pages / Cloudflare Pages 相關設定與說明檔
 
-          部署方式：將本資料夾內容上傳至 GitHub Pages 根目錄即可。
+          注意：
+          1. 本 ZIP 是原始網站檔案保存，不包含 Git 的 .git 歷史目錄。
+          2. 正式恢復時，以本資料夾內容作為網站檔案基準。
+          3. Supabase 後端資料庫本身不在此靜態網站 ZIP 內；本包保存的是前端程式與連線設定。
           EOF
-      - name: Upload full site backup
+          (
+            cd "$ROOT"
+            find . -type f ! -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+          )
+
+      - name: Upload complete production backup
         uses: actions/upload-artifact@v4
         with:
-          name: dingyifong-full-site-backup-2026-08-26
-          path: backup/
+          name: tianshu-dingyifong-production-full-backup-20260923-6d4e78e
+          path: 天書三式_正式站完整保存_20260923/
           if-no-files-found: error
-          retention-days: 7
+          compression-level: 9
+          retention-days: 30
