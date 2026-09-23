@@ -10,7 +10,7 @@ function setMessage(text, type = 'info') {
   box.hidden = false;
 }
 
-function redirectTarget(defaultTarget = 'index.html') {
+function redirectTarget(defaultTarget = 'member-tools.html') {
   const params = new URLSearchParams(location.search);
   const value = params.get('next');
   if (!value) return defaultTarget;
@@ -29,7 +29,7 @@ async function getOwnProfile(userId) {
   return data;
 }
 
-function routeByProfile(profile, fallback = 'index.html') {
+function routeByProfile(profile, fallback = 'member-tools.html') {
   const now = Date.now();
   const expired = profile.expires_at && new Date(profile.expires_at).getTime() <= now;
   const notStarted = profile.starts_at && new Date(profile.starts_at).getTime() > now;
