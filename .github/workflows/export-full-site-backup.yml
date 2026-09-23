@@ -17,15 +17,16 @@ jobs:
         with:
           ref: 6d4e78eeba19fe85bac41b28d898057dcf3b226f
 
-      - name: Prepare complete backup
+      - name: Build exact complete backup ZIP
         shell: bash
         run: |
           set -euo pipefail
           ROOT="天書三式_正式站完整保存_20260923"
-          mkdir -p "$ROOT"
-          shopt -s dotglob extglob
-          cp -a !("$ROOT"|".git") "$ROOT"/
-          cat > "$ROOT/備份版本資訊.txt" <<'EOF'
+          STAGE="$RUNNER_TEMP/$ROOT"
+          OUT="$GITHUB_WORKSPACE/天書三式_正式站完整保存_20260923_6d4e78e.zip"
+          mkdir -p "$STAGE"
+          rsync -a --exclude='.git/' "$GITHUB_WORKSPACE/" "$STAGE/"
+          cat > "$STAGE/備份版本資訊.txt" <<'EOF'
           天書三式•丁一峰老師術數查詢系統｜正式站完整保存包
 
           保存日期：2026-09-23
@@ -39,6 +40,7 @@ jobs:
           本保存包為上述正式 commit 的完整網站快照，包含：
           - 根目錄公開站檔案
           - v2 會員制網站完整檔案
+          - .github/workflows 部署／備份工作流程
           - Supabase 前端連線設定
           - 會員登入、停權、期限與方案相關前端程式
           - 全功能卡片化會員首頁
@@ -46,23 +48,24 @@ jobs:
           - 六富日查詢 2027–2100
           - 真祿馬貴人、文昌、財位、桃花位、八節三奇、玄空飛星
           - 逐日的呼、四大吉時、流年紫白、人命擇日、永吉造命課、通書等既有功能
-          - GitHub Pages / Cloudflare Pages 相關設定與說明檔
 
           注意：
-          1. 本 ZIP 是原始網站檔案保存，不包含 Git 的 .git 歷史目錄。
+          1. 本 ZIP 不包含 Git 的 .git 歷史目錄。
           2. 正式恢復時，以本資料夾內容作為網站檔案基準。
-          3. Supabase 後端資料庫本身不在此靜態網站 ZIP 內；本包保存的是前端程式與連線設定。
+          3. Supabase 後端資料庫本身不在靜態網站 ZIP 內；本包保存的是前端程式與連線設定。
           EOF
           (
-            cd "$ROOT"
+            cd "$STAGE"
             find . -type f ! -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
           )
+          cd "$RUNNER_TEMP"
+          zip -q -r "$OUT" "$ROOT"
 
-      - name: Upload complete production backup
+      - name: Upload complete production backup ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: tianshu-dingyifong-production-full-backup-20260923-6d4e78e
-          path: 天書三式_正式站完整保存_20260923/
+          name: tianshu-dingyifong-production-full-backup-20260923-6d4e78e-v2
+          path: 天書三式_正式站完整保存_20260923_6d4e78e.zip
           if-no-files-found: error
-          compression-level: 9
+          compression-level: 0
           retention-days: 30
