@@ -75,7 +75,7 @@ function injectUnifiedMemberNavigation() {
       const style = document.createElement('style');
       style.id = 'member-nav-unified-style';
       style.textContent = `
-        /* 會員頁共用導覽：恢復原穩定版 7×2 主導覽，工具列固定 5＋3 */
+        /* 會員頁共用導覽：恢復原穩定版 7×2 主導覽，工具列固定 5＋4 */
         .system-header .top-nav{
           display:grid!important;
           grid-template-columns:repeat(7,minmax(0,1fr))!important;
@@ -148,12 +148,6 @@ function injectUnifiedMemberNavigation() {
           background:linear-gradient(145deg,#f2d477,#d4a035)!important;
           box-shadow:0 8px 22px rgba(217,168,58,.2)!important;
         }
-        @media(min-width:1101px){
-          .system-header .tool-subnav>a:nth-child(6){grid-column:2!important}
-          .system-header .tool-subnav>a:nth-child(7){grid-column:3!important}
-          .system-header .tool-subnav>a:nth-child(8){grid-column:4!important}
-        }
-
         /* 右上會員資訊固定橫排，避免姓名與會員方案被擠成直排 */
         .system-header .member-session-bar{
           width:max-content!important;
@@ -210,6 +204,7 @@ function injectUnifiedMemberNavigation() {
       ['caiwei.html', '財位'],
       ['taohua.html', '桃花位'],
       ['buzhen.html', '流年佈陣用日'],
+      ['xicai-guihe.html', '喜財貴人鶴神方'],
       ['liufu.html', '六富日查詢'],
       ['bajie-sanqi.html', '八節三奇'],
       ['xuankong.html', '玄空飛星']

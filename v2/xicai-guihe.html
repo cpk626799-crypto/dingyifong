@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#070b14" />
+<title>天書三式•丁一峰老師術數查詢系統｜喜財貴人鶴神方位查詢</title>
+<link rel="stylesheet" href="assets/styles.css?v=20260925-xicai1" />
+<script type="module" src="assets/member-auth.js"></script>
+<style>
+  :root{
+    --bg:#070b14;
+    --bg2:#0b1121;
+    --panel:#151d33;
+    --panel2:#0f1628;
+    --line:#29334d;
+    --line2:rgba(115,132,176,.22);
+    --gold:#e0b84e;
+    --gold2:#f2d578;
+    --text:#f6eed9;
+    --muted:#98a4b9;
+    --shadow:0 24px 80px rgba(0,0,0,.36);
+    --radius:22px;
+    --xi:#f2d578;
+    --cai:#e0b84e;
+    --yang:#8ed6d1;
+    --yin:#b8b0e8;
+    --he:#e58b8b;
+  }
+  *{box-sizing:border-box}
+  html{color-scheme:dark;background:var(--bg)}
+  body{
+    margin:0;color:var(--text);
+    font-family:"Noto Sans TC","Source Han Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    background:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+      radial-gradient(circle at 50% -8%,rgba(64,80,132,.22),transparent 42rem),
+      radial-gradient(circle at 5% 34%,rgba(222,178,69,.06),transparent 28rem),
+      var(--bg);
+    background-size:52px 52px,52px 52px,auto,auto,auto;
+  }
+  body{min-height:100vh}
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:blur(14px);
+    background:rgba(6,18,40,.88);
+    border-bottom:1px solid var(--line2);
+  }
+  .top-inner{
+    max-width:1120px;margin:0 auto;padding:14px 20px;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;justify-self:start}
+  .logo{
+    width:42px;height:42px;border:1px solid rgba(212,176,94,.65);border-radius:12px;
+    display:grid;place-items:center;color:var(--gold2);font-weight:800;font-size:24px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+  }
+  .brand-text .kicker{font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  .brand-text .title{font-size:14px;font-weight:700;color:var(--text);margin-top:2px}
+  .page-title{justify-self:center;text-align:center}
+  .page-title strong{display:block;color:var(--gold2);font-size:18px;letter-spacing:.08em}
+  .page-title span{display:block;margin-top:2px;color:var(--muted);font-size:11px}
+  .member{justify-self:end;color:var(--muted);font-size:12px;padding:7px 11px;border:1px solid var(--line2);border-radius:999px}
+
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 56px}
+  .query-hero{
+    display:block !important;
+    border:1px solid var(--line2);border-radius:24px;padding:24px;
+    background:linear-gradient(145deg,rgba(27,37,64,.97),rgba(15,22,40,.97));
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .query-hero::before{content:"";position:absolute;left:0;top:24px;bottom:24px;width:3px;background:linear-gradient(var(--gold2),rgba(212,176,94,.15));border-radius:4px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;margin-bottom:8px}
+  h1{font-size:30px;line-height:1.2;margin:0;color:var(--text);letter-spacing:.04em}
+  .desc{margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.85}
+
+  .query-card{
+    margin-top:20px;border:1px solid var(--line2);border-radius:var(--radius);padding:18px;
+    background:rgba(11,17,33,.86);
+  }
+  .query-grid{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end}
+  .query-grid.query-grid-3{grid-template-columns:1.1fr 1fr auto}
+  label{display:block;color:var(--muted);font-size:12px;margin-bottom:8px;letter-spacing:.06em}
+  .select-wrap{position:relative}
+  select{
+    width:100%;appearance:none;border:1px solid var(--line);border-radius:14px;
+    background:#0d1729;color:var(--text);font-size:16px;font-weight:700;
+    padding:14px 44px 14px 14px;outline:none;
+  }
+  .select-wrap::after{content:"⌄";position:absolute;right:15px;top:50%;transform:translateY(-52%);color:var(--gold2);pointer-events:none;font-size:18px}
+  button{
+    border:1px solid rgba(212,176,94,.62);border-radius:999px;padding:13px 18px;
+    background:linear-gradient(145deg,#f3d578,#b97e20);color:#17120a;font-weight:900;letter-spacing:.08em;cursor:pointer;
+    box-shadow:0 0 22px rgba(228,184,70,.16);
+  }
+
+  .result-head{
+    margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .stem-box{
+    min-width:72px;height:72px;border:1px solid rgba(212,176,94,.55);border-radius:16px;
+    display:grid;place-items:center;background:rgba(212,176,94,.08);color:var(--gold2);font-size:28px;font-weight:800;
+  }
+  .result-meta .small{font-size:12px;color:var(--muted);margin-bottom:5px}
+  .result-meta .big{font-size:22px;font-weight:800;letter-spacing:.05em}
+  .result-meta .sub{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.7}
+
+  .result-grid{margin-top:16px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .god-card{
+    min-height:104px;border:1px solid #2c3854;border-radius:15px;padding:13px 12px;
+    background:linear-gradient(155deg,rgba(11,17,33,.95),rgba(22,31,54,.95));
+  }
+  .god-card .name{font-size:12px;color:var(--muted);letter-spacing:.08em;display:flex;align-items:center;gap:7px}
+  .god-card .dot{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor}
+  .god-card .dir{font-size:20px;font-weight:900;margin-top:8px;letter-spacing:.05em}
+  .god-card .note{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.55}
+  .god-card .alt{font-size:10px;color:#d7c28e;margin-top:4px;line-height:1.55}
+  .god-card.xi .name,.god-card.xi .dir{color:var(--xi)}
+  .god-card.cai .name,.god-card.cai .dir{color:var(--cai)}
+  .god-card.yang .name,.god-card.yang .dir{color:var(--yang)}
+  .god-card.yin .name,.god-card.yin .dir{color:var(--yin)}
+  .god-card.he .name,.god-card.he .dir{color:var(--he)}
+
+  .section-title{margin:28px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .section-title::before{content:"";width:3px;height:20px;background:var(--gold);border-radius:3px}
+  .section-title h2{margin:0;font-size:18px;color:var(--text)}
+  .section-title span{color:var(--muted);font-size:12px}
+
+  .palace-shell{
+    border:1px solid var(--line);border-radius:24px;padding:18px;
+    background:linear-gradient(145deg,rgba(27,37,64,.97),rgba(15,22,40,.97));
+    box-shadow:var(--shadow);
+  }
+  .palace{
+    width:min(780px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid #30405f;border-left:1px solid #30405f;
+  }
+  .cell{
+    position:relative;min-height:174px;padding:15px 10px 12px;
+    border-right:1px solid #30405f;border-bottom:1px solid #30405f;
+    background:#0d1728;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    transition:.2s ease;overflow:hidden;isolation:isolate;
+  }
+  .cell::before{
+    content:"";position:absolute;inset:-8%;pointer-events:none;opacity:0;z-index:0;
+    background:radial-gradient(circle at 50% 38%,rgba(255,230,156,.44) 0%,rgba(255,221,128,.28) 22%,rgba(212,176,94,.14) 42%,rgba(10,29,61,0) 70%);
+    filter:blur(10px);transition:opacity .22s ease;
+  }
+  .cell.has-god{
+    background:
+      radial-gradient(circle at 50% 38%,rgba(242,213,120,.18),rgba(17,24,39,.82) 67%),
+      #111827;
+    box-shadow:inset 0 0 0 1px rgba(224,184,86,.38),inset 0 0 48px rgba(224,184,86,.10);
+  }
+  .cell.has-god::before{opacity:1}
+  .cell.he-active{box-shadow:inset 0 0 0 1px rgba(229,139,139,.58),inset 0 0 30px rgba(229,139,139,.08),inset 0 0 56px rgba(245,214,132,.08)}
+  .cell.center.he-sky::before{opacity:1}
+  .cell > *{position:relative;z-index:1}
+  .cell .trigram{color:var(--gold);font-size:11px;letter-spacing:.12em;margin-bottom:5px}
+  .cell .dir{font-size:21px;font-weight:800;color:var(--text);letter-spacing:.08em}
+  .cell .palace-name{font-size:11px;color:var(--muted);margin-top:4px}
+  .cell.center{justify-content:center}
+  .cell.center .dir{color:var(--gold2);font-size:26px}
+  .cell.center .center-note{font-size:11px;color:var(--muted);margin-top:7px;text-align:center;line-height:1.6}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:12px;min-height:52px;align-content:flex-start}
+  .tag{font-size:10px;font-weight:800;padding:4px 7px;border-radius:999px;border:1px solid currentColor;background:rgba(11,17,33,.90);white-space:nowrap}
+  .tag.xi{color:var(--xi)}
+  .tag.cai{color:var(--cai)}
+  .tag.yang{color:var(--yang)}
+  .tag.yin{color:var(--yin)}
+  .tag.he{color:var(--he);background:rgba(104,33,44,.22)}
+  .sky-badge{display:none;margin-top:10px;padding:5px 9px;border-radius:999px;border:1px solid rgba(229,139,139,.65);color:var(--he);font-size:10px;font-weight:800}
+  .cell.center.he-sky .sky-badge{display:inline-flex}
+
+  .legend{margin-top:15px;display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;color:var(--muted);font-size:11px;line-height:1.8}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:7px;height:7px;border-radius:50%;display:inline-block;background:currentColor}
+  .legend .l-xi{color:var(--xi)}.legend .l-cai{color:var(--cai)}.legend .l-yang{color:var(--yang)}.legend .l-yin{color:var(--yin)}.legend .l-he{color:var(--he)}
+
+  .mapping{
+    margin-top:20px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    background:linear-gradient(155deg,rgba(11,17,33,.95),rgba(22,31,54,.95))
+  }
+  .mapping table{width:100%;border-collapse:collapse;font-size:12px}
+  .mapping th,.mapping td{padding:10px 8px;text-align:center;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+  .mapping th{color:var(--gold2);background:rgba(212,176,94,.06);font-weight:800}
+  .mapping td{color:#e1e5ee}
+  .mapping tr:last-child td{border-bottom:0}.mapping th:last-child,.mapping td:last-child{border-right:0}
+  .note-box{margin-top:14px;border:1px solid var(--line2);border-radius:14px;padding:12px 14px;color:var(--muted);font-size:11px;line-height:1.8;background:rgba(11,17,33,.86)}
+  .note-box b{color:var(--gold2)}
+
+  footer{max-width:1040px;margin:0 auto;padding:0 20px 32px;color:#71839f;text-align:center;font-size:11px;line-height:1.8}
+
+  @media(max-width:860px){
+    .result-grid{grid-template-columns:repeat(2,1fr)}
+    .god-card:last-child{grid-column:1/-1}
+  }
+  @media(max-width:720px){
+    .query-grid.query-grid-3{grid-template-columns:1fr}
+    .top-inner{grid-template-columns:auto 1fr auto;padding:11px 14px}
+    .brand-text{display:none}.page-title{justify-self:start}.page-title strong{font-size:15px}.page-title span{display:none}
+    .member{font-size:10px;padding:6px 8px}
+    .wrap{padding:18px 12px 44px}
+    .query-hero{padding:20px 18px}h1{font-size:25px}
+    .query-grid{grid-template-columns:1fr}.query-grid button{width:100%}
+    .result-grid{grid-template-columns:1fr 1fr;gap:8px}.god-card{min-height:94px}.god-card:last-child{grid-column:1/-1}
+    .palace-shell{padding:9px}
+    .cell{min-height:138px;padding:9px 4px 8px}.cell .dir{font-size:16px}.cell .palace-name,.cell .trigram{font-size:9px}
+    .tags{gap:3px;margin-top:8px;min-height:48px}.tag{font-size:8px;padding:3px 5px}
+    .cell.center .dir{font-size:20px}.cell.center .center-note{font-size:9px}
+    .mapping{overflow-x:auto}.mapping table{min-width:760px}
+  }
+
+  /* ===== 會員網站整合頁覆寫 ===== */
+  body.tool-member-page .system-header{
+    width:min(1280px,calc(100vw - 40px));
+    margin:0 auto;padding:34px 0 18px;text-align:center;
+  }
+  body.tool-member-page .system-header .brand-mark{
+    width:54px;height:54px;margin:0 auto 13px;border-radius:15px;font-size:1.3rem;
+  }
+  body.tool-member-page .system-header .eyebrow{
+    margin:0 0 8px;color:#e0b84e;font-size:.82rem;font-weight:900;
+    letter-spacing:.22em;text-transform:uppercase;
+  }
+  body.tool-member-page .system-header h1{
+    margin:6px 0 8px;color:#f6eed9;font-size:clamp(2rem,4.6vw,3.4rem);
+    line-height:1.15;letter-spacing:.04em;font-weight:900;
+  }
+  body.tool-member-page .system-header .hero__text{
+    margin:0 auto;max-width:920px;color:#98a4b9;font-size:15px;
+    line-height:1.8;letter-spacing:.08em;
+  }
+  body.tool-member-page .system-header .top-nav{
+    display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+    width:100%;max-width:1280px;margin:20px auto 0;padding:8px;gap:8px;border-radius:24px;
+  }
+  body.tool-member-page .system-header .top-nav>a{
+    display:flex;align-items:center;justify-content:center;min-height:54px;
+    padding:8px 7px;text-align:center;white-space:normal;word-break:keep-all;
+    line-height:1.35;border-radius:18px;
+  }
+  body.tool-member-page .system-header .tool-subnav{
+    width:100%;max-width:1280px;margin:10px auto 0;padding:7px;
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;
+    border:1px solid rgba(115,132,176,.22);border-radius:18px;
+    background:rgba(8,12,24,.78);box-shadow:0 18px 46px rgba(0,0,0,.26);
+  }
+  body.tool-member-page .system-header .tool-subnav>a{
+    min-width:0;min-height:48px;padding:9px 10px;display:flex;
+    align-items:center;justify-content:center;border:1px solid transparent;border-radius:12px;
+    color:#aab4c7;background:transparent;text-decoration:none;font-weight:900;
+    line-height:1.35;text-align:center;white-space:normal;word-break:keep-all;
+  }
+  body.tool-member-page .system-header .tool-subnav>a[aria-current="page"]{
+    color:#17120a;border-color:rgba(224,184,86,.52);
+    background:linear-gradient(145deg,#f2d477,#d4a035);
+    box-shadow:0 8px 22px rgba(217,168,58,.2);
+  }
+  @media(max-width:1100px){
+    body.tool-member-page .system-header{width:min(100% - 32px,980px)}
+    body.tool-member-page .system-header .top-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+    body.tool-member-page .system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media(max-width:700px){
+    body.tool-member-page .system-header{width:min(100% - 20px,680px)}
+    body.tool-member-page .system-header .top-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+    body.tool-member-page .system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+
+</style>
+</head>
+<body class="tool-member-page">
+<header class="system-header">
+  <div class="brand-mark">喜</div>
+  <p class="eyebrow">喜神・財神・貴人・鶴神遊方</p>
+  <h1>天書三式•丁一峰老師術數查詢系統</h1>
+  <p class="hero__text">六十甲子｜喜神・財神・陽貴・陰貴｜鶴神遊方｜九宮方位顯示</p>
+  <nav class="top-nav" aria-label="網站導覽">
+    <a href="index.html">流年祿馬貴人</a><a href="benming.html">個人流年祿馬貴人</a>
+    <a href="renming.html">六十甲子人命擇日</a><a href="renming-query.html">六十甲子年命擇日查詢</a>
+    <a href="zibai.html">流年紫白查詢</a><a href="dehu.html">逐日的呼查詢</a>
+    <a href="fourtime.html">四大吉時月表</a><a href="yongji.html">永吉造命課</a>
+    <a href="tongshu.html">通書六十甲子造命</a><a href="liunian-rules.html">流年法說明</a>
+    <a href="benming-rules.html">個人流年法說明</a><a href="renming-rules.html">人命擇日說明</a>
+    <a href="rules.html">本版採用規則</a><a href="dehu-rules.html">的呼規則</a>
+  </nav>
+  <nav class="tool-subnav" aria-label="術數工具導覽">
+    <a href="zhen-luma.html">真祿馬貴人</a><a href="wenchang.html">文昌</a>
+    <a href="caiwei.html">財位</a><a href="taohua.html">桃花位</a>
+    <a href="buzhen.html">流年佈陣用日</a>
+    <a href="xicai-guihe.html" aria-current="page">喜財貴人鶴神方</a>
+    <a href="liufu.html">六富日查詢</a><a href="bajie-sanqi.html">八節三奇</a>
+    <a href="xuankong.html">玄空飛星</a>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="query-hero">
+    <div class="eyebrow">出行喜財貴三吉神方宜趨・鶴神方當避</div>
+    <h1>喜神・財神・陽貴・陰貴・鶴神</h1>
+    <p class="desc">選擇六十甲子干支，下方九宮格同步標示五項方位。喜神、財神、陽貴、陰貴依天干取方；鶴神依六十甲子日序循環取方。九宮採術數常用配置：上南、下北、左東、右西。</p>
+
+    <div class="query-card">
+      <div class="query-grid query-grid-3">
+        <div>
+          <label for="jiaziSelect">流年六十甲子</label>
+          <div class="select-wrap"><select id="jiaziSelect"></select></div>
+        </div>
+        <div>
+          <label for="caiVersion">財神取法</label>
+          <div class="select-wrap">
+            <select id="caiVersion">
+              <option value="qimen">奇門遁甲吉時吉方資料</option>
+              <option value="yuxia">《玉匣記》歌訣版本</option>
+            </select>
+          </div>
+        </div>
+        <button id="resetBtn" type="button">回到丙午</button>
+      </div>
+    </div>
+
+    <div class="result-head">
+      <div class="stem-box" id="stemBox">丙</div>
+      <div class="result-meta">
+        <div class="small">目前選擇</div>
+        <div class="big" id="selectedJiazi">丙午</div>
+        <div class="sub" id="indexText">六十甲子第 43 位</div>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="god-card xi"><div class="name"><i class="dot"></i>喜神</div><div class="dir" id="xiDir">西南方</div><div class="note">依天干取方</div></div>
+      <div class="god-card cai">
+        <div class="name"><i class="dot"></i>財神</div>
+        <div class="dir" id="caiDir">西南方</div>
+        <div class="note" id="caiSource">奇門遁甲吉時吉方資料</div>
+        <div class="alt" id="caiAlt">《玉匣記》：西南方</div>
+      </div>
+      <div class="god-card yang"><div class="name"><i class="dot"></i>陽貴</div><div class="dir" id="yangDir">正西方</div><div class="note">天乙陽貴人</div></div>
+      <div class="god-card yin"><div class="name"><i class="dot"></i>陰貴</div><div class="dir" id="yinDir">西北方</div><div class="note">天乙陰貴人</div></div>
+      <div class="god-card he"><div class="name"><i class="dot"></i>鶴神遊方</div><div class="dir" id="heDir">在天</div><div class="note" id="heNote">鶴神在天，無地上方位</div></div>
+    </div>
+  </section>
+
+  <div class="section-title"><h2>九宮方位</h2><span>同一宮可同時出現多位神煞；鶴神為避方</span></div>
+  <section class="palace-shell">
+    <div class="palace" id="palace">
+      <div class="cell" data-dir="東南"><div class="trigram">巽四宮</div><div class="dir">東南</div><div class="palace-name">巽宮</div><div class="tags"></div></div>
+      <div class="cell" data-dir="正南"><div class="trigram">離九宮</div><div class="dir">正南</div><div class="palace-name">離宮</div><div class="tags"></div></div>
+      <div class="cell" data-dir="西南"><div class="trigram">坤二宮</div><div class="dir">西南</div><div class="palace-name">坤宮</div><div class="tags"></div></div>
+
+      <div class="cell" data-dir="正東"><div class="trigram">震三宮</div><div class="dir">正東</div><div class="palace-name">震宮</div><div class="tags"></div></div>
+      <div class="cell center" data-dir="中宮"><div class="trigram">中五宮</div><div class="dir" id="centerText">丙午</div><div class="palace-name">所選干支</div><div class="center-note" id="centerNote">吉神方宜趨・鶴神方當避</div><div class="sky-badge">鶴神在天・無方可避</div></div>
+      <div class="cell" data-dir="正西"><div class="trigram">兌七宮</div><div class="dir">正西</div><div class="palace-name">兌宮</div><div class="tags"></div></div>
+
+      <div class="cell" data-dir="東北"><div class="trigram">艮八宮</div><div class="dir">東北</div><div class="palace-name">艮宮</div><div class="tags"></div></div>
+      <div class="cell" data-dir="正北"><div class="trigram">坎一宮</div><div class="dir">正北</div><div class="palace-name">坎宮</div><div class="tags"></div></div>
+      <div class="cell" data-dir="西北"><div class="trigram">乾六宮</div><div class="dir">西北</div><div class="palace-name">乾宮</div><div class="tags"></div></div>
+    </div>
+    <div class="legend">
+      <span class="l-xi"><i></i>喜神</span><span class="l-cai"><i></i>財神（依所選版本）</span><span class="l-yang"><i></i>陽貴</span><span class="l-yin"><i></i>陰貴</span><span class="l-he"><i></i>鶴神（避）</span>
+    </div>
+  </section>
+
+  <div class="section-title"><h2>天干取方表</h2><span>喜神・財神兩版本・陽貴・陰貴</span></div>
+  <section class="mapping">
+    <table>
+      <thead><tr><th>天干</th><th>喜神</th><th>財神<br>奇門資料</th><th>財神<br>《玉匣記》</th><th>陽貴</th><th>陰貴</th></tr></thead>
+      <tbody>
+        <tr><td>甲</td><td>東北</td><td>正南</td><td>東北</td><td>西南</td><td>東北</td></tr>
+        <tr><td>乙</td><td>西北</td><td>東北</td><td>東北</td><td>西南</td><td>正北</td></tr>
+        <tr><td>丙</td><td>西南</td><td>西南</td><td>西南</td><td>正西</td><td>西北</td></tr>
+        <tr><td>丁</td><td>正南</td><td>正西</td><td>西南</td><td>西北</td><td>正西</td></tr>
+        <tr><td>戊</td><td>東南</td><td>正西</td><td>正北</td><td>東北</td><td>西南</td></tr>
+        <tr><td>己</td><td>東北</td><td>正北</td><td>正北</td><td>正北</td><td>西南</td></tr>
+        <tr><td>庚</td><td>西北</td><td>正北</td><td>正東</td><td>東北</td><td>西南</td></tr>
+        <tr><td>辛</td><td>西南</td><td>正北</td><td>正東</td><td>東北</td><td>正南</td></tr>
+        <tr><td>壬</td><td>正南</td><td>正北</td><td>正南</td><td>正東</td><td>東南</td></tr>
+        <tr><td>癸</td><td>東南</td><td>正南</td><td>正南</td><td>東南</td><td>正東</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="note-box"><b>《玉匣記》財神方位歌：</b>甲乙東北是財神、丙丁向在西南尋、戊己正北坐方位、庚辛正東去安身、壬癸原來正南坐、便是財神方位真。</div>
+
+  <div class="section-title"><h2>鶴神遊方</h2><span>依六十甲子日序循環</span></div>
+  <section class="mapping">
+    <table>
+      <thead><tr><th>干支範圍</th><th>鶴神所在</th><th>九宮</th></tr></thead>
+      <tbody>
+        <tr><td>己酉至甲寅</td><td>東北</td><td>艮八宮</td></tr>
+        <tr><td>乙卯至己未</td><td>正東</td><td>震三宮</td></tr>
+        <tr><td>庚申至乙丑</td><td>東南</td><td>巽四宮</td></tr>
+        <tr><td>丙寅至庚午</td><td>正南</td><td>離九宮</td></tr>
+        <tr><td>辛未至丙子</td><td>西南</td><td>坤二宮</td></tr>
+        <tr><td>丁丑至辛巳</td><td>正西</td><td>兌七宮</td></tr>
+        <tr><td>壬午至丁亥</td><td>西北</td><td>乾六宮</td></tr>
+        <tr><td>戊子至壬辰</td><td>正北</td><td>坎一宮</td></tr>
+        <tr><td>癸巳至戊申</td><td>在天</td><td>無地上方位</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="note-box"><b>顯示原則：</b>喜神、陽貴、陰貴依天干取方；財神可切換「奇門遁甲吉時吉方資料」或「《玉匣記》歌訣版本」，九宮只標示目前所選財神版本。鶴神為出行避方；若鶴神「在天」，九宮不標示鶴神避方，中央會顯示「鶴神在天」。</div>
+</main>
+
+<footer>
+  天書三式丁一峰老師製作<br>
+  © 2026 丁一峰老師 版權所有，僅供教學研究
+</footer>
+
+<script>
+(function(){
+  const stems = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+  const branches = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+
+  const xi = {
+    '甲':'東北','乙':'西北','丙':'西南','丁':'正南','戊':'東南',
+    '己':'東北','庚':'西北','辛':'西南','壬':'正南','癸':'東南'
+  };
+  const caiQimen = {
+    '甲':'正南','乙':'東北','丙':'西南','丁':'正西','戊':'正西',
+    '己':'正北','庚':'正北','辛':'正北','壬':'正北','癸':'正南'
+  };
+  const caiYuxia = {
+    '甲':'東北','乙':'東北','丙':'西南','丁':'西南','戊':'正北',
+    '己':'正北','庚':'正東','辛':'正東','壬':'正南','癸':'正南'
+  };
+  const yang = {
+    '甲':'西南','乙':'西南','丙':'正西','丁':'西北','戊':'東北',
+    '己':'正北','庚':'東北','辛':'東北','壬':'正東','癸':'東南'
+  };
+  const yin = {
+    '甲':'東北','乙':'正北','丙':'西北','丁':'正西','戊':'西南',
+    '己':'西南','庚':'西南','辛':'正南','壬':'東南','癸':'正東'
+  };
+
+  const jiazi = [];
+  const indexByJiazi = {};
+  for(let i=0;i<60;i++){
+    const name = stems[i%10] + branches[i%12];
+    jiazi.push(name);
+    indexByJiazi[name] = i + 1;
+  }
+
+  function heDirection(index){
+    // 1-based 六十甲子序位
+    if(index >= 46 && index <= 51) return '東北';     // 己酉～甲寅
+    if(index >= 52 && index <= 56) return '正東';     // 乙卯～己未
+    if(index >= 57 || index <= 2)  return '東南';     // 庚申～乙丑（跨甲子）
+    if(index >= 3  && index <= 7)  return '正南';     // 丙寅～庚午
+    if(index >= 8  && index <= 13) return '西南';     // 辛未～丙子
+    if(index >= 14 && index <= 18) return '正西';     // 丁丑～辛巳
+    if(index >= 19 && index <= 24) return '西北';     // 壬午～丁亥
+    if(index >= 25 && index <= 29) return '正北';     // 戊子～壬辰
+    return '在天';                                    // 癸巳～戊申（30～45）
+  }
+
+  const select = document.getElementById('jiaziSelect');
+  const caiVersion = document.getElementById('caiVersion');
+  jiazi.forEach((name,i)=>{
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = `${String(i+1).padStart(2,'0')}｜${name}`;
+    select.appendChild(opt);
+  });
+
+  const tagDefs = [
+    {key:'xi',label:'喜神'},
+    {key:'cai',label:'財神'},
+    {key:'yang',label:'陽貴'},
+    {key:'yin',label:'陰貴'},
+    {key:'he',label:'鶴神・避'}
+  ];
+
+  function addTag(dir,key,label){
+    const cell = document.querySelector(`.cell[data-dir="${dir}"]`);
+    if(!cell) return;
+    const tags = cell.querySelector('.tags');
+    if(!tags) return;
+    const t = document.createElement('span');
+    t.className = `tag ${key}`;
+    t.textContent = label;
+    tags.appendChild(t);
+    cell.classList.add('has-god');
+    if(key === 'he') cell.classList.add('he-active');
+  }
+
+  function clearGrid(){
+    document.querySelectorAll('.cell').forEach(c=>{
+      c.classList.remove('has-god','he-active','he-sky');
+      const tags = c.querySelector('.tags');
+      if(tags) tags.innerHTML = '';
+    });
+  }
+
+  function render(name){
+    const stem = name.charAt(0);
+    const index = indexByJiazi[name];
+    const useYuxia = caiVersion.value === 'yuxia';
+    const caiSelected = useYuxia ? caiYuxia[stem] : caiQimen[stem];
+    const caiOther = useYuxia ? caiQimen[stem] : caiYuxia[stem];
+    const dirs = {
+      xi: xi[stem],
+      cai: caiSelected,
+      yang: yang[stem],
+      yin: yin[stem],
+      he: heDirection(index)
+    };
+
+    document.getElementById('stemBox').textContent = stem;
+    document.getElementById('selectedJiazi').textContent = name;
+    document.getElementById('centerText').textContent = name;
+    document.getElementById('indexText').textContent = `六十甲子第 ${index} 位`;
+    document.getElementById('xiDir').textContent = dirs.xi + '方';
+    document.getElementById('caiDir').textContent = dirs.cai + '方';
+    document.getElementById('caiSource').textContent = useYuxia ? '《玉匣記》歌訣版本' : '奇門遁甲吉時吉方資料';
+    document.getElementById('caiAlt').textContent = (useYuxia ? '奇門資料：' : '《玉匣記》：') + caiOther + '方';
+    document.getElementById('yangDir').textContent = dirs.yang + '方';
+    document.getElementById('yinDir').textContent = dirs.yin + '方';
+    document.getElementById('heDir').textContent = dirs.he === '在天' ? '在天' : dirs.he + '方';
+    document.getElementById('heNote').textContent = dirs.he === '在天' ? '鶴神在天，無地上方位' : '出行避方';
+
+    clearGrid();
+    addTag(dirs.xi,'xi','喜神');
+    addTag(dirs.cai,'cai','財神');
+    addTag(dirs.yang,'yang','陽貴');
+    addTag(dirs.yin,'yin','陰貴');
+    if(dirs.he === '在天'){
+      document.querySelector('.cell.center').classList.add('he-sky');
+      document.getElementById('centerNote').textContent = '吉神方宜趨・鶴神在天';
+    }else{
+      addTag(dirs.he,'he','鶴神・避');
+      document.getElementById('centerNote').textContent = '吉神方宜趨・鶴神方當避';
+    }
+  }
+
+  select.addEventListener('change', e => render(e.target.value));
+  caiVersion.addEventListener('change', () => render(select.value));
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    select.value='丙午'; caiVersion.value='qimen'; render('丙午');
+  });
+
+  select.value='丙午';
+  render('丙午');
+})();
+</script>
+</body>
+</html>
