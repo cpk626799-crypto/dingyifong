@@ -75,7 +75,7 @@ function injectUnifiedMemberNavigation() {
       const style = document.createElement('style');
       style.id = 'member-nav-unified-style';
       style.textContent = `
-        /* 會員頁共用導覽：恢復原穩定版 7×2 主導覽，工具列固定 5＋4 */
+        /* 會員頁共用導覽：恢復原穩定版 7×2 主導覽，工具列固定 5＋5 */
         .system-header .top-nav{
           display:grid!important;
           grid-template-columns:repeat(7,minmax(0,1fr))!important;
@@ -205,6 +205,7 @@ function injectUnifiedMemberNavigation() {
       ['taohua.html', '桃花位'],
       ['buzhen.html', '流年佈陣用日'],
       ['xicai-guihe.html', '喜財貴人鶴神方'],
+      ['caiguan-shishen.html', '財．官，十神相配'],
       ['liufu.html', '六富日查詢'],
       ['bajie-sanqi.html', '八節三奇'],
       ['xuankong.html', '玄空飛星']

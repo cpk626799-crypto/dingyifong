@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>財．官，十神相配查詢</title>
+  <link rel="stylesheet" href="assets/styles.css?v=20260925-caiguan-review">
+  <script type="module" src="assets/member-auth.js"></script>
+  <style>
+    :root{font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;color:#f7f2e8;background:#0a1322}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 89% 1%,#22354c 0,transparent 35%),radial-gradient(circle at 3% 50%,#18253a 0,transparent 36%),#0a1322;line-height:1.65}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .gz-shell{width:min(1200px,calc(100% - 32px));margin:auto;padding:34px 0 56px}
+    .gz-hero{position:relative;overflow:hidden;border:1px solid #b5996355;border-radius:26px;background:linear-gradient(125deg,#17243a 0%,#111d30 62%,#1c2a39 100%);padding:34px 40px;margin-bottom:24px;box-shadow:0 16px 50px #0003}
+    .gz-hero:after{content:"甲 子";position:absolute;right:28px;top:-22px;font-size:150px;letter-spacing:-17px;color:#d7b87911;white-space:nowrap;pointer-events:none;font-weight:800}
+    .gz-kicker{color:#d8b879;font-size:12px;letter-spacing:.2em;font-weight:700;margin:0 0 9px}
+    h1{font-size:clamp(28px,4vw,44px);line-height:1.25;letter-spacing:.04em;margin:0 0 12px;font-weight:750}
+    .gz-hero p:last-child{max-width:660px;color:#c6cfda;margin:0;font-size:15px}
+    .gz-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;align-items:start}
+    .gz-panel{border:1px solid #70839a48;background:#142137df;border-radius:22px;padding:23px;box-shadow:0 12px 35px #0002}
+    .gz-sidebar{position:sticky;top:18px}
+    .gz-panel h2{font-size:21px;line-height:1.35;margin:0 0 7px}
+    .gz-panel h3{font-size:16px;margin:0 0 9px;color:#f7e3b8}
+    .gz-sub{font-size:13px;color:#a9b9ca;margin:0 0 18px}
+    .gz-field{display:block;margin-top:19px}
+    .gz-field>span{display:block;color:#d2dbe4;font-size:13px;font-weight:700;margin-bottom:7px}
+    .gz-field select,.gz-field input{width:100%;color:#fff;border:1px solid #6b7d9366;border-radius:12px;background:#0c192b;padding:12px 13px;outline:none}
+    .gz-field select:focus,.gz-field input:focus{border-color:#e4c281;box-shadow:0 0 0 3px #dfbb7233}
+    .gz-field select option{background:#122036}
+    .gz-check{display:flex;align-items:flex-start;gap:10px;margin:13px 0 0;font-size:13px;color:#cfdae5;cursor:pointer}
+    .gz-check input{accent-color:#d8b879;margin:4px 0 0;flex:none;width:17px;height:17px}
+    .gz-help{color:#9facc0;font-size:12px;margin:8px 0 0}
+    .gz-alert{color:#f0a9a1;font-size:12px;min-height:18px;margin:7px 0 0}
+    .gz-info{background:#0c192b;border-radius:15px;border:1px solid #65809b40;padding:15px 16px;margin-top:22px;font-size:12px;color:#b7c5d3}
+    .gz-info strong{display:block;color:#ead4a6;margin-bottom:6px}
+    .gz-info p{margin:0 0 7px}.gz-info p:last-child{margin:0}
+    .gz-main{display:grid;gap:20px;min-width:0}
+    .gz-lead{display:flex;align-items:center;gap:18px;padding:26px}
+    .gz-stamp{display:grid;place-items:center;width:94px;height:94px;flex:none;border:1px solid #dfbc79a0;border-radius:18px;background:linear-gradient(150deg,#403727,#1f2b37);color:#f0dba9;font-size:34px;font-weight:800;letter-spacing:.05em;box-shadow:inset 0 0 0 4px #ffffff08}
+    .gz-lead h2{font-size:24px;margin:0 0 4px;color:#fff}
+    .gz-lead p{color:#b7c5d2;margin:0;font-size:13px}
+    .gz-lead .gz-years{color:#e7c88e;margin-top:8px}
+    .gz-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .gz-overline{font-size:13px;font-weight:800;letter-spacing:.13em;color:#d4b674;margin:0 0 7px}
+    .gz-big{font-size:28px;color:#fff;font-weight:800;margin:8px 0}
+    .gz-tokens{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0}
+    .gz-token{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid #8297ac59;background:#0d1b2e;border-radius:10px;color:#f3f0e9;font-weight:700;font-size:16px}
+    .gz-token strong{color:#d7b879;font-size:20px}
+    .gz-caption{font-size:12px;color:#aab9c8;margin:10px 0 0}
+    .gz-rule{border-top:1px solid #a0adc025;margin:16px 0}
+    .gz-aims{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+    .gz-aim{background:#0d1b2ecc;border:1px solid #8794a035;border-radius:16px;padding:17px;min-width:0}
+    .gz-aim h3{font-size:18px;color:#c5d7ea;margin-bottom:6px}
+    .gz-aim .gz-big{font-size:24px;margin:0}
+    .gz-aim small{color:#a3b1c1}
+    .gz-aim--gold{border-color:#c9a45f64}
+    .gz-aim--jade{border-color:#85bdac66}
+    .gz-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .gz-chip{color:#e1e9ed;background:#192b3d;border:1px solid #6f889558;border-radius:9px;padding:5px 9px;font-size:12px}
+    .gz-chip:hover,.gz-chip:focus-visible{color:#0a1422;background:#d8b879;border-color:#d8b879;outline:none}
+    .gz-chip.gz-clash{border-color:#a65b58;color:#ebaaa3}
+    .gz-eval{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+    .gz-eval article{background:#0d1b2e;border:1px solid #68819842;border-radius:13px;padding:13px}
+    .gz-eval small{display:block;color:#9fb2c4;font-size:12px}
+    .gz-eval strong{display:block;font-size:16px;margin:5px 0;color:#f3e5c1}
+    .gz-eval p{color:#b7c6d5;margin:0;font-size:12px}
+    .gz-eval .gz-warn{color:#ffb2a9}
+    .gz-status{margin:16px 0 0;padding:11px 14px;border-radius:12px;background:#34482e75;border:1px solid #84b48b50;color:#d9efdf;font-size:13px}
+    .gz-status.gz-status--warn{background:#51353380;border-color:#c76b675c;color:#ffe3dc}
+    .gz-reverse{margin-top:20px}
+    .gz-reverse #gz-reverse-title{font-size:25px}
+    .gz-reverse #gz-count{font-size:17px;font-weight:750;line-height:1.55;color:#f1d7a7;margin:17px 0 13px}
+    .gz-reverse-head{display:flex;justify-content:space-between;align-items:start;gap:16px;flex-wrap:wrap}
+    .gz-period{color:#f1d7a7;border:1px solid #be9b6370;border-radius:9px;padding:8px 12px;font-size:15px;font-weight:700;white-space:nowrap}
+    .gz-reverse-select{max-width:350px;margin-top:20px}
+    .gz-buckets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}
+    .gz-bucket{min-width:0;border:1px solid #7e91a443;background:#0d1b2e;border-radius:16px;padding:19px}
+    .gz-bucket h3{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:19px;color:#f7e3b8}
+    .gz-bucket-count{color:#d6e6de;background:#295047;padding:3px 9px;border-radius:9px;font-size:13px;white-space:nowrap}
+    .gz-bucket-detail{color:#b6c8d7;font-size:14px;margin:0;min-height:22px}
+    .gz-yearlist{list-style:none;max-height:330px;overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:14px 0 0;padding:0}
+    .gz-year-row{display:flex;align-items:center;gap:9px;min-width:0;padding:8px 10px;border:1px solid #71859a40;border-radius:9px;background:#17283b;color:#d9e5ec;font-size:14px}
+    .gz-year-row strong{color:#f4dca8;font-size:16px;white-space:nowrap}
+    .gz-year-row span{white-space:nowrap}
+    .gz-year-row small{color:#a9d5bd;margin-left:auto;white-space:nowrap}
+    .gz-year-row.gz-year-empty{grid-column:1/-1;color:#acbccb}
+    .gz-footer{text-align:center;color:#879bb0;font-size:12px;line-height:1.8;margin-top:30px}
+    @media(max-width:900px){.gz-layout{grid-template-columns:1fr}.gz-sidebar{position:static}.gz-hero:after{font-size:105px;top:5px}.gz-main{grid-template-columns:1fr}}
+    @media(max-width:760px){.gz-buckets{grid-template-columns:1fr}}
+    @media(max-width:620px){.gz-shell{width:min(100% - 22px,1200px);padding-top:12px}.gz-hero{padding:25px;border-radius:18px}.gz-hero:after{display:none}.gz-panel{padding:19px;border-radius:17px}.gz-grid,.gz-aims,.gz-eval{grid-template-columns:1fr}.gz-lead{padding:20px}.gz-stamp{width:73px;height:73px;font-size:26px}.gz-lead h2{font-size:21px}.gz-yearlist{grid-template-columns:1fr}}
+    @media print{body{background:#fff;color:#111}.gz-hero,.gz-panel{background:#fff;color:#111;box-shadow:none}.gz-hero p,.gz-panel p,.gz-panel h2,.gz-panel h3,.gz-big,.gz-lead h2{color:#111}.gz-sidebar{position:static}.gz-shell{width:100%}.gz-reverse{break-before:page}.gz-yearlist{max-height:none;overflow:visible}}
+
+  /* ===== 會員網站整合頁覆寫 ===== */
+  body.tool-member-page .system-header{
+    width:min(1280px,calc(100vw - 40px));
+    margin:0 auto;padding:34px 0 18px;text-align:center;
+  }
+  body.tool-member-page .system-header .brand-mark{
+    width:54px;height:54px;margin:0 auto 13px;border-radius:15px;font-size:1.3rem;
+  }
+  body.tool-member-page .system-header .eyebrow{
+    margin:0 0 8px;color:#e0b84e;font-size:.82rem;font-weight:900;
+    letter-spacing:.22em;text-transform:uppercase;
+  }
+  body.tool-member-page .system-header h1{
+    margin:6px 0 8px;color:#f6eed9;font-size:clamp(2rem,4.6vw,3.4rem);
+    line-height:1.15;letter-spacing:.04em;font-weight:900;
+  }
+  body.tool-member-page .system-header .hero__text{
+    margin:0 auto;max-width:920px;color:#98a4b9;font-size:15px;
+    line-height:1.8;letter-spacing:.08em;
+  }
+  body.tool-member-page .system-header .top-nav{
+    display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+    width:100%;max-width:1280px;margin:20px auto 0;padding:8px;gap:8px;border-radius:24px;
+  }
+  body.tool-member-page .system-header .top-nav>a{
+    display:flex;align-items:center;justify-content:center;min-height:54px;
+    padding:8px 7px;text-align:center;white-space:normal;word-break:keep-all;
+    line-height:1.35;border-radius:18px;
+  }
+  body.tool-member-page .system-header .tool-subnav{
+    width:100%;max-width:1280px;margin:10px auto 0;padding:7px;
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;
+    border:1px solid rgba(115,132,176,.22);border-radius:18px;
+    background:rgba(8,12,24,.78);box-shadow:0 18px 46px rgba(0,0,0,.26);
+  }
+  body.tool-member-page .system-header .tool-subnav>a{
+    min-width:0;min-height:48px;padding:9px 10px;display:flex;
+    align-items:center;justify-content:center;border:1px solid transparent;border-radius:12px;
+    color:#aab4c7;background:transparent;text-decoration:none;font-weight:900;
+    line-height:1.35;text-align:center;white-space:normal;word-break:keep-all;
+  }
+  body.tool-member-page .system-header .tool-subnav>a[aria-current="page"]{
+    color:#17120a;border-color:rgba(224,184,86,.52);
+    background:linear-gradient(145deg,#f2d477,#d4a035);
+    box-shadow:0 8px 22px rgba(217,168,58,.2);
+  }
+  @media(max-width:1100px){
+    body.tool-member-page .system-header{width:min(100% - 32px,980px)}
+    body.tool-member-page .system-header .top-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+    body.tool-member-page .system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media(max-width:700px){
+    body.tool-member-page .system-header{width:min(100% - 20px,680px)}
+    body.tool-member-page .system-header .top-nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+    body.tool-member-page .system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+
+
+  </style>
+</head>
+<body class="tool-member-page">
+<header class="system-header">
+  <div class="brand-mark">官</div>
+  <p class="eyebrow">財．官，十神相配查詢</p>
+  <h1>天書三式•丁一峰老師術數查詢系統</h1>
+  <p class="hero__text">六十甲子日柱｜三合六合｜正官財星｜1910–2100 年出生年對照</p>
+  <nav class="top-nav" aria-label="網站導覽">
+    <a href="index.html">流年祿馬貴人</a><a href="benming.html">個人流年祿馬貴人</a>
+    <a href="renming.html">六十甲子人命擇日</a><a href="renming-query.html">六十甲子年命擇日查詢</a>
+    <a href="zibai.html">流年紫白查詢</a><a href="dehu.html">逐日的呼查詢</a>
+    <a href="fourtime.html">四大吉時月表</a><a href="yongji.html">永吉造命課</a>
+    <a href="tongshu.html">通書六十甲子造命</a><a href="liunian-rules.html">流年法說明</a>
+    <a href="benming-rules.html">個人流年法說明</a><a href="renming-rules.html">人命擇日說明</a>
+    <a href="rules.html">本版採用規則</a><a href="dehu-rules.html">的呼規則</a>
+  </nav>
+  <nav class="tool-subnav" aria-label="術數工具導覽">
+    <a href="zhen-luma.html">真祿馬貴人</a><a href="wenchang.html">文昌</a>
+    <a href="caiwei.html">財位</a><a href="taohua.html">桃花位</a>
+    <a href="buzhen.html">流年佈陣用日</a>
+    <a href="xicai-guihe.html">喜財貴人鶴神方</a>
+    <a href="caiguan-shishen.html" aria-current="page">財．官，十神相配</a>
+    <a href="liufu.html">六富日查詢</a><a href="bajie-sanqi.html">八節三奇</a>
+    <a href="xuankong.html">玄空飛星</a>
+  </nav>
+</header>
+  <div class="gz-shell">
+    <header class="gz-hero">
+      <p class="gz-kicker">天書三式 · 六十甲子人命速查</p>
+      <h1>財．官，十神相配查詢</h1>
+      <p>選擇本命六十甲子，或輸入出生西元年；聯動查看生肖三合、六合、正官與財星，並對照候選干支及相應的出生年份。</p>
+    </header>
+
+    <div class="gz-layout">
+      <aside class="gz-panel gz-sidebar" aria-label="查詢條件">
+        <p class="gz-overline">01 / 選擇干支</p>
+        <h2>年命干支</h2>
+        <p class="gz-sub">選擇六十甲子或輸入出生年，下方聯動顯示生肖三合、六合與催官、催財天干。</p>
+        <label class="gz-field"><span>本命干支（六十甲子）</span><select id="gz-birth"></select></label>
+        <label class="gz-field"><span>出生西元年（1800–2300）</span><input id="gz-year" type="number" min="1800" max="2300" inputmode="numeric" placeholder="例：1984"></label>
+        <label class="gz-check"><input id="gz-prev" type="checkbox"><span>出生於立春前：以前一年干支換算</span></label>
+        <p class="gz-help">年初出生者請先核對當年的實際立春時刻，再勾選；此頁不自動判斷立春時刻。</p>
+        <p class="gz-alert" id="gz-year-error" role="status"></p>
+
+        <div class="gz-rule"></div>
+        <p class="gz-overline">02 / 檢查候選</p>
+        <h2>候選干支</h2>
+        <p class="gz-sub">選一組日柱干支，查看它與本命的財官及地支關係。</p>
+        <label class="gz-field"><span>候選日干支</span><select id="gz-target"></select></label>
+        <p class="gz-help">日柱僅供關係比對；本頁不推算國曆日期或完整用事日課。</p>
+
+        <div class="gz-info">
+          <strong>判讀依據</strong>
+          <p>以本命年干為「我」：候選天干為正官時列催官候選；為正財或偏財時列催財候選。</p>
+          <p>三合、六合取本命年支；候選日支沖命時會明確提醒。財官與合支可同時成立，但不代替完整擇日。</p>
+        </div>
+      </aside>
+
+      <main class="gz-main">
+        <section class="gz-panel gz-lead" aria-live="polite">
+          <div class="gz-stamp" id="gz-stamp">甲子</div>
+          <div>
+            <p class="gz-overline">出生年柱 · 本命</p>
+            <h2 id="gz-birth-title">甲子 · 鼠</h2>
+            <p id="gz-birth-detail">命干甲木 · 命支子水</p>
+            <p class="gz-years" id="gz-birth-years"></p>
+          </div>
+        </section>
+
+        <div class="gz-grid">
+          <section class="gz-panel">
+            <p class="gz-overline">生肖地支 / 生旺墓三方</p>
+            <h2>三合</h2>
+            <p class="gz-big" id="gz-sanhe-name"></p>
+            <div class="gz-tokens" id="gz-sanhe-branches"></div>
+            <p class="gz-caption">上方為本命以外的兩個三合地支；成局仍須另看完整四柱。</p>
+          </section>
+          <section class="gz-panel">
+            <p class="gz-overline">生肖地支 / 兩支相合</p>
+            <h2>六合</h2>
+            <p class="gz-big" id="gz-liuhe-name"></p>
+            <div class="gz-tokens" id="gz-liuhe-branch"></div>
+            <p class="gz-caption">對照的是出生年支，不以出生年天干判六合。</p>
+          </section>
+        </div>
+
+        <section class="gz-panel" aria-labelledby="gz-aim-title">
+          <p class="gz-overline">十天干十神 / 以命干為我</p>
+          <h2 id="gz-aim-title">催官與催財候選</h2>
+          <p class="gz-sub">點選下方干支可直接帶入「候選日干支」比對；列出干支關係，不直接判為吉日。</p>
+          <div class="gz-aims">
+            <article class="gz-aim gz-aim--gold">
+              <h3>催官 · 正官天干</h3>
+              <p class="gz-big" id="gz-guan"></p>
+              <small>正官干對應的六組日柱</small>
+              <div class="gz-chips" id="gz-guan-days"></div>
+            </article>
+            <article class="gz-aim gz-aim--jade">
+              <h3>催財 · 正財／偏財天干</h3>
+              <p class="gz-big" id="gz-cai"></p>
+              <small>正財與偏財各有六組日柱</small>
+              <div class="gz-chips" id="gz-cai-days"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="gz-panel" aria-labelledby="gz-eval-title">
+          <p class="gz-overline">本命 × 候選日柱</p>
+          <h2 id="gz-eval-title">候選干支對照</h2>
+          <p class="gz-sub" id="gz-eval-intro"></p>
+          <div class="gz-eval" id="gz-eval"></div>
+          <p class="gz-status" id="gz-status" role="status"></p>
+        </section>
+      </main>
+    </div>
+
+    <section class="gz-panel gz-reverse" aria-labelledby="gz-reverse-title">
+      <div class="gz-reverse-head">
+        <div>
+          <p class="gz-overline">03 / 選擇六十甲子日柱</p>
+          <h2 id="gz-reverse-title">對應的出生年（干支・生肖）</h2>
+          <p class="gz-sub" style="margin-bottom:0">日支對照三合、六合；日干對照出生年干的正官、正財與偏財。四組結果會一起更新。</p>
+        </div>
+        <span class="gz-period">西元 1910–2100 年</span>
+      </div>
+      <label class="gz-field gz-reverse-select"><span>選擇六十甲子日干支</span><select id="gz-reverse-target"></select></label>
+      <p class="gz-caption" id="gz-count" aria-live="polite"></p>
+      <div class="gz-buckets">
+        <article class="gz-bucket">
+          <p class="gz-overline">依所選日支</p>
+          <h3>三合的出生年（生肖）<span class="gz-bucket-count" id="gz-sanhe-count"></span></h3>
+          <p class="gz-bucket-detail" id="gz-sanhe-detail"></p>
+          <ul class="gz-yearlist" id="gz-sanhe-years"></ul>
+        </article>
+        <article class="gz-bucket">
+          <p class="gz-overline">依所選日支</p>
+          <h3>六合的出生年（生肖）<span class="gz-bucket-count" id="gz-liuhe-count"></span></h3>
+          <p class="gz-bucket-detail" id="gz-liuhe-detail"></p>
+          <ul class="gz-yearlist" id="gz-liuhe-years"></ul>
+        </article>
+        <article class="gz-bucket">
+          <p class="gz-overline">日干為出生年干的正官</p>
+          <h3>可催官的出生年（生肖）<span class="gz-bucket-count" id="gz-guan-count"></span></h3>
+          <p class="gz-bucket-detail" id="gz-guan-detail"></p>
+          <ul class="gz-yearlist" id="gz-guan-years"></ul>
+        </article>
+        <article class="gz-bucket">
+          <p class="gz-overline">日干為出生年干的正財或偏財</p>
+          <h3>可催財的出生年（生肖）<span class="gz-bucket-count" id="gz-cai-count"></span></h3>
+          <p class="gz-bucket-detail" id="gz-cai-detail"></p>
+          <ul class="gz-yearlist" id="gz-cai-years"></ul>
+        </article>
+      </div>
+      <p class="gz-caption">上述名單先排除所選日支沖出生年支；「可催官／可催財」表示十神吻合的候選關係，仍須核對三煞、月建、山向及完整日課。立春前出生者，請將實際年柱校正後再判讀。</p>
+    </section>
+
+    <footer class="gz-footer">天書三式丁一峰老師製作<br>© 2026 丁一峰老師 版權所有，僅供教學研究。</footer>
+  </div>
+
+  <script>
+  (() => {
+    'use strict';
+    const stems = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+    const branches = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+    const animals = ['鼠','牛','虎','兔','龍','蛇','馬','羊','猴','雞','狗','豬'];
+    const elements = ['木','火','土','金','水'];
+    const sanheGroups = [
+      {branches:[8,0,4],name:'申子辰 · 水局'},
+      {branches:[11,3,7],name:'亥卯未 · 木局'},
+      {branches:[2,6,10],name:'寅午戌 · 火局'},
+      {branches:[5,9,1],name:'巳酉丑 · 金局'}
+    ];
+    const liuhePairs = [[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]];
+    const pillars = Array.from({length:60},(_,i)=>({index:i,stem:i%10,branch:i%12,text:stems[i%10]+branches[i%12]}));
+    const $ = id => document.getElementById(id);
+    const el = (tag,className,content) => {const node=document.createElement(tag);if(className)node.className=className;if(content!==undefined)node.textContent=content;return node};
+    const mod = (n,m) => ((n%m)+m)%m;
+    const yearPillar = year => pillars[mod(year-1984,60)];
+    const groupOf = b => sanheGroups.find(g=>g.branches.includes(b));
+    const pairOf = b => liuhePairs.find(p=>p.includes(b)).find(i=>i!==b);
+    const stemName = i => stems[i]+elements[Math.floor(i/2)];
+
+    // Standard ten-god relation: self is the birth-year heavenly stem.
+    function god(self,other){
+      const a=Math.floor(self/2), b=Math.floor(other/2), same=(self%2)===(other%2);
+      if(a===b)return same?'比肩':'劫財';
+      if((a+1)%5===b)return same?'食神':'傷官';
+      if((a+2)%5===b)return same?'偏財':'正財';
+      if((b+2)%5===a)return same?'七殺':'正官';
+      return same?'偏印':'正印';
+    }
+    function inspect(birth,target){
+      const group=groupOf(birth.branch);
+      const sanhe=birth.branch!==target.branch&&group.branches.includes(target.branch);
+      const liuhe=pairOf(birth.branch)===target.branch;
+      const clash=mod(birth.branch+6,12)===target.branch;
+      const tenGod=god(birth.stem,target.stem);
+      return {sanhe,liuhe,clash,tenGod,guan:tenGod==='正官',cai:tenGod==='正財'||tenGod==='偏財'};
+    }
+
+    let birthIndex=0,targetIndex=pillars.find(p=>p.text==='辛酉').index;
+    let birthSource='手動選擇年柱';
+    function fillSelect(select,selected){
+      for(const p of pillars){const option=el('option','',p.text+' · '+animals[p.branch]);option.value=String(p.index);select.append(option)}
+      select.value=String(selected);
+    }
+    function addBranchTokens(host,indices){
+      host.replaceChildren();
+      for(const i of indices){const token=el('span','gz-token');token.append(el('strong','',branches[i]),document.createTextNode(animals[i]));host.append(token)}
+    }
+    function candidateChips(host,stemIndex){
+      for(const p of pillars.filter(x=>x.stem===stemIndex)){
+        const check=inspect(pillars[birthIndex],p);
+        const chip=el('button','gz-chip'+(check.clash?' gz-clash':''),p.text+(check.clash?' · 沖命':''));
+        chip.type='button';chip.title=check.clash?'日支沖本命，須避開':'點選查看此候選日柱';
+        chip.addEventListener('click',()=>{setTarget(p.index);$('gz-eval-title').scrollIntoView({behavior:'smooth',block:'center'})});
+        host.append(chip);
+      }
+    }
+    function renderBirth(){
+      const p=pillars[birthIndex],group=groupOf(p.branch),other=group.branches.filter(i=>i!==p.branch),pair=pairOf(p.branch);
+      $('gz-stamp').textContent=p.text;
+      $('gz-birth-title').textContent=p.text+' · '+animals[p.branch];
+      $('gz-birth-detail').textContent='命干 '+stemName(p.stem)+' · 命支 '+branches[p.branch]+(birthSource?' · '+birthSource:'');
+      const years=[];for(let y=1900;y<=2100;y++)if(yearPillar(y).index===birthIndex)years.push(y);
+      $('gz-birth-years').textContent='此年柱對應西元年（1900–2100）：'+years.join('、');
+      $('gz-sanhe-name').textContent=group.name;
+      addBranchTokens($('gz-sanhe-branches'),other);
+      $('gz-liuhe-name').textContent=branches[p.branch]+'＋'+branches[pair];
+      addBranchTokens($('gz-liuhe-branch'),[pair]);
+
+      const guan=stems.findIndex((_,i)=>god(p.stem,i)==='正官');
+      const zhengCai=stems.findIndex((_,i)=>god(p.stem,i)==='正財');
+      const pianCai=stems.findIndex((_,i)=>god(p.stem,i)==='偏財');
+      $('gz-guan').textContent=stemName(guan);
+      $('gz-cai').textContent='正財 '+stemName(zhengCai)+' · 偏財 '+stemName(pianCai);
+      $('gz-guan-days').replaceChildren();candidateChips($('gz-guan-days'),guan);
+      $('gz-cai-days').replaceChildren();candidateChips($('gz-cai-days'),zhengCai);candidateChips($('gz-cai-days'),pianCai);
+    }
+    function evalCard(label,value,detail,isWarn){
+      const card=el('article');card.append(el('small','',label),el('strong',isWarn?'gz-warn':'',value),el('p','',detail));return card;
+    }
+    function renderCandidate(){
+      const b=pillars[birthIndex],t=pillars[targetIndex],v=inspect(b,t),box=$('gz-eval');box.replaceChildren();
+      $('gz-eval-intro').textContent=b.text+'命 × '+t.text+'候選日柱';
+      let stemDetail='本命'+stems[b.stem]+'見'+stems[t.stem]+'，為'+v.tenGod+'。';
+      if(v.guan)stemDetail+='符合正官天干條件。';
+      if(v.cai)stemDetail+='符合財星天干條件。';
+      if(v.tenGod==='七殺')stemDetail+='七殺不直接列為催官。';
+      box.append(evalCard('命干 × 日干',v.tenGod,stemDetail,false));
+      const relation=v.clash?'相沖':v.liuhe?'六合':v.sanhe?'三合':'未見三合／六合';
+      box.append(evalCard('命支 × 日支',relation,'命支'+branches[b.branch]+'（'+animals[b.branch]+'） × 日支'+branches[t.branch]+'（'+animals[t.branch]+'）',v.clash));
+      let goal=v.guan?'催官候選':v.cai?'催財候選':'無正官／財星對應';
+      if(v.clash&&(v.guan||v.cai))goal='沖命，暫不列可用';
+      box.append(evalCard('目的判讀',goal,v.clash?'日支沖本命，應先避開。':'仍須檢查月建、三煞與完整日課。',v.clash));
+      const status=$('gz-status');
+      status.classList.toggle('gz-status--warn',v.clash);
+      const relations=[v.sanhe?'三合':'',v.liuhe?'六合':'',v.guan?'正官':'',v.cai?v.tenGod:''].filter(Boolean);
+      status.textContent=v.clash?'候選日支沖本命，不能僅因有財官條件而列為可用。':relations.length?'目前符合：'+relations.join('、')+'。這是候選條件，並非完整擇日結論。':'目前未見三合、六合、正官或財星條件，需依其他日課條件判斷。';
+    }
+    function renderYearList(kind,items){
+      const host=$('gz-'+kind+'-years');host.replaceChildren();
+      $('gz-'+kind+'-count').textContent=items.length+' 年';
+      if(!items.length){host.append(el('li','gz-year-row gz-year-empty','此範圍沒有符合條件的出生年。'));return}
+      const fragment=document.createDocumentFragment();
+      for(const {year,birth,relation} of items){
+        const row=el('li','gz-year-row');
+        row.append(el('strong','',String(year)),el('span','',birth.text+' · '+animals[birth.branch]));
+        if(kind==='cai')row.append(el('small','',relation));
+        fragment.append(row);
+      }
+      host.append(fragment);
+    }
+    function renderReverse(){
+      const target=pillars[targetIndex],group=groupOf(target.branch),pair=pairOf(target.branch);
+      const other=group.branches.filter(i=>i!==target.branch);
+      const result={sanhe:[],liuhe:[],guan:[],cai:[]};
+      for(let year=1910;year<=2100;year++){
+        const birth=yearPillar(year),v=inspect(birth,target);
+        if(v.clash)continue;
+        const record={year,birth,relation:v.tenGod};
+        if(v.sanhe)result.sanhe.push(record);
+        if(v.liuhe)result.liuhe.push(record);
+        if(v.guan)result.guan.push(record);
+        if(v.cai)result.cai.push(record);
+      }
+      $('gz-sanhe-detail').textContent='日支'+branches[target.branch]+'（'+animals[target.branch]+'）屬'+group.name+'；對應'+other.map(i=>branches[i]+'（'+animals[i]+'）').join('、')+'年生。';
+      $('gz-liuhe-detail').textContent='日支'+branches[target.branch]+'（'+animals[target.branch]+'）六合'+branches[pair]+'（'+animals[pair]+'）年生。';
+      const guanStem=stems.findIndex((_,i)=>god(i,target.stem)==='正官');
+      const caiStems=stems.map((_,i)=>i).filter(i=>['正財','偏財'].includes(god(i,target.stem)));
+      $('gz-guan-detail').textContent='日干'+stemName(target.stem)+'為'+stems[guanStem]+'年命的正官。';
+      $('gz-cai-detail').textContent='日干'+stemName(target.stem)+'為'+caiStems.map(i=>stems[i]+'年命的'+god(i,target.stem)).join('、')+'。';
+      for(const kind of ['sanhe','liuhe','guan','cai'])renderYearList(kind,result[kind]);
+      $('gz-count').textContent='所選日柱 '+target.text+' · 1910–2100 年：三合 '+result.sanhe.length+' 年、六合 '+result.liuhe.length+' 年、催官 '+result.guan.length+' 年、催財 '+result.cai.length+' 年（未含立春前校正）';
+    }
+    function setTarget(index){
+      targetIndex=index;
+      $('gz-target').value=String(index);
+      $('gz-reverse-target').value=String(index);
+      renderCandidate();renderReverse();
+    }
+    function render(){renderBirth();renderCandidate();renderReverse()}
+    fillSelect($('gz-birth'),birthIndex);fillSelect($('gz-target'),targetIndex);fillSelect($('gz-reverse-target'),targetIndex);
+    $('gz-birth').addEventListener('change',event=>{
+      birthIndex=Number(event.target.value);birthSource='手動選擇年柱';$('gz-year').value='';$('gz-prev').checked=false;$('gz-year-error').textContent='';render();
+    });
+    function yearChanged(){
+      const raw=$('gz-year').value.trim();
+      if(!raw){$('gz-year-error').textContent='';birthSource='手動選擇年柱';renderBirth();return}
+      const year=Number(raw);
+      if(!Number.isInteger(year)||year<1800||year>2300){$('gz-year-error').textContent='請輸入 1800 至 2300 的完整西元年份。';return}
+      $('gz-year-error').textContent='';
+      const effective=year-($('gz-prev').checked?1:0);
+      birthIndex=yearPillar(effective).index;birthSource=String(year)+' 年生'+($('gz-prev').checked?' · 立春前以前一年換算':' · 依西元年快速換算');
+      $('gz-birth').value=String(birthIndex);render();
+    }
+    $('gz-year').addEventListener('input',yearChanged);
+    $('gz-prev').addEventListener('change',yearChanged);
+    $('gz-target').addEventListener('change',event=>setTarget(Number(event.target.value)));
+    $('gz-reverse-target').addEventListener('change',event=>setTarget(Number(event.target.value)));
+    render();
+  })();
+  </script>
+</body>
+</html>
