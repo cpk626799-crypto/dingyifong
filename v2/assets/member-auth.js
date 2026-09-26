@@ -37,9 +37,25 @@ function unlockPage() {
   document.documentElement.classList.add('auth-ready');
 }
 
+function injectSiteAppearance() {
+  if (!document.getElementById('ts-site-theme')) {
+    const theme = document.createElement('link');
+    theme.id = 'ts-site-theme';
+    theme.rel = 'stylesheet';
+    theme.href = 'assets/site-theme.css';
+    document.head.appendChild(theme);
+  }
+  if (!document.getElementById('ts-site-calendar')) {
+    const calendar = document.createElement('script');
+    calendar.id = 'ts-site-calendar';
+    calendar.src = 'assets/site-calendar.js';
+    document.head.appendChild(calendar);
+  }
+}
+
 function injectMemberBar(profile) {
   const render = () => {
-    const header = document.querySelector('.system-header');
+    const header = document.querySelector('.system-header, .tx-topbar__inner');
     if (!header || document.querySelector('.member-session-bar')) return;
 
     const bar = document.createElement('div');
@@ -75,7 +91,7 @@ function injectUnifiedMemberNavigation() {
       const style = document.createElement('style');
       style.id = 'member-nav-unified-style';
       style.textContent = `
-        /* 會員頁共用導覽：恢復原穩定版 7×2 主導覽，工具列固定 5＋5 */
+        /* 會員頁共用導覽：主導覽 7×2，工具列桌機 6＋5 */
         .system-header .top-nav{
           display:grid!important;
           grid-template-columns:repeat(7,minmax(0,1fr))!important;
@@ -115,7 +131,7 @@ function injectUnifiedMemberNavigation() {
           margin:10px auto 0!important;
           padding:7px!important;
           display:grid!important;
-          grid-template-columns:repeat(5,minmax(0,1fr))!important;
+          grid-template-columns:repeat(6,minmax(0,1fr))!important;
           gap:8px!important;
           border:1px solid rgba(115,132,176,.22)!important;
           border-radius:18px!important;
@@ -208,7 +224,8 @@ function injectUnifiedMemberNavigation() {
       ['caiguan-shishen.html', '財．官，十神相配'],
       ['liufu.html', '六富日查詢'],
       ['bajie-sanqi.html', '八節三奇'],
-      ['xuankong.html', '玄空飛星']
+      ['xuankong.html', '玄空飛星'],
+      ['taixuan.html', '太玄數計算']
     ];
     const page = currentFile();
     nav.innerHTML = tools.map(([href, label]) =>
@@ -216,6 +233,89 @@ function injectUnifiedMemberNavigation() {
     ).join('');
   };
 
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, { once: true });
+  else render();
+}
+
+function canUseMemberTools(profile) {
+  return profile.role === 'admin' || profile.plan === 'formal' || profile.plan === 'permanent';
+}
+
+function injectMemberHomeNavigation(profile) {
+  const render = () => {
+    const page = currentFile();
+    if (page === 'member-tools.html') {
+      const card = document.querySelector('a.tool[href="taixuan.html"]');
+      if (card && !canUseMemberTools(profile)) {
+        card.removeAttribute('href');
+        card.setAttribute('aria-disabled', 'true');
+        card.style.opacity = '.58';
+        card.style.cursor = 'not-allowed';
+        const description = card.querySelector('p');
+        if (description) description.textContent = '正式會員與永久會員可使用。';
+      }
+      return;
+    }
+    if (page === ADMIN_PAGE) return;
+    const toolLink = document.querySelector('.tool-subnav a[href="taixuan.html"]');
+    if (toolLink && !canUseMemberTools(profile)) {
+      toolLink.removeAttribute('href');
+      toolLink.setAttribute('aria-disabled', 'true');
+      toolLink.style.opacity = '.58';
+      toolLink.style.cursor = 'not-allowed';
+      toolLink.title = '正式會員與永久會員可使用';
+    }
+    if (!document.getElementById('ts-member-home-style')) {
+      const style = document.createElement('style');
+      style.id = 'ts-member-home-style';
+      style.textContent = `
+        .ts-member-home-top-wrap{display:flex;justify-content:flex-end;width:100%;margin:8px 0 10px;box-sizing:border-box}
+        .ts-member-home-top{
+          display:inline-flex!important;align-items:center;justify-content:center;
+          width:auto!important;max-width:max-content!important;min-height:38px;
+          padding:8px 14px!important;border:1px solid rgba(224,184,78,.48)!important;
+          border-radius:999px!important;background:rgba(7,11,20,.96)!important;
+          color:#f2d578!important;text-decoration:none!important;
+          font:800 13px/1.35 "Noto Sans TC","Microsoft JhengHei",sans-serif!important;
+          letter-spacing:.02em;box-shadow:0 10px 27px rgba(0,0,0,.32)!important;
+          white-space:nowrap;box-sizing:border-box;cursor:pointer
+        }
+        .ts-member-home-top:hover{border-color:#f2d578!important;background:#172039!important}
+        .ts-member-home-top:focus-visible{outline:3px solid #f2d578;outline-offset:3px}
+        @media(min-width:1201px){
+          .system-header .ts-member-home-top-wrap{position:absolute;top:132px;right:0;width:auto;margin:0;z-index:30}
+        }
+        @media(max-width:700px){
+          .ts-member-home-top-wrap{margin:10px 0}
+        }
+        @media print{.ts-member-home-top-wrap{display:none!important}}
+      `;
+      document.head.appendChild(style);
+    }
+    const header = document.querySelector('.system-header');
+    const existing = header?.querySelector('a.member-home-link');
+    if (existing) {
+      existing.href = 'member-tools.html';
+      existing.textContent = '← 回到會員首頁';
+      existing.classList.add('ts-member-home-top');
+    }
+    const nav = header?.querySelector('.top-nav');
+    const container = header || document.querySelector('main') || document.querySelector('.wrap');
+    if (container && !existing && !container.querySelector('.ts-member-home-top-wrap')) {
+      const row = document.createElement('div');
+      row.className = 'ts-member-home-top-wrap';
+      const link = document.createElement('a');
+      link.className = 'ts-member-home-top';
+      link.href = 'member-tools.html';
+      link.textContent = '← 回到會員首頁';
+      row.appendChild(link);
+      if (nav) header.insertBefore(row, nav);
+      else container.insertBefore(row, container.firstChild);
+    }
+    document.querySelectorAll('a.member-home-link[href="member-tools.html"]').forEach(link => {
+      if (link !== existing) link.remove();
+    });
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, { once: true });
   else render();
 }
@@ -252,14 +352,20 @@ async function guard() {
       location.replace(`${PENDING_PAGE}?reason=expired`);
       return;
     }
+    if (page === 'taixuan.html' && !canUseMemberTools(profile)) {
+      location.replace('member-tools.html');
+      return;
+    }
     if (page === ADMIN_PAGE && profile.role !== 'admin') {
       location.replace('index.html');
       return;
     }
 
     window.TIANSHU_MEMBER = Object.freeze({ profile, user: session.user });
+    injectSiteAppearance();
     injectMemberBar(profile);
     injectUnifiedMemberNavigation();
+    injectMemberHomeNavigation(profile);
     unlockPage();
   } catch (error) {
     console.error('[member-auth]', error);

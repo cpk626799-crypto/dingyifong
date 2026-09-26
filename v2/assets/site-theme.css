@@ -1,0 +1,59 @@
+/* 離線檢查版：全站頁面底色與「會員功能首頁」一致。保留各工具原有面板樣式。 */
+@media screen {
+  html {
+    background-color: #070b14 !important;
+    color-scheme: dark;
+  }
+
+  body {
+    background:
+      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+      radial-gradient(circle at 50% -8%,rgba(64,80,132,.22),transparent 42rem),
+      radial-gradient(circle at 5% 34%,rgba(222,178,69,.06),transparent 28rem),
+      #070b14 !important;
+    background-size: 52px 52px, 52px 52px, auto, auto, auto !important;
+  }
+
+  /* 舊共用樣式有另一層 42px 格線，避免疊上後與首頁不一致。 */
+  body::before { display: none !important; }
+
+  .ts-live-banner {
+    position: fixed;
+    top: 8px;
+    left: var(--ts-live-banner-left, 10px);
+    z-index: 900;
+    width: min(330px, calc(100vw - 20px));
+    padding: 6px 9px;
+    border: 1px solid rgba(218,190,121,.32);
+    border-radius: 10px;
+    color: #f6eed9;
+    background: linear-gradient(125deg,rgba(17,24,39,.96),rgba(10,15,26,.96));
+    box-shadow: 0 8px 26px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-family: "Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+    font-size: 11px;
+    line-height: 1.2;
+    text-align: left;
+    letter-spacing: 0;
+    box-sizing: border-box;
+  }
+
+  .ts-live-banner, .ts-live-banner * { box-sizing: border-box; }
+  .ts-live-banner__line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 9px; padding: 1px 0; }
+  .ts-live-banner__field { display: inline-flex; align-items: baseline; gap: 2px; min-width: 0; }
+  .ts-live-banner__field > span { color: #adb7ca; font-size: 10px; font-weight: 800; white-space: nowrap; }
+  .ts-live-banner__field strong { color: #f5eee1; font-size: 11px; font-weight: 750; white-space: nowrap; }
+  .ts-live-banner__clock strong, .ts-live-banner__term strong { color: #e9c86e; font-weight: 900; font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 740px) {
+    body { padding-top: calc(var(--ts-live-banner-height, 70px) + 16px) !important; }
+  }
+  @media (max-width: 350px) {
+    .ts-live-banner__field strong { font-size: 10px; }
+    .ts-live-banner__line { column-gap: 5px; }
+  }
+}
+
+@media print { .ts-live-banner { display: none !important; } }

@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#080b15">
+  <title>太玄甲子數查詢｜天書三式・丁一峰老師術數查詢系統</title>
+  <script type="module" src="assets/member-auth.js"></script>
+  <style>
+    html.auth-pending body { visibility: hidden; }
+    :root {
+      font-family: "Noto Sans TC", "Source Han Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+      color: #e8edf7;
+      background: #080b15;
+      --tx-bg: #080b15;
+      --tx-panel: #141b31;
+      --tx-panel-dark: #0d1729;
+      --tx-line: rgba(115,132,176,.26);
+      --tx-gold: #d9b85b;
+      --tx-gold-light: #f3d579;
+      --tx-text: #f7edd1;
+      --tx-muted: #aab6c9;
+      --tx-radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: #e8edf7;
+      background:
+        radial-gradient(circle at 50% -8%, rgba(226,192,95,.12), transparent 28rem),
+        radial-gradient(circle at 10% 27%, rgba(70,102,180,.17), transparent 28rem),
+        linear-gradient(180deg, #080b15, #0c1323 55%, #080b15);
+      line-height: 1.65;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: linear-gradient(#ffffff06 1px, transparent 1px), linear-gradient(90deg, #ffffff06 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, #0009, transparent 75%);
+    }
+    button, select { font: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+    .tx-topbar {
+      border-bottom: 1px solid var(--tx-line);
+      background: #081021e8;
+    }
+    .tx-topbar__inner {
+      max-width: 1200px;
+      padding: 14px 22px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .tx-topbar__inner .member-session-bar { display: flex; align-items: center; gap: 8px; margin-left: auto; font-size: 12px; }
+    .tx-topbar__inner .member-chip { display: grid; color: #f7edd1; text-align: right; line-height: 1.4; }
+    .tx-topbar__inner .member-chip small { color: #aab6c9; }
+    .tx-topbar__inner .member-admin-link, .tx-topbar__inner .member-logout-btn { width: auto; padding: 6px 10px; border: 1px solid #d9b85b70; border-radius: 999px; background: #101a2b; color: #f3d579; text-decoration: none; font-family: inherit; font-size: 12px; font-weight: 800; line-height: 1.4; }
+    .tx-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .tx-brand__mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      flex: none;
+      border-radius: 13px;
+      color: #21180a;
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(145deg, #fff2a5, #d5aa46 60%, #8d6426);
+      box-shadow: 0 0 25px #e7c66630, inset 0 1px #fff8;
+    }
+    .tx-brand__name { color: var(--tx-text); font-size: 15px; font-weight: 800; letter-spacing: .04em; }
+    .tx-brand__sub { color: var(--tx-muted); font-size: 11px; letter-spacing: .12em; }
+    .tx-test-badge {
+      flex: none;
+      border: 1px solid #d9b85b77;
+      background: #d9b85b16;
+      border-radius: 999px;
+      padding: 6px 11px;
+      color: var(--tx-gold-light);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .tx-wrap { width: min(1160px, calc(100% - 40px)); margin: 30px auto 0; }
+    .tx-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(27px, 4vw, 46px);
+      border: 1px solid #d9b85b50;
+      border-radius: 26px;
+      background: linear-gradient(125deg, #1b2943, #131f32 60%, #222839);
+      box-shadow: 0 24px 70px #0005;
+    }
+    .tx-hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 26px;
+      bottom: 26px;
+      width: 3px;
+      border-radius: 4px;
+      background: linear-gradient(var(--tx-gold-light), #d9b85b20);
+    }
+    .tx-hero::after {
+      content: "玄";
+      position: absolute;
+      z-index: -1;
+      right: 48px;
+      top: -65px;
+      color: #f3d5790c;
+      font-size: clamp(190px, 28vw, 320px);
+      font-weight: 900;
+      line-height: 1.2;
+      pointer-events: none;
+    }
+    .tx-eyebrow {
+      margin: 0 0 10px;
+      color: var(--tx-gold-light);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .22em;
+    }
+    .tx-hero h1 {
+      margin: 0;
+      color: var(--tx-text);
+      font-size: clamp(29px, 4.5vw, 49px);
+      line-height: 1.25;
+      letter-spacing: .07em;
+    }
+    .tx-hero__desc { max-width: 720px; margin: 15px 0 0; color: #c0cad8; font-size: 15px; }
+    .tx-hero__steps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .tx-hero__steps span {
+      border: 1px solid #d9b85b40;
+      border-radius: 999px;
+      background: #0b152675;
+      padding: 6px 11px;
+      color: #edd8a6;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tx-workspace { display: grid; grid-template-columns: minmax(285px, 345px) minmax(0, 1fr); gap: 20px; margin-top: 20px; align-items: start; }
+    .tx-panel {
+      min-width: 0;
+      border: 1px solid var(--tx-line);
+      border-radius: var(--tx-radius);
+      background: linear-gradient(160deg, #1a2540ec, #111a2ded);
+      padding: 23px;
+      box-shadow: 0 18px 50px #0003;
+    }
+    .tx-inputs { position: sticky; top: 16px; }
+    .tx-panel__index { margin: 0 0 4px; color: var(--tx-gold); font-size: 12px; font-weight: 900; letter-spacing: .16em; }
+    .tx-panel h2 { margin: 0; color: var(--tx-text); font-size: 21px; line-height: 1.4; }
+    .tx-panel__intro { margin: 8px 0 20px; color: var(--tx-muted); font-size: 13px; }
+    .tx-field { display: block; margin: 16px 0 0; }
+    .tx-field > span { display: block; margin: 0 0 7px; color: #d8e1eb; font-size: 13px; font-weight: 800; }
+    .tx-field select {
+      width: 100%;
+      min-height: 48px;
+      appearance: none;
+      border: 1px solid #7186a064;
+      border-radius: 13px;
+      outline: 0;
+      padding: 10px 42px 10px 14px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 750;
+      background: #0b1729 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23f3d579' stroke-width='1.8' d='m3 6 5 5 5-5'/%3E%3C/svg%3E") no-repeat right 15px center;
+    }
+    .tx-field select:focus-visible, .tx-button:focus-visible {
+      border-color: var(--tx-gold-light);
+      outline: 3px solid #f3d57955;
+      outline-offset: 2px;
+    }
+    .tx-field option { background: #0d1729; }
+    .tx-field__hint { display: block; color: #98a9bf; font-size: 12px; margin: 5px 0 0; }
+    .tx-actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 22px; }
+    .tx-button { border-radius: 12px; padding: 11px 14px; font-size: 13px; font-weight: 900; }
+    .tx-button--primary {
+      border: 1px solid #edc861;
+      background: linear-gradient(135deg, #f3d579, #c79539);
+      color: #21180d;
+      box-shadow: 0 8px 22px #d9b85b26;
+    }
+    .tx-button--quiet { border: 1px solid #7386a061; background: #15243a; color: #d0dbe7; }
+    .tx-button:hover { filter: brightness(1.1); }
+    .tx-warning {
+      margin: 16px 0 0;
+      border: 1px solid #eaa08b77;
+      border-radius: 12px;
+      padding: 11px 12px;
+      background: #713d3266;
+      color: #ffdbd1;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .tx-tip { margin-top: 21px; padding: 14px; border: 1px solid #d9b85b3d; border-radius: 14px; background: #0d1729; color: #b9c5d4; font-size: 12px; }
+    .tx-tip strong { display: block; color: var(--tx-gold-light); margin-bottom: 5px; }
+    .tx-tip p { margin: 0; }
+    .tx-results { display: grid; gap: 18px; min-width: 0; }
+    .tx-result-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+    .tx-day-pill { border: 1px solid #d9b85b70; border-radius: 10px; padding: 7px 10px; background: #d9b85b18; color: var(--tx-gold-light); font-size: 13px; font-weight: 800; }
+    .tx-result-card {
+      overflow: hidden;
+      border: 1px solid #d9b85b66;
+      border-radius: 22px;
+      background: radial-gradient(circle at 88% -20%, #d9b85b20, transparent 46%), linear-gradient(140deg, #1a2843, #111b30 77%);
+      box-shadow: 0 22px 65px #0004;
+    }
+    .tx-result-card__top { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 25px 27px 20px; }
+    .tx-total__label { color: #d7c195; font-size: 13px; font-weight: 800; letter-spacing: .14em; }
+    .tx-total__number { color: #f5dc97; font-size: clamp(72px, 9vw, 108px); line-height: 1.08; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.05em; }
+    .tx-total__sub { color: #c6d0dc; font-size: 13px; }
+    .tx-seal {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: clamp(85px, 12vw, 120px);
+      height: clamp(85px, 12vw, 120px);
+      border: 1px solid #d9b85b80;
+      border-radius: 22px;
+      background: #d9b85b12;
+      color: #f3d579;
+      font-size: clamp(35px, 5vw, 48px);
+      font-weight: 800;
+      box-shadow: inset 0 0 0 5px #ffffff06;
+    }
+    .tx-result-card__strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid #d9b85b30;
+      background: #080f1d88;
+    }
+    .tx-metric { padding: 15px 18px; border-right: 1px solid #d9b85b20; }
+    .tx-metric:last-child { border-right: 0; }
+    .tx-metric__label { color: #9fadc1; font-size: 11px; }
+    .tx-metric__value { margin-top: 1px; color: #f6eddb; font-size: 23px; font-weight: 850; }
+    .tx-metric__value small { color: #d3b970; font-size: 13px; }
+    .tx-breakdown { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+    .tx-term { min-width: 0; border: 1px solid #7487a13e; border-radius: 14px; padding: 13px; background: #0c172a; }
+    .tx-term__label { color: #a2b2c7; font-size: 12px; }
+    .tx-term__value { display: flex; align-items: baseline; gap: 8px; margin-top: 3px; }
+    .tx-term__value span { color: #f4eddd; font-size: 21px; font-weight: 850; }
+    .tx-term__value strong { color: #f3d579; font-size: 28px; font-variant-numeric: tabular-nums; }
+    .tx-equation { margin: 17px 0 0; border-radius: 12px; padding: 12px 15px; color: #f3ddb0; background: #0b1425; font-size: 14px; font-weight: 750; }
+    .tx-element-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .tx-element-card { display: flex; gap: 14px; align-items: center; min-height: 118px; border: 1px solid #7689a34b; border-radius: 16px; padding: 18px; background: #0c172a; }
+    .tx-element-card__number { display: grid; place-items: center; width: 58px; height: 58px; flex: none; border-radius: 14px; background: #d9b85b1d; color: #f3d579; font-size: 34px; font-weight: 850; }
+    .tx-element-card__label { color: #a6b6c7; font-size: 12px; }
+    .tx-element-card__value { color: #f5e4bc; font-size: 25px; font-weight: 850; line-height: 1.2; }
+    .tx-shape-icon { width: 62px; height: 62px; flex: none; color: #f3d579; }
+    .tx-shape-icon[data-element="水"] { color: #86c8e3; }
+    .tx-shape-icon[data-element="火"] { color: #eeb483; }
+    .tx-shape-icon[data-element="木"] { color: #93d0a6; }
+    .tx-shape-icon[data-element="金"] { color: #e8d18e; }
+    .tx-shape-icon[data-element="土"] { color: #e0b889; }
+    .tx-result-note { margin: 16px 0 0; color: #b2bfd0; font-size: 12px; line-height: 1.75; }
+    .tx-nayin-card { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 21px 23px; border: 1px solid #d9b85b66; border-radius: 18px; background: radial-gradient(circle at 90% 0, #d9b85b23, transparent 50%), #0c172a; }
+    .tx-nayin-name { color: #f5dc97; font-size: clamp(32px, 5vw, 46px); font-weight: 850; line-height: 1.3; }
+    .tx-nayin-element { color: #cdd8e7; font-size: 14px; }
+    .tx-nayin-element strong { color: #f3d579; font-size: 18px; }
+    .tx-nayin-pair { border: 1px solid #d9b85b70; border-radius: 999px; padding: 7px 12px; color: #f3d579; font-size: 13px; font-weight: 800; }
+    .tx-nayin-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 13px; }
+    .tx-nayin-fact { min-width: 0; border: 1px solid #7487a13e; border-radius: 12px; padding: 10px 12px; background: #0c172a; }
+    .tx-nayin-fact span { display: block; color: #a2b2c7; font-size: 12px; }
+    .tx-nayin-fact strong { display: block; color: #f4eddd; font-size: 18px; overflow-wrap: anywhere; }
+    .tx-nayin-rules { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+    .tx-nayin-rules span { border: 1px solid #d9b85b3d; border-radius: 9px; padding: 4px 9px; background: #0d1729; color: #dbd5c7; font-size: 12px; }
+    .tx-section-heading { display: flex; align-items: center; gap: 9px; margin: 32px 0 13px; color: var(--tx-text); font-size: 20px; font-weight: 850; }
+    .tx-section-heading::before { content: ""; height: 23px; width: 3px; border-radius: 2px; background: var(--tx-gold); }
+    .tx-reference { display: grid; grid-template-columns: 1.08fr 1fr; gap: 18px; }
+    .tx-reference .tx-panel { padding: 21px; }
+    .tx-reference h3 { margin: 0 0 6px; color: var(--tx-text); font-size: 17px; }
+    .tx-reference p { margin: 0 0 13px; color: var(--tx-muted); font-size: 12px; }
+    .tx-table-wrap { overflow-x: auto; border: 1px solid #7186a04a; border-radius: 12px; }
+    .tx-table { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+    .tx-table th, .tx-table td { padding: 10px 8px; border-bottom: 1px solid #7186a03a; text-align: center; }
+    .tx-table th { color: var(--tx-gold-light); background: #d9b85b13; font-weight: 850; }
+    .tx-table td { color: #e3e8f0; }
+    .tx-table tr:last-child td { border-bottom: 0; }
+    .tx-explain { margin: 22px 0 0; border: 1px solid #d9b85b42; border-radius: 16px; padding: 16px 18px; background: #111c30; }
+    .tx-explain h3 { margin: 0 0 8px; color: #f3d579; font-size: 15px; }
+    .tx-explain p { margin: 5px 0; color: #c0ccda; font-size: 13px; }
+    .tx-explain strong { color: #f2e1b8; }
+    .tx-footer { max-width: 1160px; margin: 32px auto 0; padding: 0 20px 35px; text-align: center; color: #91a2ba; font-size: 12px; line-height: 1.9; }
+    .tx-footer span { display: block; }
+    @media (max-width: 860px) {
+      .tx-workspace { grid-template-columns: 1fr; }
+      .tx-inputs { position: static; }
+      .tx-reference { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .tx-topbar__inner { padding: 11px 14px; }
+      .tx-topbar__inner .member-session-bar { width: 100%; justify-content: flex-end; }
+      .tx-brand__name { font-size: 12px; }
+      .tx-brand__sub { font-size: 10px; letter-spacing: 0; }
+      .tx-brand__mark { width: 38px; height: 38px; font-size: 19px; }
+      .tx-test-badge { font-size: 10px; padding: 5px 7px; }
+      .tx-wrap { width: calc(100% - 24px); margin-top: 14px; }
+      .tx-hero { padding: 24px 21px; border-radius: 19px; }
+      .tx-hero::after { right: -22px; top: -18px; font-size: 170px; }
+      .tx-hero__desc { font-size: 13px; }
+      .tx-workspace { gap: 13px; margin-top: 13px; }
+      .tx-panel { padding: 18px; border-radius: 18px; }
+      .tx-result-card__top { padding: 19px 20px 17px; }
+      .tx-seal { width: 78px; height: 78px; font-size: 32px; border-radius: 17px; }
+      .tx-metric { padding: 11px 9px; }
+      .tx-metric__value { font-size: 19px; }
+      .tx-metric__value small { font-size: 10px; }
+      .tx-breakdown { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+      .tx-term { padding: 9px 7px; }
+      .tx-term__label { font-size: 10px; }
+      .tx-term__value span { font-size: 18px; }
+      .tx-term__value strong { font-size: 24px; }
+      .tx-element-grid { grid-template-columns: 1fr; gap: 8px; }
+      .tx-nayin-card { padding: 17px; }
+      .tx-nayin-facts { gap: 6px; }
+      .tx-nayin-fact { padding: 9px 7px; }
+      .tx-nayin-fact strong { font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .tx-button, .tx-field select { transition: filter .18s, border-color .18s; }
+    }
+    @media print {
+      body { color: #141414; background: white; }
+      .tx-topbar, .tx-panel, .tx-hero, .tx-result-card { color: #141414; box-shadow: none; }
+      .tx-inputs, .tx-test-badge, .tx-actions { display: none; }
+      .tx-workspace, .tx-reference { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="tx-topbar">
+    <div class="tx-topbar__inner">
+      <div class="tx-brand" aria-label="天書三式・丁一峰老師術數查詢系統">
+        <span class="tx-brand__mark" aria-hidden="true">玄</span>
+        <div><div class="tx-brand__name">天書三式・丁一峰老師術數查詢系統</div><div class="tx-brand__sub">會員術數工具 · 太玄甲子數</div></div>
+      </div>
+      <span class="tx-test-badge">會員查詢</span>
+    </div>
+  </header>
+
+  <main class="tx-wrap" id="taixuan-app">
+    <section class="tx-hero" aria-labelledby="tx-page-title">
+      <p class="tx-eyebrow">天書三式 · 太玄甲子數</p>
+      <h1 id="tx-page-title">日干支・時支配數查詢</h1>
+      <p class="tx-hero__desc">選擇日干、日支與時支，查看擇時合數、尾數五行與陣形；另依日柱所屬的相鄰甲子配對，推算納音五行與名稱。</p>
+      <div class="tx-hero__steps" aria-label="計算步驟"><span>01 選日干支</span><span>02 選時支</span><span>03 看擇時合數</span><span>04 看日柱納音</span></div>
+    </section>
+
+    <div class="tx-workspace">
+      <aside class="tx-panel tx-inputs" aria-labelledby="tx-input-title">
+        <p class="tx-panel__index">01 / 查詢條件</p>
+        <h2 id="tx-input-title">選擇干支</h2>
+        <p class="tx-panel__intro">請輸入已核對的日柱干支及用事時支。本頁不推算國曆日期或時辰交界。</p>
+        <form id="tx-form">
+          <label class="tx-field" for="tx-stem"><span>日干 · 十天干</span>
+            <select id="tx-stem" name="dayStem">
+              <option value="甲" selected>甲</option><option value="乙">乙</option><option value="丙">丙</option><option value="丁">丁</option><option value="戊">戊</option>
+              <option value="己">己</option><option value="庚">庚</option><option value="辛">辛</option><option value="壬">壬</option><option value="癸">癸</option>
+            </select>
+          </label>
+          <label class="tx-field" for="tx-day-branch"><span>日支 · 十二地支</span>
+            <select id="tx-day-branch" name="dayBranch">
+              <option value="子" selected>子</option><option value="丑">丑</option><option value="寅">寅</option><option value="卯">卯</option><option value="辰">辰</option><option value="巳">巳</option>
+              <option value="午">午</option><option value="未">未</option><option value="申">申</option><option value="酉">酉</option><option value="戌">戌</option><option value="亥">亥</option>
+            </select>
+          </label>
+          <label class="tx-field" for="tx-hour-branch"><span>時支 · 十二地支</span>
+            <select id="tx-hour-branch" name="hourBranch">
+              <option value="子" selected>子</option><option value="丑">丑</option><option value="寅">寅</option><option value="卯">卯</option><option value="辰">辰</option><option value="巳">巳</option>
+              <option value="午">午</option><option value="未">未</option><option value="申">申</option><option value="酉">酉</option><option value="戌">戌</option><option value="亥">亥</option>
+            </select>
+            <small class="tx-field__hint">這套筆記的擇時公式只加時支，不加時干。</small>
+          </label>
+          <div class="tx-actions"><button class="tx-button tx-button--primary" type="submit">查詢太玄數</button><button class="tx-button tx-button--quiet" id="tx-reset" type="button">重設</button></div>
+        </form>
+        <p id="tx-invalid" class="tx-warning" role="status" hidden>所選日干與日支不構成六十甲子日柱。下方仍顯示逐項配數與合數供核對；正式使用前請確認日柱。</p>
+        <noscript><p class="tx-warning">此檔案需要瀏覽器啟用 JavaScript，才能更新查詢結果。</p></noscript>
+        <div class="tx-tip"><strong>配數口訣</strong><p>甲己子午九，乙庚丑未八，丙辛寅申七，丁壬卯酉六，戊癸辰戌五，巳亥單四數。</p></div>
+      </aside>
+
+      <div class="tx-results" aria-label="查詢結果">
+        <section class="tx-panel" aria-labelledby="tx-result-title">
+          <div class="tx-result-head"><div><p class="tx-panel__index">02 / 太玄配數</p><h2 id="tx-result-title">擇時合數</h2></div><div class="tx-day-pill" id="tx-selected">甲子日 · 子時</div></div>
+          <div class="tx-result-card" aria-live="polite" aria-atomic="true">
+            <div class="tx-result-card__top"><div><div class="tx-total__label">日干＋日支＋時支</div><div class="tx-total__number" id="tx-total">27</div><div class="tx-total__sub">目前選擇的太玄擇時合數</div></div><div class="tx-seal" id="tx-day-seal" aria-hidden="true">甲子</div></div>
+            <div class="tx-result-card__strip">
+              <div class="tx-metric"><div class="tx-metric__label">日干支小計</div><div class="tx-metric__value" id="tx-day-subtotal">18</div></div>
+              <div class="tx-metric"><div class="tx-metric__label">合數尾數</div><div class="tx-metric__value" id="tx-tail-top">7</div></div>
+              <div class="tx-metric"><div class="tx-metric__label">五行 · 陣形</div><div class="tx-metric__value" id="tx-quick-reading">火<small> · 銳陣</small></div></div>
+            </div>
+          </div>
+          <div class="tx-breakdown" aria-label="逐項配數">
+            <div class="tx-term"><div class="tx-term__label">日干配數</div><div class="tx-term__value"><span id="tx-stem-label">甲</span><strong id="tx-stem-value">9</strong></div></div>
+            <div class="tx-term"><div class="tx-term__label">日支配數</div><div class="tx-term__value"><span id="tx-day-branch-label">子</span><strong id="tx-day-branch-value">9</strong></div></div>
+            <div class="tx-term"><div class="tx-term__label">時支配數</div><div class="tx-term__value"><span id="tx-hour-branch-label">子</span><strong id="tx-hour-branch-value">9</strong></div></div>
+          </div>
+          <p class="tx-equation" id="tx-equation">甲 9 ＋ 子 9 ＝ 日干支 18；再 ＋ 子時 9 ＝ 擇時合數 27</p>
+        </section>
+
+        <section class="tx-panel" aria-labelledby="tx-five-title">
+          <p class="tx-panel__index">03 / 合數尾數對照</p><h2 id="tx-five-title">五行與陣形參考</h2>
+          <p class="tx-panel__intro">合數的個位為 0 時，以 10 查對應。依本筆記的數字五行與陣形對照顯示。</p>
+          <div class="tx-element-grid">
+            <div class="tx-element-card"><div class="tx-element-card__number" id="tx-tail">7</div><div><div class="tx-element-card__label">合數尾數 → 五行</div><div class="tx-element-card__value" id="tx-element">火</div></div></div>
+            <div class="tx-element-card"><svg class="tx-shape-icon" id="tx-shape-icon" data-element="火" viewBox="0 0 100 100" role="img" aria-label="銳陣示意符號"><path id="tx-shape-path" d="M25 74 L50 26 L75 74" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></svg><div><div class="tx-element-card__label">陣形名稱 · 示意符號</div><div class="tx-element-card__value" id="tx-shape">銳陣</div></div></div>
+          </div>
+          <p class="tx-result-note">陣形是依合數尾數查得的類別參考；圖形只代表名稱，不是實際佈陣圖。本命方位與佈陣點位須另行判定。</p>
+        </section>
+        <section class="tx-panel" aria-labelledby="tx-nayin-title">
+          <p class="tx-panel__index">04 / 相鄰甲子積數</p><h2 id="tx-nayin-title">日柱納音屬性</h2>
+          <p class="tx-panel__intro">按所選日柱找到同組兩個相鄰甲子，將兩柱的天干、地支配數相加後除以 5。時支不參與納音計算。</p>
+          <div class="tx-nayin-card" aria-live="polite" aria-atomic="true">
+            <div><div class="tx-total__label">納音名稱</div><div class="tx-nayin-name" id="tx-nayin-name">海中金</div><div class="tx-nayin-element">納音五行：<strong id="tx-nayin-element">金</strong></div></div>
+            <span class="tx-nayin-pair" id="tx-nayin-pair">甲子 · 乙丑</span>
+          </div>
+          <div id="tx-nayin-details">
+            <div class="tx-nayin-facts">
+              <div class="tx-nayin-fact"><span>兩柱逐項配數</span><strong id="tx-nayin-terms">9＋9＋8＋8</strong></div>
+              <div class="tx-nayin-fact"><span>四數合計</span><strong id="tx-nayin-sum">34</strong></div>
+              <div class="tx-nayin-fact"><span>除 5 取餘</span><strong id="tx-nayin-divide">餘 4 → 金</strong></div>
+            </div>
+            <p class="tx-equation" id="tx-nayin-equation">甲 9＋子 9＋乙 8＋丑 8＝34；34 ÷ 5＝6 餘 4 → 金 → 海中金</p>
+          </div>
+          <p id="tx-nayin-invalid" class="tx-warning" role="status" hidden>所選日干支不在六十甲子內，不能配對推算納音；請重新選擇日干與日支。</p>
+          <div class="tx-nayin-rules" aria-label="納音餘數五行對照"><span>餘 1：火</span><span>餘 2：土</span><span>餘 3：木</span><span>餘 4：金</span><span>餘 0：水</span></div>
+          <p class="tx-result-note">納音的「除 5 餘數五行」與上方擇時合數的「個位尾數五行」是不同算法，結果可能不同。納音名稱依六十甲子成對對照。</p>
+        </section>
+      </div>
+    </div>
+
+    <h2 class="tx-section-heading">配數對照與計算說明</h2>
+    <div class="tx-reference">
+      <section class="tx-panel" aria-labelledby="tx-pair-table-title">
+        <h3 id="tx-pair-table-title">天干、地支配數</h3><p>先分別取日干、日支的數值，再取時支數值。</p>
+        <div class="tx-table-wrap"><table class="tx-table"><thead><tr><th scope="col">天干</th><th scope="col">地支</th><th scope="col">太玄數</th></tr></thead><tbody>
+          <tr><td>甲、己</td><td>子、午</td><td>9</td></tr><tr><td>乙、庚</td><td>丑、未</td><td>8</td></tr><tr><td>丙、辛</td><td>寅、申</td><td>7</td></tr><tr><td>丁、壬</td><td>卯、酉</td><td>6</td></tr><tr><td>戊、癸</td><td>辰、戌</td><td>5</td></tr><tr><td>—</td><td>巳、亥</td><td>4</td></tr>
+        </tbody></table></div>
+      </section>
+      <section class="tx-panel" aria-labelledby="tx-five-table-title">
+        <h3 id="tx-five-table-title">合數尾數、五行與陣形</h3><p>這是本查詢使用的數字五行、陣形配對。</p>
+        <div class="tx-table-wrap"><table class="tx-table"><thead><tr><th scope="col">尾數</th><th scope="col">五行</th><th scope="col">陣形</th></tr></thead><tbody>
+          <tr><td>1、6</td><td>水</td><td>曲陣</td></tr><tr><td>2、7</td><td>火</td><td>銳陣</td></tr><tr><td>3、8</td><td>木</td><td>直陣</td></tr><tr><td>4、9</td><td>金</td><td>圓陣</td></tr><tr><td>5、10（個位 0）</td><td>土</td><td>方陣</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+    <section class="tx-explain" aria-labelledby="tx-method-title"><h3 id="tx-method-title">如何使用查詢結果</h3><p><strong>擇時：</strong>日干數＋日支數＝日干支小計；小計＋時支數＝擇時合數。例：甲子日、子時為 9＋9＋9＝27，尾數 7 對應火、銳陣；20 個位為 0，以 10 查得土、方陣。</p><p><strong>納音：</strong>甲子日與乙丑同組：甲 9＋子 9＋乙 8＋丑 8＝34；34 除以 5 餘 4，納音五行為金，名稱為海中金。乙丑日也回配甲子，結果相同。納音配數方法見所附《太玄數推算方法詳解》，餘數五行順序可參《易學象數論·納音》，名稱可參《三命通會·論納音取象》。</p><p><strong>範圍：</strong>日柱須為六十甲子有效組合方可推算納音。本頁不推算曆法、時干或本命方位；時支只影響擇時合數及陣形參考，不影響日柱納音。</p></section>
+  </main>
+  <footer class="tx-footer"><span>天書三式丁一峰老師製作</span><span>© 2026 丁一峰老師 版權所有，僅供教學研究。</span></footer>
+  <script>
+    (() => {
+      "use strict";
+      const stems = "甲乙丙丁戊己庚辛壬癸";
+      const branches = "子丑寅卯辰巳午未申酉戌亥";
+      const stemNumbers = [9, 8, 7, 6, 5, 9, 8, 7, 6, 5];
+      const branchNumbers = [9, 8, 7, 6, 5, 4, 9, 8, 7, 6, 5, 4];
+      const tailRules = {
+        1: ["水", "曲陣"], 6: ["水", "曲陣"],
+        2: ["火", "銳陣"], 7: ["火", "銳陣"],
+        3: ["木", "直陣"], 8: ["木", "直陣"],
+        4: ["金", "圓陣"], 9: ["金", "圓陣"],
+        5: ["土", "方陣"], 10: ["土", "方陣"]
+      };
+      const sexagenary = Array.from({ length: 60 }, (_, i) => stems[i % 10] + branches[i % 12]);
+      const nayinNames = [
+        "海中金", "爐中火", "大林木", "路旁土", "劍鋒金", "山頭火",
+        "澗下水", "城頭土", "白蠟金", "楊柳木", "井泉水", "屋上土",
+        "霹靂火", "松柏木", "長流水", "沙中金", "山下火", "平地木",
+        "壁上土", "金箔金", "覆燈火", "天河水", "大驛土", "釵釧金",
+        "桑柘木", "大溪水", "沙中土", "天上火", "石榴木", "大海水"
+      ];
+      const nayinRemainderElements = ["水", "火", "土", "木", "金"];
+      const shapePaths = {
+        "曲陣": "M20 70 C32 32 47 68 57 38 S78 32 82 20",
+        "銳陣": "M25 74 L50 26 L75 74",
+        "直陣": "M50 20 L50 80",
+        "圓陣": "M50 24 A26 26 0 1 1 49.99 24",
+        "方陣": "M26 26 H74 V74 H26 Z"
+      };
+      const find = id => document.getElementById(id);
+      const stemSelect = find("tx-stem");
+      const dayBranchSelect = find("tx-day-branch");
+      const hourBranchSelect = find("tx-hour-branch");
+      function show(id, value) { find(id).textContent = String(value); }
+
+      function render() {
+        const stem = stemSelect.value;
+        const dayBranch = dayBranchSelect.value;
+        const hourBranch = hourBranchSelect.value;
+        const stemIndex = stems.indexOf(stem);
+        const dayIndex = branches.indexOf(dayBranch);
+        const hourIndex = branches.indexOf(hourBranch);
+        if (stemIndex < 0 || dayIndex < 0 || hourIndex < 0) return;
+
+        const stemNumber = stemNumbers[stemIndex];
+        const dayNumber = branchNumbers[dayIndex];
+        const hourNumber = branchNumbers[hourIndex];
+        const daySubtotal = stemNumber + dayNumber;
+        const total = daySubtotal + hourNumber;
+        const tail = total % 10 || 10;
+        const [element, shape] = tailRules[tail];
+        const dayPillarIndex = sexagenary.indexOf(stem + dayBranch);
+        const validDay = dayPillarIndex !== -1;
+
+        show("tx-selected", `${stem}${dayBranch}日 · ${hourBranch}時`);
+        show("tx-day-seal", stem + dayBranch);
+        show("tx-stem-label", stem);
+        show("tx-day-branch-label", dayBranch);
+        show("tx-hour-branch-label", hourBranch);
+        show("tx-stem-value", stemNumber);
+        show("tx-day-branch-value", dayNumber);
+        show("tx-hour-branch-value", hourNumber);
+        show("tx-day-subtotal", daySubtotal);
+        show("tx-total", total);
+        show("tx-tail-top", tail);
+        show("tx-tail", tail);
+        show("tx-element", element);
+        show("tx-shape", shape);
+        find("tx-quick-reading").replaceChildren(document.createTextNode(element));
+        const small = document.createElement("small");
+        small.textContent = ` · ${shape}`;
+        find("tx-quick-reading").append(small);
+        show("tx-equation", `${stem} ${stemNumber} ＋ ${dayBranch} ${dayNumber} ＝ 日干支 ${daySubtotal}；再 ＋ ${hourBranch}時 ${hourNumber} ＝ 擇時合數 ${total}`);
+        find("tx-shape-path").setAttribute("d", shapePaths[shape]);
+        find("tx-shape-icon").dataset.element = element;
+        find("tx-shape-icon").setAttribute("aria-label", `${shape}示意符號`);
+        find("tx-invalid").hidden = validDay;
+        find("tx-nayin-invalid").hidden = validDay;
+        find("tx-nayin-details").hidden = !validDay;
+        if (validDay) {
+          const pairIndex = Math.floor(dayPillarIndex / 2) * 2;
+          const first = sexagenary[pairIndex];
+          const second = sexagenary[pairIndex + 1];
+          const fourNumbers = [
+            stemNumbers[stems.indexOf(first[0])], branchNumbers[branches.indexOf(first[1])],
+            stemNumbers[stems.indexOf(second[0])], branchNumbers[branches.indexOf(second[1])]
+          ];
+          const sum = fourNumbers.reduce((acc, n) => acc + n, 0);
+          const remainder = sum % 5;
+          const nayinElement = nayinRemainderElements[remainder];
+          const nayinName = nayinNames[pairIndex / 2];
+          show("tx-nayin-name", nayinName);
+          show("tx-nayin-element", nayinElement);
+          show("tx-nayin-pair", `${first} · ${second}`);
+          show("tx-nayin-terms", fourNumbers.join("＋"));
+          show("tx-nayin-sum", sum);
+          show("tx-nayin-divide", `餘 ${remainder} → ${nayinElement}`);
+          show("tx-nayin-equation", `${first[0]} ${fourNumbers[0]}＋${first[1]} ${fourNumbers[1]}＋${second[0]} ${fourNumbers[2]}＋${second[1]} ${fourNumbers[3]}＝${sum}；${sum} ÷ 5＝${Math.floor(sum / 5)} 餘 ${remainder} → ${nayinElement} → ${nayinName}`);
+        } else {
+          show("tx-nayin-name", "無對應納音");
+          show("tx-nayin-element", "—");
+          show("tx-nayin-pair", "非六十甲子");
+        }
+      }
+
+      find("tx-form").addEventListener("submit", event => { event.preventDefault(); render(); });
+      for (const select of [stemSelect, dayBranchSelect, hourBranchSelect]) select.addEventListener("change", render);
+      find("tx-reset").addEventListener("click", () => { find("tx-form").reset(); render(); });
+      render();
+    })();
+  </script>
+</body>
+</html>
