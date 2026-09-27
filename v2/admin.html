@@ -66,7 +66,7 @@
       }
     }
   </style>
-  <script type="module" src="assets/member-auth.js"></script>
+  <script type="module" src="assets/member-auth.js?v=20260927-permissions"></script>
 </head>
 <body class="dark-system">
   <header class="system-header">
@@ -113,9 +113,9 @@
         <label>方案
           <select id="memberPlanFilter">
             <option value="">全部方案</option>
-            <option value="free">一般</option>
-            <option value="formal">正式</option>
-            <option value="permanent">永久</option>
+            <option value="free">一般（學生）</option>
+            <option value="formal">正式（付費會員）</option>
+            <option value="permanent">永久（VIP）</option>
           </select>
         </label>
         <button id="adminRefresh" class="admin-refresh-btn" type="button">重新整理</button>
@@ -125,7 +125,7 @@
     <section class="panel">
       <div class="section-title inline-title">
         <div><p>MEMBERS</p><h2>會員資料</h2></div>
-        <span class="fine-print">「儲存」後立即寫入 Supabase；永久會員不需設定到期日。</span>
+        <span class="fine-print">一般（學生）5 項｜正式（付費會員）16 項｜永久（VIP）全部功能。「儲存」後生效；測試會員請重新整理頁面。管理員仍可使用全部功能。</span>
       </div>
       <div class="table-wrap">
         <table class="admin-table">
@@ -145,6 +145,6 @@
     </section>
   </main>
 
-  <script type="module" src="assets/admin.js"></script>
+  <script type="module" src="assets/admin.js?v=20260927-permissions"></script>
 </body>
 </html>

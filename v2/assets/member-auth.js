@@ -1,4 +1,7 @@
 import { supabase } from './supabase-client.js';
+import { MEMBER_HOME, PLAN_LABELS, PAGE_PERMISSIONS, PERMISSIONS_VERSION,
+  accountRestriction, canonicalPage, canAccessPage, denialMessage
+} from './member-permissions.js?v=20260927';
 
 const LOGIN_PAGE = 'login.html';
 const PENDING_PAGE = 'pending.html';
@@ -6,20 +9,14 @@ const ADMIN_PAGE = 'admin.html';
 
 function currentFile() {
   const name = location.pathname.split('/').pop();
-  return name || 'index.html';
+  if (!name) return 'index.html';
+  // Cloudflare Pages 會把 *.html 正規化為不含副檔名的網址。
+  return name.includes('.') ? name : `${name}.html`;
 }
 
 function safeNext() {
   const here = currentFile();
   return encodeURIComponent(here + location.search + location.hash);
-}
-
-function isExpired(profile) {
-  return Boolean(profile?.expires_at) && new Date(profile.expires_at).getTime() <= Date.now();
-}
-
-function isNotStarted(profile) {
-  return Boolean(profile?.starts_at) && new Date(profile.starts_at).getTime() > Date.now();
 }
 
 async function loadProfile(userId) {
@@ -62,8 +59,7 @@ function injectMemberBar(profile) {
     bar.className = 'member-session-bar';
     const label = profile.display_name?.trim() || profile.email || '會員';
     const roleText = profile.role === 'admin' ? '管理員' : '會員';
-    const planMap = { free: '一般', formal: '正式', permanent: '永久' };
-    const planText = planMap[profile.plan] || profile.plan || '一般';
+    const planText = PLAN_LABELS[profile.plan] || '未設定等級';
 
     bar.innerHTML = `
       <span class="member-chip"><b>${escapeHtml(label)}</b><small>${roleText}・${planText}</small></span>
@@ -237,34 +233,11 @@ function injectUnifiedMemberNavigation() {
   else render();
 }
 
-function canUseMemberTools(profile) {
-  return profile.role === 'admin' || profile.plan === 'formal' || profile.plan === 'permanent';
-}
-
 function injectMemberHomeNavigation(profile) {
   const render = () => {
     const page = currentFile();
-    if (page === 'member-tools.html') {
-      const card = document.querySelector('a.tool[href="taixuan.html"]');
-      if (card && !canUseMemberTools(profile)) {
-        card.removeAttribute('href');
-        card.setAttribute('aria-disabled', 'true');
-        card.style.opacity = '.58';
-        card.style.cursor = 'not-allowed';
-        const description = card.querySelector('p');
-        if (description) description.textContent = '正式會員與永久會員可使用。';
-      }
-      return;
-    }
+    if (page === MEMBER_HOME) return;
     if (page === ADMIN_PAGE) return;
-    const toolLink = document.querySelector('.tool-subnav a[href="taixuan.html"]');
-    if (toolLink && !canUseMemberTools(profile)) {
-      toolLink.removeAttribute('href');
-      toolLink.setAttribute('aria-disabled', 'true');
-      toolLink.style.opacity = '.58';
-      toolLink.style.cursor = 'not-allowed';
-      toolLink.title = '正式會員與永久會員可使用';
-    }
     if (!document.getElementById('ts-member-home-style')) {
       const style = document.createElement('style');
       style.id = 'ts-member-home-style';
@@ -329,6 +302,78 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
+function memberLinkPage(link) {
+  const href = link?.getAttribute('href');
+  if (!href || href.startsWith('#')) return null;
+  const target = new URL(href, location.href);
+  const directory = new URL('.', location.href);
+  if (target.origin !== directory.origin || new URL('.', target).pathname !== directory.pathname) return null;
+  const name = target.pathname.split('/').pop() || 'index.html';
+  const page = name.includes('.') ? name : `${name}.html`;
+  if (!page.endsWith('.html') || ['login.html', 'register.html', 'verify.html', 'pending.html'].includes(page)) return null;
+  return page;
+}
+
+function injectPermissionNavigation(profile) {
+  const render = () => {
+    const style = document.createElement('style');
+    style.textContent = `
+      a.member-feature-locked{opacity:.58;cursor:not-allowed}
+      .member-permission-note{margin:8px auto 0;color:#b7c0d2;font-size:.82rem;line-height:1.6;text-align:center}
+      .member-restricted-pane{display:none!important}
+    `;
+    document.head.appendChild(style);
+    document.querySelectorAll('a[href]').forEach(link => {
+      const page = memberLinkPage(link);
+      if (!page || canAccessPage(profile, page)) return;
+      link.classList.add('member-feature-locked');
+      link.setAttribute('aria-disabled', 'true');
+      link.title = denialMessage(profile, page);
+    });
+
+    const intercept = event => {
+      const link = event.target.closest?.('a[href]');
+      const page = memberLinkPage(link);
+      if (!page || canAccessPage(window.TIANSHU_MEMBER?.profile, page)) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      alert(denialMessage(window.TIANSHU_MEMBER?.profile, page));
+    };
+    document.addEventListener('click', intercept, true);
+    document.addEventListener('auxclick', intercept, true);
+
+    // 舊工具頁共用五個分頁；禁止一般會員切換到未授權的內嵌分頁。
+    const panes = [
+      ['tabLuma', 'pageLuma', 'zhen-luma.html'],
+      ['tabWenchang', 'pageWenchang', 'wenchang.html'],
+      ['tabWealth', 'pageWealth', 'caiwei.html'],
+      ['tabPeach', 'pagePeach', 'taohua.html'],
+      ['tabBajie', 'pageBajie', 'bajie-sanqi.html']
+    ];
+    panes.forEach(([tabId, paneId, page]) => {
+      if (canAccessPage(profile, page)) return;
+      const tab = document.getElementById(tabId);
+      const pane = document.getElementById(paneId);
+      if (tab) tab.disabled = true;
+      if (pane) {
+        pane.classList.add('member-restricted-pane');
+        pane.inert = true;
+        pane.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    if (currentFile() === MEMBER_HOME) {
+      const count = Object.keys(PAGE_PERMISSIONS).filter(page => canAccessPage(profile, page)).length;
+      const note = document.createElement('p');
+      note.className = 'member-permission-note';
+      note.textContent = `${PLAN_LABELS[profile.plan] || '管理員'}｜${profile.role === 'admin' || profile.plan === 'permanent' ? '全部功能開放' : `已開放 ${count} 項功能`}｜權限版本 ${PERMISSIONS_VERSION}`;
+      document.querySelector('.system-header')?.appendChild(note);
+    }
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, { once: true });
+  else render();
+}
+
 async function guard() {
   try {
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -340,32 +385,29 @@ async function guard() {
     const profile = await loadProfile(session.user.id);
     const page = currentFile();
 
-    if (profile.status !== 'active') {
-      location.replace(`${PENDING_PAGE}?reason=${encodeURIComponent(profile.status || 'pending')}`);
+    const restriction = accountRestriction(profile);
+    if (restriction) {
+      location.replace(`${PENDING_PAGE}?reason=${encodeURIComponent(restriction)}`);
       return;
     }
-    if (isNotStarted(profile)) {
-      location.replace(`${PENDING_PAGE}?reason=not_started`);
+    if (!canAccessPage(profile, page)) {
+      alert(denialMessage(profile, page));
+      // 未知方案不能進首頁，避免重導迴圈。
+      location.replace(page === MEMBER_HOME ? `${PENDING_PAGE}?reason=plan` : MEMBER_HOME);
       return;
     }
-    if (isExpired(profile)) {
-      location.replace(`${PENDING_PAGE}?reason=expired`);
-      return;
-    }
-    if (page === 'taixuan.html' && !canUseMemberTools(profile)) {
-      location.replace('member-tools.html');
-      return;
-    }
-    if (page === ADMIN_PAGE && profile.role !== 'admin') {
-      location.replace('index.html');
+    if (canonicalPage(page) !== page) {
+      location.replace(canonicalPage(page) + location.search + location.hash);
       return;
     }
 
-    window.TIANSHU_MEMBER = Object.freeze({ profile, user: session.user });
+    window.TIANSHU_MEMBER = Object.freeze({ profile, user: session.user,
+      canAccessPage: page => canAccessPage(profile, page), permissionsVersion: PERMISSIONS_VERSION });
     injectSiteAppearance();
     injectMemberBar(profile);
     injectUnifiedMemberNavigation();
     injectMemberHomeNavigation(profile);
+    injectPermissionNavigation(profile);
     unlockPage();
   } catch (error) {
     console.error('[member-auth]', error);
@@ -374,3 +416,12 @@ async function guard() {
 }
 
 guard();
+
+// 返回上一頁若使用瀏覽器快取，重新讀取會員等級與停權／到期狀態。
+window.addEventListener('pageshow', event => {
+  if (event.persisted) {
+    document.documentElement.classList.remove('auth-ready');
+    document.documentElement.classList.add('auth-pending');
+    location.reload();
+  }
+});

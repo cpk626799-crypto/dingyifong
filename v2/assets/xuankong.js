@@ -156,7 +156,7 @@ function initApp(){
 function applyMemberGate(){
   const profile=window.TIANSHU_MEMBER?.profile;
   if(!profile)return false;
-  const allowed=profile.role==="admin"||profile.plan==="formal"||profile.plan==="permanent";
+  const allowed=window.TIANSHU_MEMBER.canAccessPage("xuankong.html");
   $("planLock").classList.toggle("show",!allowed);
   $("xuankongApp").hidden=!allowed;
   if(allowed)initApp();

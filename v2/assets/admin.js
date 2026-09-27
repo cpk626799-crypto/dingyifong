@@ -9,7 +9,7 @@ let rows = [];
 let currentUserId = null;
 
 const STATUS_LABELS = { pending: '待審核', active: '已啟用', suspended: '已停權' };
-const PLAN_LABELS = { free: '一般', formal: '正式', permanent: '永久' };
+const PLAN_LABELS = { free: '一般（學生）', formal: '正式（付費會員）', permanent: '永久（VIP）' };
 
 function esc(v) {
   return String(v ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
