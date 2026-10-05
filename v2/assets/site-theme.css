@@ -1,4 +1,4 @@
-/* 離線檢查版：全站頁面底色與「會員功能首頁」一致。保留各工具原有面板樣式。 */
+/* 會員網站：全站頁面底色與「會員功能首頁」一致。保留各工具原有面板樣式。 */
 @media screen {
   html {
     background-color: #070b14 !important;
@@ -23,7 +23,8 @@
     top: 8px;
     left: var(--ts-live-banner-left, 10px);
     z-index: 900;
-    width: min(330px, calc(100vw - 20px));
+    width: max-content;
+    max-width: min(360px, calc(100vw - 20px));
     padding: 6px 9px;
     border: 1px solid rgba(218,190,121,.32);
     border-radius: 10px;

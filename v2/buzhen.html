@@ -6,7 +6,7 @@
   <meta name="description" content="天書三式・丁一峰老師術數查詢系統｜流年催官・事業用日查詢 2020–2100">
   <title>流年佈陣用日｜天書三式・丁一峰老師術數查詢系統</title>
 <link rel="stylesheet" href="assets/styles.css?v=20260923a">
-<script type="module" src="assets/member-auth.js?v=20260927-permissions"></script>
+<script type="module" src="assets/member-auth.js?v=20261006-zibai"></script>
 <style>
 :root{--bg:#070b14;--bg2:#0b1120;--panel:#151d33;--panel2:#0a1020;--panel3:#1b2540;--line:#29334d;--line-soft:rgba(255,255,255,.065);--text:#f6eed9;--text2:#eef1f6;--muted:#98a4b9;--gold:#e0b84e;--gold2:#f2d578;--gold3:#ba8124;--danger:#d35d69;--shadow:0 24px 80px rgba(0,0,0,.36);--radius:22px;--font:"Noto Sans TC","Source Han Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth;color-scheme:dark}body{margin:0;min-height:100vh;font-family:var(--font);color:var(--text);line-height:1.65;background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),radial-gradient(circle at 50% -12%,rgba(66,82,136,.22),transparent 43rem),radial-gradient(circle at 5% 35%,rgba(222,178,69,.055),transparent 29rem),var(--bg);background-size:52px 52px,52px 52px,auto,auto,auto}
@@ -29,12 +29,26 @@ select,.readonly-value{width:100%;min-height:46px;padding:10px 13px;border:1px s
 @media(max-width:720px){main{padding:0 12px}.panel{padding:16px;border-radius:18px}.query-grid,.summary-grid{grid-template-columns:1fr}.query-actions{justify-content:stretch}.query-actions .btn{width:100%}.meta{grid-template-columns:repeat(2,minmax(0,1fr))}.meta-item:last-child{grid-column:1/-1}.dates{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:430px){.dates{grid-template-columns:1fr}}@media(max-width:600px){.member-home-link{right:10px;bottom:10px;padding:8px 12px;font-size:13px}}
 </style>
+<link id="member-nav-unified-style" rel="stylesheet" href="assets/member-navigation.css?v=20261006-zibai">
 </head>
 <body class="tool-member-page">
 <header class="system-header">
 <div class="brand-mark">天</div><p class="eyebrow">TIAN SHU SAN SHI · MEMBER TOOLS</p><h1>天書三式•丁一峰老師術數查詢系統</h1><p class="hero__text">流年佈陣用日｜催財・事業・天祿・天官・真官用日</p>
 <nav class="top-nav" aria-label="網站導覽"><a href="index.html">流年祿馬貴人</a><a href="benming.html">個人流年祿馬貴人</a><a href="renming.html">六十甲子人命擇日</a><a href="renming-query.html">六十甲子年命擇日查詢</a><a href="zibai.html">流年紫白查詢</a><a href="dehu.html">逐日的呼查詢</a><a href="fourtime.html">四大吉時月表</a><a href="yongji.html">永吉造命課</a><a href="tongshu.html">通書六十甲子造命</a><a href="liunian-rules.html">流年法說明</a><a href="benming-rules.html">個人流年法說明</a><a href="renming-rules.html">人命擇日說明</a><a href="rules.html">本版採用規則</a><a href="dehu-rules.html">的呼規則</a></nav>
-<nav class="tool-subnav" aria-label="術數工具導覽"><a href="zhen-luma.html">真祿馬貴人</a><a href="wenchang.html">文昌</a><a href="caiwei.html">財位</a><a href="taohua.html">桃花位</a><a href="buzhen.html" aria-current="page">流年佈陣用日</a><a href="liufu.html">六富日查詢</a><a href="bajie-sanqi.html">八節三奇</a><a href="xuankong.html">玄空飛星</a></nav>
+<nav class="tool-subnav" aria-label="術數工具導覽">
+<a href="zhen-luma.html">真祿馬貴人</a>
+<a href="wenchang.html">文昌</a>
+<a href="caiwei.html">財位</a>
+<a href="taohua.html">桃花位</a>
+<a href="buzhen.html" aria-current="page">流年佈陣用日</a>
+<a href="xicai-guihe.html">喜財貴人鶴神方</a>
+<a href="caiguan-shishen.html">財．官，十神相配</a>
+<a href="liufu.html">六富日查詢</a>
+<a href="bajie-sanqi.html">八節三奇</a>
+<a href="xuankong.html">玄空飛星</a>
+<a href="taixuan.html">太玄數計算</a>
+<a href="zibai-ymd.html">流年紫白飛星</a>
+</nav>
 </header>
 <main>
 <section class="panel" id="query-panel"><div class="section-kicker"><span>01</span> QUERY</div><h2>查詢條件</h2><p class="panel-intro">選擇流年與出生年干支，系統會自動取得出生年天干，連動顯示該命干的催官、事業及生成官星用日。</p>

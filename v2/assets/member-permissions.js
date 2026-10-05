@@ -1,6 +1,6 @@
-// 2026-09-27：依老師確認的 5／16／全開分級。
+// 2026-10-06：保留 09-27 分級，新增年／月／日紫白，開放一般、正式及永久 VIP。
 // 新功能需先指定一般、正式會員的開放範圍，再加入本表。
-export const PERMISSIONS_VERSION = '20260927';
+export const PERMISSIONS_VERSION = '20261006';
 export const MEMBER_HOME = 'member-tools.html';
 export const PLAN_LABELS = Object.freeze({
   free: '一般（學生）',
@@ -14,6 +14,7 @@ export const PAGE_PERMISSIONS = Object.freeze(Object.fromEntries([
   ['renming.html', '六十甲子人命擇日', 'formal'],
   ['renming-query.html', '六十甲子年命擇日查詢', 'formal'],
   ['zibai.html', '流年紫白查詢', 'free'],
+  ['zibai-ymd.html', '流年・流月・流日紫白飛星查詢', 'free'],
   ['dehu.html', '逐日的呼查詢', 'permanent'],
   ['fourtime.html', '四大吉時月表', 'free'],
   ['yongji.html', '永吉造命課', 'formal'],

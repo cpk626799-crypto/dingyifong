@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { PAGE_PERMISSIONS, accountRestriction, canAccessPage, canonicalPage, denialMessage } from '../v2/assets/member-permissions.js';
 
-// Expected lists come from the teacher's 2026-09-27 tier confirmation.
-const student = ['zibai.html', 'fourtime.html', 'wenchang.html', 'caiwei.html', 'taohua.html'];
+// Expected lists retain 2026-09-27 tiers plus the approved 2026-10-06 zibai tool.
+const student = ['zibai-ymd.html', 'zibai.html', 'fourtime.html', 'wenchang.html', 'caiwei.html', 'taohua.html'];
 const paid = [...student, 'index.html', 'benming.html', 'renming.html', 'renming-query.html',
   'yongji.html', 'tongshu.html', 'zhen-luma.html', 'xicai-guihe.html', 'caiguan-shishen.html',
   'liufu.html', 'bajie-sanqi.html'];
@@ -13,7 +13,7 @@ const vipOnly = ['dehu.html', 'taixuan.html', 'buzhen.html', 'xuankong.html', 'l
 const all = [...paid, ...vipOnly];
 const profile = (plan, changes = {}) => ({ role: 'member', status: 'active', plan, starts_at: null, expires_at: null, ...changes });
 
-test('all 75 tier/page combinations match the confirmed 5, 16, 25 entries', () => {
+test('all 78 tier/page combinations match the confirmed 6, 17, 26 entries', () => {
   assert.deepEqual(Object.keys(PAGE_PERMISSIONS).sort(), [...all].sort());
   for (const [plan, expected] of [['free', student], ['formal', paid], ['permanent', all]]) {
     for (const page of all) assert.equal(canAccessPage(profile(plan), page), expected.includes(page), `${plan}: ${page}`);
@@ -60,16 +60,16 @@ test('legacy entry points and alert messages are consistent', () => {
   assert.equal(denialMessage(profile('formal'), 'taixuan.html'), '僅供永久（VIP）會員使用');
 });
 
-test('every protected HTML page uses the new guard, and all 25 homepage cards are mapped', () => {
+test('every protected HTML page uses the new guard, and all 26 homepage cards are mapped', () => {
   const root = new URL('../v2/', import.meta.url);
   const publicPages = ['login.html', 'register.html', 'verify.html', 'pending.html'];
   for (const file of readdirSync(root).filter(file => file.endsWith('.html') && !publicPages.includes(file))) {
     const html = readFileSync(new URL(file, root), 'utf8');
     assert.match(html, /class="auth-pending"/, file);
-    assert.match(html, /assets\/member-auth\.js\?v=20260927-permissions/, file);
+    assert.match(html, /assets\/member-auth\.js\?v=20261006-zibai/, file);
     assert.ok(Object.hasOwn(PAGE_PERMISSIONS, file) || ['member-tools.html', 'admin.html', 'jishi.html', 'extended-tools.html'].includes(file), file);
   }
   const home = readFileSync(new URL('member-tools.html', root), 'utf8');
-  const hrefs = [...home.matchAll(/class="tool" href="([^"]+)"/g)].map(match => match[1]);
+  const hrefs = [...home.matchAll(/class="tool(?: [^"]*)?" href="([^"]+)"/g)].map(match => match[1]);
   assert.deepEqual(hrefs.sort(), [...all].sort());
 });

@@ -1,7 +1,7 @@
 import { supabase } from './supabase-client.js';
 import { MEMBER_HOME, PLAN_LABELS, PAGE_PERMISSIONS, PERMISSIONS_VERSION,
   accountRestriction, canonicalPage, canAccessPage, denialMessage
-} from './member-permissions.js?v=20260927';
+} from './member-permissions.js?v=20261006';
 
 const LOGIN_PAGE = 'login.html';
 const PENDING_PAGE = 'pending.html';
@@ -39,13 +39,13 @@ function injectSiteAppearance() {
     const theme = document.createElement('link');
     theme.id = 'ts-site-theme';
     theme.rel = 'stylesheet';
-    theme.href = 'assets/site-theme.css';
+    theme.href = 'assets/site-theme.css?v=20261006-zibai';
     document.head.appendChild(theme);
   }
   if (!document.getElementById('ts-site-calendar')) {
     const calendar = document.createElement('script');
     calendar.id = 'ts-site-calendar';
-    calendar.src = 'assets/site-calendar.js';
+    calendar.src = 'assets/site-calendar.js?v=20261006-zibai';
     document.head.appendChild(calendar);
   }
 }
@@ -84,131 +84,24 @@ function injectMemberBar(profile) {
 function injectUnifiedMemberNavigation() {
   const render = () => {
     if (!document.getElementById('member-nav-unified-style')) {
-      const style = document.createElement('style');
+      const style = document.createElement('link');
       style.id = 'member-nav-unified-style';
-      style.textContent = `
-        /* 會員頁共用導覽：主導覽 7×2，工具列桌機 6＋5 */
-        .system-header .top-nav{
-          display:grid!important;
-          grid-template-columns:repeat(7,minmax(0,1fr))!important;
-          grid-auto-flow:row!important;
-          width:100%!important;
-          max-width:1280px!important;
-          margin:20px auto 0!important;
-          padding:8px!important;
-          gap:8px!important;
-          align-items:stretch!important;
-          justify-items:stretch!important;
-          border-radius:24px!important;
-          box-sizing:border-box!important;
-          overflow:visible!important;
-        }
-        .system-header .top-nav>a{
-          display:flex!important;
-          align-items:center!important;
-          justify-content:center!important;
-          width:100%!important;
-          min-width:0!important;
-          min-height:54px!important;
-          margin:0!important;
-          padding:8px 7px!important;
-          box-sizing:border-box!important;
-          text-align:center!important;
-          white-space:normal!important;
-          word-break:keep-all!important;
-          overflow-wrap:normal!important;
-          line-height:1.35!important;
-          border-radius:18px!important;
-          flex:none!important;
-        }
-        .system-header .tool-subnav{
-          width:100%!important;
-          max-width:1280px!important;
-          margin:10px auto 0!important;
-          padding:7px!important;
-          display:grid!important;
-          grid-template-columns:repeat(6,minmax(0,1fr))!important;
-          gap:8px!important;
-          border:1px solid rgba(115,132,176,.22)!important;
-          border-radius:18px!important;
-          background:rgba(8,12,24,.78)!important;
-          box-shadow:0 18px 46px rgba(0,0,0,.26)!important;
-          box-sizing:border-box!important;
-          overflow:visible!important;
-        }
-        .system-header .tool-subnav>a{
-          min-width:0!important;
-          min-height:48px!important;
-          padding:9px 10px!important;
-          display:flex!important;
-          align-items:center!important;
-          justify-content:center!important;
-          border:1px solid transparent!important;
-          border-radius:12px!important;
-          color:#aab4c7!important;
-          background:transparent!important;
-          text-decoration:none!important;
-          font-weight:900!important;
-          line-height:1.35!important;
-          text-align:center!important;
-          white-space:normal!important;
-          word-break:keep-all!important;
-        }
-        .system-header .tool-subnav>a[aria-current="page"]{
-          color:#17120a!important;
-          border-color:rgba(224,184,86,.52)!important;
-          background:linear-gradient(145deg,#f2d477,#d4a035)!important;
-          box-shadow:0 8px 22px rgba(217,168,58,.2)!important;
-        }
-        /* 右上會員資訊固定橫排，避免姓名與會員方案被擠成直排 */
-        .system-header .member-session-bar{
-          width:max-content!important;
-          max-width:calc(100% - 24px)!important;
-          display:flex!important;
-          flex-direction:row!important;
-          align-items:center!important;
-          justify-content:flex-end!important;
-          gap:8px!important;
-          flex-wrap:nowrap!important;
-        }
-        .system-header .member-chip{
-          min-width:max-content!important;
-          width:max-content!important;
-          display:grid!important;
-          text-align:right!important;
-        }
-        .system-header .member-chip b,
-        .system-header .member-chip small,
-        .system-header .member-admin-link,
-        .system-header .member-logout-btn{
-          white-space:nowrap!important;
-          word-break:keep-all!important;
-        }
-
-        @media(max-width:1100px){
-          .system-header .top-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-          .system-header .tool-subnav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-          .system-header .tool-subnav>a:nth-child(n){grid-column:auto!important}
-        }
-        @media(max-width:700px){
-          .system-header .top-nav{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-          .system-header .top-nav>a{min-height:48px!important;padding:8px 5px!important}
-          .system-header .tool-subnav{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-          .system-header .member-session-bar{
-            position:static!important;
-            margin:12px auto 0!important;
-            max-width:100%!important;
-            justify-content:center!important;
-            flex-wrap:wrap!important;
-          }
-          .system-header .member-chip{text-align:center!important}
-        }
-      `;
+      style.rel = 'stylesheet';
+      style.href = 'assets/member-navigation.css?v=20261006-zibai';
       document.head.appendChild(style);
     }
 
-    const nav = document.querySelector('.system-header .tool-subnav');
-    if (!nav) return;
+    const page = currentFile();
+    if (page === MEMBER_HOME || page === ADMIN_PAGE) return;
+    let nav = document.querySelector('.system-header .tool-subnav, .ts-shared-nav-shell .tool-subnav');
+    if (!nav) {
+      const header = document.querySelector('.system-header');
+      if (!header) return;
+      nav = document.createElement('nav');
+      nav.className = 'tool-subnav';
+      nav.setAttribute('aria-label', '術數工具導覽');
+      header.appendChild(nav);
+    }
 
     const tools = [
       ['zhen-luma.html', '真祿馬貴人'],
@@ -221,9 +114,9 @@ function injectUnifiedMemberNavigation() {
       ['liufu.html', '六富日查詢'],
       ['bajie-sanqi.html', '八節三奇'],
       ['xuankong.html', '玄空飛星'],
-      ['taixuan.html', '太玄數計算']
+      ['taixuan.html', '太玄數計算'],
+      ['zibai-ymd.html', '流年紫白飛星']
     ];
-    const page = currentFile();
     nav.innerHTML = tools.map(([href, label]) =>
       `<a href="${href}"${page === href ? ' aria-current="page"' : ''}>${label}</a>`
     ).join('');

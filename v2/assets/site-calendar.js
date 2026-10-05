@@ -9,12 +9,19 @@
   // 交通部中央氣象署《中華民國115年日曆資料表》，臺灣時間 UTC+8。
   const TERMS_2026 = '01-05 16:23|01-20 09:45|02-04 04:02|02-18 23:52|03-05 21:59|03-20 22:46|04-05 02:40|04-20 09:39|05-05 19:49|05-21 08:37|06-05 23:48|06-21 16:24|07-07 09:57|07-23 03:13|08-07 19:43|08-23 10:19|09-07 22:41|09-23 08:05|10-08 14:29|10-23 17:38|11-07 17:52|11-22 15:23|12-07 10:52|12-22 04:50'.split('|');
   const DAY_MS = 86400000;
+  const TAIPEI_OFFSET = 8 * 60 * 60 * 1000;
   const termCache = new Map();
 
   function mod(n, d) { return ((n % d) + d) % d; }
   function pad(n) { return String(n).padStart(2, '0'); }
   function sexagenary(n) { return STEMS[mod(n, 10)] + BRANCHES[mod(n, 12)]; }
   function radians(deg) { return deg * Math.PI / 180; }
+  function taipeiParts(now) {
+    const local = new Date(now.getTime() + TAIPEI_OFFSET);
+    return { year: local.getUTCFullYear(), month: local.getUTCMonth() + 1,
+      day: local.getUTCDate(), weekday: local.getUTCDay(), hour: local.getUTCHours(),
+      minute: local.getUTCMinutes(), second: local.getUTCSeconds() };
+  }
 
   // NOAA 公開的太陽視黃經公式。其他年份推算節氣名稱；2026 採官方分鐘值。
   function solarLongitude(instant) {
@@ -49,7 +56,7 @@
   }
 
   function termAt(now) {
-    const year = now.getFullYear();
+    const year = taipeiParts(now).year;
     let current = null;
     for (let y = year - 1; y <= year + 1; y++) {
       for (const term of termsOfYear(y)) {
@@ -70,19 +77,21 @@
 
   function lunarDate(now) {
     try {
-      const fmt = new Intl.DateTimeFormat('zh-TW-u-ca-chinese', { year: 'numeric', month: 'long', day: 'numeric' });
+      const fmt = new Intl.DateTimeFormat('zh-TW-u-ca-chinese', { timeZone: 'Asia/Taipei', year: 'numeric', month: 'long', day: 'numeric' });
       const parts = Object.fromEntries(fmt.formatToParts(now).map(({type, value}) => [type, value]));
       const number = Number(parts.day);
       const day = Number.isInteger(number) && number >= 1 && number <= 30 ? DAY_NAMES[number - 1] : parts.day;
-      return `${(parts.month || '').replace(/^闰/, '閏')}${day || ''}` || '—';
+      const month = (parts.month || '').replace(/^闰/, '閏');
+      return month && day ? `${month}${day}日` : '—';
     } catch (_) { return '農曆日期不支援'; }
   }
 
   function snapshot(input) {
     const now = input instanceof Date ? input : new Date(input === undefined ? Date.now() : input);
-    const y = now.getFullYear();
-    const m = now.getMonth() + 1;
-    const d = now.getDate();
+    const local = taipeiParts(now);
+    const y = local.year;
+    const m = local.month;
+    const d = local.day;
     const annualYear = now.getTime() >= termsOfYear(y)[2].time ? y : y - 1;
     const annualIndex = mod(annualYear - 1984, 60);
     let latestJie = null;
@@ -94,14 +103,21 @@
     const monthIndex = latestJie ? mod(latestJie.index - 2, 24) / 2 : 0;
     const firstStem = (annualIndex % 5 * 2 + 2) % 10;
     const monthPillar = STEMS[mod(firstStem + monthIndex, 10)] + BRANCHES[mod(2 + monthIndex, 12)];
-    const dayPillar = sexagenary(julianDayNumber(y, m, d) + 49);
+    const dayIndex = mod(julianDayNumber(y, m, d) + 49, 60);
+    const dayPillar = sexagenary(dayIndex);
+    // 五鼠遁：甲己甲子、乙庚丙子、丙辛戊子、丁壬庚子、戊癸壬子。
+    // 日柱維持本站午夜換日規則；時干以當日日干推算。
+    const hourBranch = mod(Math.floor((local.hour + 1) / 2), 12);
+    const hourStem = mod(mod(dayIndex, 10) % 5 * 2 + hourBranch, 10);
+    const hourPillar = STEMS[hourStem] + BRANCHES[hourBranch];
     const term = termAt(now);
     return {
-      gregorian: `${y}年${m}月${d}日 星期${DAYS[now.getDay()]}`,
-      lunar: `${lunarDate(now)} · ${sexagenary(annualIndex)}年 ${monthPillar}月 ${dayPillar}日`,
+      gregorian: `${y}年${m}月${d}日 星期${DAYS[local.weekday]}`,
+      lunar: lunarDate(now),
+      ganzhi: `${sexagenary(annualIndex)}年 ${monthPillar}月 ${dayPillar}日 ${hourPillar}時`,
       solarTerm: term ? term.name : '—',
-      clock: `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`,
-      timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone || '本機時區').replaceAll('_', ' '),
+      clock: `${pad(local.hour)}:${pad(local.minute)}:${pad(local.second)}`,
+      timezone: 'Asia/Taipei',
     };
   }
 
@@ -113,27 +129,32 @@
     const card = document.createElement('aside');
     card.id = 'ts-live-banner';
     card.className = 'ts-live-banner';
-    card.setAttribute('aria-label', '目前國曆農曆節氣與時間');
-    card.title = '以瀏覽器本機日期時間為準；干支年從立春起、月從節令起、日於午夜更新。2026 年節氣採中央氣象署資料。';
+    card.setAttribute('aria-label', '目前國曆、農曆、干支、節氣與時間');
+    card.title = '以臺灣時間 UTC+8 為準；干支年從立春起、月從節令起、日於午夜更新，時干按當日日干推算。2026 年節氣採中央氣象署資料。';
     card.innerHTML = '<div class="ts-live-banner__line">'
       + '<span class="ts-live-banner__field"><span>國曆：</span><strong id="ts-now-gregorian"></strong></span>'
       + '<span class="ts-live-banner__field ts-live-banner__clock"><span>時鐘：</span><strong id="ts-now-clock" role="timer"></strong></span></div>'
       + '<div class="ts-live-banner__line">'
-      + '<span class="ts-live-banner__field"><span>農曆：</span><strong id="ts-now-lunar"></strong></span>'
+      + '<span class="ts-live-banner__field"><span>農曆：</span><strong id="ts-now-lunar"></strong></span></div>'
+      + '<div class="ts-live-banner__line">'
+      + '<span class="ts-live-banner__field"><span>干支：</span><strong id="ts-now-ganzhi"></strong></span></div>'
+      + '<div class="ts-live-banner__line">'
       + '<span class="ts-live-banner__field ts-live-banner__term"><span>節氣：</span><strong id="ts-now-term"></strong></span></div>';
     document.body.insertBefore(card, document.body.firstChild);
-    const refs = Object.fromEntries(['gregorian','lunar','term','clock'].map(name => [name, document.getElementById(`ts-now-${name}`)]));
+    const refs = Object.fromEntries(['gregorian','lunar','ganzhi','term','clock'].map(name => [name, document.getElementById(`ts-now-${name}`)]));
     let signature = '';
 
     function refresh() {
       const now = new Date();
-      refs.clock.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+      const local = taipeiParts(now);
+      refs.clock.textContent = `${pad(local.hour)}:${pad(local.minute)}:${pad(local.second)}`;
       const minuteKey = Math.floor(now.getTime() / 60000);
       if (minuteKey === signature) return;
       signature = minuteKey;
       const state = snapshot(now);
       refs.gregorian.textContent = state.gregorian;
       refs.lunar.textContent = state.lunar;
+      refs.ganzhi.textContent = state.ganzhi;
       refs.term.textContent = state.solarTerm;
       requestAnimationFrame(measure);
     }

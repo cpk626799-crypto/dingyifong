@@ -8,7 +8,7 @@ const path = require('node:path');
 const root = path.join(__dirname, '../v2');
 const authSource = fs.readFileSync(path.join(root, 'assets/member-auth.js'), 'utf8');
 const permissionsSource = fs.readFileSync(path.join(root, 'assets/member-permissions.js'), 'utf8');
-const student = ['zibai.html', 'fourtime.html', 'wenchang.html', 'caiwei.html', 'taohua.html'];
+const student = ['zibai-ymd.html', 'zibai.html', 'fourtime.html', 'wenchang.html', 'caiwei.html', 'taohua.html'];
 const paid = [...student, 'index.html', 'benming.html', 'renming.html', 'renming-query.html',
   'yongji.html', 'tongshu.html', 'zhen-luma.html', 'xicai-guihe.html', 'caiguan-shishen.html', 'liufu.html', 'bajie-sanqi.html'];
 const vipOnly = ['dehu.html', 'taixuan.html', 'buzhen.html', 'xuankong.html', 'liunian-rules.html',
@@ -44,8 +44,8 @@ async function pageFixture(file, profile, options = {}) {
     const profile = { role: 'member', status: 'active', plan, display_name: '測試會員' };
     const home = await pageFixture('member-tools.html', profile);
     assert.equal(home.document.querySelectorAll('a.tool:not(.member-feature-locked)').length, expected.length, `${plan}: homepage`);
-    assert.equal(home.document.querySelectorAll('a.tool').length, 25);
-    assert.match(home.document.querySelector('.member-permission-note').textContent, /20260927/);
+    assert.equal(home.document.querySelectorAll('a.tool').length, 26);
+    assert.match(home.document.querySelector('.member-permission-note').textContent, /20261006/);
     for (const page of all.filter(page => !expected.includes(page))) {
       const link = home.document.querySelector(`a.tool[href="${page}"]`);
       const event = new home.dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
@@ -62,13 +62,20 @@ async function pageFixture(file, profile, options = {}) {
         else {
           assert.deepEqual(fixture.redirects, []);
           assert.ok(fixture.document.querySelector('a.ts-member-home-top'), `${page}: home link`);
+          const nav = fixture.document.querySelector('.system-header .tool-subnav, .ts-shared-nav-shell .tool-subnav');
+          assert.ok(nav, `${page}: shared tool navigation`);
+          assert.equal(nav.querySelectorAll('a').length, 12, `${page}: twelve persistent buttons`);
+          const zibai = nav.querySelector('a[href="zibai-ymd.html"]');
+          assert.ok(zibai, `${page}: zibai entry remains present`);
+          assert.equal(zibai.classList.contains('member-feature-locked'), false, `${plan}: zibai is available`);
+          assert.equal(zibai.getAttribute('aria-current'), page === 'zibai-ymd.html' ? 'page' : null);
         }
         assert.deepEqual(fixture.errors, []);
         fixture.close();
         checked++;
       }
     }
-    console.log(`${plan}: homepage ${expected.length}/25, all card alerts and 50 URL variants passed`);
+    console.log(`${plan}: homepage ${expected.length}/26, all card alerts and 52 URL variants passed`);
   }
   const active = { role: 'member', status: 'active', plan: 'free' };
   for (const file of ['wenchang.html', 'caiwei.html', 'taohua.html']) {
@@ -94,6 +101,12 @@ async function pageFixture(file, profile, options = {}) {
   }
   const anonymous = await pageFixture('taixuan.html', null, { anonymous: true });
   assert.deepEqual(anonymous.redirects, ['login.html?next=taixuan.html']); anonymous.close();
+  for (const extensionless of [false, true]) {
+    const anonymousZibai = await pageFixture('zibai-ymd.html', null, { anonymous: true, extensionless });
+    assert.deepEqual(anonymousZibai.redirects, ['login.html?next=zibai-ymd.html']);
+    assert.equal(anonymousZibai.document.documentElement.classList.contains('auth-ready'), false);
+    anonymousZibai.close();
+  }
   const failure = await pageFixture('member-tools.html', active, { profileError: true });
   assert.deepEqual(failure.redirects, ['login.html?error=profile']); failure.close();
   const admin = await pageFixture('admin.html', { ...active, role: 'admin' });
