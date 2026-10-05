@@ -66,7 +66,7 @@ test('every protected HTML page uses the new guard, and all 26 homepage cards ar
   for (const file of readdirSync(root).filter(file => file.endsWith('.html') && !publicPages.includes(file))) {
     const html = readFileSync(new URL(file, root), 'utf8');
     assert.match(html, /class="auth-pending"/, file);
-    assert.match(html, /assets\/member-auth\.js\?v=20261006-zibai/, file);
+    assert.match(html, /assets\/member-auth\.js\?v=20261006-navfix/, file);
     assert.ok(Object.hasOwn(PAGE_PERMISSIONS, file) || ['member-tools.html', 'admin.html', 'jishi.html', 'extended-tools.html'].includes(file), file);
   }
   const home = readFileSync(new URL('member-tools.html', root), 'utf8');

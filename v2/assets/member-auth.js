@@ -93,7 +93,10 @@ function injectUnifiedMemberNavigation() {
 
     const page = currentFile();
     if (page === MEMBER_HOME || page === ADMIN_PAGE) return;
-    let nav = document.querySelector('.system-header .tool-subnav, .ts-shared-nav-shell .tool-subnav');
+    const navs = [...document.querySelectorAll('.system-header .tool-subnav, .ts-shared-nav-shell .tool-subnav')];
+    let nav = navs.shift();
+    // 每頁只保留一個共用工具列，避免舊版標記與新版導覽同時顯示。
+    navs.forEach(duplicate => duplicate.remove());
     if (!nav) {
       const header = document.querySelector('.system-header');
       if (!header) return;

@@ -19,6 +19,10 @@ async function pageFixture(file, profile, options = {}) {
   const url = new URL(options.extensionless ? file.replace(/\.html$/, '') : file, 'https://test.invalid/v2/');
   const dom = new JSDOM(fs.readFileSync(path.join(root, file), 'utf8'), { url: url.href, runScripts: 'outside-only' });
   await new Promise(resolve => dom.window.document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+  if (options.duplicateNavigation) {
+    const nav = dom.window.document.querySelector('.system-header .tool-subnav');
+    nav.after(nav.cloneNode(true));
+  }
   const redirects = [], alerts = [], errors = [];
   const location = { pathname: url.pathname, search: url.search, hash: url.hash, href: url.href,
     replace: value => redirects.push(value), reload: () => redirects.push('RELOAD') };
@@ -62,8 +66,9 @@ async function pageFixture(file, profile, options = {}) {
         else {
           assert.deepEqual(fixture.redirects, []);
           assert.ok(fixture.document.querySelector('a.ts-member-home-top'), `${page}: home link`);
-          const nav = fixture.document.querySelector('.system-header .tool-subnav, .ts-shared-nav-shell .tool-subnav');
-          assert.ok(nav, `${page}: shared tool navigation`);
+          const navs = fixture.document.querySelectorAll('.system-header .tool-subnav, .ts-shared-nav-shell .tool-subnav');
+          assert.equal(navs.length, 1, `${page}: exactly one shared tool navigation`);
+          const nav = navs[0];
           assert.equal(nav.querySelectorAll('a').length, 12, `${page}: twelve persistent buttons`);
           const zibai = nav.querySelector('a[href="zibai-ymd.html"]');
           assert.ok(zibai, `${page}: zibai entry remains present`);
@@ -78,6 +83,20 @@ async function pageFixture(file, profile, options = {}) {
     console.log(`${plan}: homepage ${expected.length}/26, all card alerts and 52 URL variants passed`);
   }
   const active = { role: 'member', status: 'active', plan: 'free' };
+  const affected = ['zhen-luma.html', 'wenchang.html', 'caiwei.html', 'taohua.html', 'bajie-sanqi.html'];
+  for (const file of affected) {
+    const raw = new JSDOM(fs.readFileSync(path.join(root, file), 'utf8'));
+    assert.equal(raw.window.document.querySelectorAll('.system-header .tool-subnav').length, 1, `${file}: no static duplicate`);
+    raw.window.close();
+    const f = await pageFixture(file, { ...active, plan: 'permanent' }, { duplicateNavigation: true });
+    assert.equal(f.document.querySelectorAll('.system-header .tool-subnav').length, 1, `${file}: duplicate normalized`);
+    assert.equal(f.document.querySelectorAll('.system-header .tool-subnav > a').length, 12);
+    assert.equal(f.document.querySelectorAll('.system-header .tool-subnav a[href="zibai-ymd.html"]').length, 1);
+    assert.equal(f.document.querySelector(`.system-header .tool-subnav a[href="${file}"]`).getAttribute('aria-current'), 'page');
+    assert.deepEqual(f.errors, []);
+    f.close();
+  }
+  console.log('PASS: five affected pages have one static navigation; duplicated markup is normalized to one 12-button navigation');
   for (const file of ['wenchang.html', 'caiwei.html', 'taohua.html']) {
     const f = await pageFixture(file, active);
     assert.equal(f.document.querySelector('#tabLuma').disabled, true);
