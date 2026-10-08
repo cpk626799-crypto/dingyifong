@@ -1,6 +1,6 @@
-// 2026-10-08：保留既有分級；龍德福德定局僅開放永久 VIP（及有效管理員）。
+// 2026-10-08：保留既有分級；龍德福德定局與行年干支・方位查詢僅開放永久 VIP（及有效管理員）。
 // 新功能需先指定一般、正式會員的開放範圍，再加入本表。
-export const PERMISSIONS_VERSION = '20261008-longde';
+export const PERMISSIONS_VERSION = '20261008-xingnian';
 export const MEMBER_HOME = 'member-tools.html';
 export const PLAN_LABELS = Object.freeze({
   free: '一般（學生）',
@@ -29,6 +29,7 @@ export const PAGE_PERMISSIONS = Object.freeze(Object.fromEntries([
   ['caiguan-shishen.html', '財・官・十神相配查詢', 'formal'],
   ['liufu.html', '六富日查詢', 'formal'],
   ['longde-fude.html', '龍德福德定局', 'permanent'],
+  ['xingnian.html', '行年干支・方位查詢', 'permanent'],
   ['bajie-sanqi.html', '八節三奇', 'formal'],
   ['xuankong.html', '玄空飛星', 'permanent'],
   ['liunian-rules.html', '流年法說明', 'permanent'],
@@ -72,7 +73,7 @@ export function canAccessPage(profile, page, now = Date.now()) {
 
 export function denialMessage(profile, page) {
   if (page === 'admin.html') return '僅供管理員使用';
-  if (canonicalPage(page) === 'longde-fude.html') return '僅供 VIP 會員使用';
+  if (['longde-fude.html', 'xingnian.html'].includes(canonicalPage(page))) return '僅供 VIP 會員使用';
   // 一般會員沿用老師指定的警示文字。
   if (profile?.plan === 'free') return '僅供正式會員使用';
   if (PAGE_PERMISSIONS[canonicalPage(page)]?.minimumPlan === 'permanent') {

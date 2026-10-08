@@ -11,7 +11,7 @@ const permissionsSource = fs.readFileSync(path.join(root, 'assets/member-permiss
 const student = ['zibai-ymd.html', 'zibai.html', 'fourtime.html', 'wenchang.html', 'caiwei.html', 'taohua.html'];
 const paid = [...student, 'index.html', 'benming.html', 'renming.html', 'renming-query.html',
   'yongji.html', 'tongshu.html', 'zhen-luma.html', 'xicai-guihe.html', 'caiguan-shishen.html', 'liufu.html', 'bajie-sanqi.html'];
-const vipOnly = ['longde-fude.html', 'dehu.html', 'taixuan.html', 'buzhen.html', 'xuankong.html', 'liunian-rules.html',
+const vipOnly = ['xingnian.html', 'longde-fude.html', 'dehu.html', 'taixuan.html', 'buzhen.html', 'xuankong.html', 'liunian-rules.html',
   'benming-rules.html', 'renming-rules.html', 'rules.html', 'dehu-rules.html'];
 const all = [...paid, ...vipOnly];
 
@@ -50,16 +50,18 @@ async function pageFixture(file, profile, options = {}) {
     const profile = { role: 'member', status: 'active', plan, display_name: '測試會員' };
     const home = await pageFixture('member-tools.html', profile);
     assert.equal(home.document.querySelectorAll('a.tool:not(.member-feature-locked)').length, expected.length, `${plan}: homepage`);
-    assert.equal(home.document.querySelectorAll('a.tool').length, 27);
-    assert.match(home.document.querySelector('.member-permission-note').textContent, /20261008-longde/);
+    assert.equal(home.document.querySelectorAll('a.tool').length, 28);
+    assert.match(home.document.querySelector('.member-permission-note').textContent, /20261008-xingnian/);
     for (const page of all.filter(page => !expected.includes(page))) {
       const link = home.document.querySelector(`a.tool[href="${page}"]`);
       const event = new home.dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
       assert.equal(link.dispatchEvent(event), false, `${plan}: blocked click ${page}`);
-      assert.equal(home.alerts.at(-1), page === 'longde-fude.html' ? '僅供 VIP 會員使用' : plan === 'free' ? '僅供正式會員使用' : '僅供永久（VIP）會員使用');
+      assert.equal(home.alerts.at(-1), ['longde-fude.html', 'xingnian.html'].includes(page) ? '僅供 VIP 會員使用' : plan === 'free' ? '僅供正式會員使用' : '僅供永久（VIP）會員使用');
     }
     assert.equal(home.document.querySelector('a[href="bajie-sanqi.html"]').nextElementSibling.getAttribute('href'), 'longde-fude.html');
     assert.equal(home.document.querySelector('.longde-signature').textContent, '四吉鎮八煞');
+    assert.equal(home.document.querySelector('a.tool[href="xingnian.html"]').closest('section').getAttribute('aria-labelledby'), 'group-03');
+    assert.equal(home.document.querySelector('[aria-labelledby="group-03"] .grid').classList.contains('cols-3'), true);
     assert.deepEqual(home.errors, []);
     home.close();
     for (const page of all) {
@@ -82,6 +84,16 @@ async function pageFixture(file, profile, options = {}) {
           assert.equal(newLink.getAttribute('href'), 'longde-fude.html');
           assert.equal(newLink.getAttribute('aria-current'), page === 'longde-fude.html' ? 'page' : null);
           assert.equal(newLink.classList.contains('member-feature-locked'), plan !== 'permanent');
+          assert.equal(special[0].querySelectorAll('a').length, 2);
+          const xingnian = special[0].querySelector('a[href="xingnian.html"]');
+          assert.ok(xingnian, `${page}: Xingnian shares the Longde block`);
+          assert.equal(xingnian.getAttribute('aria-current'), page === 'xingnian.html' ? 'page' : null);
+          assert.equal(xingnian.classList.contains('member-feature-locked'), plan !== 'permanent');
+          if (plan !== 'permanent') {
+            const event = new fixture.dom.window.MouseEvent('click', { bubbles: true, cancelable: true });
+            assert.equal(xingnian.dispatchEvent(event), false);
+            assert.equal(fixture.alerts.at(-1), '僅供 VIP 會員使用');
+          }
           const zibai = nav.querySelector('a[href="zibai-ymd.html"]');
           assert.ok(zibai, `${page}: zibai entry remains present`);
           assert.equal(zibai.classList.contains('member-feature-locked'), false, `${plan}: zibai is available`);
@@ -92,10 +104,10 @@ async function pageFixture(file, profile, options = {}) {
         checked++;
       }
     }
-    console.log(`${plan}: homepage ${expected.length}/27, all card alerts and 54 URL variants passed`);
+    console.log(`${plan}: homepage ${expected.length}/28, all card alerts and 56 URL variants passed`);
   }
   const active = { role: 'member', status: 'active', plan: 'free' };
-  const affected = ['zhen-luma.html', 'wenchang.html', 'caiwei.html', 'taohua.html', 'bajie-sanqi.html'];
+  const affected = ['xingnian.html', 'zhen-luma.html', 'wenchang.html', 'caiwei.html', 'taohua.html', 'bajie-sanqi.html'];
   for (const file of affected) {
     const raw = new JSDOM(fs.readFileSync(path.join(root, file), 'utf8'));
     assert.equal(raw.window.document.querySelectorAll('.system-header .tool-subnav').length, 1, `${file}: no static duplicate`);
@@ -104,12 +116,13 @@ async function pageFixture(file, profile, options = {}) {
     assert.equal(f.document.querySelectorAll('.system-header .tool-subnav').length, 1, `${file}: duplicate normalized`);
     assert.equal(f.document.querySelectorAll('.system-header .tool-subnav > a').length, 12);
     assert.equal(f.document.querySelectorAll('.system-header .tool-subnav a[href="zibai-ymd.html"]').length, 1);
-    assert.equal(f.document.querySelector(`.system-header .tool-subnav a[href="${file}"]`).getAttribute('aria-current'), 'page');
+    const current = f.document.querySelector(`.system-header a[href="${file}"][aria-current="page"]`);
+    assert.ok(current, `${file}: active navigation remains present`);
     assert.equal(f.document.querySelectorAll('.member-special-nav').length, 1);
     assert.deepEqual(f.errors, []);
     f.close();
   }
-  console.log('PASS: five affected pages have one static navigation; duplicated markup is normalized to one 12-button navigation');
+  console.log('PASS: six affected pages have one static navigation; duplicated markup is normalized to one 12-button navigation');
   for (const file of ['wenchang.html', 'caiwei.html', 'taohua.html']) {
     const f = await pageFixture(file, active);
     assert.equal(f.document.querySelector('#tabLuma').disabled, true);
@@ -138,6 +151,18 @@ async function pageFixture(file, profile, options = {}) {
     assert.deepEqual(anonymousZibai.redirects, ['login.html?next=zibai-ymd.html']);
     assert.equal(anonymousZibai.document.documentElement.classList.contains('auth-ready'), false);
     anonymousZibai.close();
+  }
+  for (const extensionless of [false, true]) {
+    const f = await pageFixture('xingnian.html', null, { anonymous: true, extensionless });
+    assert.deepEqual(f.redirects, ['login.html?next=xingnian.html']);
+    assert.equal(f.document.documentElement.classList.contains('auth-ready'), false);
+    f.close();
+  }
+  for (const changes of [{ status: 'suspended' }, { expires_at: '2000-01-01' }]) {
+    const f = await pageFixture('xingnian.html', { ...active, plan: 'permanent', ...changes });
+    assert.equal(f.document.documentElement.classList.contains('auth-ready'), false);
+    assert.match(f.redirects[0], /^pending\.html/);
+    f.close();
   }
   const failure = await pageFixture('member-tools.html', active, { profileError: true });
   assert.deepEqual(failure.redirects, ['login.html?error=profile']); failure.close();

@@ -4,7 +4,8 @@
   const BRANCHES='子丑寅卯辰巳午未申酉戌亥';
   const CYCLE=Array.from({length:60},(_,i)=>STEMS[i%10]+BRANCHES[i%12]);
   const PALACES={1:{name:'坎',dir:'北',symbol:'☵'},2:{name:'坤',dir:'西南',symbol:'☷'},3:{name:'震',dir:'東',symbol:'☳'},4:{name:'巽',dir:'東南',symbol:'☴'},5:{name:'中宮',dir:'中央',symbol:'五'},6:{name:'乾',dir:'西北',symbol:'☰'},7:{name:'兌',dir:'西',symbol:'☱'},8:{name:'艮',dir:'東北',symbol:'☶'},9:{name:'離',dir:'南',symbol:'☲'}};
-  const DISPLAY=[2,9,4,7,5,3,6,1,8];
+  // 後天八卦九宮：南上北下、東左西右（由左至右、由上至下）。
+  const DISPLAY=[4,9,2,3,5,7,8,1,6];
   const MONTHS=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
   const TERMS=['立春','驚蟄','清明','立夏','芒種','小暑','立秋','白露','寒露','立冬','大雪','小寒','立春'];
   const DEITIES=[{id:'taisui',name:'太歲',offset:0},{id:'sun',name:'太陽',offset:1},{id:'sangmen',name:'喪門',offset:2},{id:'moon',name:'太陰',offset:3},{id:'guanfu',name:'官符',offset:4},{id:'sifu',name:'死符',offset:5},{id:'suipo',name:'歲破',offset:6},{id:'dragon',name:'龍德',offset:7},{id:'baihu',name:'白虎',offset:8},{id:'fortune',name:'福德',offset:9},{id:'diaoke',name:'吊客',offset:10},{id:'bingfu',name:'病符',offset:11}];

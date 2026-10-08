@@ -8,12 +8,12 @@ const student = ['zibai-ymd.html', 'zibai.html', 'fourtime.html', 'wenchang.html
 const paid = [...student, 'index.html', 'benming.html', 'renming.html', 'renming-query.html',
   'yongji.html', 'tongshu.html', 'zhen-luma.html', 'xicai-guihe.html', 'caiguan-shishen.html',
   'liufu.html', 'bajie-sanqi.html'];
-const vipOnly = ['longde-fude.html', 'dehu.html', 'taixuan.html', 'buzhen.html', 'xuankong.html', 'liunian-rules.html',
+const vipOnly = ['xingnian.html', 'longde-fude.html', 'dehu.html', 'taixuan.html', 'buzhen.html', 'xuankong.html', 'liunian-rules.html',
   'benming-rules.html', 'renming-rules.html', 'rules.html', 'dehu-rules.html'];
 const all = [...paid, ...vipOnly];
 const profile = (plan, changes = {}) => ({ role: 'member', status: 'active', plan, starts_at: null, expires_at: null, ...changes });
 
-test('all 81 tier/page combinations retain 6, 17, 27 entries with VIP-only Longde', () => {
+test('all 84 tier/page combinations retain 6, 17, 28 entries with VIP-only Xingnian', () => {
   assert.deepEqual(Object.keys(PAGE_PERMISSIONS).sort(), [...all].sort());
   for (const [plan, expected] of [['free', student], ['formal', paid], ['permanent', all]]) {
     for (const page of all) assert.equal(canAccessPage(profile(plan), page), expected.includes(page), `${plan}: ${page}`);
@@ -60,13 +60,13 @@ test('legacy entry points and alert messages are consistent', () => {
   assert.equal(denialMessage(profile('formal'), 'taixuan.html'), '僅供永久（VIP）會員使用');
 });
 
-test('every protected HTML page uses the new guard, and all 27 homepage cards are mapped', () => {
+test('every protected HTML page uses the new guard, and all 28 homepage cards are mapped', () => {
   const root = new URL('../v2/', import.meta.url);
   const publicPages = ['login.html', 'register.html', 'verify.html', 'pending.html'];
   for (const file of readdirSync(root).filter(file => file.endsWith('.html') && !publicPages.includes(file))) {
     const html = readFileSync(new URL(file, root), 'utf8');
     assert.match(html, /class="auth-pending"/, file);
-    assert.match(html, /assets\/member-auth\.js\?v=20261008-longde/, file);
+    assert.match(html, /assets\/member-auth\.js\?v=20261008-xingnian/, file);
     assert.ok(Object.hasOwn(PAGE_PERMISSIONS, file) || ['member-tools.html', 'admin.html', 'jishi.html', 'extended-tools.html'].includes(file), file);
   }
   const home = readFileSync(new URL('member-tools.html', root), 'utf8');
@@ -80,4 +80,14 @@ test('Longde is explicitly VIP-only for both lower tiers', () => {
     assert.equal(denialMessage(profile(plan), 'longde-fude.html'), '僅供 VIP 會員使用');
   }
   assert.equal(canAccessPage(profile('permanent'), 'longde-fude.html'), true);
+});
+
+
+test('Xingnian uses the current VIP rule even for a paid member', () => {
+  for (const plan of ['free', 'formal']) {
+    assert.equal(canAccessPage(profile(plan), 'xingnian.html'), false);
+    assert.equal(denialMessage(profile(plan), 'xingnian.html'), '僅供 VIP 會員使用');
+  }
+  assert.equal(canAccessPage(profile('permanent'), 'xingnian.html'), true);
+  assert.equal(canAccessPage(profile('free', { role: 'admin' }), 'xingnian.html'), true);
 });

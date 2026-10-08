@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070b14">
+<meta name="description" content="輸入出生西元年、查詢年與男女命，以虛歲計算行年干支，連動十二地支方位。VIP 會員專用。">
+<title>行年干支・方位查詢｜天書三式•丁一峰老師術數查詢系統</title>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/xingnian.css?v=20261008-xingnian">
+<link id="member-nav-unified-style" rel="stylesheet" href="assets/member-navigation.css?v=20261008-xingnian">
+<script type="module" src="assets/member-auth.js?v=20261008-xingnian"></script>
+</head><body class="dark-system xingnian-member-page">
+<header class="system-header">
+    <div class="brand-mark">年</div>
+    <p class="eyebrow">行年干支・十二地支方位</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">行年干支・方位查詢｜VIP 專用</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="fourtime.html">四大吉時月表</a>
+      <a href="yongji.html">永吉造命課</a>
+      <a href="tongshu.html">通書六十甲子造命</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+    <nav class="tool-subnav" aria-label="術數工具導覽">
+<a href="zhen-luma.html">真祿馬貴人</a>
+<a href="wenchang.html">文昌</a>
+<a href="caiwei.html">財位</a>
+<a href="taohua.html">桃花位</a>
+<a href="buzhen.html">流年佈陣用日</a>
+<a href="xicai-guihe.html">喜財貴人鶴神方</a>
+<a href="caiguan-shishen.html">財．官，十神相配</a>
+<a href="liufu.html">六富日查詢</a>
+<a href="bajie-sanqi.html">八節三奇</a>
+<a href="xuankong.html">玄空飛星</a>
+<a href="taixuan.html">太玄數計算</a>
+<a href="zibai-ymd.html">流年紫白飛星</a>
+</nav>
+<section class="member-special-nav" aria-label="龍德福德與行年方位專區">
+  <a class="member-special-link" href="longde-fude.html">
+    <span class="member-special-mark" aria-hidden="true">德</span>
+    <span class="member-special-text"><strong>龍德福德定局</strong><small>四吉鎮八煞</small></span>
+    <span class="member-special-vip">VIP 專用</span><span class="member-special-arrow" aria-hidden="true">→</span>
+  </a>
+  <a class="member-special-link" href="xingnian.html" aria-current="page">
+    <span class="member-special-mark" aria-hidden="true">年</span>
+    <span class="member-special-text"><strong>行年干支・方位查詢</strong><small>男女命行年與十二地支方位</small></span>
+    <span class="member-special-vip">VIP 專用</span><span class="member-special-arrow" aria-hidden="true">→</span>
+  </a>
+</section>
+  </header>
+<main class="xn-wrap">
+    <header>
+      <div class="xn-hero"><p class="xn-eyebrow">XING NIAN · ANNUAL CYCLE</p><h2 class="xn-title">行年干支・方位查詢</h2><p class="xn-intro">輸入出生年，選擇查詢年與男女命，即時顯示行年與方位。</p></div>
+    </header>
+    <noscript><p class="xn-noscript">請使用已啟用 JavaScript 的瀏覽器開啟本檔案。</p></noscript>
+    <form id="xnForm" class="xn-form" novalidate>
+      <div class="xn-field">
+        <div class="xn-label-row"><label class="xn-label" for="birthYear"><span class="xn-step">01</span>出生西元年</label></div>
+        <input class="xn-control" id="birthYear" name="birthYear" type="number" inputmode="numeric" min="1900" max="2200" step="1" value="1984" placeholder="例如 1984" required aria-describedby="birthMeta yearNote errorMessage">
+        <p class="xn-meta" id="birthMeta">輸入出生年，連動干支與歲數</p>
+      </div>
+      <div class="xn-field">
+        <div class="xn-label-row"><label class="xn-label" for="queryYear"><span class="xn-step">02</span>查詢西元年</label><button class="xn-link-button" id="thisYear" type="button">今年</button></div>
+        <select class="xn-control" id="queryYear" name="queryYear" aria-describedby="queryMeta"></select>
+        <p class="xn-meta" id="queryMeta">可查詢 1900–2200 年</p>
+      </div>
+      <fieldset class="xn-gender">
+        <legend class="xn-label"><span class="xn-step">03</span>選擇男女命</legend>
+        <div class="xn-gender-options"><div class="xn-choice"><input id="male" name="gender" type="radio" value="male" checked><label for="male">男命</label></div><div class="xn-choice"><input id="female" name="gender" type="radio" value="female"><label for="female">女命</label></div></div>
+        <p class="xn-meta" id="genderMeta">一歲起丙寅，每歲順行一位</p>
+      </fieldset>
+    </form>
+    <p class="xn-alert" id="errorMessage" role="alert" hidden></p>
+    <div class="xn-results">
+      <section class="xn-panel xn-result-panel" aria-labelledby="resultTitle">
+        <div class="xn-panel-heading"><h2 id="resultTitle">行年干支</h2><span class="xn-pill" id="resultBadge">男命</span></div>
+        <div id="resultContent" aria-live="polite" aria-atomic="true">
+          <div class="xn-ganzhi-row"><p class="xn-big-ganzhi" id="resultGanzhi">—</p><div class="xn-age"><span class="xn-age-number" id="resultAge">—</span><span class="xn-age-label">虛歲</span></div></div>
+          <div class="xn-location"><strong id="resultBranch">—方</strong><span class="xn-location-name" id="resultDirection">—</span><span class="xn-degree" id="resultDegree">—°</span></div>
+          <dl class="xn-facts"><dt>出生年干支</dt><dd id="resultBirth">—</dd><dt>查詢年干支</dt><dd id="resultYear">—</dd></dl>
+          <div class="xn-basis"><p id="ageFormula">—</p><p id="cycleFormula">—</p></div>
+        </div>
+        <p class="xn-empty" id="emptyResult" hidden>請先輸入有效的出生年與查詢年。</p>
+      </section>
+      <section class="xn-panel xn-compass-panel" aria-labelledby="compassTitle">
+        <div class="xn-panel-heading"><h2 id="compassTitle">十二地支方位</h2><select class="xn-orientation" id="orientation" aria-label="方位盤顯示方向"><option value="180">南上北下</option><option value="0">北上南下</option></select></div>
+        <svg class="xn-compass" id="compass" viewBox="0 0 500 500" role="img" aria-label="十二地支方位盤"></svg>
+        <p class="xn-compass-note"><span class="xn-legend-dot" aria-hidden="true"></span><span>金色標示行年落方</span><span id="orientationNote"> · 東在左，西在右</span></p>
+      </section>
+    </div>
+    <p class="xn-year-note" id="yearNote">本版依所填年份對應干支與虛歲；僅輸入年份，未作農曆新年或立春換年校正。</p>
+    <details class="xn-notes">
+      <summary>計算依據與使用說明</summary>
+      <div class="xn-note-body">
+        <div class="xn-rule-grid"><div class="xn-rule"><strong>男命｜丙寅順行</strong>一歲丙寅、二歲丁卯、三歲戊辰……六十歲乙丑；六十一歲再起丙寅。</div><div class="xn-rule"><strong>女命｜壬申逆行</strong>一歲壬申、二歲辛未、三歲庚午……六十歲癸酉；六十一歲再起壬申。</div></div>
+        <p><strong>虛歲計算：</strong>查詢西元年 − 出生西元年 ＋ 1。出生當年為一虛歲，六十歲為一輪，超過六十歲繼續循環。出生年須為西元 1900–2200 年，且不得晚於查詢年。</p>
+        <p><strong>年份使用：</strong>查詢年可選 1900–2200 年，開啟時依臺灣日期預設今年。出生年干支依西元年份換算；若生日位於年初、需依農曆新年或立春區分命年，應先確認所採命年。本版未提供生日換年判定。</p>
+        <p><strong>方位讀法：</strong>以行年干支的「地支」定位。方位角由正北 0° 起，順時針量度；子 0°、卯 90°、午 180°、酉 270°，其餘各支相隔 30°。所標度數為地支中心方向。切換南上／北上只改變圖面朝向。</p>
+        <p class="xn-source">起法依提供的《行年.jpg》及《2018-05-10-第12堂-立夏四季太歲行年_05.jpg》男女命表。第一張圖女命表旁「六十一歲又從丙寅起」與表內壬申逆行排列不符，本版依兩張表一致的女命壬申起例循環。方位另參考<a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E6%94%AF" target="_blank" rel="noopener noreferrer">地支方位對照</a>。</p>
+      </div>
+    </details>
+    <footer class="xn-footer"><span class="xn-credit">天書三式丁一峰老師製作</span><span>© 2026 天書三式 · 行年查詢 · VIP 專用</span></footer>
+  </main>
+<script src="assets/xingnian.js?v=20261008-xingnian"></script>
+</body></html>
