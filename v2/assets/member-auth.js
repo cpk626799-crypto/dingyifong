@@ -1,7 +1,7 @@
 import { supabase } from './supabase-client.js';
 import { MEMBER_HOME, PLAN_LABELS, PAGE_PERMISSIONS, PERMISSIONS_VERSION,
   accountRestriction, canonicalPage, canAccessPage, denialMessage
-} from './member-permissions.js?v=20261006';
+} from './member-permissions.js?v=20261008-longde';
 
 const LOGIN_PAGE = 'login.html';
 const PENDING_PAGE = 'pending.html';
@@ -87,7 +87,7 @@ function injectUnifiedMemberNavigation() {
       const style = document.createElement('link');
       style.id = 'member-nav-unified-style';
       style.rel = 'stylesheet';
-      style.href = 'assets/member-navigation.css?v=20261006-zibai';
+      style.href = 'assets/member-navigation.css?v=20261008-longde';
       document.head.appendChild(style);
     }
 
@@ -123,6 +123,19 @@ function injectUnifiedMemberNavigation() {
     nav.innerHTML = tools.map(([href, label]) =>
       `<a href="${href}"${page === href ? ' aria-current="page"' : ''}>${label}</a>`
     ).join('');
+    const sections = [...document.querySelectorAll('.member-special-nav')];
+    let special = sections.shift();
+    sections.forEach(duplicate => duplicate.remove());
+    if (!special) {
+      special = document.createElement('section');
+      special.className = 'member-special-nav';
+      special.setAttribute('aria-label', '四吉鎮八煞專區');
+    }
+    special.innerHTML = `<a class="member-special-link" href="longde-fude.html"${page === 'longde-fude.html' ? ' aria-current="page"' : ''}>
+      <span class="member-special-mark" aria-hidden="true">德</span>
+      <span class="member-special-text"><strong>龍德福德定局</strong><small>四吉鎮八煞</small></span>
+      <span class="member-special-vip">VIP 專用</span><span class="member-special-arrow" aria-hidden="true">→</span></a>`;
+    nav.insertAdjacentElement('afterend', special);
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, { once: true });

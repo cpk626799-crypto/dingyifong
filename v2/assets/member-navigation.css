@@ -117,3 +117,15 @@
       
 .ts-shared-nav-shell{width:min(1280px,calc(100% - 32px));margin:16px auto 0;box-sizing:border-box}
 @media print{.ts-shared-nav-shell{display:none!important}}
+
+
+/* 四吉鎮八煞：獨立於原有十二個工具按鈕的專區 */
+.member-special-nav{width:100%;max-width:1280px;margin:12px auto 0;padding:8px;border:1px solid rgba(224,184,78,.3);border-radius:18px;background:linear-gradient(125deg,rgba(47,39,21,.38),rgba(12,20,36,.96));box-sizing:border-box;text-align:left}
+.member-special-link{display:flex!important;align-items:center;gap:13px;min-height:66px;padding:10px 16px;border:1px solid transparent;border-radius:12px;text-decoration:none;color:#f2d578;box-sizing:border-box}
+.member-special-link:hover,.member-special-link[aria-current="page"]{border-color:rgba(224,184,78,.55);background:rgba(224,184,78,.08)}
+.member-special-mark{display:grid;place-items:center;flex:none;width:40px;height:40px;border:1px solid rgba(224,184,78,.42);border-radius:11px;background:rgba(224,184,78,.09);font-size:20px;font-weight:900}
+.member-special-text{display:grid;gap:3px;min-width:0}.member-special-text strong{font-size:16px;font-weight:900;line-height:1.4}.member-special-text small{color:#aeb8cb;font-size:12px;letter-spacing:.16em;line-height:1.5}
+.member-special-vip{margin-left:auto;padding:4px 10px;border:1px solid rgba(224,184,78,.34);border-radius:999px;white-space:nowrap;font-size:11px;font-weight:800}.member-special-arrow{font-size:22px}
+.longde-entry{border-color:rgba(224,184,78,.48)!important}.longde-entry .entry-vip{position:absolute;top:18px;right:14px;border:1px solid rgba(224,184,78,.35);border-radius:999px;padding:3px 7px;color:#f2d578;font-size:10px;font-weight:850}.longde-entry .longde-signature{letter-spacing:.13em;color:#b6c1d3}
+@media(max-width:480px){.member-special-link{gap:10px;padding:9px}.member-special-vip{padding:4px 6px}.member-special-arrow{display:none}}
+@media print{.member-special-nav{display:none!important}}

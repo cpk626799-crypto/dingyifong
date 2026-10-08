@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant" class="auth-pending"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="龍德福德定局・四吉鎮八煞，2000–2200 年太陽、太陰、龍德與福德九宮落宮查詢。">
+<title>龍德福德定局｜天書三式•丁一峰老師術數查詢系統</title>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/longde-fude.css?v=20261008-longde">
+<link id="member-nav-unified-style" rel="stylesheet" href="assets/member-navigation.css?v=20261008-longde">
+<script type="module" src="assets/member-auth.js?v=20261008-longde"></script>
+</head><body class="dark-system longde-member-page">
+<header class="system-header">
+    <div class="brand-mark">德</div>
+    <p class="eyebrow">太陽・太陰・龍德・福德</p>
+    <h1>天書三式•丁一峰老師術數查詢系統</h1>
+    <p class="hero__text">龍德福德定局｜四吉鎮八煞</p>
+    <nav class="top-nav" aria-label="網站導覽">
+      <a href="index.html">流年祿馬貴人</a>
+      <a href="benming.html">個人流年祿馬貴人</a>
+      <a href="renming.html">六十甲子人命擇日</a>
+      <a href="renming-query.html">六十甲子年命擇日查詢</a>
+      <a href="zibai.html">流年紫白查詢</a>
+      <a href="dehu.html">逐日的呼查詢</a>
+      <a href="fourtime.html">四大吉時月表</a>
+      <a href="yongji.html">永吉造命課</a>
+      <a href="tongshu.html">通書六十甲子造命</a>
+      <a href="liunian-rules.html">流年法說明</a>
+      <a href="benming-rules.html">個人流年法說明</a>
+      <a href="renming-rules.html">人命擇日說明</a>
+      <a href="rules.html">本版採用規則</a>
+      <a href="dehu-rules.html">的呼規則</a>
+    </nav>
+    <nav class="tool-subnav" aria-label="術數工具導覽">
+<a href="zhen-luma.html">真祿馬貴人</a>
+<a href="wenchang.html">文昌</a>
+<a href="caiwei.html">財位</a>
+<a href="taohua.html">桃花位</a>
+<a href="buzhen.html">流年佈陣用日</a>
+<a href="xicai-guihe.html">喜財貴人鶴神方</a>
+<a href="caiguan-shishen.html">財．官，十神相配</a>
+<a href="liufu.html">六富日查詢</a>
+<a href="bajie-sanqi.html">八節三奇</a>
+<a href="xuankong.html">玄空飛星</a>
+<a href="taixuan.html">太玄數計算</a>
+<a href="zibai-ymd.html">流年紫白飛星</a>
+</nav>
+<section class="member-special-nav" aria-label="四吉鎮八煞專區">
+  <a class="member-special-link" href="longde-fude.html" aria-current="page">
+    <span class="member-special-mark" aria-hidden="true">德</span>
+    <span class="member-special-text"><strong>龍德福德定局</strong><small>四吉鎮八煞</small></span>
+    <span class="member-special-vip">VIP 專用</span><span class="member-special-arrow" aria-hidden="true">→</span>
+  </a>
+</section>
+  </header>
+<main class="longde-content">
+ <section id="query" class="query-section" aria-labelledby="query-title">
+  <div class="title-row"><div><p class="eyebrow">太陽・太陰・龍德・福德</p><h2 id="query-title">龍德福德定局</h2><p class="longde-subtitle">四吉鎮八煞</p></div><span class="range-tag">2000 — 2200</span></div>
+  <div class="workspace">
+   <aside class="control-panel">
+    <form id="query-form" novalidate>
+     <label class="field" for="year">查詢西元年<div class="year-input"><input id="year" type="number" inputmode="numeric" min="2000" max="2200" step="1" value="2026" aria-describedby="year-error" required><span>年</span></div></label>
+     <label class="field" for="month">用事月<span class="field-sub">以節氣交節換月</span><select id="month"></select></label>
+     <button type="submit" class="primary-btn">查詢落宮</button>
+     <p id="year-error" class="error" role="alert" hidden></p>
+    </form>
+    <div class="period-nav"><button id="prev" type="button">前一月</button><button id="next" type="button">後一月</button></div>
+    <div class="selection-info"><span id="selection-year">2026 丙午年</span><strong id="selection-month">正月・庚寅月</strong><p id="term-range">立春起，至驚蟄交節前</p></div>
+    <p class="calendar-note">年以立春為界。此處正月至十二月均指節氣月；子月、丑月仍屬所選干支年。</p>
+    <div class="divider"></div>
+    <p class="orientation-note">圖面：上南・下北<br>左西・右東</p>
+   </aside>
+   <div class="chart-panel">
+    <div class="chart-title"><div><h2 id="chart-title">丙午年 正月</h2><p>洛書九宮落宮圖</p></div><div class="legend"><span class="legend-sun">太陽</span><span class="legend-moon">太陰</span><span class="legend-dragon">龍德</span><span class="legend-fortune">福德</span></div></div>
+    <div class="compass">
+     <div class="compass-north">南 · 離</div><div class="compass-west">西<br>兌</div><div class="compass-east">東<br>震</div><div class="compass-south">北 · 坎</div>
+     <div id="palace-grid" class="palace-grid" aria-label="洛書九宮：上南下北、右東左西"></div>
+    </div>
+    <div id="result-summary" class="result-summary" role="status" aria-live="polite" aria-atomic="true"></div>
+    <p class="chart-note">太陽、太陰、龍德、福德以四色光暈標示；福德宮保留太歲標籤。</p>
+   </div>
+   <aside class="results-panel" aria-labelledby="results-title">
+    <div class="section-mini"><span>本月落宮</span><h2 id="results-title">四吉神方位</h2></div>
+    <div id="deity-results" class="deity-results"></div>
+   </aside>
+  </div>
+ </section>
+ <section id="annual" class="content-section" aria-labelledby="annual-title">
+  <div class="section-heading"><div><p class="eyebrow">十二節氣月</p><h2 id="annual-title">2026 丙午年・全年落宮</h2></div><p>點選月份，同步查看九宮圖。</p></div>
+  <div class="table-wrap"><table class="annual-table"><caption class="sr-only">所選年份各節氣月的太歲、龍德、福德、太陽與太陰落宮</caption><thead><tr><th scope="col">月份</th><th scope="col">月建干支</th><th scope="col">節氣起點</th><th scope="col">太歲</th><th scope="col" class="dragon-text">龍德</th><th scope="col" class="fortune-text">福德</th><th scope="col">太陽</th><th scope="col">太陰</th></tr></thead><tbody id="annual-body"></tbody></table></div>
+ </section>
+ <footer><span>天書三式・龍德福德定局</span><span>© 2026 丁一峰老師 版權所有</span></footer>
+</main>
+<script src="assets/longde-fude-engine.js?v=20261008-longde"></script>
+<script src="assets/longde-fude.js?v=20261008-longde"></script>
+</body></html>
