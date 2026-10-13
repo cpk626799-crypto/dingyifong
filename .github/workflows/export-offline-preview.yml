@@ -43,28 +43,60 @@ jobs:
 
           正式網站 main 分支未因本離線預覽而更新。
           EOF
+          cat > offline/啟動離線網站.ps1 <<'EOF'
+          $ErrorActionPreference = "Stop"
+          $root = Split-Path -Parent $MyInvocation.MyCommand.Path
+          $prefix = "http://127.0.0.1:8787/"
+          $mime = @{
+            ".html"="text/html; charset=utf-8"; ".css"="text/css; charset=utf-8";
+            ".js"="application/javascript; charset=utf-8"; ".json"="application/json; charset=utf-8";
+            ".b64"="text/plain; charset=utf-8"; ".md"="text/plain; charset=utf-8";
+            ".txt"="text/plain; charset=utf-8"; ".svg"="image/svg+xml";
+            ".png"="image/png"; ".jpg"="image/jpeg"; ".jpeg"="image/jpeg"; ".webp"="image/webp"
+          }
+          $listener = [System.Net.HttpListener]::new()
+          $listener.Prefixes.Add($prefix)
+          $listener.Start()
+          Write-Host ""
+          Write-Host "天書三式會員網站離線檢查版"
+          Write-Host "本機網址：$($prefix)member-tools.html"
+          Write-Host "關閉此視窗即可停止離線伺服器。"
+          Start-Process "$($prefix)member-tools.html"
+          try {
+            while ($listener.IsListening) {
+              $ctx = $listener.GetContext()
+              $urlPath = [System.Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath.TrimStart('/'))
+              if ([string]::IsNullOrWhiteSpace($urlPath)) { $urlPath = "member-tools.html" }
+              $candidate = [System.IO.Path]::GetFullPath((Join-Path $root $urlPath.Replace('/', [System.IO.Path]::DirectorySeparatorChar)))
+              $rootFull = [System.IO.Path]::GetFullPath($root + [System.IO.Path]::DirectorySeparatorChar)
+              if (-not $candidate.StartsWith($rootFull, [System.StringComparison]::OrdinalIgnoreCase) -or -not (Test-Path -LiteralPath $candidate -PathType Leaf)) {
+                $ctx.Response.StatusCode = 404
+                $bytes = [Text.Encoding]::UTF8.GetBytes("404 Not Found")
+              } else {
+                $ext = [System.IO.Path]::GetExtension($candidate).ToLowerInvariant()
+                if ($mime.ContainsKey($ext)) { $ctx.Response.ContentType = $mime[$ext] }
+                else { $ctx.Response.ContentType = "application/octet-stream" }
+                $bytes = [System.IO.File]::ReadAllBytes($candidate)
+              }
+              $ctx.Response.ContentLength64 = $bytes.Length
+              $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
+              $ctx.Response.OutputStream.Close()
+            }
+          } finally {
+            $listener.Stop()
+            $listener.Close()
+          }
+          EOF
           cat > offline/啟動離線網站.bat <<'EOF'
           @echo off
           chcp 65001 >nul
           cd /d "%~dp0"
-          echo.
-          echo 天書三式會員網站離線檢查版
-          echo 本機網址：http://127.0.0.1:8787/member-tools.html
-          echo 關閉此視窗即可停止離線伺服器。
-          echo.
-          start "" "http://127.0.0.1:8787/member-tools.html"
-          where py >nul 2>nul
-          if %errorlevel%==0 (
-            py -m http.server 8787 --bind 127.0.0.1
-            goto :eof
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0啟動離線網站.ps1"
+          if errorlevel 1 (
+            echo.
+            echo 離線網站啟動失敗，請確認 Windows PowerShell 可正常使用。
+            pause
           )
-          where python >nul 2>nul
-          if %errorlevel%==0 (
-            python -m http.server 8787 --bind 127.0.0.1
-            goto :eof
-          )
-          echo 找不到 Python。請安裝 Python 後再執行本檔。
-          pause
           EOF
       - name: Upload offline site
         uses: actions/upload-artifact@v4
@@ -75,3 +107,5 @@ jobs:
           retention-days: 7
 
 # repack after offline verification fixes
+
+# Windows PowerShell launcher included
