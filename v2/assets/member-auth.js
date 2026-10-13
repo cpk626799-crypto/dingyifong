@@ -1,1 +1,11 @@
-// 離線預覽專用：不連線 Supabase，不驗證會員身分。\n(() => {\n  document.documentElement.classList.remove('auth-pending');\n  document.documentElement.classList.add('auth-ready');\n  document.addEventListener('DOMContentLoaded', () => {\n    document.documentElement.classList.remove('auth-pending');\n    document.documentElement.classList.add('auth-ready');\n  }, { once: true });\n})();\n
+// 離線預覽專用：不連線 Supabase，不驗證會員身分。
+(() => {
+  const ready = () => {
+    document.documentElement.classList.remove('auth-pending');
+    document.documentElement.classList.add('auth-ready');
+  };
+  ready();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready, { once: true });
+  }
+})();
