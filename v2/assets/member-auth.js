@@ -1,7 +1,7 @@
 import { supabase } from './supabase-client.js';
 import { MEMBER_HOME, PLAN_LABELS, PAGE_PERMISSIONS, PERMISSIONS_VERSION,
   accountRestriction, canonicalPage, canAccessPage, denialMessage
-} from './member-permissions.js?v=20261008-xingnian';
+} from './member-permissions.js?v=20261013-full';
 
 const LOGIN_PAGE = 'login.html';
 const PENDING_PAGE = 'pending.html';
@@ -83,11 +83,15 @@ function injectMemberBar(profile) {
 
 function injectUnifiedMemberNavigation() {
   const render = () => {
-    if (!document.getElementById('member-nav-unified-style')) {
+    const existingStyle = document.getElementById('member-nav-unified-style');
+    if (existingStyle && !existingStyle.href.includes('v=20261013-full')) {
+      existingStyle.href = 'assets/member-navigation.css?v=20261013-full';
+    }
+    if (!existingStyle) {
       const style = document.createElement('link');
       style.id = 'member-nav-unified-style';
       style.rel = 'stylesheet';
-      style.href = 'assets/member-navigation.css?v=20261008-xingnian';
+      style.href = 'assets/member-navigation.css?v=20261013-full';
       document.head.appendChild(style);
     }
 
@@ -130,10 +134,11 @@ function injectUnifiedMemberNavigation() {
       special = document.createElement('section');
       special.className = 'member-special-nav';
     }
-    special.setAttribute('aria-label', '龍德福德與行年方位專區');
+    special.setAttribute('aria-label', '會員 VIP 專區');
     const specialTools = [
       ['longde-fude.html', '德', '龍德福德定局', '四吉鎮八煞'],
-      ['xingnian.html', '年', '行年干支・方位查詢', '男女命行年與十二地支方位']
+      ['xingnian.html', '年', '行年干支・方位查詢', '男女命行年與十二地支方位'],
+      ['daily-course.html', '課', '用事日課查詢', '催官・催貴人・催財祿反查']
     ];
     special.innerHTML = specialTools.map(([href, mark, label, subtitle]) =>
       `<a class="member-special-link" href="${href}"${page === href ? ' aria-current="page"' : ''}>
