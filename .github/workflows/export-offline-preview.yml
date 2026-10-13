@@ -1,0 +1,74 @@
+name: Export offline member preview
+
+on:
+  push:
+    branches:
+      - offline-preview-20261013-rike
+    paths:
+      - '.github/workflows/export-offline-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare offline preview
+        shell: bash
+        run: |
+          mkdir -p offline
+          cp -R v2/. offline/
+          rm -f offline/login.html offline/register.html offline/pending.html offline/verify.html offline/admin.html
+          cat > offline/README_離線檢查版.txt <<'EOF'
+          天書三式・丁一峰老師術數查詢系統
+          會員制網站完整離線檢查版｜2026-10-13
+
+          使用方式：
+          1. 解壓縮本檔案。
+          2. 雙擊「啟動離線網站.bat」。
+          3. 瀏覽器會開啟 member-tools.html。
+          4. 本版已停用會員登入驗證，供本機逐頁測試。
+          5. 請勿將此離線版公開部署，正式站權限設定並未取消。
+
+          本次預覽調整：
+          01 造命專區
+          02 佈陣專區
+          03 風水專區
+          04 日課專區：用事日課查詢（VIP）、財．官，十神相配查詢
+          05 說明專區
+
+          正式網站 main 分支未因本離線預覽而更新。
+          EOF
+          cat > offline/啟動離線網站.bat <<'EOF'
+          @echo off
+          chcp 65001 >nul
+          cd /d "%~dp0"
+          echo.
+          echo 天書三式會員網站離線檢查版
+          echo 本機網址：http://127.0.0.1:8787/member-tools.html
+          echo 關閉此視窗即可停止離線伺服器。
+          echo.
+          start "" "http://127.0.0.1:8787/member-tools.html"
+          where py >nul 2>nul
+          if %errorlevel%==0 (
+            py -m http.server 8787 --bind 127.0.0.1
+            goto :eof
+          )
+          where python >nul 2>nul
+          if %errorlevel%==0 (
+            python -m http.server 8787 --bind 127.0.0.1
+            goto :eof
+          )
+          echo 找不到 Python。請安裝 Python 後再執行本檔。
+          pause
+          EOF
+      - name: Upload offline site
+        uses: actions/upload-artifact@v4
+        with:
+          name: dingyifong-member-offline-preview-20261013
+          path: offline/
+          if-no-files-found: error
+          retention-days: 7
