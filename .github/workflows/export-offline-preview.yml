@@ -6,6 +6,7 @@ on:
       - offline-preview-20261013-rike
     paths:
       - '.github/workflows/export-offline-preview.yml'
+      - 'v2/**'
   workflow_dispatch:
 
 permissions:
@@ -72,3 +73,5 @@ jobs:
           path: offline/
           if-no-files-found: error
           retention-days: 7
+
+# repack after offline verification fixes
