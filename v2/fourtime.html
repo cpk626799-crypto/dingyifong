@@ -380,7 +380,95 @@ const FOUR_TIME_DATA = [{"date":"2026-01-01","y":2026,"m":1,"d":1,"dunju":4,"jie
 const yuejiangNames = {"亥":"登明","戌":"河魁","酉":"從魁","申":"傳送","未":"小吉","午":"勝光","巳":"太乙","辰":"天罡","卯":"太沖","寅":"功曹","丑":"大吉","子":"神后"};
 let ftCurrent = [];
 
+// 2027年（民國116年）農曆日期依中央氣象署《日曆資料表》校定。
+// 原生 Intl 中國曆在部分執行環境中會把 2027/02/06 誤判為臘月三十，
+// 並使 02/06–03/07 的農曆日期整體錯後一日。
+// 僅修正 2027 年農曆「顯示」；不改動四大吉時、遁局、節氣、干支等原始資料。
+const FOUR_TIME_LUNAR_2027_ANCHORS = [
+  [
+    "2027-01-01",
+    "冬月",
+    24
+  ],
+  [
+    "2027-01-08",
+    "臘月",
+    1
+  ],
+  [
+    "2027-02-06",
+    "正月",
+    1
+  ],
+  [
+    "2027-03-08",
+    "二月",
+    1
+  ],
+  [
+    "2027-04-07",
+    "三月",
+    1
+  ],
+  [
+    "2027-05-06",
+    "四月",
+    1
+  ],
+  [
+    "2027-06-05",
+    "五月",
+    1
+  ],
+  [
+    "2027-07-04",
+    "六月",
+    1
+  ],
+  [
+    "2027-08-02",
+    "七月",
+    1
+  ],
+  [
+    "2027-09-01",
+    "八月",
+    1
+  ],
+  [
+    "2027-09-30",
+    "九月",
+    1
+  ],
+  [
+    "2027-10-29",
+    "十月",
+    1
+  ],
+  [
+    "2027-11-28",
+    "冬月",
+    1
+  ],
+  [
+    "2027-12-28",
+    "臘月",
+    1
+  ]
+];
 function formatLunar(iso) {
+  if (/^2027-\d{2}-\d{2}$/.test(iso)) {
+    const timestamp = Date.parse(iso + "T00:00:00Z");
+    if (Number.isFinite(timestamp)) {
+      for (let i = FOUR_TIME_LUNAR_2027_ANCHORS.length - 1; i >= 0; i--) {
+        const [start, lunarMonth, firstDay] = FOUR_TIME_LUNAR_2027_ANCHORS[i];
+        if (iso >= start) {
+          const offset = Math.round((timestamp - Date.parse(start + "T00:00:00Z")) / 86400000);
+          return lunarMonth + (firstDay + offset) + "日";
+        }
+      }
+    }
+  }
   try {
     const d = new Date(iso + "T00:00:00Z");
     return new Intl.DateTimeFormat("zh-TW-u-ca-chinese", {month:"long", day:"numeric", timeZone:"UTC"}).format(d);
